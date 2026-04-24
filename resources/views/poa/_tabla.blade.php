@@ -12,13 +12,13 @@
                     <th rowspan="2" style="min-width: 120px;"></th>
                     <th rowspan="2" style="min-width: 90px;">META ANUAL</th>
                     <th rowspan="2" style="min-width: 100px;">UNIDAD DE MEDIDA</th>
-                    <th colspan="1">AVANCE MENSUAL</th>
-                    <th rowspan="2" style="min-width: 90px;">% DE LOGRO<br>DEL MES A<br>REPORTAR</th>
+                    <th colspan="1">AVANCE {{ $labelPeriodo ?? 'MENSUAL' }}</th>
+                    <th rowspan="2" style="min-width: 90px;">% DE LOGRO<br>DEL PERIODO<br>SELECCIONADO</th>
                     <th rowspan="2" style="min-width: 90px;">% DE LOGRO<br>SOBRE LA<br>META ANUAL</th>
                     <th rowspan="2" style="min-width: 130px;">NOTA ACLARATORIA</th>
                 </tr>
                 <tr>
-                    <th>{{ $meses[$mesActual] ?? 'ENERO' }}</th>
+                    <th>{{ $labelPeriodo ?? 'ENERO' }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,18 +27,29 @@
                         $fila1 = $dataPoa[$compromiso->id][$compromiso->label_fila_1] ?? null;
                         $fila2 = $dataPoa[$compromiso->id][$compromiso->label_fila_2] ?? null;
 
-                        $mesCol = 'mes_' . str_pad($mesActual, 2, '0', STR_PAD_LEFT);
+                        $mesesConfig = $config['meses'] ?? [1];
+                        $primerMes = $mesesConfig[0] ?? 1;
+                        $ultimoMes = $mesesConfig[count($mesesConfig) - 1] ?? $primerMes;
+                        $mesCol = 'mes_' . str_pad($primerMes, 2, '0', STR_PAD_LEFT);
                         
                         // Valores comprometidos
                         $metaAnual1 = $fila1 ? (float)$fila1->meta_anual : 0;
-                        $avanceMes1 = $fila1 ? (float)$fila1->$mesCol : 0;
+                        $avancePeriodo1 = 0;
+                        foreach ($mesesConfig as $m) {
+                            $col = 'mes_' . str_pad($m, 2, '0', STR_PAD_LEFT);
+                            $avancePeriodo1 += $fila1 ? (float)($fila1->$col ?? 0) : 0;
+                        }
 
                         // Valores realizados
                         $metaAnual2 = $fila2 ? (float)$fila2->meta_anual : 0;
-                        $avanceMes2 = $fila2 ? (float)$fila2->$mesCol : 0;
+                        $avancePeriodo2 = 0;
+                        foreach ($mesesConfig as $m) {
+                            $col = 'mes_' . str_pad($m, 2, '0', STR_PAD_LEFT);
+                            $avancePeriodo2 += $fila2 ? (float)($fila2->$col ?? 0) : 0;
+                        }
 
-                        // % de Logro del Mes = (Realizado mes / Comprometido mes) * 100
-                        $pctMes = ($avanceMes1 != 0) ? ($avanceMes2 / $avanceMes1) * 100 : 0;
+                        // % de Logro del Período = (Realizado período / Comprometido período) * 100
+                        $pctPeriodo = ($avancePeriodo1 != 0) ? ($avancePeriodo2 / $avancePeriodo1) * 100 : 0;
 
                         // % de Logro sobre Meta Anual = (Realizado acumulado / Meta anual comprometida) * 100
                         $pctAnual = ($metaAnual1 != 0) ? ($metaAnual2 / $metaAnual1) * 100 : 0;
@@ -65,15 +76,15 @@
                             @endif
                         </td>
                         <td class="poa-unidad" rowspan="2">{{ $compromiso->unidad_medida }}</td>
-                        <td class="poa-monto {{ $avanceMes1 == 0 ? 'poa-monto-cero' : '' }} {{ $avanceMes1 < 0 ? 'poa-monto-negativo' : '' }}">
+                        <td class="poa-monto {{ $avancePeriodo1 == 0 ? 'poa-monto-cero' : '' }} {{ $avancePeriodo1 < 0 ? 'poa-monto-negativo' : '' }}">
                             @if($esMoneda)
-                                {{ number_format($avanceMes1, 2, '.', ',') }}
+                                {{ number_format($avancePeriodo1, 2, '.', ',') }}
                             @else
-                                {{ number_format($avanceMes1, 0, '.', ',') }}
+                                {{ number_format($avancePeriodo1, 0, '.', ',') }}
                             @endif
                         </td>
-                        <td class="poa-pct {{ $pctMes >= 90 ? 'poa-pct-ok' : ($pctMes >= 50 ? 'poa-pct-warn' : 'poa-pct-bad') }}" rowspan="2">
-                            {{ number_format($pctMes, 0) }}%
+                        <td class="poa-pct {{ $pctPeriodo >= 90 ? 'poa-pct-ok' : ($pctPeriodo >= 50 ? 'poa-pct-warn' : 'poa-pct-bad') }}" rowspan="2">
+                            {{ number_format($pctPeriodo, 0) }}%
                         </td>
                         <td class="poa-pct {{ $pctAnual >= 90 ? 'poa-pct-ok' : ($pctAnual >= 50 ? 'poa-pct-warn' : 'poa-pct-bad') }}" rowspan="2">
                             {{ number_format($pctAnual, 0) }}%
@@ -97,11 +108,11 @@
                                 {{ number_format($metaAnual2, 0, '.', ',') }}
                             @endif
                         </td>
-                        <td class="poa-monto {{ $avanceMes2 == 0 ? 'poa-monto-cero' : '' }} {{ $avanceMes2 < 0 ? 'poa-monto-negativo' : '' }}">
+                        <td class="poa-monto {{ $avancePeriodo2 == 0 ? 'poa-monto-cero' : '' }} {{ $avancePeriodo2 < 0 ? 'poa-monto-negativo' : '' }}">
                             @if($esMoneda)
-                                {{ number_format($avanceMes2, 2, '.', ',') }}
+                                {{ number_format($avancePeriodo2, 2, '.', ',') }}
                             @else
-                                {{ number_format($avanceMes2, 0, '.', ',') }}
+                                {{ number_format($avancePeriodo2, 0, '.', ',') }}
                             @endif
                         </td>
                     </tr>

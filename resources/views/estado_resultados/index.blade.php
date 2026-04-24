@@ -3,26 +3,19 @@
 @section('title', 'Estado de Resultados')
 
 @section('content_header')
-    <h1>Estado de Resultados</h1>
+    <h1><i class="fas fa-chart-line text-institucional-verde"></i> Estado de Resultados</h1>
 @stop
 
 @section('content')
-    <div class="row">
-        <!-- Tarjeta de Importación Masiva -->
-        <div class="col-md-6">
-            @include('estado_resultados._importar')
-        </div>
-
-        <!-- Tarjeta de Captura Manual -->
-        <div class="col-md-6">
-            @include('estado_resultados._captura_manual')
-        </div>
-    </div>
-
-    <!-- Filtros y Tabla de Resultados -->
+    {{-- Filtros y Tabla de Resultados --}}
     <div class="card card-default">
-        <div class="card-header">
-            <h3 class="card-title"><i class="fas fa-table"></i> Estado de Resultados Proforma (Vista Excel)</h3>
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h3 class="card-title"><i class="fas fa-table"></i> Estado de Resultados Proforma</h3>
+            <div>
+                <a href="{{ route('importaciones.index') }}" class="btn btn-sm btn-warning" title="Centro de Importación">
+                    <i class="fas fa-file-import"></i> Importar Datos
+                </a>
+            </div>
         </div>
         <div class="card-body">
             <form id="filtro-form" method="GET" action="{{ route('estado-resultados.index') }}" class="mb-4">
@@ -61,19 +54,12 @@
 
 @section('js')
     <script>
-        // Actualizar label de input file al seleccionar archivo
-        $('.custom-file-input').on('change', function() {
-            let fileName = $(this).val().split('\\').pop();
-            $(this).next('.custom-file-label').addClass("selected").html(fileName);
-        });
-
         // Filtrado AJAX
         $('#filtro-form').on('submit', function(e) {
             e.preventDefault();
             let url = $(this).attr('action');
             let data = $(this).serialize();
             
-            // Botón en estado de carga
             let btn = $(this).find('button[type="submit"]');
             let originalText = btn.html();
             btn.html('<i class="fas fa-spinner fa-spin"></i>');
@@ -102,22 +88,19 @@
             $('#filtro-form').submit();
         });
 
-        // Botón Exportar Excel
+        // Exportar
         $('#btn-exportar').on('click', function(e) {
             e.preventDefault();
-            let data = $('#filtro-form').serialize();
-            window.location.href = '{{ route("estado-resultados.export") }}?' + data;
+            let url = '{{ route('estado-resultados.export') }}?' + $('#filtro-form').serialize();
+            window.location.href = url;
         });
 
-        // Alertas con SweetAlert2 o JS nativo
+        // Alertas
         @if(session('success'))
             alert("{{ session('success') }}");
         @endif
         @if(session('error'))
             alert("Error: {{ session('error') }}");
-        @endif
-        @if ($errors->any())
-            alert("Errores en el formulario:\n- {{ implode('\n- ', $errors->all()) }}");
         @endif
     </script>
 @stop

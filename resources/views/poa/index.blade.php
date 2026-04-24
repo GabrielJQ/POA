@@ -78,71 +78,68 @@
 @stop
 
 @section('content')
-    {{-- Panel de sincronización --}}
-    <div class="row mb-3">
-        <div class="col-md-12">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-sync-alt"></i> Sincronización desde Estado de Resultados</h3>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('poa.sync') }}" method="POST" class="row align-items-end">
-                        @csrf
-                        <div class="col-md-4">
-                            <label>Almacén</label>
-                            <select name="almacen_id" class="form-control">
-                                <option value="">Todos los almacenes</option>
-                                @foreach($almacenes as $almacen)
-                                    <option value="{{ $almacen->id }}">{{ $almacen->nombre }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label>Año</label>
-                            <input type="number" name="anio" class="form-control" value="{{ $anioSeleccionado }}" min="2000" max="2100" required>
-                        </div>
-                        <div class="col-md-5 text-right">
-                            <button type="submit" class="btn btn-warning">
-                                <i class="fas fa-sync-alt"></i> Re-sincronizar Metas desde ER
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     {{-- Formato POA --}}
     <div class="card card-default">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title"><i class="fas fa-table"></i> Formato POA — Metas Comprometidas vs Realizadas</h3>
+            <div>
+                <button type="button" id="btn-sincronizar-poa" class="btn btn-sm btn-warning" title="Sincronizar datos">
+                    <i class="fas fa-sync-alt"></i> Sincronizar
+                </button>
+                <a href="{{ route('importaciones.index') }}" class="btn btn-sm btn-info" title="Centro de Importación">
+                    <i class="fas fa-file-import"></i> Importar Datos
+                </a>
+            </div>
         </div>
         <div class="card-body p-2">
             {{-- Filtros --}}
-            <form id="filtro-poa-form" method="GET" action="{{ route('poa.index') }}" class="mb-3 px-2">
+            <form id="filtro-poa-form" method="GET" action="{{ route('poa.index') }}" class="mb-3 px-2" onsubmit="return false;">
                 <div class="row align-items-end">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
+                        <label class="small font-weight-bold">Consolidado</label>
+                        <select name="consolidado" class="form-control form-control-sm" id="consolidado-select">
+                            <option value="si" {{ $mostrarConsolidado === true ? 'selected' : '' }}>Todos los Almacenes</option>
+                            <option value="no" {{ $mostrarConsolidado === false ? 'selected' : '' }}>Individual</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2" id="div-almacen">
                         <label class="small font-weight-bold">Almacén</label>
                         <select name="almacen_id" class="form-control form-control-sm">
-                            <option value="">Todos los Almacenes</option>
+                            <option value="">Seleccionar...</option>
                             @foreach($almacenes as $almacen)
                                 <option value="{{ $almacen->id }}" {{ $almacenSeleccionado == $almacen->id ? 'selected' : '' }}>{{ $almacen->nombre }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <label class="small font-weight-bold">Año</label>
                         <input type="number" name="anio" class="form-control form-control-sm" value="{{ $anioSeleccionado }}">
                     </div>
-                    <div class="col-md-3">
-                        <label class="small font-weight-bold">Mes a Reportar</label>
+                    <div class="col-md-2">
+                        <label class="small font-weight-bold">Período</label>
+                        <select name="periodo" class="form-control form-control-sm" id="periodo-select">
+                            <option value="mensual" {{ $periodoTipo === 'mensual' ? 'selected' : '' }}>Mensual</option>
+                            <option value="trimestral" {{ $periodoTipo === 'trimestral' ? 'selected' : '' }}>Trimestral</option>
+                            <option value="anual" {{ $periodoTipo === 'anual' ? 'selected' : '' }}>Anual</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2" id="div-trimestre" style="display: {{ $periodoTipo === 'trimestral' ? 'block' : 'none' }}">
+                        <label class="small font-weight-bold">Trimestre</label>
+                        <select name="trimestre" class="form-control form-control-sm">
+                            @foreach($trimestres as $num => $nombre)
+                                <option value="{{ $num }}" {{ $trimestreSeleccionado == $num ? 'selected' : '' }}>{{ $num }}: {{ $nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2" id="div-mes" style="display: {{ $periodoTipo === 'mensual' ? 'block' : 'none' }}">
+                        <label class="small font-weight-bold">Mes</label>
                         <select name="mes" class="form-control form-control-sm">
                             @foreach($meses as $numMes => $nombreMes)
                                 <option value="{{ $numMes }}" {{ $mesActual == $numMes ? 'selected' : '' }}>{{ $nombreMes }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-3 text-right">
+                    <div class="col-md-1 text-right">
                         <button type="submit" class="btn btn-info btn-sm mr-1" title="Filtrar">
                             <i class="fas fa-search"></i>
                         </button>
@@ -162,39 +159,133 @@
 
 @section('js')
     <script>
-        // Filtrado AJAX
-        $('#filtro-poa-form').on('submit', function(e) {
-            e.preventDefault();
-            let url = $(this).attr('action');
-            let data = $(this).serialize();
+        // Configurar CSRF token y headers para todas las peticiones AJAX
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        });
 
-            let btn = $(this).find('button[type="submit"]');
-            let originalHtml = btn.html();
+        // Mostrar/ocultar campo almacén según consolidado
+        function toggleAlmacen() {
+            var consolidado = $('#consolidado-select').val();
+            if (consolidado === 'si') {
+                $('#div-almacen').hide();
+                $('select[name="almacen_id"]').val('');
+            } else {
+                $('#div-almacen').show();
+            }
+        }
+
+// Inicializar estado de campos al cargar página
+        $(document).ready(function() {
+            toggleAlmacen();
+        });
+
+        // Botón de sincronizar
+        $('#btn-sincronizar-poa').on('click', function() {
+            var btn = $(this);
+            btn.html('<i class="fas fa-spinner fa-spin"></i>');
+            btn.prop('disabled', true);
+            
+            $.ajax({
+                url: '{{ route("poa.sync") }}',
+                method: 'POST',
+                data: {
+                    anio: $('input[name="anio"]').val() || new Date().getFullYear(),
+                    almacen_id: $('select[name="almacen_id"]').val() || '',
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    alert(response.message || 'Sincronización completada');
+                    cargarTablaPOA();
+                },
+                error: function(xhr) {
+                    alert('Error al sincronizar: ' + (xhr.responseJSON?.message || 'Error desconocido'));
+                },
+                complete: function() {
+                    btn.html('<i class="fas fa-sync-alt"></i> Sincronizar');
+                    btn.prop('disabled', false);
+                }
+            });
+        });
+
+        // Cambio en consolidado - muestra/ocultar almacén y recarga
+        $('#consolidado-select').on('change', function() {
+            toggleAlmacen();
+            cargarTablaPOA();
+        });
+
+        // Cambio en período - muestra/oculta campos y recarga
+        $('#periodo-select').on('change', function() {
+            var periodo = $(this).val();
+            $('#div-mes').hide();
+            $('#div-trimestre').hide();
+            if (periodo === 'mensual') {
+                $('#div-mes').show();
+            } else if (periodo === 'trimestral') {
+                $('#div-trimestre').show();
+            }
+            cargarTablaPOA();
+        });
+
+        // Cambio en otros selects (mes, año, almacén) - recarga directo
+        $('#filtro-poa-form').on('change', 'select[name="mes"], select[name="anio"], select[name="almacen_id"], select[name="trimestre"]', function() {
+            cargarTablaPOA();
+        });
+
+        // Función centralizada para cargar la tabla
+        var cargandoTabla = false;
+        function cargarTablaPOA() {
+            if (cargandoTabla) return;
+            cargandoTabla = true;
+            
+            var url = $('#filtro-poa-form').attr('action');
+            var data = $('#filtro-poa-form').serialize();
+
+            var btn = $('#filtro-poa-form').find('button[type="submit"]');
             btn.html('<i class="fas fa-spinner fa-spin"></i>');
             btn.prop('disabled', true);
 
             $.ajax({
                 url: url,
                 data: data,
+                type: 'GET',
+                dataType: 'html',
                 success: function(response) {
                     $('#contenedor-tabla-poa').html(response);
                 },
-                error: function() {
+                error: function(xhr, status, error) {
+                    console.error('Error AJAX:', status, error);
                     alert('Error al filtrar los datos del POA.');
                 },
                 complete: function() {
-                    btn.html(originalHtml);
+                    btn.html('<i class="fas fa-search"></i>');
                     btn.prop('disabled', false);
+                    cargandoTabla = false;
                 }
             });
-        });
+        }
 
         // Limpiar filtros
         $('#btn-limpiar-poa').on('click', function() {
+            $('select[name="consolidado"]').val('si');
             $('select[name="almacen_id"]').val('');
             $('input[name="anio"]').val(new Date().getFullYear());
+            $('select[name="periodo"]').val('mensual');
+            $('select[name="trimestre"]').val(Math.ceil((new Date().getMonth() + 1) / 3));
             $('select[name="mes"]').val(new Date().getMonth() + 1);
-            $('#filtro-poa-form').submit();
+            toggleAlmacen();
+            $('#div-mes').show();
+            $('#div-trimestre').hide();
+            cargarTablaPOA();
+        });
+
+        // También capturar el botón de lupa directamente
+        $('#filtro-poa-form button[type="submit"]').on('click', function(e) {
+            e.preventDefault();
+            cargarTablaPOA();
         });
 
         // Alertas

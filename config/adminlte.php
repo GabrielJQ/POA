@@ -299,9 +299,7 @@ return [
     */
 
     'menu' => [
-        // Navbar items:['header' => 'GESTIÓN OPERATIVA'],
-
-
+        // Navbar items:
         [
             'type' => 'navbar-search',
             'text' => 'search',
@@ -317,16 +315,16 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
-        [
-            'text' => 'blog',
-            'url' => 'admin/blog',
-            'can' => 'manage-blog',
-        ],
 
         [
-            'text' => 'Importar Datos',
-            'url' => 'importar',
-            'icon' => 'fas fa-fw fa-file-upload',
+            'text' => 'Dashboard',
+            'url' => '/',
+            'icon' => 'fas fa-fw fa-tachometer-alt',
+        ],
+        [
+            'text' => 'Centro de Importación',
+            'url' => 'importaciones',
+            'icon' => 'fas fa-fw fa-file-import',
         ],
         [
             'text' => 'Estado de Resultados',
@@ -334,18 +332,11 @@ return [
             'icon' => 'fas fa-fw fa-chart-line',
         ],
         [
-            'text' => 'POA - Metas',
+            'text' => 'Formato POA',
             'url'  => 'poa',
             'icon' => 'fas fa-fw fa-bullseye',
         ],
 
-        [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

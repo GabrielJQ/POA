@@ -55,7 +55,7 @@ class EstadoResultadosController extends Controller
             $matriz[$res->concepto_er_id][$res->mes] += $res->monto;
         }
 
-        if ($request->ajax()) {
+        if ($request->ajax() === true) {
             return view('estado_resultados._tabla', compact('matriz', 'conceptos'))->render();
         }
 

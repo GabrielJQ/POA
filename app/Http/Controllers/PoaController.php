@@ -24,38 +24,71 @@ class PoaController extends Controller
     {
         $almacenes = Almacen::orderBy('nombre')->get();
 
-        $anioSeleccionado = $request->input('anio', date('Y'));
+        $anioSeleccionado = (int) $request->input('anio', date('Y'));
         $almacenSeleccionado = $request->input('almacen_id');
-        $mesActual = $request->input('mes', (int) date('m'));
+        $mesActual = (int) $request->input('mes', (int) date('m'));
+        $trimestreSeleccionado = (int) $request->input('trimestre', ceil($mesActual / 3));
+        $periodoTipo = $request->input('periodo', 'mensual');
+        $mostrarConsolidado = $request->input('consolidado', 'si') === 'si';
 
-        // Compromisos ordenados
-        $compromisos = CompromisoPoa::orderBy('orden')->get();
-
-        // Registros POA filtrados
-        $query = PoaRegistro::where('anio', $anioSeleccionado)
-            ->with(['compromiso', 'almacen']);
-
-        if ($almacenSeleccionado) {
-            $query->where('almacen_id', $almacenSeleccionado);
-        }
-
-        $registrosRaw = $query->get();
-
-        // Estructurar: $dataPoa[compromiso_id][tipo_registro] = PoaRegistro
-        $dataPoa = [];
-        foreach ($registrosRaw as $reg) {
-            $dataPoa[$reg->compromiso_poa_id][$reg->tipo_registro] = $reg;
-        }
-
-        // Nombres de meses en español
-        $meses = [
-            1 => 'ENERO', 2 => 'FEBRERO', 3 => 'MARZO', 4 => 'ABRIL',
-            5 => 'MAYO', 6 => 'JUNIO', 7 => 'JULIO', 8 => 'AGOSTO',
-            9 => 'SEPTIEMBRE', 10 => 'OCTUBRE', 11 => 'NOVIEMBRE', 12 => 'DICIEMBRE',
+        $configPeriodos = [
+            'mensual' => [
+                'nombre' => 'Mensual',
+                'meses' => [],
+            ],
+            'trimestral' => [
+                'nombre' => 'Trimestral',
+                'meses' => $this->getMesesTrimestre($trimestreSeleccionado),
+            ],
+            'anual' => [
+                'nombre' => 'Anual',
+                'meses' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            ],
         ];
 
-        if ($request->ajax()) {
-            return view('poa._tabla', compact('compromisos', 'dataPoa', 'mesActual', 'meses'))->render();
+        $config = $configPeriodos[$periodoTipo] ?? $configPeriodos['mensual'];
+        $labelPeriodo = $config['nombre'];
+
+        if ($periodoTipo === 'mensual') {
+            $config['meses'] = [$mesActual];
+            $labelPeriodo = $config['nombre'] . ' - ' . ($this->mesesNombres()[$mesActual] ?? '');
+        } elseif ($periodoTipo === 'trimestral') {
+            $labelPeriodo = $config['nombre'] . ' T' . $trimestreSeleccionado;
+        }
+
+        $compromisos = CompromisoPoa::orderBy('orden')->get();
+
+        if ($mostrarConsolidado) {
+            $dataPoa = $this->buildDataConsolidado($compromisos, $anioSeleccionado, $config['meses']);
+        } else {
+            $query = PoaRegistro::where('anio', $anioSeleccionado)
+                ->with(['compromiso', 'almacen']);
+
+            if ($almacenSeleccionado) {
+                $query->where('almacen_id', $almacenSeleccionado);
+            }
+
+            $registrosRaw = $query->get();
+            $dataPoa = $this->buildDataPoa($registrosRaw);
+        }
+
+        $meses = $this->mesesNombres();
+        $trimestres = [
+            1 => 'ENE-MAR',
+            2 => 'ABR-JUN',
+            3 => 'JUL-SEP',
+            4 => 'OCT-DIC',
+        ];
+
+        if ($request->ajax() === true || $request->expectsJson()) {
+            return view('poa._tabla', compact(
+                'compromisos',
+                'dataPoa',
+                'periodoTipo',
+                'labelPeriodo',
+                'config',
+                'meses'
+            ))->render();
         }
 
         return view('poa.index', compact(
@@ -65,8 +98,98 @@ class PoaController extends Controller
             'anioSeleccionado',
             'almacenSeleccionado',
             'mesActual',
-            'meses'
+            'trimestreSeleccionado',
+            'periodoTipo',
+            'mostrarConsolidado',
+            'meses',
+            'trimestres',
+            'labelPeriodo',
+            'config'
         ));
+    }
+
+    private function getMesesTrimestre(int $trimestre): array
+    {
+        return match ($trimestre) {
+            1 => [1, 2, 3],
+            2 => [4, 5, 6],
+            3 => [7, 8, 9],
+            4 => [10, 11, 12],
+            default => [1, 2, 3],
+        };
+    }
+
+    private function mesesNombres(): array
+    {
+        return [
+            1 => 'ENERO', 2 => 'FEBRERO', 3 => 'MARZO', 4 => 'ABRIL',
+            5 => 'MAYO', 6 => 'JUNIO', 7 => 'JULIO', 8 => 'AGOSTO',
+            9 => 'SEPTIEMBRE', 10 => 'OCTUBRE', 11 => 'NOVIEMBRE', 12 => 'DICIEMBRE',
+        ];
+    }
+
+    private function buildDataPoa($registrosRaw): array
+    {
+        $dataPoa = [];
+        foreach ($registrosRaw as $reg) {
+            $dataPoa[$reg->compromiso_poa_id][$reg->tipo_registro] = $reg;
+        }
+        return $dataPoa;
+    }
+
+    private function buildDataConsolidado($compromisos, int $anio, array $meses): array
+    {
+        $compromisosIds = $compromisos->pluck('id')->toArray();
+        
+        $query = PoaRegistro::where('anio', $anio)
+            ->whereIn('compromiso_poa_id', $compromisosIds);
+
+        $registros = $query->get();
+
+        $dataPoa = [];
+        foreach ($compromisos as $compromiso) {
+            $filas1 = $registros->where('compromiso_poa_id', $compromiso->id)
+                ->where('tipo_registro', $compromiso->label_fila_1);
+            $filas2 = $registros->where('compromiso_poa_id', $compromiso->id)
+                ->where('tipo_registro', $compromiso->label_fila_2);
+
+            // Sumar meta_anual de todos los registros COMPROMETIDOS
+            $metaAnual1 = $filas1->sum('meta_anual');
+            // Sumar meta_anual de todos los registros REALIZADOS  
+            $metaAnual2 = $filas2->sum('meta_anual');
+
+            // Siempre crear el objeto aunque sea 0
+            $obj1 = new \stdClass();
+            $obj1->meta_anual = $metaAnual1;
+            
+            // Sumar cada mes de todos los registros COMPROMETIDOS
+            foreach ($meses as $mes) {
+                $col = 'mes_' . str_pad($mes, 2, '0', STR_PAD_LEFT);
+                $suma = 0;
+                foreach ($filas1 as $fila) {
+                    $suma += (float) ($fila->$col ?? 0);
+                }
+                $obj1->$col = $suma;
+            }
+
+            // Crear objeto para REALIZADOS (puede estar vacío)
+            $obj2 = new \stdClass();
+            $obj2->meta_anual = $metaAnual2;
+            foreach ($meses as $mes) {
+                $col = 'mes_' . str_pad($mes, 2, '0', STR_PAD_LEFT);
+                $suma = 0;
+                foreach ($filas2 as $fila) {
+                    $suma += (float) ($fila->$col ?? 0);
+                }
+                $obj2->$col = $suma;
+            }
+
+            // Siempre guardar, aunque los datos sean 0
+            $dataPoa[$compromiso->id][$compromiso->label_fila_1] = $obj1;
+            $dataPoa[$compromiso->id][$compromiso->label_fila_2] = $obj2;
+        }
+
+        return $dataPoa;
     }
 
     /**
@@ -97,11 +220,18 @@ class PoaController extends Controller
                 $mensaje = "Metas POA sincronizadas para {$almacenes->count()} almacén(es), {$totalCount} compromisos actualizados.";
             }
 
+            if ($request->ajax() || $request->expectsJson()) {
+                return response()->json(['message' => $mensaje, 'success' => true]);
+            }
+
             return redirect()->route('poa.index', [
                 'anio' => $anio,
                 'almacen_id' => $almacenId,
             ])->with('success', $mensaje);
         } catch (\Exception $e) {
+            if ($request->ajax() || $request->expectsJson()) {
+                return response()->json(['message' => $e->getMessage(), 'success' => false], 500);
+            }
             return redirect()->back()
                 ->with('error', 'Error al sincronizar: ' . $e->getMessage());
         }
