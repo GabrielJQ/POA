@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'POA - Gestión Operativa',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -299,7 +299,9 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
+        // Navbar items:['header' => 'GESTIÓN OPERATIVA'],
+
+
         [
             'type' => 'navbar-search',
             'text' => 'search',
@@ -320,6 +322,23 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+
+        [
+            'text' => 'Importar Datos',
+            'url' => 'importar',
+            'icon' => 'fas fa-fw fa-file-upload',
+        ],
+        [
+            'text' => 'Estado de Resultados',
+            'url'  => 'estado-resultados',
+            'icon' => 'fas fa-fw fa-chart-line',
+        ],
+        [
+            'text' => 'POA - Metas',
+            'url'  => 'poa',
+            'icon' => 'fas fa-fw fa-bullseye',
+        ],
+
         [
             'text' => 'pages',
             'url' => 'admin/pages',
@@ -496,6 +515,16 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'EstilosInstitucionales' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'css/variables-institucionales.css',
                 ],
             ],
         ],

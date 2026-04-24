@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class UnidadOperativa extends Model
+class Almacen extends Model
 {
     use HasFactory;
 
@@ -15,35 +15,36 @@ class UnidadOperativa extends Model
      * Tabla asociada al modelo.
      * @var string
      */
-    protected $table = 'unidades_operativas';
+    protected $table = 'almacenes';
 
     /**
      * Atributos asignables de forma masiva.
      * @var array<int, string>
      */
     protected $fillable = [
-        'regional_id',
-        'clave_unidad',
+        'unidad_operativa_id',
+        'clave_almacen',
         'nombre',
+        'direccion',
     ];
 
     /**
-     * Relación con la Regional (Pertenece a).
+     * Relación con la Unidad Operativa (Pertenece a).
      * 
      * @return BelongsTo
      */
-    public function regional(): BelongsTo
+    public function unidadOperativa(): BelongsTo
     {
-        return $this->belongsTo(Regional::class, 'regional_id');
+        return $this->belongsTo(UnidadOperativa::class, 'unidad_operativa_id');
     }
 
     /**
-     * Relación con los Almacenes (Tiene muchos).
+     * Relación con los Resultados Mensuales (Tiene muchos).
      * 
      * @return HasMany
      */
-    public function almacenes(): HasMany
+    public function resultadosMensuales(): HasMany
     {
-        return $this->hasMany(Almacen::class, 'unidad_operativa_id');
+        return $this->hasMany(ResultadoMensual::class, 'almacen_id');
     }
 }

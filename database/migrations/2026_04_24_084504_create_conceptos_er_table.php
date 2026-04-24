@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('unidad_operativas', function (Blueprint $table) {
+        Schema::create('conceptos_er', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('categoria')->nullable();
+            $table->integer('tipo')->default(1);
+            $table->integer('orden_visual');
+            $table->boolean('es_calculado')->default(false);
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unidad_operativas');
+        Schema::dropIfExists('conceptos_er');
     }
 };

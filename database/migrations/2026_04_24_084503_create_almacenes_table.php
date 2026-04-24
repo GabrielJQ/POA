@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('movimiento_capitals', function (Blueprint $table) {
+        Schema::create('almacenes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('unidad_operativa_id')->constrained('unidades_operativas')->onDelete('cascade');
+            $table->string('clave_almacen')->unique();
+            $table->string('nombre');
+            $table->text('direccion')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('movimiento_capitals');
+        Schema::dropIfExists('almacenes');
     }
 };

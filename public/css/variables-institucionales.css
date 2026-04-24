@@ -1,0 +1,194 @@
+/* 
+ * Sistema de Identidad Gráfica Institucional 2024-2030
+ * POA - Gestión Operativa
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+:root {
+    /* Paleta Oficial */
+    --gob-verde: #13322B;
+    --gob-oro: #988256;
+    --gob-rojo: #691C32;
+    --gob-gris-oscuro: #4D4D4D;
+    --gob-gris-claro: #F2F2F2;
+    --white: #ffffff;
+}
+
+/* Clases Utilitarias (Tailwind-style) */
+.bg-institucional-verde { background-color: var(--gob-verde) !important; color: var(--white); }
+.bg-institucional-oro   { background-color: var(--gob-oro) !important; color: var(--white); }
+.bg-institucional-rojo  { background-color: var(--gob-rojo) !important; color: var(--white); }
+.text-institucional-verde { color: var(--gob-verde) !important; }
+.text-institucional-oro   { color: var(--gob-oro) !important; }
+
+/* --- Personalización de AdminLTE --- */
+
+/* 1. Barra Lateral (Sidebar) */
+.main-sidebar {
+    background-color: var(--gob-verde) !important;
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+    background-color: var(--gob-oro) !important;
+    color: var(--white) !important;
+}
+
+.nav-sidebar .nav-header {
+    background-color: transparent;
+    color: var(--gob-oro) !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* 2. Botones */
+.btn-success {
+    background-color: var(--gob-verde) !important;
+    border-color: var(--gob-verde) !important;
+}
+
+.btn-success:hover {
+    background-color: #0d241f !important;
+}
+
+.btn-primary {
+    background-color: var(--gob-rojo) !important;
+    border-color: var(--gob-rojo) !important;
+}
+
+/* 3. Tarjetas (Cards) */
+.card-primary.card-outline {
+    border-top: 3px solid var(--gob-rojo) !important;
+}
+
+.card-primary:not(.card-outline) > .card-header {
+    background-color: var(--gob-verde) !important;
+}
+
+/* 4. Navbar superior */
+.main-header {
+    border-bottom: 4px solid var(--gob-oro) !important;
+}
+
+/* --- Modernización y Soft UI --- */
+:root {
+    --border-radius-lg: 16px;
+    --border-radius-md: 10px;
+    --border-radius-sm: 8px;
+    --soft-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    --hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --transition-base: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Tipografía Institucional (Opcional pero recomendado) */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #F8F9FA !important; /* Un gris aún más limpio */
+    color: var(--gob-gris-oscuro);
+}
+
+/* Tarjetas Modernas */
+.card {
+    border: none !important;
+    border-radius: var(--border-radius-lg) !important;
+    box-shadow: var(--soft-shadow) !important;
+    transition: var(--transition-base);
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--hover-shadow) !important;
+}
+
+.card-header {
+    background-color: var(--white) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+    padding: 1.25rem 1.5rem;
+}
+
+.card-title {
+    font-weight: 700 !important;
+    color: var(--gob-verde) !important;
+    font-size: 1.15rem;
+}
+
+/* Reemplazar los colores sólidos de header por una línea decorativa superior */
+.card-primary:not(.card-outline) > .card-header,
+.card-success:not(.card-outline) > .card-header,
+.card-default:not(.card-outline) > .card-header {
+    background-color: var(--white) !important;
+    color: var(--gob-verde) !important;
+    border-top: 4px solid var(--gob-oro) !important;
+}
+
+/* Botones Modernos */
+.btn {
+    border-radius: var(--border-radius-md) !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 1.25rem;
+    transition: var(--transition-base) !important;
+    border: none !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.btn-sm {
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--border-radius-sm) !important;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Inputs y Selects */
+.form-control, .custom-select {
+    border-radius: var(--border-radius-sm) !important;
+    border: 1px solid #e2e8f0;
+    padding: 0.6rem 1rem;
+    height: auto;
+    transition: var(--transition-base);
+    background-color: #fcfcfc;
+}
+
+.form-control:focus, .custom-select:focus {
+    border-color: var(--gob-oro) !important;
+    box-shadow: 0 0 0 3px rgba(152, 130, 86, 0.2) !important;
+    background-color: var(--white);
+}
+
+/* Estilización de Tablas */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table th, .table td {
+    border-top: 1px solid #f1f5f9 !important;
+    vertical-align: middle !important;
+    padding: 0.75rem 1rem;
+}
+
+.table thead th {
+    background-color: var(--gob-verde) !important;
+    color: var(--white) !important;
+    border-bottom: none !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.table thead th:first-child {
+    border-top-left-radius: var(--border-radius-md);
+}
+
+.table thead th:last-child {
+    border-top-right-radius: var(--border-radius-md);
+}

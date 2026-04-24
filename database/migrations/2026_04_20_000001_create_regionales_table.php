@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tiendas', function (Blueprint $table) {
+        Schema::create('regionales', function (Blueprint $table) {
             $table->id();
+            $table->string('clave_region')->unique();
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tiendas');
+        Schema::dropIfExists('regionales');
     }
 };
