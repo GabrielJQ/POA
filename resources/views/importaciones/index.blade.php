@@ -2,60 +2,12 @@
 
 @section('title', 'Centro de Importación')
 
-@section('content_header')
-    <h1><i class="fas fa-file-import text-institucional-oro"></i> Centro de Importación</h1>
+@section('css')
+    @vite('resources/css/importaciones.css')
 @stop
 
-@section('css')
-<style>
-    .import-card {
-        border-left: 4px solid var(--gob-verde);
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .import-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .import-card-poa {
-        border-left-color: var(--gob-oro);
-    }
-    .import-icon {
-        font-size: 2.5rem;
-        color: var(--gob-verde);
-    }
-    .import-icon-poa {
-        color: var(--gob-oro);
-    }
-    .drop-zone {
-        border: 2px dashed #ccc;
-        border-radius: 8px;
-        padding: 30px;
-        text-align: center;
-        transition: all 0.3s;
-        cursor: pointer;
-    }
-    .drop-zone:hover, .drop-zone.dragover {
-        border-color: var(--gob-verde);
-        background-color: #f8f9fa;
-    }
-    .drop-zone-poa:hover, .drop-zone-poa.dragover {
-        border-color: var(--gob-oro);
-    }
-    .btn-import {
-        padding: 10px 30px;
-        font-weight: 600;
-    }
-    .alert-import {
-        border-radius: 8px;
-        border: none;
-    }
-    .info-box-icon {
-        background: var(--gob-verde);
-    }
-    .info-box-icon-poa {
-        background: var(--gob-oro);
-    }
-</style>
+@section('content_header')
+    <h1><i class="fas fa-file-import text-institucional-oro"></i> Centro de Importación</h1>
 @stop
 
 @section('content')
@@ -74,7 +26,6 @@
 @endif
 
 <div class="row">
-    {{-- Tarjeta A: Estado de Resultados --}}
     <div class="col-md-6">
         <div class="card import-card">
             <div class="card-header bg-institucional-verde text-white">
@@ -106,7 +57,6 @@
         </div>
     </div>
 
-    {{-- Tarjeta B: Información POA --}}
     <div class="col-md-6">
         <div class="card import-card import-card-poa">
             <div class="card-header" style="background-color: var(--gob-oro); color: white;">
@@ -134,7 +84,6 @@
     </div>
 </div>
 
-{{-- Información adicional --}}
 <div class="row mt-4">
     <div class="col-md-12">
         <div class="card">
@@ -162,36 +111,5 @@
 @stop
 
 @section('js')
-<script>
-    {{-- Manejo drop zone ER --}}
-    const dropZoneER = document.getElementById('drop-zone-er');
-    const inputFileER = document.getElementById('archivo-er');
-    const filenameER = document.getElementById('filename-er');
-
-    dropZoneER.addEventListener('click', () => inputFileER.click());
-
-    dropZoneER.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropZoneER.classList.add('dragover');
-    });
-
-    dropZoneER.addEventListener('dragleave', () => {
-        dropZoneER.classList.remove('dragover');
-    });
-
-    dropZoneER.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZoneER.classList.remove('dragover');
-        if (e.dataTransfer.files.length) {
-            inputFileER.files = e.dataTransfer.files;
-            filenameER.innerHTML = '<i class="fas fa-file-excel"></i> ' + e.dataTransfer.files[0].name;
-        }
-    });
-
-    inputFileER.addEventListener('change', () => {
-        if (inputFileER.files.length) {
-            filenameER.innerHTML = '<i class="fas fa-file-excel"></i> ' + inputFileER.files[0].name;
-        }
-    });
-</script>
+    @vite('resources/js/importaciones.js')
 @stop

@@ -1,0 +1,47 @@
+.import-card {
+    border-left: 4px solid var(--gob-verde);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.import-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.import-card-poa {
+    border-left-color: var(--gob-oro);
+}
+.import-icon {
+    font-size: 2.5rem;
+    color: var(--gob-verde);
+}
+.import-icon-poa {
+    color: var(--gob-oro);
+}
+.drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--gob-verde);
+    background-color: #f8f9fa;
+}
+.drop-zone-poa:hover, .drop-zone-poa.dragover {
+    border-color: var(--gob-oro);
+}
+.btn-import {
+    padding: 10px 30px;
+    font-weight: 600;
+}
+.alert-import {
+    border-radius: 8px;
+    border: none;
+}
+.info-box-icon {
+    background: var(--gob-verde);
+}
+.info-box-icon-poa {
+    background: var(--gob-oro);
+}

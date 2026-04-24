@@ -1,0 +1,65 @@
+.poa-table {
+    font-size: 0.78rem;
+    border-collapse: collapse;
+}
+.poa-table th {
+    background-color: var(--gob-verde) !important;
+    color: white !important;
+    text-align: center;
+    vertical-align: middle !important;
+    font-size: 0.72rem;
+    padding: 6px 8px !important;
+    border: 1px solid #0d241f !important;
+}
+.poa-table td {
+    padding: 4px 8px !important;
+    border: 1px solid #ddd !important;
+    vertical-align: middle !important;
+}
+.poa-row-comprometido {
+    background-color: #FFF8E7 !important;
+}
+.poa-row-realizado {
+    background-color: #FFFFFF !important;
+}
+.poa-concepto-nombre {
+    font-weight: 700;
+    color: var(--gob-verde);
+    text-align: center;
+    background-color: #f8f9fa !important;
+    border-right: 2px solid var(--gob-oro) !important;
+}
+.poa-tipo-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.poa-monto {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+}
+.poa-monto-cero {
+    color: #999;
+}
+.poa-monto-negativo {
+    color: #dc3545;
+}
+.poa-unidad {
+    text-align: center;
+    font-size: 0.68rem;
+    color: var(--gob-gris-oscuro);
+    font-weight: 600;
+}
+.poa-pct {
+    text-align: center;
+    font-weight: 600;
+}
+.poa-pct-ok { color: #28a745; }
+.poa-pct-warn { color: #ffc107; }
+.poa-pct-bad { color: #dc3545; }
+.poa-nota {
+    font-size: 0.65rem;
+    color: #666;
+    max-width: 120px;
+}
