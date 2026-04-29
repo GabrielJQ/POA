@@ -4,7 +4,7 @@ namespace App\Application\UseCases\POA;
 
 use App\Domain\ValueObjects\FiltrosPOA;
 use App\Domain\Services\POADomainService;
-use App\Models\CompromisoPoa;
+use App\Models\ConceptoMaestro;
 use App\Models\Almacen;
 
 class ObtenerDatosPOA
@@ -16,15 +16,13 @@ class ObtenerDatosPOA
         $this->domainService = $domainService;
     }
 
-    /**
-     * Caso de uso: Obtener datos del POA para visualización
-     */
     public function execute(array $request): array
     {
         $filtros = FiltrosPOA::createFromRequest($request);
 
         $dataPoa = $this->domainService->obtenerDatosPOA($filtros);
-        $compromisos = CompromisoPoa::whereNotNull('concepto_er_nombre')
+        $compromisos = ConceptoMaestro::where('categoria', 'POA')
+            ->whereNotNull('concepto_er_nombre')
             ->where('concepto_er_nombre', '!=', '')
             ->orderBy('orden')
             ->get();
@@ -56,7 +54,8 @@ class ObtenerDatosPOA
         $filtros = FiltrosPOA::createFromRequest($request);
 
         $dataPoa = $this->domainService->obtenerDatosPOA($filtros);
-        $compromisos = CompromisoPoa::whereNotNull('concepto_er_nombre')
+        $compromisos = ConceptoMaestro::where('categoria', 'POA')
+            ->whereNotNull('concepto_er_nombre')
             ->where('concepto_er_nombre', '!=', '')
             ->orderBy('orden')
             ->get();

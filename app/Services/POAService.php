@@ -2,83 +2,116 @@
 
 namespace App\Services;
 
-use App\Models\CompromisoPoa;
-use App\Models\PoaRegistro;
-use App\Models\ResultadoMensual;
-use App\Models\ConceptoER;
+use App\Models\ConceptoMaestro;
+use App\Models\Poa;
+use App\Models\RegistroFinanciero;
 
 class POAService
 {
-    /**
-     * Sincroniza las metas comprometidas del POA desde el Estado de Resultados.
-     * 
-     * Solo sincroniza los datos COMPROMETIDOS desde el ER.
-     * Los datos REALIZADOS son de otro módulo y no se tocan aquí.
-     */
     public function syncFromER(int $almacenId, int $anio): int
     {
         $compromisosSincronizados = 0;
-        $compromisos = CompromisoPoa::whereNotNull('concepto_er_nombre')
+        $compromisos = ConceptoMaestro::where('categoria', 'POA')
+            ->whereNotNull('concepto_er_nombre')
             ->where('concepto_er_nombre', '!=', '')
             ->orderBy('orden')
             ->get();
 
         foreach ($compromisos as $compromiso) {
             $conceptoNombre = trim($compromiso->concepto_er_nombre);
-            
+
             if (empty($conceptoNombre)) {
                 continue;
             }
 
-            // Buscar concepto exacto
-            $concepto = ConceptoER::where('nombre', 'ilike', $conceptoNombre)->first();
+            // Buscar concepto ER correspondiente
+            $conceptoER = ConceptoMaestro::where('categoria', 'ER')
+                ->where('nombre', 'ilike', $conceptoNombre)
+                ->first();
 
-            // Si no existe exacto, buscar parcial
-            if (!$concepto) {
-                $concepto = ConceptoER::where('nombre', 'ilike', '%' . $conceptoNombre . '%')->first();
+            if (!$conceptoER) {
+                $conceptoER = ConceptoMaestro::where('categoria', 'ER')
+                    ->where('nombre', 'ilike', '%' . $conceptoNombre . '%')
+                    ->first();
             }
 
-            // Si aún no existe, crear registro vacío solo para COMPROMETIDO
-            if (!$concepto) {
-                PoaRegistro::updateOrCreate([
-                    'compromiso_poa_id' => $compromiso->id,
+            // Si no existe, crear registro vacío solo para COMPROMETIDO
+            if (!$conceptoER) {
+                RegistroFinanciero::updateOrCreate([
                     'almacen_id' => $almacenId,
+                    'concepto_id' => $compromiso->id,
                     'anio' => $anio,
-                    'tipo_registro' => $compromiso->label_fila_1,
-                ], ['meta_anual' => 0]);
+                    'mes' => 0,
+                    'tipo_dato' => 'META',
+                ], ['monto' => 0]);
                 continue;
             }
 
-            // Obtener montos mensuales desde resultados_mensuales
-            $montosmensuales = [];
+            // Obtener montos mensuales desde registros_financieros (tipo_dato = REAL)
+            $montosMensuales = [];
             $metaAnual = 0;
 
             for ($mes = 1; $mes <= 12; $mes++) {
-                $monto = (float) ResultadoMensual::where('almacen_id', $almacenId)
+                $monto = (float) RegistroFinanciero::where('almacen_id', $almacenId)
                     ->where('anio', $anio)
                     ->where('mes', $mes)
-                    ->where('concepto_er_id', $concepto->id)
+                    ->where('tipo_dato', 'REAL')
+                    ->where('concepto_id', $conceptoER->id)
                     ->value('monto') ?? 0;
 
-                $col = 'mes_' . str_pad($mes, 2, '0', STR_PAD_LEFT);
-                $montosmensuales[$col] = $monto;
+                $montosMensuales[$mes] = $monto;
                 $metaAnual += $monto;
             }
 
-            // Guardar solo COMPROMETIDO
-            PoaRegistro::updateOrCreate(
+            // Guardar como COMPROMETIDO (META)
+            RegistroFinanciero::updateOrCreate(
                 [
-                    'compromiso_poa_id' => $compromiso->id,
                     'almacen_id' => $almacenId,
+                    'concepto_id' => $compromiso->id,
                     'anio' => $anio,
-                    'tipo_registro' => $compromiso->label_fila_1,
+                    'tipo_dato' => 'META',
+                    'mes' => 0,
                 ],
-                array_merge($montosmensuales, ['meta_anual' => $metaAnual])
+                ['monto' => $metaAnual]
             );
 
             $compromisosSincronizados++;
         }
 
         return $compromisosSincronizados;
+    }
+
+    public function syncVentasParPeToPOA(int $almacenId, string $programa, int $mes, int $anio): float
+    {
+        $total = RegistroFinanciero::where('almacen_id', $almacenId)
+            ->where('programa', $programa)
+            ->where('mes', $mes)
+            ->where('anio', $anio)
+            ->where('tipo_dato', 'REAL')
+            ->sum('monto');
+
+        if ($total <= 0) {
+            return 0;
+        }
+
+        $poa = Poa::where('almacen_id', $almacenId)
+            ->where('anio', $anio)
+            ->first();
+
+        if (!$poa) {
+            $poa = Poa::create([
+                'almacen_id' => $almacenId,
+                'anio' => $anio,
+                'tipo_registro' => 'VENTAS',
+            ]);
+        }
+
+        if ($programa === 'PAR') {
+            $poa->update(['presupuesto_venta_par' => $total]);
+        } elseif ($programa === 'PE') {
+            $poa->update(['presupuesto_venta_pe' => $total]);
+        }
+
+        return $total;
     }
 }

@@ -11,16 +11,8 @@ class Almacen extends Model
 {
     use HasFactory;
 
-    /**
-     * Tabla asociada al modelo.
-     * @var string
-     */
     protected $table = 'almacenes';
 
-    /**
-     * Atributos asignables de forma masiva.
-     * @var array<int, string>
-     */
     protected $fillable = [
         'unidad_operativa_id',
         'clave_almacen',
@@ -28,23 +20,13 @@ class Almacen extends Model
         'direccion',
     ];
 
-    /**
-     * Relación con la Unidad Operativa (Pertenece a).
-     * 
-     * @return BelongsTo
-     */
     public function unidadOperativa(): BelongsTo
     {
         return $this->belongsTo(UnidadOperativa::class, 'unidad_operativa_id');
     }
 
-    /**
-     * Relación con los Resultados Mensuales (Tiene muchos).
-     * 
-     * @return HasMany
-     */
-    public function resultadosMensuales(): HasMany
+    public function registrosFinancieros(): HasMany
     {
-        return $this->hasMany(ResultadoMensual::class, 'almacen_id');
+        return $this->hasMany(RegistroFinanciero::class, 'almacen_id');
     }
 }

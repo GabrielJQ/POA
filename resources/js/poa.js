@@ -18,33 +18,6 @@ $(document).ready(function() {
 
     toggleAlmacen();
 
-    $('#btn-sincronizar-poa').on('click', function() {
-        var btn = $(this);
-        btn.html('<i class="fas fa-spinner fa-spin"></i>');
-        btn.prop('disabled', true);
-        
-        $.ajax({
-            url: window.POA_Routes.sync,
-            method: 'POST',
-            data: {
-                anio: $('input[name="anio"]').val() || new Date().getFullYear(),
-                almacen_id: $('select[name="almacen_id"]').val() || '',
-                _token: $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(response) {
-                alert(response.message || 'Sincronización completada');
-                cargarTablaPOA();
-            },
-            error: function(xhr) {
-                alert('Error al sincronizar: ' + (xhr.responseJSON?.message || 'Error desconocido'));
-            },
-            complete: function() {
-                btn.html('<i class="fas fa-sync-alt"></i> Sincronizar');
-                btn.prop('disabled', false);
-            }
-        });
-    });
-
     $('#consolidado-select').on('change', function() {
         toggleAlmacen();
         cargarTablaPOA();

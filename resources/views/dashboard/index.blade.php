@@ -185,18 +185,19 @@
                         </thead>
                         <tbody>
                             @php
-                            $conceptos = \App\Models\ConceptoER::orderBy('orden_visual')->limit(10)->get();
-                            @endphp
-                            @foreach($conceptos as $concepto)
-                                <tr>
-                                    <td>{{ Str::limit($concepto->nombre, 20) }}</td>
-                                    @for($m = 1; $m <= 12; $m++)
-                                        @php
-                                        $monto = \App\Models\ResultadoMensual::where('anio', $anioActual)
-                                            ->where('mes', $m)
-                                            ->where('concepto_er_id', $concepto->id)
-                                            ->sum('monto');
-                                        @endphp
+                             $conceptos = \App\Models\ConceptoMaestro::where('categoria', 'ER')->orderBy('orden')->limit(10)->get();
+                             @endphp
+                             @foreach($conceptos as $concepto)
+                                 <tr>
+                                     <td>{{ Str::limit($concepto->nombre, 20) }}</td>
+                                     @for($m = 1; $m <= 12; $m++)
+                                         @php
+                                         $monto = \App\Models\RegistroFinanciero::where('anio', $anioActual)
+                                             ->where('mes', $m)
+                                             ->where('tipo_dato', 'REAL')
+                                             ->where('concepto_id', $concepto->id)
+                                             ->sum('monto');
+                                         @endphp
                                         <td class="text-right">{{ $monto > 0 ? '$'.number_format($monto, 0) : '-' }}</td>
                                     @endfor
                                 </tr>

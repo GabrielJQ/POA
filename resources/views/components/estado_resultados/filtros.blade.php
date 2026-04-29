@@ -1,3 +1,9 @@
+@props([
+    'almacenes' => [],
+    'almacenSeleccionado' => null,
+    'anioSeleccionado' => null
+])
+
 <form id="filtro-form" method="GET" action="{{ route('estado-resultados.index') }}" class="mb-4">
     <div class="row align-items-end">
         <div class="col-md-5">

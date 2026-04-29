@@ -15,29 +15,36 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title"><i class="fas fa-table"></i> Formato POA — Metas Comprometidas vs Realizadas</h3>
             <div>
-                <button type="button" id="btn-sincronizar-poa" class="btn btn-sm btn-warning" title="Sincronizar datos">
-                    <i class="fas fa-sync-alt"></i> Sincronizar
-                </button>
                 <a href="{{ route('importaciones.index') }}" class="btn btn-sm btn-info" title="Centro de Importación">
                     <i class="fas fa-file-import"></i> Importar Datos
                 </a>
             </div>
         </div>
         <div class="card-body p-2">
-            @include('poa._filtros')
+            <x-poa.filtros
+                :almacenes="$almacenes"
+                :mostrar-consolidado="$mostrarConsolidado"
+                :almacen-seleccionado="$almacenSeleccionado"
+                :anio-seleccionado="$anioSeleccionado"
+                :periodo-tipo="$periodoTipo"
+                :trimestre-seleccionado="$trimestreSeleccionado"
+                :mes-actual="$mesActual"
+                :trimestres="$trimestres"
+                :meses="$meses"
+            />
             <div id="contenedor-tabla-poa">
-                @include('poa._tabla')
+                <x-poa.tabla
+                    :compromisos="$compromisos"
+                    :data-poa="$dataPoa"
+                    :config="$config"
+                    :label-periodo="$labelPeriodo"
+                />
             </div>
         </div>
     </div>
 @stop
 
 @section('js')
-    <script>
-        window.POA_Routes = {
-            sync: '{{ route("poa.sync") }}'
-        };
-    </script>
     @vite('resources/js/poa.js')
     @if(session('success'))
         <script>alert("{{ session('success') }}");</script>

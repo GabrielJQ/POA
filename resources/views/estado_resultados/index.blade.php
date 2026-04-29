@@ -17,9 +17,16 @@
             </div>
         </div>
         <div class="card-body">
-            @include('estado_resultados._filtros')
+            <x-estado_resultados.filtros
+                :almacenes="$almacenes"
+                :almacen-seleccionado="$almacenSeleccionado"
+                :anio-seleccionado="$anioSeleccionado"
+            />
             <div id="contenedor-tabla">
-                @include('estado_resultados._tabla')
+                <x-estado_resultados.tabla
+                    :conceptos="$conceptos"
+                    :matriz="$matriz"
+                />
             </div>
         </div>
     </div>

@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Almacen;
-use App\Models\CompromisoPoa;
-use App\Models\PoaRegistro;
-use App\Models\ResultadoMensual;
+use App\Models\ConceptoMaestro;
+use App\Models\RegistroFinanciero;
 use App\Models\Regional;
 use App\Models\UnidadOperativa;
-use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
@@ -22,40 +20,65 @@ class DashboardController extends Controller
         $totalRegionales = Regional::count();
         $totalUnidades = UnidadOperativa::count();
 
-        $registrosER = ResultadoMensual::where('anio', $anioActual)->count();
-        $registrosPOA = PoaRegistro::where('anio', $anioActual)->count();
+        $registrosER = RegistroFinanciero::where('anio', $anioActual)
+            ->where('tipo_dato', 'REAL')
+            ->whereHas('concepto', function ($q) {
+                $q->where('categoria', 'ER');
+            })->count();
 
-        $compromisosActivos = CompromisoPoa::count();
+        $registrosPOA = RegistroFinanciero::where('anio', $anioActual)
+            ->whereIn('tipo_dato', ['META', 'PROYECTADO'])
+            ->whereHas('concepto', function ($q) {
+                $q->where('categoria', 'POA');
+            })->count();
 
-        $dataER = ResultadoMensual::where('anio', $anioActual)
+        $compromisosActivos = ConceptoMaestro::where('categoria', 'POA')->count();
+
+        $dataER = RegistroFinanciero::where('anio', $anioActual)
+            ->where('tipo_dato', 'REAL')
+            ->whereHas('concepto', function ($q) {
+                $q->where('categoria', 'ER');
+            })
             ->selectRaw('SUM(monto) as monto_total, mes')
             ->groupBy('mes')
             ->pluck('monto_total', 'mes');
 
-        $dataPOA = PoaRegistro::where('anio', $anioActual)
-            ->selectRaw('SUM(meta_anual) as meta_total')
+        $dataPOA = RegistroFinanciero::where('anio', $anioActual)
+            ->where('tipo_dato', 'META')
+            ->whereHas('concepto', function ($q) {
+                $q->where('categoria', 'POA');
+            })
+            ->selectRaw('SUM(monto) as meta_total')
             ->value('meta_total') ?? 0;
 
-        $porAlmacen = ResultadoMensual::where('anio', $anioActual)
+        $porAlmacen = RegistroFinanciero::where('anio', $anioActual)
             ->where('mes', $mesActual)
-            ->join('almacenes', 'resultados_mensuales.almacen_id', '=', 'almacenes.id')
-            ->selectRaw('almacenes.nombre as nombre, SUM(resultados_mensuales.monto) as monto')
+            ->where('tipo_dato', 'REAL')
+            ->whereHas('concepto', function ($q) {
+                $q->where('categoria', 'ER');
+            })
+            ->join('almacenes', 'registros_financieros.almacen_id', '=', 'almacenes.id')
+            ->selectRaw('almacenes.nombre as nombre, SUM(registros_financieros.monto) as monto')
             ->groupBy('almacenes.id', 'almacenes.nombre')
             ->orderByDesc('monto')
             ->limit(5)
             ->get();
 
-        $porConceptoER = ResultadoMensual::where('anio', $anioActual)
+        $porConceptoER = RegistroFinanciero::where('anio', $anioActual)
             ->where('mes', $mesActual)
-            ->join('conceptos_er', 'resultados_mensuales.concepto_er_id', '=', 'conceptos_er.id')
-            ->selectRaw('conceptos_er.nombre as nombre, SUM(resultados_mensuales.monto) as monto')
-            ->groupBy('conceptos_er.id', 'conceptos_er.nombre')
+            ->where('tipo_dato', 'REAL')
+            ->whereHas('concepto', function ($q) {
+                $q->where('categoria', 'ER');
+            })
+            ->join('conceptos_maestros', 'registros_financieros.concepto_id', '=', 'conceptos_maestros.id')
+            ->selectRaw('conceptos_maestros.nombre as nombre, SUM(registros_financieros.monto) as monto')
+            ->groupBy('conceptos_maestros.id', 'conceptos_maestros.nombre')
             ->orderByDesc('monto')
             ->limit(5)
             ->get();
 
-        $porcentajeCumplimiento = $dataPOA > 0 && $dataER->sum('monto_total') > 0
-            ? ($dataER->sum('monto_total') / $dataPOA) * 100
+        $porcentajeCumplimiento = $dataPOA > 0 && $dataER->sum() > 0
+            ? ($dataER->sum() / $dataPOA) * 100
             : 0;
 
         $meses = [
@@ -66,7 +89,7 @@ class DashboardController extends Controller
 
         return view('dashboard.index', compact(
             'totalAlmacenes',
-            'totalRegionales', 
+            'totalRegionales',
             'totalUnidades',
             'registrosER',
             'registrosPOA',

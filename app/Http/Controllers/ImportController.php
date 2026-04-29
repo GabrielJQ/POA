@@ -4,20 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Imports\ERImport;
+use App\Imports\VentasDetalladasImport;
 use App\Models\Almacen;
-use App\Services\POAService;
 use Exception;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportController extends Controller
 {
-    protected POAService $poaService;
-
-    public function __construct(POAService $poaService)
-    {
-        $this->poaService = $poaService;
-    }
-
     public function index()
     {
         $almacenes = Almacen::orderBy('nombre')->get();
@@ -37,24 +30,33 @@ class ImportController extends Controller
 
             Excel::import(new ERImport($anio), $archivo);
 
-            $this->autoSyncPOA($anio);
-
             return redirect()->route('importaciones.index')
-                ->with('success', "Estado de Resultados importado para {$anio}. POA sincronizado automáticamente.");
+                ->with('success', "Estado de Resultados importado para {$anio}.");
         } catch (Exception $e) {
             return redirect()->route('importaciones.index')
                 ->with('error', 'Error al importar: ' . $e->getMessage());
         }
     }
 
-    private function autoSyncPOA(int $anio): void
+    public function importVentas(Request $request)
     {
-        $almacenes = Almacen::whereHas('resultadosMensuales', function ($q) use ($anio) {
-            $q->where('anio', $anio);
-        })->pluck('id');
+        $request->validate([
+            'archivo' => 'required|file|mimes:xlsx,xls,csv',
+            'programa' => 'required|in:PAR,PE',
+        ]);
 
-        foreach ($almacenes as $id) {
-            $this->poaService->syncFromER($id, $anio);
+        try {
+            $archivo = $request->file('archivo');
+            $programa = $request->programa;
+
+            $import = new VentasDetalladasImport($programa);
+            Excel::import($import, $archivo);
+            
+            return redirect()->route('importaciones.index')
+                ->with('success', "Ventas del programa {$programa} importadas correctamente.");
+        } catch (Exception $e) {
+            return redirect()->route('importaciones.index')
+                ->with('error', 'Error al importar ventas: ' . $e->getMessage());
         }
     }
 }

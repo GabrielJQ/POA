@@ -3,58 +3,87 @@
 namespace App\Domain\Services;
 
 use App\Domain\ValueObjects\FiltrosER;
-use App\Models\ConceptoER;
-use App\Models\ResultadoMensual;
+use App\Models\ConceptoMaestro;
+use App\Models\RegistroFinanciero;
 
 class ERDomainService
 {
     public function obtenerDatosER(FiltrosER $filtros): array
     {
-        $query = ResultadoMensual::where('anio', $filtros->getAnio());
+        $anio = $filtros->getAnio();
+        $almacenId = $filtros->getAlmacenId();
+        $meses = $filtros->getPeriodo()->getMeses();
 
-        if ($filtros->getAlmacenId()) {
-            $query->where('almacen_id', $filtros->getAlmacenId());
+        $query = RegistroFinanciero::where('anio', $anio)
+            ->where('tipo_dato', 'REAL')
+            ->whereHas('concepto', function ($q) {
+                $q->where('categoria', 'ER');
+            });
+
+        if ($almacenId) {
+            $query->where('almacen_id', $almacenId);
         }
 
-        $resultadosRaw = $query->get();
+        $resultados = $query->get();
 
-        return $this->buildMatriz($resultadosRaw);
-    }
+        $dataER = [];
+        foreach ($resultados as $r) {
+            $conceptoId = $r->concepto_id;
+            if (!isset($dataER[$conceptoId])) {
+                $concepto = $r->concepto;
+                $esTitulo = $concepto && stripos($concepto->nombre, 'GASTOS DE DISTRIBUCIÓN') !== false;
 
-    public function obtenerConceptos(): \Illuminate\Database\Eloquent\Collection
-    {
-        return ConceptoER::orderBy('orden_visual', 'asc')->get();
-    }
-
-    private function buildMatriz($resultadosRaw): array
-    {
-        $matriz = [];
-        foreach ($resultadosRaw as $res) {
-            if (!isset($matriz[$res->concepto_er_id])) {
-                $matriz[$res->concepto_er_id] = array_fill(1, 12, 0);
+                $dataER[$conceptoId] = (object)[
+                    'id' => $conceptoId,
+                    'nombre' => $concepto->nombre ?? 'Sin nombre',
+                    'montos' => array_fill(1, 12, 0),
+                    'meta_anual' => 0,
+                    'es_titulo' => $esTitulo,
+                    'es_calculado' => false,
+                ];
             }
-            $matriz[$res->concepto_er_id][$res->mes] += $res->monto;
+
+            $mes = (int)$r->mes;
+            if ($mes >= 1 && $mes <= 12) {
+                $dataER[$conceptoId]->montos[$mes] = (float)$r->monto;
+                $dataER[$conceptoId]->meta_anual += (float)$r->monto;
+            }
         }
-        return $matriz;
+
+        return $dataER;
     }
 
-    public function guardarRegistro(
-        int $almacenId,
-        int $conceptoErId,
-        int $anio,
-        int $mes,
-        float $monto
-    ): void {
-        ResultadoMensual::updateOrCreate(
-            [
-                'almacen_id' => $almacenId,
-                'concepto_er_id' => $conceptoErId,
-                'anio' => $anio,
-                'mes' => $mes,
-            ],
-            [
-                'monto' => $monto
-            ]
-        );
+    public function obtenerConceptosER(): array
+    {
+        return ConceptoMaestro::where('categoria', 'ER')
+            ->orderBy('orden')
+            ->get()
+            ->map(function ($item) {
+                return (object) [
+                    'id' => $item->id,
+                    'nombre' => $item->nombre,
+                    'orden' => $item->orden,
+                    'es_titulo' => stripos($item->nombre, 'GASTOS DE DISTRIBUCIÓN') !== false,
+                    'es_calculado' => false,
+                ];
+            })
+            ->toArray();
+    }
+
+    public function guardarManual(array $datos): void
+    {
+        foreach ($datos as $dato) {
+            RegistroFinanciero::updateOrCreate(
+                [
+                    'almacen_id' => $dato['almacen_id'],
+                    'concepto_id' => $dato['concepto_id'],
+                    'anio' => $dato['anio'],
+                    'mes' => $dato['mes'],
+                    'tipo_dato' => 'REAL',
+                    'programa' => null,
+                ],
+                ['monto' => $dato['monto']]
+            );
+        }
     }
 }

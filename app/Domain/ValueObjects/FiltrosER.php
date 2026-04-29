@@ -6,6 +6,7 @@ class FiltrosER
 {
     private int $anio;
     private ?int $almacenId;
+    private Periodo $periodo;
 
     public function __construct(
         int $anio,
@@ -13,6 +14,7 @@ class FiltrosER
     ) {
         $this->anio = $anio;
         $this->almacenId = $almacenId;
+        $this->periodo = new Periodo('mensual', 1, 1);
     }
 
     public static function createFromRequest(array $request): self
@@ -36,6 +38,11 @@ class FiltrosER
     public function isConsolidado(): bool
     {
         return $this->almacenId === null;
+    }
+
+    public function getPeriodo(): Periodo
+    {
+        return $this->periodo;
     }
 
     public function toArray(): array

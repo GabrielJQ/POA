@@ -1,3 +1,15 @@
+@props([
+    'almacenes' => [],
+    'mostrarConsolidado' => true,
+    'almacenSeleccionado' => null,
+    'anioSeleccionado' => null,
+    'periodoTipo' => 'mensual',
+    'trimestreSeleccionado' => 1,
+    'mesActual' => null,
+    'trimestres' => [],
+    'meses' => []
+])
+
 <form id="filtro-poa-form" method="GET" action="{{ route('poa.index') }}" class="mb-3 px-2" onsubmit="return false;">
     <div class="row align-items-end">
         <div class="col-md-2">

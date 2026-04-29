@@ -4,7 +4,7 @@ namespace App\Application\UseCases\ER;
 
 use App\Domain\Services\ERDomainService;
 use App\Domain\Services\POADomainService;
-use App\Models\ResultadoMensual;
+use App\Models\RegistroFinanciero;
 use App\Imports\ERImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -25,7 +25,8 @@ class ImportarER
     {
         Excel::import(new ERImport($anio), $archivo);
 
-        $almacenesAfectados = ResultadoMensual::where('anio', $anio)
+        $almacenesAfectados = RegistroFinanciero::where('anio', $anio)
+            ->where('tipo_dato', 'REAL')
             ->distinct()
             ->pluck('almacen_id');
 

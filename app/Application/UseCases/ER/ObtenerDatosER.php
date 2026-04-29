@@ -19,7 +19,7 @@ class ObtenerDatosER
     {
         $filtros = FiltrosER::createFromRequest($request);
 
-        $conceptos = $this->domainService->obtenerConceptos();
+        $conceptos = $this->domainService->obtenerConceptosER();
         $matriz = $this->domainService->obtenerDatosER($filtros);
         $almacenes = Almacen::all();
 
@@ -38,7 +38,7 @@ class ObtenerDatosER
     {
         $filtros = FiltrosER::createFromRequest($request);
 
-        $conceptos = $this->domainService->obtenerConceptos();
+        $conceptos = $this->domainService->obtenerConceptosER();
         $matriz = $this->domainService->obtenerDatosER($filtros);
 
         return [

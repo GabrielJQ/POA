@@ -15,12 +15,12 @@ class GuardarRegistroER
 
     public function execute(array $data): void
     {
-        $this->domainService->guardarRegistro(
-            (int) $data['almacen_id'],
-            (int) $data['concepto_er_id'],
-            (int) $data['anio'],
-            (int) $data['mes'],
-            (float) $data['monto']
-        );
+        $this->domainService->guardarManual([
+            'almacen_id' => (int) $data['almacen_id'],
+            'concepto_id' => (int) $data['concepto_id'],
+            'anio' => (int) $data['anio'],
+            'mes' => (int) $data['mes'],
+            'monto' => (float) $data['monto'],
+        ]);
     }
 }

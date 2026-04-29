@@ -1,33 +1,40 @@
-$(document).ready(function() {
-    const dropZoneER = document.getElementById('drop-zone-er');
-    const inputFileER = document.getElementById('archivo-er');
-    const filenameER = document.getElementById('filename-er');
+document.addEventListener('DOMContentLoaded', function() {
+    function initDropZone(dropZoneId, inputFileId, filenameId) {
+        const dropZone = document.getElementById(dropZoneId);
+        const inputFile = document.getElementById(inputFileId);
+        const filename = document.getElementById(filenameId);
 
-    if (dropZoneER && inputFileER) {
-        dropZoneER.addEventListener('click', () => inputFileER.click());
+        if (!dropZone || !inputFile) return;
 
-        dropZoneER.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZoneER.classList.add('dragover');
+        dropZone.addEventListener('click', function() {
+            inputFile.click();
         });
 
-        dropZoneER.addEventListener('dragleave', () => {
-            dropZoneER.classList.remove('dragover');
+        dropZone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
         });
 
-        dropZoneER.addEventListener('drop', (e) => {
+        dropZone.addEventListener('dragleave', function() {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', function(e) {
             e.preventDefault();
-            dropZoneER.classList.remove('dragover');
+            dropZone.classList.remove('dragover');
             if (e.dataTransfer.files.length) {
-                inputFileER.files = e.dataTransfer.files;
-                filenameER.innerHTML = '<i class="fas fa-file-excel"></i> ' + e.dataTransfer.files[0].name;
+                inputFile.files = e.dataTransfer.files;
+                if (filename) filename.innerHTML = '<i class="fas fa-file-excel"></i> ' + e.dataTransfer.files[0].name;
             }
         });
 
-        inputFileER.addEventListener('change', () => {
-            if (inputFileER.files.length) {
-                filenameER.innerHTML = '<i class="fas fa-file-excel"></i> ' + inputFileER.files[0].name;
+        inputFile.addEventListener('change', function() {
+            if (inputFile.files.length && filename) {
+                filename.innerHTML = '<i class="fas fa-file-excel"></i> ' + inputFile.files[0].name;
             }
         });
     }
+
+    initDropZone('drop-zone-er', 'archivo-er', 'filename-er');
+    initDropZone('drop-zone-ventas', 'archivo-ventas', 'filename-ventas');
 });

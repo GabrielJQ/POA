@@ -75,7 +75,7 @@ class EstadoResultadosController extends Controller
     {
         $request->validate([
             'almacen_id' => 'required|exists:almacenes,id',
-            'concepto_er_id' => 'required|exists:conceptos_er,id',
+            'concepto_id' => 'required|exists:conceptos_maestros,id',
             'anio' => 'required|integer|min:2000|max:2100',
             'mes' => 'required|integer|between:1,12',
             'monto' => 'required|numeric'

@@ -10,16 +10,8 @@ class Poa extends Model
 {
     use HasFactory;
 
-    /**
-     * Tabla asociada al modelo.
-     * @var string
-     */
     protected $table = 'poas';
 
-    /**
-     * Atributos asignables de forma masiva.
-     * @var array<int, string>
-     */
     protected $fillable = [
         'almacen_id',
         'anio',
@@ -30,10 +22,6 @@ class Poa extends Model
         'resultado_directo_operacion',
     ];
 
-    /**
-     * Conversión de tipos de datos.
-     * @var array<string, string>
-     */
     protected $casts = [
         'presupuesto_venta_par' => 'decimal:2',
         'presupuesto_venta_pe' => 'decimal:2',
@@ -41,13 +29,37 @@ class Poa extends Model
         'resultado_directo_operacion' => 'decimal:2',
     ];
 
-    /**
-     * Relación con el Almacén (Pertenece a).
-     *
-     * @return BelongsTo
-     */
     public function almacen(): BelongsTo
     {
         return $this->belongsTo(Almacen::class, 'almacen_id');
+    }
+
+    public function getPresupuestoVentaParAttribute(): float
+    {
+        if (!$this->almacen_id || !$this->anio) {
+            return $this->attributes['presupuesto_venta_par'] ?? 0;
+        }
+        return RegistroFinanciero::where('almacen_id', $this->almacen_id)
+            ->where('programa', 'PAR')
+            ->where('anio', $this->anio)
+            ->where('tipo_dato', 'REAL')
+            ->sum('monto');
+    }
+
+    public function getPresupuestoVentaPeAttribute(): float
+    {
+        if (!$this->almacen_id || !$this->anio) {
+            return $this->attributes['presupuesto_venta_pe'] ?? 0;
+        }
+        return RegistroFinanciero::where('almacen_id', $this->almacen_id)
+            ->where('programa', 'PE')
+            ->where('anio', $this->anio)
+            ->where('tipo_dato', 'REAL')
+            ->sum('monto');
+    }
+
+    public function getPresupuestoVentaTotalAttribute(): float
+    {
+        return $this->presupuesto_venta_par + $this->presupuesto_venta_pe;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Application\UseCases\POA;
 
 use App\Domain\Services\POADomainService;
 use App\Models\Almacen;
-use App\Models\ResultadoMensual;
+use App\Models\ConceptoMaestro;
 
 class SincronizarPOA
 {
@@ -15,9 +15,6 @@ class SincronizarPOA
         $this->domainService = $domainService;
     }
 
-    /**
-     * Caso de uso: Sincronizar POA desde Estado de Resultados
-     */
     public function execute(int $anio, ?int $almacenId = null): array
     {
         if ($almacenId) {
@@ -28,8 +25,9 @@ class SincronizarPOA
             ];
         }
 
-        $almacenes = Almacen::whereHas('resultadosMensuales', function ($q) use ($anio) {
-            $q->where('anio', $anio);
+        $almacenes = Almacen::whereHas('registrosFinancieros', function ($q) use ($anio) {
+            $q->where('anio', $anio)
+              ->where('tipo_dato', 'REAL');
         })->pluck('id');
 
         $totalCount = 0;
