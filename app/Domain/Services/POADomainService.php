@@ -63,7 +63,7 @@ class POADomainService
                 if ($conceptoER) {
                     $query = RegistroFinanciero::where('concepto_id', $conceptoER->id)
                         ->where('anio', $anio)
-                        ->where('tipo_dato', 'REAL');
+                        ->where('tipo_dato', 'META');
 
                     if ($almacenId) {
                         $query->where('almacen_id', $almacenId);
@@ -82,7 +82,7 @@ class POADomainService
             foreach ($meses as $mes) {
                 $col = 'mes_' . str_pad($mes, 2, '0', STR_PAD_LEFT);
                 $obj1->$col = 0;
-                if ($resultados) {
+                if (isset($resultados)) {
                     foreach ($resultados as $r) {
                         if ((int) $r->mes === $mes) {
                             $obj1->$col = (float) $r->monto;
@@ -92,8 +92,10 @@ class POADomainService
                 }
             }
 
-            // 2. Obtener REALIZADO (Ventas PAR/PE)
+            // 2. Obtener REALIZADO
             $ventasParPeMes = [];
+            
+            // Caso A: Es una fila de Ventas (El realizado viene de LINEA_PRODUCTO)
             if (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA') !== false) {
                 $programaFilter = null;
                 if (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA PAR') !== false) {
@@ -128,6 +130,26 @@ class POADomainService
                     $ventasParPeMes[$mesKey] += (float) $v->monto;
                 }
                 $obj2->meta_anual = $ventasParPeTotal;
+            } 
+            // Caso B: Es otra fila vinculada al ER (El realizado viene de categoria ER tipo REAL)
+            elseif ($conceptoER) {
+                $queryReal = RegistroFinanciero::where('concepto_id', $conceptoER->id)
+                    ->where('anio', $anio)
+                    ->where('tipo_dato', 'REAL');
+
+                if ($almacenId) {
+                    $queryReal->where('almacen_id', $almacenId);
+                }
+
+                $resultadosReal = $queryReal->get();
+
+                $totalReal = 0;
+                foreach ($resultadosReal as $r) {
+                    $totalReal += (float) $r->monto;
+                    $mesKey = (int) $r->mes;
+                    $ventasParPeMes[$mesKey] = (float) $r->monto;
+                }
+                $obj2->meta_anual = $totalReal;
             }
             
             foreach ($meses as $mes) {
@@ -173,7 +195,7 @@ class POADomainService
                 if ($conceptoER) {
                     $resultados = RegistroFinanciero::where('concepto_id', $conceptoER->id)
                         ->where('anio', $anio)
-                        ->where('tipo_dato', 'REAL')
+                        ->where('tipo_dato', 'META')
                         ->get();
 
                     $metaAnual1 = 0;
@@ -187,7 +209,7 @@ class POADomainService
             foreach ($meses as $mes) {
                 $col = 'mes_' . str_pad($mes, 2, '0', STR_PAD_LEFT);
                 $obj1->$col = 0;
-                if ($resultados) {
+                if (isset($resultados)) {
                     foreach ($resultados as $r) {
                         if ((int) $r->mes === $mes) {
                             $obj1->$col = (float) $r->monto;
@@ -197,8 +219,10 @@ class POADomainService
                 }
             }
 
-            // 2. Obtener REALIZADO (Ventas PAR/PE)
+            // 2. Obtener REALIZADO
             $ventasParPeMes = [];
+            
+            // Caso A: Es una fila de Ventas
             if (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA') !== false) {
                 $programaFilter = null;
                 if (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA PAR') !== false) {
@@ -230,6 +254,24 @@ class POADomainService
                     $ventasParPeMes[$mesKey] += (float) $v->monto;
                 }
                 $obj2->meta_anual = $ventasParPeTotal;
+            }
+            // Caso B: Es otra fila vinculada al ER (Consolidado)
+            elseif (isset($conceptoER) && $conceptoER) {
+                $resultadosReal = RegistroFinanciero::where('concepto_id', $conceptoER->id)
+                    ->where('anio', $anio)
+                    ->where('tipo_dato', 'REAL')
+                    ->get();
+
+                $totalReal = 0;
+                foreach ($resultadosReal as $r) {
+                    $totalReal += (float) $r->monto;
+                    $mesKey = (int) $r->mes;
+                    if (!isset($ventasParPeMes[$mesKey])) {
+                        $ventasParPeMes[$mesKey] = 0;
+                    }
+                    $ventasParPeMes[$mesKey] += (float) $r->monto;
+                }
+                $obj2->meta_anual = $totalReal;
             }
 
             foreach ($meses as $mes) {

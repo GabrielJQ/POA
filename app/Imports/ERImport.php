@@ -124,7 +124,7 @@ class ERImport implements ToCollection, WithCalculatedFormulas
                             'anio' => $this->anio,
                             'mes' => $mes,
                             'monto' => $monto,
-                            'tipo_dato' => 'REAL',
+                            'tipo_dato' => 'META',
                             'programa' => null,
                             'created_at' => $now,
                             'updated_at' => $now,
