@@ -9,6 +9,7 @@ use App\Models\Almacen;
 use App\Domain\Services\PDFERExtractorService;
 use Exception;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ImportController extends Controller
 {
@@ -36,10 +37,29 @@ class ImportController extends Controller
             $anio = (int) $request->anio;
             $archivo = $request->file('archivo');
 
-            Excel::import(new ERImport($anio), $archivo);
+            // Obtener nombres reales de las pestañas
+            $spreadsheet = IOFactory::load($archivo->getRealPath());
+            $sheetNames = $spreadsheet->getSheetNames();
+            
+            // Cargamos los datos de todas las hojas
+            $sheetsData = Excel::toArray(new \stdClass(), $archivo);
+            $totalRegistros = 0;
+
+            foreach ($sheetsData as $index => $rows) {
+                $actualSheetName = $sheetNames[$index] ?? '';
+                $sheetImport = new \App\Imports\ERSheetImport($anio, $actualSheetName);
+                $registros = $sheetImport->import($rows);
+                if ($registros > 0) {
+                    $totalRegistros += $registros;
+                }
+            }
+
+            if ($totalRegistros === 0) {
+                throw new Exception("No se encontraron datos válidos en las hojas del archivo. Asegúrate de que el formato sea correcto.");
+            }
 
             return redirect()->route('importaciones.index')
-                ->with('success', "Estado de Resultados importado para {$anio}.");
+                ->with('success', "Estado de Resultados importado para {$anio}. Se procesaron múltiples almacenes correctamente.");
         } catch (Exception $e) {
             return redirect()->route('importaciones.index')
                 ->with('error', 'Error al importar: ' . $e->getMessage());
