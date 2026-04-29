@@ -20,7 +20,7 @@ class RegistroFinanciero extends Model
     ];
 
     protected $casts = [
-        'monto' => 'decimal:2',
+        'monto' => 'encrypted',
         'mes' => 'integer',
         'anio' => 'integer',
     ];

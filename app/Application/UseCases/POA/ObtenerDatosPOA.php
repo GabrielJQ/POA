@@ -22,8 +22,6 @@ class ObtenerDatosPOA
 
         $dataPoa = $this->domainService->obtenerDatosPOA($filtros);
         $compromisos = ConceptoMaestro::where('categoria', 'POA')
-            ->whereNotNull('concepto_er_nombre')
-            ->where('concepto_er_nombre', '!=', '')
             ->orderBy('orden')
             ->get();
         $almacenes = Almacen::orderBy('nombre')->get();
@@ -55,8 +53,6 @@ class ObtenerDatosPOA
 
         $dataPoa = $this->domainService->obtenerDatosPOA($filtros);
         $compromisos = ConceptoMaestro::where('categoria', 'POA')
-            ->whereNotNull('concepto_er_nombre')
-            ->where('concepto_er_nombre', '!=', '')
             ->orderBy('orden')
             ->get();
 

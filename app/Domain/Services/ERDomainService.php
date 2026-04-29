@@ -14,7 +14,8 @@ class ERDomainService
         $almacenId = $filtros->getAlmacenId();
         $meses = $filtros->getPeriodo()->getMeses();
 
-        $query = RegistroFinanciero::where('anio', $anio)
+        $query = RegistroFinanciero::with('concepto')
+            ->where('anio', $anio)
             ->where('tipo_dato', 'REAL')
             ->whereHas('concepto', function ($q) {
                 $q->where('categoria', 'ER');

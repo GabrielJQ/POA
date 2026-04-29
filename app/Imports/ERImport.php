@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 use Exception;
 
 class ERImport implements ToCollection, WithCalculatedFormulas
@@ -138,6 +139,9 @@ class ERImport implements ToCollection, WithCalculatedFormulas
             }
 
             foreach (array_chunk($upsertData, 500) as $chunk) {
+                foreach ($chunk as &$data) {
+                    $data['monto'] = Crypt::encryptString((string)$data['monto']);
+                }
                 RegistroFinanciero::upsert(
                     $chunk,
                     ['almacen_id', 'concepto_id', 'anio', 'mes', 'tipo_dato', 'programa'],

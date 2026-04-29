@@ -39,17 +39,17 @@ class DashboardController extends Controller
             ->whereHas('concepto', function ($q) {
                 $q->where('categoria', 'ER');
             })
-            ->selectRaw('SUM(monto) as monto_total, mes')
+            ->get()
             ->groupBy('mes')
-            ->pluck('monto_total', 'mes');
+            ->map(fn($group) => $group->sum('monto'));
 
         $dataPOA = RegistroFinanciero::where('anio', $anioActual)
             ->where('tipo_dato', 'META')
             ->whereHas('concepto', function ($q) {
                 $q->where('categoria', 'POA');
             })
-            ->selectRaw('SUM(monto) as meta_total')
-            ->value('meta_total') ?? 0;
+            ->get()
+            ->sum('monto');
 
         $porAlmacen = RegistroFinanciero::where('anio', $anioActual)
             ->where('mes', $mesActual)
@@ -57,12 +57,17 @@ class DashboardController extends Controller
             ->whereHas('concepto', function ($q) {
                 $q->where('categoria', 'ER');
             })
-            ->join('almacenes', 'registros_financieros.almacen_id', '=', 'almacenes.id')
-            ->selectRaw('almacenes.nombre as nombre, SUM(registros_financieros.monto) as monto')
-            ->groupBy('almacenes.id', 'almacenes.nombre')
-            ->orderByDesc('monto')
-            ->limit(5)
-            ->get();
+            ->with('almacen')
+            ->get()
+            ->groupBy('almacen_id')
+            ->map(function ($group) {
+                return (object) [
+                    'nombre' => $group->first()->almacen->nombre,
+                    'monto' => $group->sum('monto')
+                ];
+            })
+            ->sortByDesc('monto')
+            ->take(5);
 
         $porConceptoER = RegistroFinanciero::where('anio', $anioActual)
             ->where('mes', $mesActual)
@@ -70,12 +75,17 @@ class DashboardController extends Controller
             ->whereHas('concepto', function ($q) {
                 $q->where('categoria', 'ER');
             })
-            ->join('conceptos_maestros', 'registros_financieros.concepto_id', '=', 'conceptos_maestros.id')
-            ->selectRaw('conceptos_maestros.nombre as nombre, SUM(registros_financieros.monto) as monto')
-            ->groupBy('conceptos_maestros.id', 'conceptos_maestros.nombre')
-            ->orderByDesc('monto')
-            ->limit(5)
-            ->get();
+            ->with('concepto')
+            ->get()
+            ->groupBy('concepto_id')
+            ->map(function ($group) {
+                return (object) [
+                    'nombre' => $group->first()->concepto->nombre,
+                    'monto' => $group->sum('monto')
+                ];
+            })
+            ->sortByDesc('monto')
+            ->take(5);
 
         $porcentajeCumplimiento = $dataPOA > 0 && $dataER->sum() > 0
             ? ($dataER->sum() / $dataPOA) * 100
