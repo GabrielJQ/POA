@@ -2,7 +2,7 @@
 
 <div class="card import-card">
     <div class="card-header bg-institucional-verde text-white">
-        <h3 class="card-title"><i class="fas fa-chart-line"></i> Importar Estado de Resultados</h3>
+        <h3 class="card-title"><i class="fas fa-chart-line"></i> Importar Presupuesto (Estado de Resultados)</h3>
     </div>
     <div class="card-body">
         <form action="{{ $action }}" method="{{ $method }}" enctype="multipart/form-data">

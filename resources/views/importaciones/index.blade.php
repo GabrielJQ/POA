@@ -7,7 +7,7 @@
 @stop
 
 @section('content_header')
-    <h1><i class="fas fa-file-import text-institucional-oro"></i> Centro de Importación</h1>
+    <h1><i class="fas fa-file-import text-institucional-oro"></i> Centro de Importación Homologado</h1>
 @stop
 
 @section('content')
@@ -26,24 +26,29 @@
 @endif
 
 <div class="row">
-    <div class="col-md-6">
+    <!-- BLOQUE 1: ESTADO DE RESULTADOS (PRESUPUESTO) -->
+    <div class="col-xl-4 col-lg-6 mb-4">
         <x-importaciones.form-er action="{{ route('importaciones.er') }}" />
     </div>
 
-    <div class="col-md-6">
-        <x-importaciones.meta-poa />
+    <!-- BLOQUE 2: ESTADO DE RESULTADOS (REALIZADO PDF) -->
+    <div class="col-xl-4 col-lg-6 mb-4">
+        <x-importaciones.form-pdf-realizado />
     </div>
-</div>
 
-<div class="row mt-4">
-    <div class="col-md-12">
+    <!-- BLOQUE 3: VENTAS (REALIZADO VENTAS) -->
+    <div class="col-xl-4 col-lg-6 mb-4">
         <x-importaciones.ventas-par-pe :almacenes="$almacenes" />
     </div>
 </div>
 
-<div class="row mt-4">
-    <div class="col-md-12">
+<div class="row">
+    <!-- BLOQUE 4: INFO / ESTADO POA -->
+    <div class="col-lg-8 mb-4">
         <x-importaciones.instrucciones />
+    </div>
+    <div class="col-lg-4 mb-4">
+        <x-importaciones.meta-poa />
     </div>
 </div>
 @stop

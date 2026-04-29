@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exports\ERExport;
 use App\Application\UseCases\ER\ObtenerDatosER;
 use App\Application\UseCases\ER\ImportarER;
 use App\Application\UseCases\ER\GuardarRegistroER;
-use App\Exports\ERExport;
+use App\Domain\Services\PDFERExtractorService;
 use Maatwebsite\Excel\Facades\Excel;
 
 class EstadoResultadosController extends Controller
@@ -14,15 +15,18 @@ class EstadoResultadosController extends Controller
     private ObtenerDatosER $obtenerDatosER;
     private ImportarER $importarER;
     private GuardarRegistroER $guardarRegistroER;
+    private PDFERExtractorService $pdfService;
 
     public function __construct(
         ObtenerDatosER $obtenerDatosER,
         ImportarER $importarER,
-        GuardarRegistroER $guardarRegistroER
+        GuardarRegistroER $guardarRegistroER,
+        PDFERExtractorService $pdfService
     ) {
         $this->obtenerDatosER = $obtenerDatosER;
         $this->importarER = $importarER;
         $this->guardarRegistroER = $guardarRegistroER;
+        $this->pdfService = $pdfService;
     }
 
     public function index(Request $request)
@@ -85,5 +89,26 @@ class EstadoResultadosController extends Controller
 
         return redirect()->route('estado-resultados.index')
             ->with('success', 'Registro guardado exitosamente.');
+    }
+
+    public function importPDF(Request $request)
+    {
+        $request->validate([
+            'archivo_pdf' => 'required|mimes:pdf',
+            'anio' => 'required|integer|min:2000|max:2100'
+        ]);
+
+        try {
+            $result = $this->pdfService->extract(
+                $request->file('archivo_pdf')->getRealPath(),
+                (int) $request->anio
+            );
+
+            return redirect()->route('estado-resultados.index')
+                ->with('success', "PDF procesado con éxito para el mes " . $result['mes'] . ". Se actualizaron " . $result['count'] . " conceptos.");
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Error al procesar PDF: ' . $e->getMessage());
+        }
     }
 }

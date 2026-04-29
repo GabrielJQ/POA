@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 use App\Imports\ERImport;
 use App\Imports\VentasDetalladasImport;
 use App\Models\Almacen;
+use App\Domain\Services\PDFERExtractorService;
 use Exception;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportController extends Controller
 {
+    private PDFERExtractorService $pdfService;
+
+    public function __construct(PDFERExtractorService $pdfService)
+    {
+        $this->pdfService = $pdfService;
+    }
+
     public function index()
     {
         $almacenes = Almacen::orderBy('nombre')->get();
@@ -57,6 +65,27 @@ class ImportController extends Controller
         } catch (Exception $e) {
             return redirect()->route('importaciones.index')
                 ->with('error', 'Error al importar ventas: ' . $e->getMessage());
+        }
+    }
+
+    public function importPDFRealizado(Request $request)
+    {
+        $request->validate([
+            'archivo' => 'required|file|mimes:pdf',
+            'anio' => 'required|integer|min:2000|max:2100',
+        ]);
+
+        try {
+            $result = $this->pdfService->extract(
+                $request->file('archivo')->getRealPath(),
+                (int) $request->anio
+            );
+
+            return redirect()->route('importaciones.index')
+                ->with('success', "PDF procesado con éxito para el mes " . $result['mes'] . ". Se actualizaron los datos reales de Ayutla.");
+        } catch (Exception $e) {
+            return redirect()->route('importaciones.index')
+                ->with('error', 'Error al procesar PDF: ' . $e->getMessage());
         }
     }
 }

@@ -45,10 +45,12 @@ class POADomainService
             $obj2->meta_anual = 0;
             $obj2->nota_aclaratoria = '';
 
-            // 1. Obtener COMPROMETIDO de registros_financieros
+            // RESET ABSOLUTO DE VARIABLES DE ESTADO POR FILA
             $resultados = null;
             $conceptoER = null;
+            $ventasParPeMes = [];
             
+            // 1. Obtener COMPROMETIDO (META)
             if (!empty($conceptoNombre)) {
                 $conceptoER = ConceptoMaestro::where('categoria', 'ER')
                     ->where('nombre', 'ilike', $conceptoNombre)
@@ -82,7 +84,7 @@ class POADomainService
             foreach ($meses as $mes) {
                 $col = 'mes_' . str_pad($mes, 2, '0', STR_PAD_LEFT);
                 $obj1->$col = 0;
-                if (isset($resultados)) {
+                if ($resultados) {
                     foreach ($resultados as $r) {
                         if ((int) $r->mes === $mes) {
                             $obj1->$col = (float) $r->monto;
@@ -92,9 +94,7 @@ class POADomainService
                 }
             }
 
-            // 2. Obtener REALIZADO
-            $ventasParPeMes = [];
-            
+            // 2. Obtener REALIZADO (REAL)
             // Caso A: Es una fila de Ventas (El realizado viene de LINEA_PRODUCTO)
             if (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA') !== false) {
                 $programaFilter = null;
@@ -102,8 +102,6 @@ class POADomainService
                     $programaFilter = 'PAR';
                 } elseif (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA PE') !== false) {
                     $programaFilter = 'PE';
-                } elseif (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA TOTAL') !== false) {
-                    $programaFilter = null;
                 }
                 
                 $ventasQuery = RegistroFinanciero::where('anio', $anio)
@@ -131,7 +129,7 @@ class POADomainService
                 }
                 $obj2->meta_anual = $ventasParPeTotal;
             } 
-            // Caso B: Es otra fila vinculada al ER (El realizado viene de categoria ER tipo REAL)
+            // Caso B: Es otra fila vinculada al ER (Solo si hay un mapeo de conceptoER)
             elseif ($conceptoER) {
                 $queryReal = RegistroFinanciero::where('concepto_id', $conceptoER->id)
                     ->where('anio', $anio)
@@ -179,8 +177,12 @@ class POADomainService
             $obj2->meta_anual = 0;
             $obj2->nota_aclaratoria = '';
 
-            // 1. Obtener COMPROMETIDO de registros_financieros
+            // RESET ABSOLUTO
             $resultados = null;
+            $conceptoER = null;
+            $ventasParPeMes = [];
+
+            // 1. Obtener COMPROMETIDO
             if (!empty($conceptoNombre)) {
                 $conceptoER = ConceptoMaestro::where('categoria', 'ER')
                     ->where('nombre', 'ilike', $conceptoNombre)
@@ -209,7 +211,7 @@ class POADomainService
             foreach ($meses as $mes) {
                 $col = 'mes_' . str_pad($mes, 2, '0', STR_PAD_LEFT);
                 $obj1->$col = 0;
-                if (isset($resultados)) {
+                if ($resultados) {
                     foreach ($resultados as $r) {
                         if ((int) $r->mes === $mes) {
                             $obj1->$col = (float) $r->monto;
@@ -220,17 +222,13 @@ class POADomainService
             }
 
             // 2. Obtener REALIZADO
-            $ventasParPeMes = [];
-            
-            // Caso A: Es una fila de Ventas
+            // Caso A: Ventas
             if (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA') !== false) {
                 $programaFilter = null;
                 if (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA PAR') !== false) {
                     $programaFilter = 'PAR';
                 } elseif (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA PE') !== false) {
                     $programaFilter = 'PE';
-                } elseif (stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA TOTAL') !== false) {
-                    $programaFilter = null;
                 }
                 
                 $ventasQuery = RegistroFinanciero::where('anio', $anio)
@@ -255,8 +253,8 @@ class POADomainService
                 }
                 $obj2->meta_anual = $ventasParPeTotal;
             }
-            // Caso B: Es otra fila vinculada al ER (Consolidado)
-            elseif (isset($conceptoER) && $conceptoER) {
+            // Caso B: ER (Consolidado)
+            elseif ($conceptoER) {
                 $resultadosReal = RegistroFinanciero::where('concepto_id', $conceptoER->id)
                     ->where('anio', $anio)
                     ->where('tipo_dato', 'REAL')

@@ -6,35 +6,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!dropZone || !inputFile) return;
 
-        dropZone.addEventListener('click', function() {
-            inputFile.click();
-        });
+        function updateFilename(file) {
+            if (!filename) return;
+            const isPdf = file.name.toLowerCase().endsWith('.pdf');
+            const icon = isPdf ? 'fa-file-pdf' : 'fa-file-excel';
+            filename.innerHTML = `<i class="fas ${icon}"></i> ${file.name}`;
+        }
 
-        dropZone.addEventListener('dragover', function(e) {
+        dropZone.addEventListener('click', () => inputFile.click());
+
+        dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
             dropZone.classList.add('dragover');
         });
 
-        dropZone.addEventListener('dragleave', function() {
-            dropZone.classList.remove('dragover');
-        });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
 
-        dropZone.addEventListener('drop', function(e) {
+        dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropZone.classList.remove('dragover');
             if (e.dataTransfer.files.length) {
                 inputFile.files = e.dataTransfer.files;
-                if (filename) filename.innerHTML = '<i class="fas fa-file-excel"></i> ' + e.dataTransfer.files[0].name;
+                updateFilename(e.dataTransfer.files[0]);
             }
         });
 
-        inputFile.addEventListener('change', function() {
-            if (inputFile.files.length && filename) {
-                filename.innerHTML = '<i class="fas fa-file-excel"></i> ' + inputFile.files[0].name;
+        inputFile.addEventListener('change', () => {
+            if (inputFile.files.length) {
+                updateFilename(inputFile.files[0]);
             }
         });
     }
 
     initDropZone('drop-zone-er', 'archivo-er', 'filename-er');
     initDropZone('drop-zone-ventas', 'archivo-ventas', 'filename-ventas');
+    initDropZone('drop-zone-pdf', 'archivo-pdf', 'filename-pdf');
 });

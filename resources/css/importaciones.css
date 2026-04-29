@@ -1,6 +1,7 @@
 .import-card {
     border-left: 4px solid var(--gob-verde);
     transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
 }
 .import-card:hover {
     transform: translateY(-2px);
@@ -9,13 +10,13 @@
 .import-card-poa {
     border-left-color: var(--gob-oro);
 }
-.import-icon {
-    font-size: 2.5rem;
-    color: var(--gob-verde);
+.import-card-azul {
+    border-left-color: #007bff;
 }
-.import-icon-poa {
-    color: var(--gob-oro);
+.import-card-indigo {
+    border-left-color: #6610f2;
 }
+
 .drop-zone {
     border: 2px dashed #ccc;
     border-radius: 8px;
@@ -23,14 +24,21 @@
     text-align: center;
     transition: all 0.3s;
     cursor: pointer;
+    background-color: #fcfcfc;
 }
 .drop-zone:hover, .drop-zone.dragover {
+    background-color: #f0f7f2;
     border-color: var(--gob-verde);
-    background-color: #f8f9fa;
 }
-.drop-zone-poa:hover, .drop-zone-poa.dragover {
-    border-color: var(--gob-oro);
+.drop-zone-azul:hover, .drop-zone-azul.dragover {
+    border-color: #007bff;
+    background-color: #f0f4f8;
 }
+.drop-zone-indigo:hover, .drop-zone-indigo.dragover {
+    border-color: #6610f2;
+    background-color: #f3f0f8;
+}
+
 .btn-import {
     padding: 10px 30px;
     font-weight: 600;
@@ -38,10 +46,4 @@
 .alert-import {
     border-radius: 8px;
     border: none;
-}
-.info-box-icon {
-    background: var(--gob-verde);
-}
-.info-box-icon-poa {
-    background: var(--gob-oro);
 }
