@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Imports\ERImport;
 use App\Imports\VentasDetalladasImport;
+use App\Imports\SurtimientoTiendasImport;
 use App\Models\Almacen;
 use App\Domain\Services\PDFERExtractorService;
 use Exception;
@@ -102,6 +103,30 @@ class ImportController extends Controller
             ]);
             return redirect()->route('importaciones.index')
                 ->with('error', 'Error al importar ventas: ' . $e->getMessage());
+        }
+    }
+
+    public function importSurtimiento(Request $request)
+    {
+        set_time_limit(300);
+        ini_set('memory_limit', '512M');
+        $request->validate([
+            'archivo' => 'required|file|mimes:xlsx,xls',
+            'anio' => 'required|integer|min:2000|max:2100',
+        ]);
+
+        try {
+            $anio = (int) $request->anio;
+            $import = new SurtimientoTiendasImport();
+            $count = $import->import($request->file('archivo')->getRealPath(), $anio);
+
+            Log::info("[ImportController] Surtimiento importado para {$anio}: {$count} registros.");
+            return redirect()->route('importaciones.index')
+                ->with('success', "Surtimiento a tiendas importado para {$anio}. {$count} registros REALES guardados.");
+        } catch (Exception $e) {
+            Log::error("[ImportController] Error al importar surtimiento: " . $e->getMessage());
+            return redirect()->route('importaciones.index')
+                ->with('error', 'Error al importar surtimiento: ' . $e->getMessage());
         }
     }
 

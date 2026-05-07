@@ -45,6 +45,11 @@
     <div class="col-xl-4 col-lg-6 mb-4">
         <x-importaciones.ventas-par-pe :almacenes="$almacenes" />
     </div>
+
+    <!-- BLOQUE 4: SURTIMIENTO A TIENDAS -->
+    <div class="col-xl-4 col-lg-6 mb-4">
+        <x-importaciones.form-surtimiento />
+    </div>
 </div>
 
 <div class="row">

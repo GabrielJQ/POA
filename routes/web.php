@@ -12,6 +12,7 @@ Route::get('/importaciones', [ImportController::class, 'index'])->name('importac
 Route::post('/importaciones/er', [ImportController::class, 'importER'])->name('importaciones.er');
 Route::post('/importaciones/ventas', [ImportController::class, 'importVentas'])->name('importaciones.ventas');
 Route::post('/importaciones/pdf-realizado', [ImportController::class, 'importPDFRealizado'])->name('importaciones.pdf-realizado');
+Route::post('/importaciones/surtimiento', [ImportController::class, 'importSurtimiento'])->name('importaciones.surtimiento');
 
 Route::get('/estado-resultados', [EstadoResultadosController::class, 'index'])->name('estado-resultados.index');
 Route::get('/estado-resultados/export', [EstadoResultadosController::class, 'export'])->name('estado-resultados.export');

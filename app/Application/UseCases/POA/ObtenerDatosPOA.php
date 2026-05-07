@@ -4,7 +4,6 @@ namespace App\Application\UseCases\POA;
 
 use App\Domain\ValueObjects\FiltrosPOA;
 use App\Domain\Services\POADomainService;
-use App\Models\ConceptoMaestro;
 use App\Models\Almacen;
 
 class ObtenerDatosPOA
@@ -20,10 +19,9 @@ class ObtenerDatosPOA
     {
         $filtros = FiltrosPOA::createFromRequest($request);
 
-        $dataPoa = $this->domainService->obtenerDatosPOA($filtros);
-        $compromisos = ConceptoMaestro::where('categoria', 'POA')
-            ->orderBy('orden')
-            ->get();
+        $result = $this->domainService->obtenerDatosPOA($filtros);
+        $compromisos = $result['compromisos'];
+        $dataPoa = $result['dataPoa'];
         $almacenes = Almacen::orderBy('nombre')->get();
 
         return [
@@ -51,10 +49,9 @@ class ObtenerDatosPOA
     {
         $filtros = FiltrosPOA::createFromRequest($request);
 
-        $dataPoa = $this->domainService->obtenerDatosPOA($filtros);
-        $compromisos = ConceptoMaestro::where('categoria', 'POA')
-            ->orderBy('orden')
-            ->get();
+        $result = $this->domainService->obtenerDatosPOA($filtros);
+        $compromisos = $result['compromisos'];
+        $dataPoa = $result['dataPoa'];
 
         return [
             'compromisos' => $compromisos,

@@ -53,6 +53,11 @@
                             $avancePeriodo2 += $fila2 ? (float)($fila2->$col ?? 0) : 0;
                         }
 
+                        $esPorcentaje = stripos($compromiso->unidad_medida ?? '', 'PORCENTAJE') !== false;
+                        if ($esPorcentaje) {
+                            $avancePeriodo1 = 100;
+                        }
+
                         $pctPeriodo = ($avancePeriodo1 != 0) ? ($avancePeriodo2 / $avancePeriodo1) * 100 : 0;
                         $pctAnual = ($metaAnual1 != 0) ? ($metaAnual2 / $metaAnual1) * 100 : 0;
                         $esMoneda = in_array(strtoupper($compromiso->unidad_medida), ['PESOS']);
@@ -70,6 +75,8 @@
                         <td class="poa-monto {{ $metaAnual1 == 0 ? 'poa-monto-cero' : '' }} {{ $metaAnual1 < 0 ? 'poa-monto-negativo' : '' }}">
                             @if($esMoneda)
                                 {{ number_format($metaAnual1, 2, '.', ',') }}
+                            @elseif($esPorcentaje)
+                                {{ number_format($metaAnual1, 2, '.', ',') }}
                             @else
                                 {{ number_format($metaAnual1, 0, '.', ',') }}
                             @endif
@@ -78,15 +85,17 @@
                         <td class="poa-monto {{ $avancePeriodo1 == 0 ? 'poa-monto-cero' : '' }} {{ $avancePeriodo1 < 0 ? 'poa-monto-negativo' : '' }}">
                             @if($esMoneda)
                                 {{ number_format($avancePeriodo1, 2, '.', ',') }}
+                            @elseif($esPorcentaje)
+                                {{ number_format($avancePeriodo1, 2, '.', ',') }}
                             @else
                                 {{ number_format($avancePeriodo1, 0, '.', ',') }}
                             @endif
                         </td>
                         <td class="poa-pct {{ $pctPeriodo >= 90 ? 'poa-pct-ok' : ($pctPeriodo >= 50 ? 'poa-pct-warn' : 'poa-pct-bad') }}" rowspan="2">
-                            {{ number_format($pctPeriodo, 0) }}%
+                            {{ number_format($pctPeriodo, $esPorcentaje ? 2 : 0) }}%
                         </td>
                         <td class="poa-pct {{ $pctAnual >= 90 ? 'poa-pct-ok' : ($pctAnual >= 50 ? 'poa-pct-warn' : 'poa-pct-bad') }}" rowspan="2">
-                            {{ number_format($pctAnual, 0) }}%
+                            {{ number_format($pctAnual, $esPorcentaje ? 2 : 0) }}%
                         </td>
                         <td class="poa-nota" rowspan="2">
                             {{ $fila1->nota_aclaratoria ?? '' }}
@@ -102,12 +111,16 @@
                         <td class="poa-monto {{ $metaAnual2 == 0 ? 'poa-monto-cero' : '' }} {{ $metaAnual2 < 0 ? 'poa-monto-negativo' : '' }}">
                             @if($esMoneda)
                                 {{ number_format($metaAnual2, 2, '.', ',') }}
+                            @elseif($esPorcentaje)
+                                {{ number_format($metaAnual2, 2, '.', ',') }}
                             @else
                                 {{ number_format($metaAnual2, 0, '.', ',') }}
                             @endif
                         </td>
                         <td class="poa-monto {{ $avancePeriodo2 == 0 ? 'poa-monto-cero' : '' }} {{ $avancePeriodo2 < 0 ? 'poa-monto-negativo' : '' }}">
                             @if($esMoneda)
+                                {{ number_format($avancePeriodo2, 2, '.', ',') }}
+                            @elseif($esPorcentaje)
                                 {{ number_format($avancePeriodo2, 2, '.', ',') }}
                             @else
                                 {{ number_format($avancePeriodo2, 0, '.', ',') }}
