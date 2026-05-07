@@ -7,22 +7,18 @@
     <div class="card-body">
         <form action="{{ route('importaciones.ventas') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label class="font-weight-bold">Programa a Importar</label>
-                <select name="programa" class="form-control" required>
-                    <option value="PAR">PAR (Ventas a Tiendas)</option>
-                    <option value="PE">PE (Ventas Programas Especiales)</option>
-                </select>
-                <small class="text-muted">Selecciona el programa que contiene el archivo</small>
+            <div class="alert alert-indigo small mb-3">
+                <i class="fas fa-magic"></i>
+                El sistema detectará automáticamente los datos de <strong>PAR</strong> y <strong>Ventas Especiales (ESP)</strong> dentro del mismo archivo.
             </div>
             <div class="form-group">
                 <label class="font-weight-bold">Archivo Excel</label>
-                <div class="drop-zone drop-zone-azul" id="drop-zone-ventas">
+                <label for="archivo-ventas" class="upload-area upload-area-azul" id="zone-upload-ventas" style="display: block;">
                     <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
                     <p class="mb-1">Arrastra el archivo de ventas o haz clic</p>
                     <small class="text-muted">Formatos: .xlsx, .xls, .csv</small>
-                    <input type="file" name="archivo" id="archivo-ventas" accept=".xlsx,.xls,.csv" style="display:none" required>
-                </div>
+                </label>
+                <input type="file" name="archivo" id="archivo-ventas" accept=".xlsx,.xls,.csv" style="display:none" required>
                 <div id="filename-ventas" class="mt-2 text-muted small"></div>
             </div>
             <div class="alert alert-info small mt-3">

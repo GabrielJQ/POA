@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RegionalesSeeder::class,
             UnidadesOperativasSeeder::class,
-            AlmacenesSeeder::class,
+            AlmacenSeeder::class,
             ConceptoERSeeder::class,
             CompromisosPoaSeeder::class,
             LineasProductosSeeder::class,

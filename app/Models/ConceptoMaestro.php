@@ -12,6 +12,7 @@ class ConceptoMaestro extends Model
     protected $fillable = [
         'nombre',
         'categoria',
+        'concepto_er_nombre',
         'unidad_medida',
         'orden',
         'label_fila_1',

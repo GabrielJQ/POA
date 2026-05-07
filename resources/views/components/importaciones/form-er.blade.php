@@ -14,12 +14,12 @@
             </div>
             <div class="form-group">
                 <label class="font-weight-bold">Archivo Excel</label>
-                <div class="drop-zone" id="drop-zone-er">
+                <label for="archivo-er" class="upload-area" id="zone-upload-er" style="display: block;">
                     <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
                     <p class="mb-1">Arrastra el archivo o haz clic para seleccionar</p>
                     <small class="text-muted">Formatos: .xlsx, .xls, .csv</small>
-                    <input type="file" name="archivo" id="archivo-er" accept=".xlsx,.xls,.csv" style="display:none" required>
-                </div>
+                </label>
+                <input type="file" name="archivo" id="archivo-er" accept=".xlsx,.xls,.csv" style="display:none" required>
                 <div id="filename-er" class="mt-2 text-muted small"></div>
             </div>
             <button type="submit" class="btn btn-success btn-import btn-block">

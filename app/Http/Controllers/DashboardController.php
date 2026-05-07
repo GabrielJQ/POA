@@ -91,6 +91,17 @@ class DashboardController extends Controller
             ? ($dataER->sum() / $dataPOA) * 100
             : 0;
 
+        $evolucionMensual = RegistroFinanciero::where('anio', $anioActual)
+            ->where('tipo_dato', 'REAL')
+            ->whereHas('concepto', function ($q) {
+                $q->where('categoria', 'ER');
+            })
+            ->get()
+            ->groupBy(['concepto_id', 'mes'])
+            ->map(function ($meses) {
+                return $meses->map(fn($group) => $group->sum('monto'));
+            });
+
         $meses = [
             1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
             5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
@@ -109,6 +120,7 @@ class DashboardController extends Controller
             'porAlmacen',
             'porConceptoER',
             'porcentajeCumplimiento',
+            'evolucionMensual',
             'anioActual',
             'mesActual',
             'meses'

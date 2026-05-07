@@ -16,7 +16,7 @@ class ERDomainService
 
         $query = RegistroFinanciero::with('concepto')
             ->where('anio', $anio)
-            ->where('tipo_dato', 'REAL')
+            ->where('tipo_dato', 'META')
             ->whereHas('concepto', function ($q) {
                 $q->where('categoria', 'ER');
             });

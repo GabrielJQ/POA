@@ -13,17 +13,21 @@ document.addEventListener('DOMContentLoaded', function() {
             filename.innerHTML = `<i class="fas ${icon}"></i> ${file.name}`;
         }
 
-        dropZone.addEventListener('click', () => inputFile.click());
-
         dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             dropZone.classList.add('dragover');
         });
 
-        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('dragover');
+        });
 
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             dropZone.classList.remove('dragover');
             if (e.dataTransfer.files.length) {
                 inputFile.files = e.dataTransfer.files;
@@ -31,14 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        inputFile.addEventListener('change', () => {
+        inputFile.addEventListener('change', (e) => {
             if (inputFile.files.length) {
                 updateFilename(inputFile.files[0]);
             }
         });
     }
 
-    initDropZone('drop-zone-er', 'archivo-er', 'filename-er');
-    initDropZone('drop-zone-ventas', 'archivo-ventas', 'filename-ventas');
-    initDropZone('drop-zone-pdf', 'archivo-pdf', 'filename-pdf');
+    initDropZone('zone-upload-er', 'archivo-er', 'filename-er');
+    initDropZone('zone-upload-ventas', 'archivo-ventas', 'filename-ventas');
+    initDropZone('zone-upload-pdf', 'archivo-pdf', 'filename-pdf');
 });

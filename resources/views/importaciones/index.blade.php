@@ -11,6 +11,11 @@
 @stop
 
 @section('content')
+<div id="loading-overlay" class="import-loading-overlay">
+    <div class="spinner"></div>
+    <p><i class="fas fa-process"></i> Procesando archivo, por favor espera...</p>
+</div>
+
 @if(session('success'))
     <div class="alert alert-success alert-import alert-dismissible fade show" role="alert">
         <i class="fas fa-check-circle"></i> {{ session('success') }}
@@ -55,4 +60,14 @@
 
 @section('js')
     @vite('resources/js/importaciones.js')
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const overlay = document.getElementById('loading-overlay');
+        document.querySelectorAll('.import-card form').forEach(function(form) {
+            form.addEventListener('submit', function() {
+                overlay.classList.add('active');
+            });
+        });
+    });
+    </script>
 @stop

@@ -10,17 +10,52 @@ use App\Models\Regional;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log;
 use Exception;
 
 class ERSheetImport
 {
     protected $anio;
     protected $sheetName;
+    protected $conceptosCache = null;
+    protected $conceptosNormalizadosCache = null;
 
     public function __construct($anio, $sheetName = '')
     {
         $this->anio = $anio;
         $this->sheetName = $sheetName;
+    }
+
+    protected function normalizarNombre(string $nombre): string
+    {
+        $nombre = trim($nombre);
+        $nombre = preg_replace('/\s+/', ' ', $nombre);
+        $nombre = mb_strtoupper($nombre, 'UTF-8');
+        return $nombre;
+    }
+
+    protected function getConceptos()
+    {
+        if ($this->conceptosCache === null) {
+            $this->conceptosCache = ConceptoMaestro::where('categoria', 'ER')->get();
+        }
+        return $this->conceptosCache;
+    }
+
+    protected function getConceptosNormalizados()
+    {
+        if ($this->conceptosNormalizadosCache === null) {
+            $this->conceptosNormalizadosCache = $this->getConceptos()->map(function ($c) {
+                return (object)[
+                    'id' => $c->id,
+                    'nombreNorm' => $this->normalizarNombre($c->nombre),
+                    'conceptoErNorm' => $c->concepto_er_nombre
+                        ? $this->normalizarNombre($c->concepto_er_nombre)
+                        : null,
+                ];
+            });
+        }
+        return $this->conceptosNormalizadosCache;
     }
 
     public function import(array $rows)
@@ -29,30 +64,35 @@ class ERSheetImport
         $unidadOperativaNombre = trim($rows[3][3] ?? '');
         $almacenNombreInterno = trim($rows[4][3] ?? '');
         
-        // Intentamos limpiar el nombre de la pestaña (ej: "PT AYUTLA" -> "AYUTLA")
-        $pestañaLimpia = trim(str_ireplace(['PT', 'PROFORMA', 'TRABAJO', ' '], '', $this->sheetName));
-
-        // NUEVA PRIORIDAD:
-        // 1. Ver si el nombre de la pestaña coincide con algo oficial (más fiable en plantillas)
         $almacen = null;
-        if (!empty($pestañaLimpia)) {
-            $almacen = Almacen::where('nombre', 'ilike', '%' . $pestañaLimpia . '%')->first();
-        }
 
-        // 2. Si no, ver si el nombre interno (D5) existe en nuestra DB oficial
-        if (!$almacen && !empty($almacenNombreInterno)) {
+        // PRIORIDAD 1: Usar el nombre directo del almacén en celda D5 (más fiable)
+        if (!empty($almacenNombreInterno) && $almacenNombreInterno !== 'N/A') {
             $almacen = Almacen::where('nombre', 'ilike', $almacenNombreInterno)->first();
-            
-            // 3. Si aún no, búsqueda parcial del nombre interno
             if (!$almacen) {
                 $almacen = Almacen::where('nombre', 'ilike', '%' . $almacenNombreInterno . '%')->first();
             }
         }
 
-        // Si después de todo no hay almacén, esta hoja probablemente no es un detalle de almacén
+        // PRIORIDAD 2: Intentar limpiar el nombre de la pestaña (ej: " PT AYUTLA" -> "AYUTLA")
         if (!$almacen) {
-            return 0; 
+            $pestañaLimpia = trim(preg_replace(
+                ['/^\s*PT\s+/i', '/\s+PROFORMA\s*$/i', '/\s+CONSOLIDADO\s*$/i', '/\s*\([^)]*\)\s*/'],
+                ['', '', '', ''],
+                $this->sheetName
+            ));
+            $pestañaLimpia = trim($pestañaLimpia);
+            if (strlen($pestañaLimpia) > 3) {
+                $almacen = Almacen::where('nombre', 'ilike', '%' . $pestañaLimpia . '%')->first();
+            }
         }
+
+        if (!$almacen) {
+            Log::warning("[ERSheetImport] Almacén NO encontrado para hoja '{$this->sheetName}' (limpio: '{$pestañaLimpia}', interno: '{$almacenNombreInterno}') — se omite.");
+            return 0;
+        }
+
+        Log::info("[ERSheetImport] Hoja '{$this->sheetName}' → almacén: {$almacen->nombre} (id: {$almacen->id})");
 
         if (empty($unidadOperativaNombre)) $unidadOperativaNombre = 'OAXACA VALLES CENTRALES';
 
@@ -81,15 +121,16 @@ class ERSheetImport
                 $conceptoMayus = mb_strtoupper($conceptoNombre, 'UTF-8');
                 if (str_contains($conceptoMayus, 'ELABORÓ') || str_contains($conceptoMayus, 'ELABORO')) break;
 
-                // Buscar concepto maestro de categoría ER
-                $concepto = ConceptoMaestro::where('categoria', 'ER')
-                    ->where(function($q) use ($conceptoNombre) {
-                        $q->where('nombre', 'ilike', $conceptoNombre)
-                          ->orWhere('concepto_er_nombre', 'ilike', $conceptoNombre);
-                    })
-                    ->first();
-                
-                if (!$concepto) continue;
+                $conceptoNormInput = $this->normalizarNombre($conceptoNombre);
+                $conceptoMatch = $this->getConceptosNormalizados()->first(function($c) use ($conceptoNormInput) {
+                    return $c->nombreNorm === $conceptoNormInput ||
+                           ($c->conceptoErNorm && $c->conceptoErNorm === $conceptoNormInput);
+                });
+                $concepto = $conceptoMatch ? $this->getConceptos()->firstWhere('id', $conceptoMatch->id) : null;
+                if (!$concepto) {
+                    Log::debug("[ERSheetImport] Concepto no encontrado: '{$conceptoNombre}' (normalizado: '{$conceptoNormInput}') en hoja '{$this->sheetName}'");
+                    continue;
+                }
 
                 // Columnas de meses (Enero en D = index 3)
                 for ($mes = 1; $mes <= 12; $mes++) {
@@ -103,12 +144,13 @@ class ERSheetImport
                     $monto = (float)$montoLimpio;
                     
                     if ($monto != 0) {
+                        $montoEncrypted = Crypt::encryptString((string)$monto);
                         $upsertData[] = [
                             'almacen_id' => $almacen->id,
                             'concepto_id' => $concepto->id,
                             'anio' => $this->anio,
                             'mes' => $mes,
-                            'monto' => Crypt::encryptString((string)$monto),
+                            'monto' => $montoEncrypted,
                             'tipo_dato' => 'META',
                             'programa' => null,
                             'created_at' => $now,
@@ -120,6 +162,14 @@ class ERSheetImport
             }
 
             if (!empty($upsertData)) {
+                // Deduplicar por unique key
+                $deduped = [];
+                foreach ($upsertData as $row) {
+                    $key = $row['almacen_id'] . '|' . $row['concepto_id'] . '|' . $row['mes'] . '|' . $row['anio'] . '|' . $row['tipo_dato'] . '|' . ($row['programa'] ?? '');
+                    $deduped[$key] = $row;
+                }
+                $upsertData = array_values($deduped);
+                Log::info("[ERSheetImport] {$almacen->nombre}: {$registrosGuardados} registros preparados, " . count($upsertData) . " únicos, ejecutando upsert...");
                 foreach (array_chunk($upsertData, 500) as $chunk) {
                     RegistroFinanciero::upsert(
                         $chunk,
@@ -127,6 +177,9 @@ class ERSheetImport
                         ['monto', 'updated_at']
                     );
                 }
+                Log::info("[ERSheetImport] {$almacen->nombre}: upsert completado ({$registrosGuardados} registros).");
+            } else {
+                Log::info("[ERSheetImport] {$almacen->nombre}: 0 registros (sin datos válidos).");
             }
 
             DB::commit();

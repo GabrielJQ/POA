@@ -5,151 +5,166 @@ namespace App\Imports;
 use App\Models\Almacen;
 use App\Models\ConceptoMaestro;
 use App\Models\RegistroFinanciero;
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use Exception;
 
-class VentasDetalladasImport implements ToCollection, WithCalculatedFormulas
+class VentasDetalladasImport
 {
     private string $programa;
+    private $todosAlmacenes;
+    private $lineasCache = null;
 
     public function __construct(string $programa = 'PAR')
     {
         $this->programa = $programa;
+        $this->todosAlmacenes = Almacen::all();
     }
 
-    public function collection(Collection $rows)
+    protected function getLineas()
     {
-        if ($rows->isEmpty()) {
-            throw new Exception("El archivo está vacío.");
+        if ($this->lineasCache === null) {
+            $this->lineasCache = ConceptoMaestro::where('categoria', 'LINEA_PRODUCTO')->get();
         }
+        return $this->lineasCache;
+    }
 
-        $almacen = $this->buscarAlmacen($rows);
+    public function import(string $filePath)
+    {
+        $reader = IOFactory::createReaderForFile($filePath);
+        $reader->setReadDataOnly(true);
         
-        if (!$almacen) {
-            throw new Exception("No se encontró el almacén.");
-        }
-
-        $anio = (int) date('Y');
+        $spreadsheet = $reader->load($filePath);
+        $sheetNames = $spreadsheet->getSheetNames();
         
-        // Formato Ventas Detalladas: Enero en columna D (índice 3)
-        // Se saltan las columnas de "TRIMESTRE" (6, 10, 14, 18)
-        $meses = [
-            1 => 3,  // Enero
-            2 => 4,  // Febrero
-            3 => 5,  // Marzo
-            4 => 7,  // Abril
-            5 => 8,  // Mayo
-            6 => 9,  // Junio
-            7 => 11, // Julio
-            8 => 12, // Agosto
-            9 => 13, // Septiembre
-            10 => 15, // Octubre
-            11 => 16, // Noviembre
-            12 => 17  // Diciembre
+        $configHojas = [
+            'PAR' => 'PAR',
+            'ESP' => 'PE'
         ];
 
-        $upsertData = [];
+        $totalRegistros = 0;
+        $anio = 2026;
         $now = now();
+        $meses = [
+            1 => 3, 2 => 4, 3 => 5, 4 => 7, 5 => 8, 6 => 9, 
+            7 => 11, 8 => 12, 9 => 13, 10 => 15, 11 => 16, 12 => 17
+        ];
 
-        for ($i = 9; $i < count($rows); $i++) {
-            $row = $rows[$i];
-            
-            $lineaNumero = isset($row[1]) ? trim((string)$row[1]) : '';
-            if (empty($lineaNumero)) continue;
+        foreach ($configHojas as $nombreHoja => $programa) {
+            if (!in_array($nombreHoja, $sheetNames)) continue;
 
-            $lineaNumero = (int) preg_replace('/[^\d]/', '', $lineaNumero);
-            if ($lineaNumero === 0) continue;
+            $sheet = $spreadsheet->getSheetByName($nombreHoja);
+            $rows = $sheet->toArray();
+            $almacenActual = null;
+            $upsertData = [];
 
-            $lineaNombre = isset($row[0]) ? trim((string)$row[0]) : '';
-            if (empty($lineaNombre)) continue;
+            foreach ($rows as $index => $row) {
+                $col0 = trim((string)($row[0] ?? ''));
+                $col1 = trim((string)($row[1] ?? ''));
 
-            // Buscar línea de producto existente por número o nombre
-            $linea = ConceptoMaestro::where('categoria', 'LINEA_PRODUCTO')
-                ->where(function($q) use ($lineaNumero, $lineaNombre) {
-                    $q->where('numero', $lineaNumero)
-                      ->orWhere('nombre', $lineaNombre)
-                      ->orWhere('nombre', 'ilike', $lineaNombre);
-                })
-                ->first();
-            
-            if (!$linea) {
-                // Si no existe, crear nueva línea
-                $linea = ConceptoMaestro::create([
-                    'nombre' => $lineaNombre,
-                    'categoria' => 'LINEA_PRODUCTO',
-                    'numero' => $lineaNumero,
-                    'orden' => 0,
-                ]);
-            }
+                if ($almacenActual && $col1 !== '' && is_numeric($col1)) {
+                    $lineaNumero = (int)$col1;
+                    $lineaNombre = $col0;
 
-            foreach ($meses as $mes => $colIndex) {
-                $montoRaw = $row[$colIndex] ?? '';
-                $montoStr = (string)$montoRaw;
-                $montoLimpio = preg_replace('/[^\d.-]/', '', $montoStr);
+                    $linea = $this->getLineas()->first(function($l) use ($lineaNumero, $lineaNombre) {
+                        return $l->numero == $lineaNumero || strcasecmp($l->nombre, $lineaNombre) === 0;
+                    });
 
-                if ($montoLimpio && is_numeric($montoLimpio)) {
-                    $monto = (float) $montoLimpio;
-                    if ($monto > 0) {
-                        $upsertData[] = [
-                            'almacen_id' => $almacen->id,
-                            'concepto_id' => $linea->id,
-                            'mes' => $mes,
-                            'anio' => $anio,
-                            'monto' => $monto,
-                            'tipo_dato' => 'REAL',
-                            'programa' => $this->programa,
-                            'created_at' => $now,
-                            'updated_at' => $now,
-                        ];
+                    if (!$linea) {
+                        $linea = ConceptoMaestro::create([
+                            'nombre' => $lineaNombre,
+                            'categoria' => 'LINEA_PRODUCTO',
+                            'numero' => $lineaNumero,
+                            'orden' => 0
+                        ]);
+                        $this->lineasCache->push($linea);
+                    }
+
+                    foreach ($meses as $mes => $colIndex) {
+                        $montoRaw = $row[$colIndex] ?? 0;
+                        $montoLimpio = preg_replace('/[^\d.-]/', '', (string)$montoRaw);
+
+                        if ($montoLimpio !== '' && is_numeric($montoLimpio)) {
+                            $monto = (float) $montoLimpio;
+                            if ($monto > 0) {
+                                $upsertData[] = [
+                                    'almacen_id' => $almacenActual->id,
+                                    'concepto_id' => $linea->id,
+                                    'mes' => $mes,
+                                    'anio' => $anio,
+                                    'monto' => Crypt::encryptString((string)$monto),
+                                    'tipo_dato' => 'REAL',
+                                    'programa' => $programa,
+                                    'created_at' => $now,
+                                    'updated_at' => $now,
+                                ];
+                                $totalRegistros++;
+                            }
+                        }
+                    }
+                } else {
+                    $nuevoAlmacen = $this->identificarAlmacenEnFila($col1) ?: $this->identificarAlmacenEnFila($col0);
+                    if ($nuevoAlmacen) {
+                        if ($almacenActual && $almacenActual->id !== $nuevoAlmacen->id) {
+                            Log::info("[Ventas] Hoja $nombreHoja -> Cambio: {$almacenActual->nombre} → {$nuevoAlmacen->nombre} (fila $index)");
+                        } elseif (!$almacenActual) {
+                            Log::info("[Ventas] Hoja $nombreHoja -> Primer almacén: {$nuevoAlmacen->nombre} (fila $index)");
+                        }
+                        $almacenActual = $nuevoAlmacen;
                     }
                 }
             }
-        }
 
-        if (empty($upsertData)) {
-            throw new Exception("No se encontró ningún monto válido.");
-        }
-
-        foreach (array_chunk($upsertData, 500) as $chunk) {
-            foreach ($chunk as &$data) {
-                $data['monto'] = Crypt::encryptString((string)$data['monto']);
+            // Batch upsert cada 500 registros
+            if (!empty($upsertData)) {
+                // Deduplicar por unique key (almacen_id, concepto_id, mes, anio, tipo_dato, programa)
+                $deduped = [];
+                foreach ($upsertData as $row) {
+                    $key = $row['almacen_id'] . '|' . $row['concepto_id'] . '|' . $row['mes'] . '|' . $row['anio'] . '|' . $row['tipo_dato'] . '|' . ($row['programa'] ?? '');
+                    $deduped[$key] = $row;
+                }
+                $upsertData = array_values($deduped);
+                Log::info("[Ventas] Hoja $nombreHoja: {$totalRegistros} registros, " . count($upsertData) . " únicos, ejecutando upsert por lotes...");
+                foreach (array_chunk($upsertData, 500) as $chunk) {
+                    RegistroFinanciero::upsert(
+                        $chunk,
+                        ['almacen_id', 'concepto_id', 'mes', 'anio', 'tipo_dato', 'programa'],
+                        ['monto', 'updated_at']
+                    );
+                }
+                Log::info("[Ventas] Hoja $nombreHoja: upsert completado.");
             }
-            RegistroFinanciero::upsert($chunk, 
-                ['almacen_id', 'concepto_id', 'mes', 'anio', 'tipo_dato', 'programa'], 
-                ['monto', 'updated_at']
-            );
         }
+
+        $spreadsheet->disconnectWorksheets();
+        return $totalRegistros;
     }
 
-    protected function buscarAlmacen(Collection $rows): ?Almacen
+    protected function identificarAlmacenEnFila(string $texto): ?Almacen
     {
-        $todosAlmacenes = Almacen::all();
+        if (empty($texto) || strlen($texto) < 4) return null;
+        $textoNorm = strtoupper(trim(preg_replace('/[^\w\s]/u', '', $texto)));
         
-        foreach ($rows as $row) {
-            if (!($row instanceof Collection)) $row = collect($row);
+        $blacklist = ['LINEA', 'TOTAL', 'PROGRAMA', 'ENERO', 'FEBRERO', 'MAIZ', 'FRIJOL', 'ABARROTES', 'LECHE'];
+        foreach ($blacklist as $word) {
+            if (str_contains($textoNorm, $word)) return null;
+        }
+
+        if (str_contains($textoNorm, 'MAGADALENA')) $textoNorm = str_replace('MAGADALENA', 'MAGDALENA', $textoNorm);
+        if (str_contains($textoNorm, 'TAMAZULAPAM')) $textoNorm = str_replace('TAMAZULAPAM', 'TAMAZULAPAN', $textoNorm);
+        if (str_contains($textoNorm, 'TEOTITLAN DE FLORES MAGON')) $textoNorm = str_replace('TEOTITLAN DE FLORES MAGON', 'SANTIAGO TEOTITLAN', $textoNorm);
+        if (str_contains($textoNorm, 'EL CHILAR') && !str_contains($textoNorm, 'SAN JOSE')) $textoNorm = str_replace('EL CHILAR', 'SAN JOSE EL CHILAR', $textoNorm);
+        if (str_contains($textoNorm, 'ALMACEN DE VALLES CENTRALES') || str_contains($textoNorm, 'UNIDAD OPERATIVA VALLES CENTRALES')) $textoNorm = 'VALLES CENTRALES';
+
+        foreach ($this->todosAlmacenes as $almacen) {
+            $nombreAlmNorm = strtoupper(trim(preg_replace('/[^\w\s]/u', '', $almacen->nombre)));
+            if (str_contains($textoNorm, $nombreAlmNorm) || str_contains($nombreAlmNorm, $textoNorm)) return $almacen;
             
-            foreach ($row as $celda) {
-                $celdaStr = trim((string)$celda);
-                if (empty($celdaStr) || strlen($celdaStr) < 3) continue;
-                if (str_starts_with($celdaStr, '=')) continue;
-                
-                $palabrasIgnorar = ['PRESUPUESTO', 'VENTAS', 'PROGRAMA', 'ALMACEN', 'TIENDA', 'SUCURSAL', 'REGISTRO', 'LINEA', 'NUMERO', 'IMPORTE', 'TOTAL', 'RURAL'];
-                $esIgnorable = false;
-                foreach ($palabrasIgnorar as $palabra) {
-                    if (stripos($celdaStr, $palabra) !== false) { $esIgnorable = true; break; }
-                }
-                if ($esIgnorable) continue;
-                
-                foreach ($todosAlmacenes as $almacen) {
-                    $nombreNorm = strtoupper(trim(preg_replace('/[^\w\s]/u', '', $almacen->nombre)));
-                    $celdaNorm = strtoupper(trim(preg_replace('/[^\w\s]/u', '', $celdaStr)));
-                    if ($celdaNorm === $nombreNorm || str_contains($celdaNorm, $nombreNorm) || str_contains($nombreNorm, $celdaNorm)) {
-                        return $almacen;
-                    }
-                }
+            $palabrasAlmacen = explode(' ', $nombreAlmNorm);
+            $palabrasIgnorar = ['ALMACEN', 'RURAL', 'CENTRAL', 'SUCURSAL', 'UNIDAD', 'VALLES', 'SANTIAGO', 'DE', 'DEL', 'LAS', 'LOS', 'SAN'];
+            foreach ($palabrasAlmacen as $palabra) {
+                if (strlen($palabra) > 3 && !in_array($palabra, $palabrasIgnorar) && str_contains($textoNorm, $palabra)) return $almacen;
             }
         }
         return null;

@@ -43,6 +43,7 @@ class Poa extends Model
             ->where('programa', 'PAR')
             ->where('anio', $this->anio)
             ->where('tipo_dato', 'REAL')
+            ->get()
             ->sum('monto');
     }
 
@@ -55,6 +56,7 @@ class Poa extends Model
             ->where('programa', 'PE')
             ->where('anio', $this->anio)
             ->where('tipo_dato', 'REAL')
+            ->get()
             ->sum('monto');
     }
 

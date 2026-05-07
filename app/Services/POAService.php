@@ -57,7 +57,7 @@ class POAService
                     ->where('mes', $mes)
                     ->where('tipo_dato', 'REAL')
                     ->where('concepto_id', $conceptoER->id)
-                    ->value('monto') ?? 0;
+                    ->first()?->monto ?? 0;
 
                 $montosMensuales[$mes] = $monto;
                 $metaAnual += $monto;
@@ -88,6 +88,7 @@ class POAService
             ->where('mes', $mes)
             ->where('anio', $anio)
             ->where('tipo_dato', 'REAL')
+            ->get()
             ->sum('monto');
 
         if ($total <= 0) {

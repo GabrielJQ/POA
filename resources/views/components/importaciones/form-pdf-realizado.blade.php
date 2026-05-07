@@ -12,17 +12,17 @@
             </div>
             <div class="form-group">
                 <label class="font-weight-bold">Archivo PDF</label>
-                <div class="drop-zone drop-zone-indigo" id="drop-zone-pdf">
+                <label for="archivo-pdf" class="upload-area upload-area-indigo" id="zone-upload-pdf" style="display: block;">
                     <i class="fas fa-file-pdf fa-2x text-muted mb-2"></i>
                     <p class="mb-1">Arrastra el reporte PDF o haz clic aquí</p>
                     <small class="text-muted">Reporte: Estado de Resultados por Almacén</small>
-                    <input type="file" name="archivo" id="archivo-pdf" accept=".pdf" style="display:none" required>
-                </div>
+                </label>
+                <input type="file" name="archivo" id="archivo-pdf" accept=".pdf" style="display:none" required>
                 <div id="filename-pdf" class="mt-2 text-muted small"></div>
             </div>
             <div class="alert alert-info small mt-3">
                 <i class="fas fa-magic"></i>
-                El sistema extraerá automáticamente los montos de <strong>Ayutla Mixes</strong> para "Gastos de Distribución" y "Resultado Directo".
+                El sistema extraerá automáticamente los montos de <strong>TODOS los almacenes</strong> (Oaxaca, Mixes, Ixtlán, Lachixio, Valles Centrales, Matatlán, etc.) para "Total Gastos de Distribución" y "Resultado Directo de Operación".
             </div>
             <button type="submit" class="btn btn-indigo btn-import btn-block">
                 <i class="fas fa-bolt"></i> Procesar Reporte PDF
