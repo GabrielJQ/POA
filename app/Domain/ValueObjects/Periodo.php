@@ -73,4 +73,14 @@ class Periodo
             self::ANUAL => 'ANUAL',
         };
     }
+
+    public function getNotaMes(): int
+    {
+        return match ($this->tipo) {
+            self::MENSUAL => $this->mes,
+            self::TRIMESTRAL => 100 + $this->trimestre,
+            self::ANUAL => 0,
+            default => 0,
+        };
+    }
 }

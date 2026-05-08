@@ -4,6 +4,7 @@ namespace App\Domain\Services;
 
 use App\Domain\ValueObjects\FiltrosPOA;
 use App\Models\ConceptoMaestro;
+use App\Models\PoaNota;
 use App\Models\RegistroFinanciero;
 
 class POADomainService
@@ -35,9 +36,22 @@ class POADomainService
             ->whereHas('concepto', fn($q) => $q->where('categoria', 'LINEA_PRODUCTO'))
             ->get();
 
+        $notaMes = $filtros->getPeriodo()->getNotaMes();
+        $notas = PoaNota::where('anio', $anio)
+            ->where('mes', $notaMes)
+            ->where(function ($q) use ($almacenId) {
+                if ($almacenId === null) {
+                    $q->whereNull('almacen_id');
+                } else {
+                    $q->where('almacen_id', $almacenId);
+                }
+            })
+            ->get()
+            ->keyBy(fn($n) => $n->concepto_id . '|' . $n->label);
+
         $dataPoa = $this->buildDataPoa(
             $compromisos, $erConceptos, $metasPorConcepto, $realesPorConcepto,
-            $ventasRecords, $almacenId, $meses
+            $ventasRecords, $almacenId, $meses, $notas
         );
 
         return [
@@ -53,19 +67,26 @@ class POADomainService
 
     private function buildDataPoa(
         $compromisos, $erConceptos, $metasPorConcepto, $realesPorConcepto,
-        $ventasRecords, ?int $almacenId, array $meses
+        $ventasRecords, ?int $almacenId, array $meses, $notas = null
     ): array {
         $dataPoa = [];
         $ventasPorPrograma = $ventasRecords->groupBy('programa');
 
         foreach ($compromisos as $compromiso) {
+            $label1 = $compromiso->label_fila_1 ?? 'COMPROMETIDO';
+            $label2 = $compromiso->label_fila_2 ?? 'REALIZADO';
+
             $obj1 = new \stdClass();
             $obj1->meta_anual = 0;
-            $obj1->nota_aclaratoria = '';
+            $key1 = $compromiso->id . '|' . $label1;
+            $nota1 = $notas ? ($notas->get($key1)?->nota_aclaratoria ?? '') : '';
+            $obj1->nota_aclaratoria = $nota1;
 
             $obj2 = new \stdClass();
             $obj2->meta_anual = 0;
-            $obj2->nota_aclaratoria = '';
+            $key2 = $compromiso->id . '|' . $label2;
+            $nota2 = $notas ? ($notas->get($key2)?->nota_aclaratoria ?? '') : '';
+            $obj2->nota_aclaratoria = $nota2;
 
             $ventasParPeMes = [];
             $esPorcentaje = stripos($compromiso->unidad_medida ?? '', 'PORCENTAJE') !== false;
@@ -185,9 +206,6 @@ class POADomainService
                 $col = 'mes_' . str_pad($mes, 2, '0', STR_PAD_LEFT);
                 $obj2->$col = $ventasParPeMes[$mes] ?? 0;
             }
-
-            $label1 = $compromiso->label_fila_1 ?? 'COMPROMETIDO';
-            $label2 = $compromiso->label_fila_2 ?? 'REALIZADO';
 
             $dataPoa[$compromiso->id][$label1] = $obj1;
             $dataPoa[$compromiso->id][$label2] = $obj2;

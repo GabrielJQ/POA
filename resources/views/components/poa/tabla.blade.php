@@ -2,8 +2,27 @@
     'compromisos' => collect(),
     'dataPoa' => [],
     'config' => [],
-    'labelPeriodo' => 'ENERO'
+    'labelPeriodo' => 'ENERO',
+    'anioSeleccionado' => null,
+    'almacenSeleccionado' => null,
+    'mostrarConsolidado' => true,
 ])
+
+@php
+    $mesesConfig = $config['meses'] ?? [1];
+    $totalMeses = count($mesesConfig);
+    $primerMes = $mesesConfig[0] ?? 1;
+
+    if ($totalMeses === 1) {
+        $notaMes = $primerMes;
+    } elseif ($totalMeses === 3) {
+        $notaMes = 100 + (int) ceil($primerMes / 3);
+    } else {
+        $notaMes = 0;
+    }
+
+    $notaAlmacen = $mostrarConsolidado ? '' : $almacenSeleccionado;
+@endphp
 
 @if($compromisos->isEmpty())
     <div class="alert alert-info text-center">
@@ -98,7 +117,13 @@
                             {{ number_format($pctAnual, $esPorcentaje ? 2 : 0) }}%
                         </td>
                         <td class="poa-nota" rowspan="2">
-                            {{ $fila1->nota_aclaratoria ?? '' }}
+                            <textarea class="form-control form-control-sm nota-textarea"
+                                data-concepto-id="{{ $compromiso->id }}"
+                                data-label="{{ $compromiso->label_fila_1 ?? 'COMPROMETIDO' }}"
+                                data-anio="{{ $anioSeleccionado ?? date('Y') }}"
+                                data-mes="{{ $notaMes }}"
+                                data-almacen-id="{{ $notaAlmacen }}"
+                                rows="2" style="width:100%; border:none; resize:vertical; background:transparent; font-size:inherit;">{{ $fila1->nota_aclaratoria ?? '' }}</textarea>
                         </td>
                     </tr>
 

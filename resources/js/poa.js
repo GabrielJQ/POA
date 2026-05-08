@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var exportRoute = typeof RUTA_EXPORT_POA !== 'undefined' ? RUTA_EXPORT_POA : '/poa/export';
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -18,9 +20,46 @@ $(document).ready(function() {
 
     toggleAlmacen();
 
+    $(document).on('blur', '.nota-textarea', function() {
+        var $ta = $(this);
+        var nota = $ta.val().trim();
+        var almacenId = $ta.data('almacen-id');
+        $.ajax({
+            url: '/poa/nota',
+            type: 'POST',
+            data: {
+                concepto_id: $ta.data('concepto-id'),
+                label: $ta.data('label'),
+                anio: $ta.data('anio'),
+                mes: $ta.data('mes'),
+                almacen_id: almacenId || '',
+                nota_aclaratoria: nota,
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function() {
+                $ta.css('border-color', '#28a745');
+                setTimeout(function() { $ta.css('border-color', ''); }, 1500);
+            },
+            error: function() {
+                $ta.css('border-color', '#dc3545');
+            }
+        });
+    });
+
+    $('#btn-descargar-xlsx, #btn-descargar-pdf').on('click', function(e) {
+        e.preventDefault();
+        var tipo = $(this).is('#btn-descargar-xlsx') ? 'xlsx' : 'pdf';
+        var q = $('#filtro-poa-form').serialize() + '&tipo=' + tipo;
+        window.location.href = exportRoute + '?' + q;
+    });
+
+    function recargarTodo() {
+        cargarTablaPOA();
+    }
+
     $('#consolidado-select').on('change', function() {
         toggleAlmacen();
-        cargarTablaPOA();
+        recargarTodo();
     });
 
     $('#periodo-select').on('change', function() {
@@ -32,11 +71,11 @@ $(document).ready(function() {
         } else if (periodo === 'trimestral') {
             $('#div-trimestre').show();
         }
-        cargarTablaPOA();
+        recargarTodo();
     });
 
     $('#filtro-poa-form').on('change', 'select[name="mes"], select[name="anio"], select[name="almacen_id"], select[name="trimestre"]', function() {
-        cargarTablaPOA();
+        recargarTodo();
     });
 
     var cargandoTabla = false;
@@ -81,7 +120,7 @@ $(document).ready(function() {
         toggleAlmacen();
         $('#div-mes').show();
         $('#div-trimestre').hide();
-        cargarTablaPOA();
+        recargarTodo();
     });
 
     $('#filtro-poa-form button[type="submit"]').on('click', function(e) {

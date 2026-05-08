@@ -14,8 +14,19 @@
     <div class="card card-default">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title"><i class="fas fa-table"></i> Formato POA — Metas Comprometidas vs Realizadas</h3>
-            <div>
-                <a href="{{ route('importaciones.index') }}" class="btn btn-sm btn-info" title="Centro de Importación">
+            <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Descargar">
+                    <i class="fas fa-download"></i> Descargar
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" id="btn-descargar-xlsx" href="#">
+                        <i class="fas fa-file-excel text-success"></i> Excel (.xlsx)
+                    </a>
+                    <a class="dropdown-item" id="btn-descargar-pdf" href="#">
+                        <i class="fas fa-file-pdf text-danger"></i> PDF
+                    </a>
+                </div>
+                <a href="{{ route('importaciones.index') }}" class="btn btn-sm btn-info ml-1" title="Centro de Importación">
                     <i class="fas fa-file-import"></i> Importar Datos
                 </a>
             </div>
@@ -38,6 +49,9 @@
                     :data-poa="$dataPoa"
                     :config="$config"
                     :label-periodo="$labelPeriodo"
+                    :anio-seleccionado="$anioSeleccionado"
+                    :almacen-seleccionado="$almacenSeleccionado"
+                    :mostrar-consolidado="$mostrarConsolidado"
                 />
             </div>
         </div>
@@ -45,6 +59,7 @@
 @stop
 
 @section('js')
+    <script>var RUTA_EXPORT_POA = '{{ route("poa.export") }}';</script>
     @vite('resources/js/poa.js')
     @if(session('success'))
         <script>alert("{{ session('success') }}");</script>
