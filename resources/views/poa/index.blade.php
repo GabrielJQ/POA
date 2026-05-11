@@ -62,9 +62,9 @@
     <script>var RUTA_EXPORT_POA = '{{ route("poa.export") }}';</script>
     @vite('resources/js/poa.js')
     @if(session('success'))
-        <script>alert("{{ session('success') }}");</script>
+        <script>alert(@json(session('success')));</script>
     @endif
     @if(session('error'))
-        <script>alert("Error: {{ session('error') }}");</script>
+        <script>alert('Error: ' + @json(session('error')));</script>
     @endif
 @stop

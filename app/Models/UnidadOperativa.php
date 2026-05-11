@@ -23,7 +23,6 @@ class UnidadOperativa extends Model
      */
     protected $fillable = [
         'regional_id',
-        'clave_unidad',
         'nombre',
     ];
 

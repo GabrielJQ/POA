@@ -8,6 +8,7 @@ use App\Application\UseCases\ER\ObtenerDatosER;
 use App\Application\UseCases\ER\ImportarER;
 use App\Application\UseCases\ER\GuardarRegistroER;
 use App\Domain\Services\PDFERExtractorService;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class EstadoResultadosController extends Controller
@@ -57,7 +58,7 @@ class EstadoResultadosController extends Controller
     public function import(Request $request)
     {
         $request->validate([
-            'archivo_excel' => 'required|mimes:xlsx,xls,csv',
+            'archivo_excel' => 'required|mimes:xlsx,xls,csv|max:102400',
             'anio' => 'required|integer|min:2000|max:2100'
         ]);
 
@@ -70,6 +71,11 @@ class EstadoResultadosController extends Controller
             return redirect()->route('estado-resultados.index')
                 ->with('success', $result['message']);
         } catch (\Exception $e) {
+            Log::error("[ER] Error importación Excel: " . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+            ]);
             return redirect()->back()
                 ->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
@@ -94,7 +100,7 @@ class EstadoResultadosController extends Controller
     public function importPDF(Request $request)
     {
         $request->validate([
-            'archivo_pdf' => 'required|mimes:pdf',
+            'archivo_pdf' => 'required|mimes:pdf|max:102400',
             'anio' => 'required|integer|min:2000|max:2100'
         ]);
 
@@ -107,6 +113,11 @@ class EstadoResultadosController extends Controller
             return redirect()->route('estado-resultados.index')
                 ->with('success', "PDF procesado con éxito para el mes " . $result['mes'] . ". Se actualizaron " . $result['count'] . " conceptos.");
         } catch (\Exception $e) {
+            Log::error("[ER] Error al procesar PDF: " . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+            ]);
             return redirect()->back()
                 ->with('error', 'Error al procesar PDF: ' . $e->getMessage());
         }

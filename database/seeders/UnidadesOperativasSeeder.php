@@ -10,15 +10,15 @@ class UnidadesOperativasSeeder extends Seeder
 {
     public function run(): void
     {
-        $oaxaca = Regional::where('nombre', 'Oaxaca')->first();
+        $oaxaca = Regional::where('nombre', 'OAXACA')->first();
 
         if (!$oaxaca) {
-            $oaxaca = Regional::create(['nombre' => 'Oaxaca']);
+            $oaxaca = Regional::create(['nombre' => 'OAXACA']);
         }
 
         UnidadOperativa::updateOrCreate(
-            ['nombre' => 'Valles Centrales'],
-            ['regional_id' => $oaxaca->id, 'nombre' => 'Valles Centrales']
+            ['nombre' => 'VALLES CENTRALES'],
+            ['regional_id' => $oaxaca->id, 'nombre' => 'VALLES CENTRALES']
         );
     }
 }

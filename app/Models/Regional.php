@@ -21,7 +21,6 @@ class Regional extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'clave_region',
         'nombre',
     ];
 

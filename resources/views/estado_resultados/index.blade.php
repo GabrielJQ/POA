@@ -40,9 +40,9 @@
     </script>
     @vite('resources/js/er.js')
     @if(session('success'))
-        <script>alert("{{ session('success') }}");</script>
+        <script>alert(@json(session('success')));</script>
     @endif
     @if(session('error'))
-        <script>alert("Error: {{ session('error') }}");</script>
+        <script>alert('Error: ' + @json(session('error')));</script>
     @endif
 @stop

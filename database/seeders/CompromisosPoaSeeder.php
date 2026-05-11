@@ -67,7 +67,7 @@ class CompromisosPoaSeeder extends Seeder
             [
                 'nombre' => 'EFICIENCIA DE SURTIMIENTO A TIENDAS',
                 'categoria' => 'POA',
-                'unidad_medida' => 'PORCENTAJES',
+                'unidad_medida' => 'PORCENTAJE',
                 'orden' => 7,
                 'label_fila_1' => 'COMPROMETIDO',
                 'label_fila_2' => 'REALIZADO',

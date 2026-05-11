@@ -15,9 +15,8 @@ class Almacen extends Model
 
     protected $fillable = [
         'unidad_operativa_id',
-        'clave_almacen',
         'nombre',
-        'direccion',
+        'numero_almacen',
     ];
 
     public function unidadOperativa(): BelongsTo

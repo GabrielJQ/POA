@@ -36,7 +36,7 @@ class ImportController extends Controller
         set_time_limit(300);
         ini_set('memory_limit', '512M');
         $request->validate([
-            'archivo' => 'required|file|mimes:xlsx,xls,csv',
+            'archivo' => 'required|file|mimes:xlsx,xls,csv|max:102400',
             'anio' => 'required|integer|min:2000|max:2100',
         ]);
 
@@ -86,7 +86,7 @@ class ImportController extends Controller
         set_time_limit(300);
         ini_set('memory_limit', '512M');
         $request->validate([
-            'archivo' => 'required|file|mimes:xlsx,xls,csv',
+            'archivo' => 'required|file|mimes:xlsx,xls,csv|max:102400',
             'programa' => 'nullable|in:PAR,PE',
         ]);
 
@@ -116,7 +116,7 @@ class ImportController extends Controller
         set_time_limit(300);
         ini_set('memory_limit', '512M');
         $request->validate([
-            'archivo' => 'required|file|mimes:xlsx,xls',
+            'archivo' => 'required|file|mimes:xlsx,xls|max:102400',
             'anio' => 'required|integer|min:2000|max:2100',
         ]);
 
@@ -130,7 +130,11 @@ class ImportController extends Controller
             return redirect()->route('importaciones.index')
                 ->with('success', "Surtimiento a tiendas importado para {$anio}. {$count} registros REALES guardados.");
         } catch (Exception $e) {
-            Log::error("[ImportController] Error al importar surtimiento: " . $e->getMessage());
+            Log::error("[ImportController] Error al importar surtimiento: " . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+            ]);
             return redirect()->route('importaciones.index')
                 ->with('error', 'Error al importar surtimiento: ' . $e->getMessage());
         }
@@ -141,7 +145,7 @@ class ImportController extends Controller
         set_time_limit(300);
         ini_set('memory_limit', '512M');
         $request->validate([
-            'archivo' => 'required|file|mimes:pdf',
+            'archivo' => 'required|file|mimes:pdf|max:102400',
             'anio' => 'required|integer|min:2000|max:2100',
         ]);
 
@@ -155,6 +159,11 @@ class ImportController extends Controller
             return redirect()->route('importaciones.index')
                 ->with('success', "PDF procesado con éxito para el mes " . $result['mes'] . ". Se actualizaron {$result['count']} registros REALES (" . implode(', ', $result['conceptos']) . ").");
         } catch (Exception $e) {
+            Log::error("[ImportController] Error al procesar PDF: " . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+            ]);
             return redirect()->route('importaciones.index')
                 ->with('error', 'Error al procesar PDF: ' . $e->getMessage());
         }

@@ -10,8 +10,8 @@ class RegionalesSeeder extends Seeder
     public function run(): void
     {
         Regional::updateOrCreate(
-            ['nombre' => 'Oaxaca'],
-            ['nombre' => 'Oaxaca']
+            ['nombre' => 'OAXACA'],
+            ['nombre' => 'OAXACA']
         );
     }
 }

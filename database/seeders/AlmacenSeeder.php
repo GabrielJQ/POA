@@ -11,40 +11,39 @@ class AlmacenSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. Asegurar Regional
         $regional = Regional::firstOrCreate(
-            ['nombre' => 'REGIONAL OAXACA'],
-            ['nombre' => 'REGIONAL OAXACA']
+            ['nombre' => 'OAXACA'],
+            ['nombre' => 'OAXACA']
         );
 
-        // 2. Asegurar Unidad Operativa
         $uo = UnidadOperativa::firstOrCreate(
-            ['nombre' => 'OAXACA VALLES CENTRALES'],
+            ['nombre' => 'VALLES CENTRALES'],
             ['regional_id' => $regional->id]
         );
 
-        // 3. Almacenes Oficiales (Basados en el Reporte Consolidado)
         $almacenes = [
-            'ALMACEN CENTRAL OAXACA',
-            'AYUTLA MIXES',
-            'CUAJIMOLOYAS',
-            'SAN JOSE EL CHILAR',
-            'IXTLAN DE JUAREZ',
-            'SAN PEDRO JUCHATENGO',
-            'LACHIXIO',
-            'SANTIAGO MATATLAN',
-            'MAGDALENA OCOTLAN',
-            'SAN ANDRES HIDALGO',
-            'SANTIAGO TEOTITLAN',
-            'TAMAZULAPAN',
-            'VALLES CENTRALES'
+            ['nombre' => 'ALMACEN CENTRAL OAXACA', 'numero_almacen' => '1'],
+            ['nombre' => 'AYUTLA MIXES', 'numero_almacen' => '2'],
+            ['nombre' => 'CUAJIMOLOYAS', 'numero_almacen' => '3'],
+            ['nombre' => 'SAN JOSE EL CHILAR', 'numero_almacen' => '4'],
+            ['nombre' => 'IXTLAN DE JUAREZ', 'numero_almacen' => '5'],
+            ['nombre' => 'SAN PEDRO JUCHATENGO', 'numero_almacen' => '6'],
+            ['nombre' => 'LACHIXIO', 'numero_almacen' => '7'],
+            ['nombre' => 'SANTIAGO MATATLAN', 'numero_almacen' => '8'],
+            ['nombre' => 'MAGDALENA OCOTLAN', 'numero_almacen' => '9'],
+            ['nombre' => 'SAN ANDRES HIDALGO', 'numero_almacen' => '10'],
+            ['nombre' => 'SANTIAGO TEOTITLAN', 'numero_almacen' => '11'],
+            ['nombre' => 'TAMAZULAPAN', 'numero_almacen' => '12'],
+            ['nombre' => 'VALLES CENTRALES', 'numero_almacen' => null],
         ];
 
-        foreach ($almacenes as $nombre) {
-            // Usamos firstOrCreate para no duplicar si ya existen
+        foreach ($almacenes as $data) {
             Almacen::firstOrCreate(
-                ['nombre' => $nombre],
-                ['unidad_operativa_id' => $uo->id]
+                ['nombre' => $data['nombre']],
+                [
+                    'unidad_operativa_id' => $uo->id,
+                    'numero_almacen' => $data['numero_almacen'],
+                ]
             );
         }
 
