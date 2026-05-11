@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     function initDropZone(dropZoneId, inputFileId, filenameId) {
         const dropZone = document.getElementById(dropZoneId);
         const inputFile = document.getElementById(inputFileId);
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             e.stopPropagation();
             dropZone.classList.remove('dragover');
-            if (e.dataTransfer.files.length) {
+            if (e.dataTransfer5.files.length) {
                 inputFile.files = e.dataTransfer.files;
                 updateFilename(e.dataTransfer.files[0]);
             }

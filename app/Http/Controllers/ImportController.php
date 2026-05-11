@@ -9,6 +9,7 @@ use App\Imports\SurtimientoTiendasImport;
 use App\Models\Almacen;
 use App\Domain\Services\PDFERExtractorService;
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -24,7 +25,9 @@ class ImportController extends Controller
 
     public function index()
     {
-        $almacenes = Almacen::orderBy('nombre')->get();
+        $almacenes = Cache::remember('almacenes_ordenados', 86400, fn() =>
+            Almacen::orderBy('nombre')->get()
+        );
         return view('importaciones.index', compact('almacenes'));
     }
 
@@ -63,6 +66,7 @@ class ImportController extends Controller
                 throw new Exception("No se encontraron datos válidos en las hojas del archivo. Asegúrate de que el formato sea correcto.");
             }
 
+            $this->invalidateCache();
             Log::info("[ImportController] ER importado para {$anio}: {$totalRegistros} registros totales.");
             return redirect()->route('importaciones.index')
                 ->with('success', "Estado de Resultados importado para {$anio}. Se procesaron múltiples almacenes correctamente.");
@@ -93,6 +97,7 @@ class ImportController extends Controller
             $import = new \App\Imports\VentasDetalladasImport($programa);
             $totalRegistros = $import->import($archivo->getRealPath());
 
+            $this->invalidateCache();
             Log::info("[ImportController] Ventas importadas: {$totalRegistros} registros ({$programa}).");
             return back()->with('success', "Se han importado {$totalRegistros} registros de ventas ({$programa}) correctamente.");
         } catch (Exception $e) {
@@ -120,6 +125,7 @@ class ImportController extends Controller
             $import = new SurtimientoTiendasImport();
             $count = $import->import($request->file('archivo')->getRealPath(), $anio);
 
+            $this->invalidateCache();
             Log::info("[ImportController] Surtimiento importado para {$anio}: {$count} registros.");
             return redirect()->route('importaciones.index')
                 ->with('success', "Surtimiento a tiendas importado para {$anio}. {$count} registros REALES guardados.");
@@ -145,11 +151,18 @@ class ImportController extends Controller
                 (int) $request->anio
             );
 
+            $this->invalidateCache();
             return redirect()->route('importaciones.index')
                 ->with('success', "PDF procesado con éxito para el mes " . $result['mes'] . ". Se actualizaron {$result['count']} registros REALES (" . implode(', ', $result['conceptos']) . ").");
         } catch (Exception $e) {
             return redirect()->route('importaciones.index')
                 ->with('error', 'Error al procesar PDF: ' . $e->getMessage());
         }
+    }
+
+    private function invalidateCache(): void
+    {
+        Cache::rememberForever('poa_cache_version', fn() => 0);
+        Cache::increment('poa_cache_version');
     }
 }

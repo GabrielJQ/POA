@@ -66,24 +66,29 @@ class ERSheetImport
         
         $almacen = null;
 
-        // PRIORIDAD 1: Usar el nombre directo del almacén en celda D5 (más fiable)
-        if (!empty($almacenNombreInterno) && $almacenNombreInterno !== 'N/A') {
+        // PRIORIDAD 1: Usar nombre de pestaña (ej: " PT AYUTLA" → "AYUTLA" → "AYUTLA MIXES")
+        $pestañaLimpia = trim(preg_replace(
+            ['/^\s*PT\s+/i', '/\s+PROFORMA\s*$/i', '/\s+CONSOLIDADO\s*$/i', '/\s*\([^)]*\)\s*/'],
+            ['', '', '', ''],
+            $this->sheetName
+        ));
+        $pestañaLimpia = trim($pestañaLimpia);
+
+        // Casos especiales: hojas que mapean a ALMACEN CENTRAL OAXACA
+        $pestañaLower = mb_strtolower($pestañaLimpia);
+        if ($pestañaLimpia === '1' || $pestañaLower === 'valles' || $pestañaLower === 'valles centrales') {
+            $almacen = Almacen::find(1);
+        }
+
+        if (!$almacen && strlen($pestañaLimpia) > 3) {
+            $almacen = Almacen::where('nombre', 'ilike', '%' . $pestañaLimpia . '%')->first();
+        }
+
+        // PRIORIDAD 2: Usar D5 como respaldo si la pestaña no dio resultado
+        if (!$almacen && !empty($almacenNombreInterno) && $almacenNombreInterno !== 'N/A') {
             $almacen = Almacen::where('nombre', 'ilike', $almacenNombreInterno)->first();
             if (!$almacen) {
                 $almacen = Almacen::where('nombre', 'ilike', '%' . $almacenNombreInterno . '%')->first();
-            }
-        }
-
-        // PRIORIDAD 2: Intentar limpiar el nombre de la pestaña (ej: " PT AYUTLA" -> "AYUTLA")
-        if (!$almacen) {
-            $pestañaLimpia = trim(preg_replace(
-                ['/^\s*PT\s+/i', '/\s+PROFORMA\s*$/i', '/\s+CONSOLIDADO\s*$/i', '/\s*\([^)]*\)\s*/'],
-                ['', '', '', ''],
-                $this->sheetName
-            ));
-            $pestañaLimpia = trim($pestañaLimpia);
-            if (strlen($pestañaLimpia) > 3) {
-                $almacen = Almacen::where('nombre', 'ilike', '%' . $pestañaLimpia . '%')->first();
             }
         }
 

@@ -8,6 +8,7 @@ use App\Application\UseCases\POA\SincronizarPOA;
 use App\Exports\POAExportService;
 use App\Models\Almacen;
 use App\Models\PoaNota;
+use Illuminate\Support\Facades\Cache as CacheFacade;
 
 class PoaController extends Controller
 {
@@ -43,7 +44,9 @@ class PoaController extends Controller
             ])->render();
         }
 
-        $almacenes = Almacen::orderBy('nombre')->get();
+        $almacenes = CacheFacade::remember('almacenes_ordenados', 86400, fn() =>
+            Almacen::orderBy('nombre')->get()
+        );
 
         return view('poa.index', array_merge($data, [
             'almacenes' => $almacenes,
@@ -99,6 +102,9 @@ class PoaController extends Controller
             ],
             ['nota_aclaratoria' => $validated['nota_aclaratoria'] ?? '']
         );
+
+        CacheFacade::rememberForever('poa_cache_version', fn() => 0);
+        CacheFacade::increment('poa_cache_version');
 
         return response()->json(['success' => true]);
     }

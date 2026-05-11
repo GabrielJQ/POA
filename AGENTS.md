@@ -67,7 +67,7 @@
 ## Store ID Mapping
 | id | Store |
 |----|-------|
-| 1 | ALMACEN CENTRAL OAXACA |
+| 1 | ALMACEN CENTRAL OAXACA (incluye VALLES CENTRALES tras merge) |
 | 2 | AYUTLA MIXES |
 | 3 | CUAJIMOLOYAS |
 | 4 | SAN JOSE EL CHILAR |
@@ -79,7 +79,6 @@
 | 10 | SAN ANDRES HIDALGO |
 | 11 | SANTIAGO TEOTITLAN |
 | 12 | TAMAZULAPAN |
-| 13 | VALLES CENTRALES |
 
 ## Pending / Next Steps
 - Import Q2, Q3, Q4 data when `CONS 2026.xlsx` is updated (re-run import to update existing records via `updateOrCreate`)

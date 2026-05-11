@@ -3,8 +3,7 @@
 namespace App\Application\UseCases\POA;
 
 use App\Domain\Services\POADomainService;
-use App\Models\Almacen;
-use App\Models\ConceptoMaestro;
+use App\Models\RegistroFinanciero;
 
 class SincronizarPOA
 {
@@ -25,10 +24,10 @@ class SincronizarPOA
             ];
         }
 
-        $almacenes = Almacen::whereHas('registrosFinancieros', function ($q) use ($anio) {
-            $q->where('anio', $anio)
-              ->where('tipo_dato', 'REAL');
-        })->pluck('id');
+        $almacenes = RegistroFinanciero::where('anio', $anio)
+            ->where('tipo_dato', 'REAL')
+            ->distinct()
+            ->pluck('almacen_id');
 
         $totalCount = 0;
         foreach ($almacenes as $id) {

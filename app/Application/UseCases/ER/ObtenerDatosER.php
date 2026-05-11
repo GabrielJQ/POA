@@ -5,6 +5,7 @@ namespace App\Application\UseCases\ER;
 use App\Domain\ValueObjects\FiltrosER;
 use App\Domain\Services\ERDomainService;
 use App\Models\Almacen;
+use Illuminate\Support\Facades\Cache;
 
 class ObtenerDatosER
 {
@@ -21,7 +22,9 @@ class ObtenerDatosER
 
         $conceptos = $this->domainService->obtenerConceptosER();
         $matriz = $this->domainService->obtenerDatosER($filtros);
-        $almacenes = Almacen::all();
+        $almacenes = Cache::remember('almacenes_ordenados', 86400, fn() =>
+            Almacen::orderBy('nombre')->get()
+        );
 
         return [
             'conceptos' => $conceptos,

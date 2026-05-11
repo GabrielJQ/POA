@@ -5,6 +5,7 @@ namespace App\Application\UseCases\POA;
 use App\Domain\ValueObjects\FiltrosPOA;
 use App\Domain\Services\POADomainService;
 use App\Models\Almacen;
+use Illuminate\Support\Facades\Cache;
 
 class ObtenerDatosPOA
 {
@@ -22,7 +23,9 @@ class ObtenerDatosPOA
         $result = $this->domainService->obtenerDatosPOA($filtros);
         $compromisos = $result['compromisos'];
         $dataPoa = $result['dataPoa'];
-        $almacenes = Almacen::orderBy('nombre')->get();
+        $almacenes = Cache::remember('almacenes_ordenados', 86400, fn() =>
+            Almacen::orderBy('nombre')->get()
+        );
 
         return [
             'compromisos' => $compromisos,
