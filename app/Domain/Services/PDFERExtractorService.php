@@ -101,7 +101,7 @@ class PDFERExtractorService
                             'tipo_dato' => 'REAL',
                             'programa' => null,
                         ],
-                        ['monto' => (string) $monto]
+                        ['monto' => (float) $monto]
                     );
                     $count++;
                 }

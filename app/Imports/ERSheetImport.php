@@ -9,7 +9,6 @@ use App\Models\UnidadOperativa;
 use App\Models\Regional;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
 use Exception;
 
@@ -149,13 +148,12 @@ class ERSheetImport
                     $monto = (float)$montoLimpio;
                     
                     if ($monto != 0) {
-                        $montoEncrypted = Crypt::encryptString((string)$monto);
                         $upsertData[] = [
                             'almacen_id' => $almacen->id,
                             'concepto_id' => $concepto->id,
                             'anio' => $this->anio,
                             'mes' => $mes,
-                            'monto' => $montoEncrypted,
+                            'monto' => $monto,
                             'tipo_dato' => 'META',
                             'programa' => null,
                             'created_at' => $now,

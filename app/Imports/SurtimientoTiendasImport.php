@@ -101,7 +101,7 @@ class SurtimientoTiendasImport
                     'tipo_dato' => 'REAL',
                     'programa' => null,
                 ],
-                ['monto' => (string) $montoMensual]
+                ['monto' => $montoMensual]
             );
             $count++;
         }

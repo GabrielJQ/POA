@@ -5,7 +5,6 @@ namespace App\Imports;
 use App\Models\Almacen;
 use App\Models\ConceptoMaestro;
 use App\Models\RegistroFinanciero;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Exception;
@@ -93,7 +92,7 @@ class VentasDetalladasImport
                                     'concepto_id' => $linea->id,
                                     'mes' => $mes,
                                     'anio' => $anio,
-                                    'monto' => Crypt::encryptString((string)$monto),
+                                    'monto' => $monto,
                                     'tipo_dato' => 'REAL',
                                     'programa' => $programa,
                                     'created_at' => $now,
