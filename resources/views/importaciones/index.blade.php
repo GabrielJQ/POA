@@ -50,6 +50,11 @@
     <div class="col-xl-4 col-lg-6 mb-4">
         <x-importaciones.form-surtimiento />
     </div>
+
+    <!-- BLOQUE 5: MERMAS, QUEBRANTOS Y MAL ESTADO -->
+    <div class="col-xl-4 col-lg-6 mb-4">
+        <x-importaciones.form-mermas />
+    </div>
 </div>
 
 <div class="row">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Imports\ERImport;
 use App\Imports\VentasDetalladasImport;
 use App\Imports\SurtimientoTiendasImport;
+use App\Imports\MermasQuebrantosImport;
 use App\Models\Almacen;
 use App\Domain\Services\PDFERExtractorService;
 use Exception;
@@ -137,6 +138,35 @@ class ImportController extends Controller
             ]);
             return redirect()->route('importaciones.index')
                 ->with('error', 'Error al importar surtimiento: ' . $e->getMessage());
+        }
+    }
+
+    public function importMermas(Request $request)
+    {
+        set_time_limit(300);
+        ini_set('memory_limit', '512M');
+        $request->validate([
+            'archivo' => 'required|file|mimes:xlsx,xls|max:102400',
+            'anio' => 'required|integer|min:2000|max:2100',
+        ]);
+
+        try {
+            $anio = (int) $request->anio;
+            $import = new MermasQuebrantosImport();
+            $count = $import->import($request->file('archivo')->getRealPath(), $anio);
+
+            $this->invalidateCache();
+            Log::info("[ImportController] Mermas importadas para {$anio}: {$count} registros.");
+            return redirect()->route('importaciones.index')
+                ->with('success', "Mermas, Quebrantos y Mal Estado importados para {$anio}. {$count} registros COMPROMETIDO guardados.");
+        } catch (Exception $e) {
+            Log::error("[ImportController] Error al importar mermas: " . $e->getMessage(), [
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return redirect()->route('importaciones.index')
+                ->with('error', 'Error al importar mermas: ' . $e->getMessage());
         }
     }
 

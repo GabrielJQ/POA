@@ -38,6 +38,21 @@
     border-color: #6610f2;
     background-color: #f3f0f8;
 }
+.upload-area-orange:hover, .upload-area-orange.dragover {
+    border-color: #fd7e14;
+    background-color: #fff4e8;
+}
+.import-card-orange {
+    border-left-color: #fd7e14;
+}
+.btn-orange {
+    background-color: #fd7e14;
+    color: white;
+}
+.btn-orange:hover {
+    background-color: #e06b00;
+    color: white;
+}
 
 .btn-indigo {
     background-color: #6610f2;
