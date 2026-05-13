@@ -34,7 +34,7 @@ class AlmacenSeeder extends Seeder
             ['nombre' => 'SAN ANDRES HIDALGO', 'numero_almacen' => '10'],
             ['nombre' => 'SANTIAGO TEOTITLAN', 'numero_almacen' => '11'],
             ['nombre' => 'TAMAZULAPAN', 'numero_almacen' => '12'],
-            ['nombre' => 'VALLES CENTRALES', 'numero_almacen' => null],
+            ['nombre' => 'VALLES CENTRALES', 'numero_almacen' => '13'],
         ];
 
         foreach ($almacenes as $data) {

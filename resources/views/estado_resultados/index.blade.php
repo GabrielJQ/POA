@@ -22,7 +22,7 @@
                 :almacen-seleccionado="$almacenSeleccionado"
                 :anio-seleccionado="$anioSeleccionado"
             />
-            <div id="contenedor-tabla">
+            <div id="contenedor-tabla" style="overflow-x: auto;">
                 <x-estado_resultados.tabla
                     :conceptos="$conceptos"
                     :matriz="$matriz"

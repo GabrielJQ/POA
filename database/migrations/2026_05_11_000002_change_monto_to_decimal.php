@@ -10,6 +10,7 @@ return new class extends Migration
     public function up(): void
     {
         if (DB::connection()->getDriverName() === 'pgsql') {
+            DB::statement('ALTER TABLE registros_financieros ALTER COLUMN monto DROP DEFAULT');
             DB::statement('ALTER TABLE registros_financieros ALTER COLUMN monto TYPE numeric(15,2) USING monto::numeric(15,2)');
             DB::statement('ALTER TABLE registros_financieros ALTER COLUMN monto SET DEFAULT \'0\'');
             DB::statement('ALTER TABLE registros_financieros ALTER COLUMN monto SET NOT NULL');

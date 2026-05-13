@@ -13,7 +13,7 @@
 ### 2. Surtimiento Tiendas Import
 - **File**: `app/Imports/SurtimientoTiendasImport.php`
 - Reads `CONS 2026.xlsx` (columns B-I: Q1-Q4 × Oportunidad/Eficiencia)
-- Normalizes store names (12 stores, OAXACA excluded)
+- Normalizes store names
 - Route: `POST /importaciones/surtimiento`
 - Form: `resources/views/components/importaciones/form-surtimiento.blade.php`
 - **Important**: Store full precision (no `round()`) — fixed rounding error where 11.50/3=3.8333 was stored as 3.83, causing quarterly sum 11.49 ≠ 11.50
@@ -61,13 +61,13 @@
 - Table: `registros_financieros`
 - Concept ids: 30 (OPORTUNIDAD), 31 (EFICIENCIA) — both categoria='POA'
 - ER concept for VENTAS A TIENDAS: id=1
-- 72 surtimiento REAL records: 12 stores × 2 concepts × 3 months (Q1)
+- 72 surtimiento REAL records: 12 stores × 2 concepts × 3 months (Q1) (VALLES CENTRALES no incluido aún — necesita re-import)
 - Surtimiento import uses `updateOrCreate` matching on (almacen_id, concepto_id, anio, mes, tipo_dato, programa)
 
 ## Store ID Mapping
 | id | Store |
 |----|-------|
-| 1 | ALMACEN CENTRAL OAXACA (incluye VALLES CENTRALES tras merge) |
+| 1 | ALMACEN CENTRAL OAXACA |
 | 2 | AYUTLA MIXES |
 | 3 | CUAJIMOLOYAS |
 | 4 | SAN JOSE EL CHILAR |
@@ -79,8 +79,10 @@
 | 10 | SAN ANDRES HIDALGO |
 | 11 | SANTIAGO TEOTITLAN |
 | 12 | TAMAZULAPAN |
+| 13 | VALLES CENTRALES |
 
 ## Pending / Next Steps
+- VALLES CENTRALES ahora es almacén independiente (id=13). Re-importar todos los Excel para separar datos previamente combinados con ALMACEN CENTRAL OAXACA.
 - Import Q2, Q3, Q4 data when `CONS 2026.xlsx` is updated (re-run import to update existing records via `updateOrCreate`)
 - Verify POA table visually in browser for all filter modes
 - META monthly distribution for ER-synced concepts (currently stored as `mes=0` annual aggregate)

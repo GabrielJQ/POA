@@ -73,10 +73,12 @@ class ERSheetImport
         ));
         $pestañaLimpia = trim($pestañaLimpia);
 
-        // Casos especiales: hojas que mapean a ALMACEN CENTRAL OAXACA
+        // Casos especiales
         $pestañaLower = mb_strtolower($pestañaLimpia);
-        if ($pestañaLimpia === '1' || $pestañaLower === 'valles' || $pestañaLower === 'valles centrales') {
+        if ($pestañaLimpia === '1') {
             $almacen = Almacen::find(1);
+        } elseif ($pestañaLower === 'valles' || $pestañaLower === 'valles centrales') {
+            $almacen = Almacen::where('nombre', 'VALLES CENTRALES')->first();
         }
 
         if (!$almacen && strlen($pestañaLimpia) > 3) {

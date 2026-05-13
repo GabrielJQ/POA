@@ -35,7 +35,7 @@ class EstadoResultadosController extends Controller
         $data = $this->obtenerDatosER->execute($request->all());
 
         if ($request->ajax() === true || $request->expectsJson()) {
-            return view('estado_resultados._tabla', [
+            return view('components.estado_resultados.tabla', [
                 'matriz' => $data['matriz'],
                 'conceptos' => $data['conceptos'],
             ])->render();

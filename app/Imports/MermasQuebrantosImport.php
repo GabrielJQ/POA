@@ -22,7 +22,7 @@ class MermasQuebrantosImport
         'PT SAN ANDRES' => 'SAN ANDRES HIDALGO',
         'PT TAMAZULAPAN' => 'TAMAZULAPAN',
         'PT TEOTITLAN' => 'SANTIAGO TEOTITLAN',
-        'PT VALLES' => 'ALMACEN CENTRAL OAXACA',
+        'PT VALLES' => 'VALLES CENTRALES',
     ];
 
     private ?int $conceptoId = null;
