@@ -1,5 +1,5 @@
 <div class="card import-card import-card-poa">
-    <div class="card-header" style="background-color: var(--gob-oro); color: white;">
+    <div class="card-header">
         <h3 class="card-title"><i class="fas fa-bullseye"></i> Metas POA</h3>
     </div>
     <div class="card-body">

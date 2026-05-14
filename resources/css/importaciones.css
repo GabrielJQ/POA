@@ -1,7 +1,20 @@
-.import-card {
+.card.import-card {
+    border: 1px solid #988256;
     border-left: 4px solid var(--gob-verde);
     transition: transform 0.2s, box-shadow 0.2s;
     height: 100%;
+}
+.import-card .card-body {
+    display: flex;
+    flex-direction: column;
+}
+.import-card .card-body form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.import-card .card-body .btn-import {
+    margin-top: auto;
 }
 .import-card:hover {
     transform: translateY(-2px);
@@ -38,6 +51,10 @@
     border-color: #6610f2;
     background-color: #f3f0f8;
 }
+.upload-area-teal:hover, .upload-area-teal.dragover {
+    border-color: #00897b;
+    background-color: #e0f2f1;
+}
 .upload-area-orange:hover, .upload-area-orange.dragover {
     border-color: #fd7e14;
     background-color: #fff4e8;
@@ -63,6 +80,92 @@
     color: white;
 }
 
+/* Section dividers */
+.section-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-radius: 8px;
+    border-left: 5px solid #2e7d32;
+}
+.section-divider-real {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-left-color: #1565c0;
+}
+.section-divider-icon {
+    font-size: 1.3rem;
+    color: #2e7d32;
+}
+.section-divider-real .section-divider-icon {
+    color: #1565c0;
+}
+.section-divider-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1b5e20;
+}
+.section-divider-real .section-divider-text {
+    color: #0d47a1;
+}
+.section-divider-sub {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: #555;
+    font-style: italic;
+}
+
+/* Badge text colors */
+.badge.text-teal {
+    color: #00897b !important;
+}
+.text-indigo {
+    color: #6610f2 !important;
+}
+
+.import-card-danger {
+    border-left-color: #dc3545;
+}
+.upload-area-danger:hover, .upload-area-danger.dragover {
+    border-color: #dc3545;
+    background-color: #fde8ea;
+}
+.btn-oro {
+    background-color: #988256 !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+.btn-oro:hover {
+    background-color: #7a6845 !important;
+    color: #ffffff !important;
+}
+
+.alert-guinda {
+    background-color: #691C32 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px;
+}
+.alert-guinda a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* Card headers: light gray with gold accent */
+.import-card .card-header {
+    background-color: #F2F2F2 !important;
+    border-bottom: 2px solid #988256 !important;
+}
+.import-card .card-header h3.card-title {
+    color: #13322B !important;
+    font-size: 0.95rem;
+}
+.import-card .card-header .badge {
+    font-size: 0.65rem !important;
+}
 .btn-import {
     padding: 10px 30px;
     font-weight: 600;

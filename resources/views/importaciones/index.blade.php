@@ -30,30 +30,49 @@
     </div>
 @endif
 
+<!-- ==================== SECCIÓN: COMPROMETIDOS ==================== -->
 <div class="row">
-    <!-- BLOQUE 1: ESTADO DE RESULTADOS (PRESUPUESTO) -->
-    <div class="col-xl-4 col-lg-6 mb-4">
+    <div class="col-12 mb-3">
+        <div class="section-divider">
+            <span class="section-divider-icon"><i class="fas fa-bullseye"></i></span>
+            <span class="section-divider-text">COMPROMETIDOS (META)</span>
+            <span class="section-divider-sub">Conceptos 1 al 5 y 8</span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 mb-4">
         <x-importaciones.form-er action="{{ route('importaciones.er') }}" />
     </div>
 
-    <!-- BLOQUE 2: ESTADO DE RESULTADOS (REALIZADO PDF) -->
-    <div class="col-xl-4 col-lg-6 mb-4">
-        <x-importaciones.form-pdf-realizado />
+    <div class="col-xl-6 col-lg-6 mb-4">
+        <x-importaciones.form-mermas />
+    </div>
+</div>
+
+<!-- ==================== SECCIÓN: REALIZADOS ==================== -->
+<div class="row">
+    <div class="col-12 mb-3">
+        <div class="section-divider section-divider-real">
+            <span class="section-divider-icon"><i class="fas fa-check-circle"></i></span>
+            <span class="section-divider-text">REALIZADOS (REAL)</span>
+            <span class="section-divider-sub">Conceptos 1 al 8</span>
+        </div>
     </div>
 
-    <!-- BLOQUE 3: VENTAS (REALIZADO VENTAS) -->
-    <div class="col-xl-4 col-lg-6 mb-4">
+    <div class="col-xl-3 col-lg-6 mb-4">
         <x-importaciones.ventas-par-pe :almacenes="$almacenes" />
     </div>
 
-    <!-- BLOQUE 4: SURTIMIENTO A TIENDAS -->
-    <div class="col-xl-4 col-lg-6 mb-4">
+    <div class="col-xl-3 col-lg-6 mb-4">
+        <x-importaciones.form-pdf-realizado />
+    </div>
+
+    <div class="col-xl-3 col-lg-6 mb-4">
         <x-importaciones.form-surtimiento />
     </div>
 
-    <!-- BLOQUE 5: MERMAS, QUEBRANTOS Y MAL ESTADO -->
-    <div class="col-xl-4 col-lg-6 mb-4">
-        <x-importaciones.form-mermas />
+    <div class="col-xl-3 col-lg-6 mb-4">
+        <x-importaciones.form-comprometido-mermas :almacenes="$almacenes" />
     </div>
 </div>
 

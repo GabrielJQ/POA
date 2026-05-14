@@ -1,32 +1,29 @@
 @props(['almacenes' => []])
 
 <div class="card import-card import-card-azul">
-    <div class="card-header bg-primary text-white">
-        <h3 class="card-title"><i class="fas fa-cash-register"></i> Importar Ventas por Línea (PAR/PE)</h3>
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title"><i class="fas fa-cash-register"></i> Ventas por Línea</h3>
+        <span class="badge bg-white text-secondary font-weight-bold" style="font-size:0.7rem;">REALIZADO (Conc. 1 al 3)</span>
     </div>
-    <div class="card-body">
-        <form action="{{ route('importaciones.ventas') }}" method="POST" enctype="multipart/form-data">
+    <div class="card-body d-flex flex-column">
+        <form action="{{ route('importaciones.ventas') }}" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-fill">
             @csrf
-            <div class="alert alert-indigo small mb-3">
-                <i class="fas fa-magic"></i>
-                El sistema detectará automáticamente los datos de <strong>PAR</strong> y <strong>Ventas Especiales (ESP)</strong> dentro del mismo archivo.
-            </div>
             <div class="form-group">
                 <label class="font-weight-bold">Archivo Excel</label>
                 <label for="archivo-ventas" class="upload-area upload-area-azul" id="zone-upload-ventas" style="display: block;">
-                    <i class="fas fa-cloud-upload-alt fa-2x text-muted mb-2"></i>
-                    <p class="mb-1">Arrastra el archivo de ventas o haz clic</p>
-                    <small class="text-muted">Formatos: .xlsx, .xls, .csv</small>
+                    <i class="fas fa-file-excel fa-2x text-muted mb-2"></i>
+                    <p class="mb-1">Arrastra el archivo o haz clic aquí</p>
+                    <small class="text-muted">Formatos: Excel (.xlsx, .xls, .csv)</small>
                 </label>
                 <input type="file" name="archivo" id="archivo-ventas" accept=".xlsx,.xls,.csv" style="display:none" required>
                 <div id="filename-ventas" class="mt-2 text-muted small"></div>
             </div>
-            <div class="alert alert-info small mt-3">
-                <i class="fas fa-info-circle"></i>
-                El almacén, año y mes se detectan automáticamente. Los datos se sincronizan directamente al "Realizado" del POA.
+            <div class="alert alert-guinda small mt-1">
+                <i class="fas fa-cash-register"></i>
+                Importa las ventas del programa <strong>ABASTO RURAL (PAR)</strong> y <strong>Programas Especiales (PE)</strong>. Alimenta el <strong>REALIZADO</strong> de los conceptos 1 al 3.
             </div>
-            <button type="submit" class="btn btn-primary btn-import btn-block">
-                <i class="fas fa-upload"></i> Procesar Ventas
+            <button type="submit" class="btn btn-oro btn-import btn-block mt-auto">
+                <i class="fas fa-upload"></i> Importar
             </button>
         </form>
     </div>

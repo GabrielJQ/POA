@@ -7,6 +7,17 @@ use Illuminate\Support\Facades\Log;
 
 class MovimientoController extends Controller
 {
+    /**
+     * Importar movimientos de capital (Excel)
+     *
+     * Procesa un archivo Excel con movimientos de capital (altas/bajas)
+     * y los guarda en la tabla movimientos_capital.
+     *
+     * @group Movimientos
+     *
+     * @bodyParam archivo file required Archivo Excel (.xlsx, .xls, .csv) hasta 100MB.
+     * @bodyParam tipo string required Tipo de movimiento.
+     */
     public function import(Request $request)
     {
         $request->validate([

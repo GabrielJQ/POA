@@ -26,6 +26,23 @@ class PoaController extends Controller
         $this->exportService = $exportService;
     }
 
+    /**
+     * Mostrar POA
+     *
+     * Renderiza la tabla del Programa Anual de Trabajo con filtros por
+     * almacén, año, período (mensual/trimestral/anual). Soporta consolidado
+     * (todas las tiendas) o vista individual por almacén.
+     * Si la petición es AJAX, devuelve solo el HTML de la tabla.
+     *
+     * @group POA
+     *
+     * @queryParam anio int Año (default: año actual).
+     * @queryParam almacen_id int ID del almacén (opcional, para vista individual).
+     * @queryParam consolidado string "si" o "no" (default: "si").
+     * @queryParam periodo string "mensual", "trimestral" o "anual" (default: "mensual").
+     * @queryParam mes int Mes (1-12, default: mes actual).
+     * @queryParam trimestre int Trimestre (1-4).
+     */
     public function index(Request $request)
     {
         $data = $this->obtenerDatosPOA->execute($request->all());
@@ -56,6 +73,23 @@ class PoaController extends Controller
         ]));
     }
 
+    /**
+     * Exportar POA (Excel/PDF)
+     *
+     * Descarga el POA en formato Excel (.xlsx) con plantilla predefinida
+     * o PDF. Incluye metas comprometidas, realizadas, avance del período,
+     * % de logro y notas aclaratorias.
+     *
+     * @group POA
+     *
+     * @queryParam tipo string "xlsx" o "pdf" (default: "xlsx").
+     * @queryParam anio int Año.
+     * @queryParam almacen_id int ID del almacén.
+     * @queryParam consolidado string "si" o "no".
+     * @queryParam periodo string "mensual", "trimestral" o "anual".
+     * @queryParam trimestre int Trimestre (1-4).
+     * @queryParam mes int Mes (1-12).
+     */
     public function export(Request $request)
     {
         $tipo = $request->input('tipo', 'xlsx');
@@ -81,6 +115,21 @@ class PoaController extends Controller
         return $this->exportService->download($tipo, $data, $filters);
     }
 
+    /**
+     * Guardar nota aclaratoria
+     *
+     * Guarda o actualiza una nota aclaratoria para un concepto, almacén,
+     * año y período específicos. Soporta notas por mes, trimestre o anual.
+     *
+     * @group POA
+     *
+     * @bodyParam concepto_id int required ID del concepto maestro.
+     * @bodyParam label string required Label de la fila (ej. "COMPROMETIDO", "REALIZADO").
+     * @bodyParam anio int required Año (2000-2100).
+     * @bodyParam nota_aclaratoria string Texto de la nota (max 500 caracteres).
+     * @bodyParam almacen_id int ID del almacén (opcional, null = consolidado).
+     * @bodyParam mes int required Mes del período (1-12, 101-104 para trimestre, 0 para anual).
+     */
     public function saveNota(Request $request)
     {
         $validated = $request->validate([
@@ -109,6 +158,18 @@ class PoaController extends Controller
         return response()->json(['success' => true]);
     }
 
+    /**
+     * Sincronizar metas POA desde ER
+     *
+     * Sincroniza las metas del POA desde los registros META del Estado de Resultados
+     * para un año y almacén específicos. Si no se especifica almacén,
+     * sincroniza todos los almacenes con datos.
+     *
+     * @group POA
+     *
+     * @bodyParam anio int required Año (2000-2100).
+     * @bodyParam almacen_id int ID del almacén (opcional).
+     */
     public function sync(Request $request)
     {
         $request->validate([

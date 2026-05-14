@@ -14,6 +14,7 @@ Route::post('/importaciones/ventas', [ImportController::class, 'importVentas'])-
 Route::post('/importaciones/pdf-realizado', [ImportController::class, 'importPDFRealizado'])->name('importaciones.pdf-realizado');
 Route::post('/importaciones/surtimiento', [ImportController::class, 'importSurtimiento'])->name('importaciones.surtimiento');
 Route::post('/importaciones/mermas', [ImportController::class, 'importMermas'])->name('importaciones.mermas');
+Route::post('/importaciones/mermas-comprometido', [ImportController::class, 'importMermasComprometido'])->name('importaciones.mermas-comprometido');
 
 Route::get('/estado-resultados', [EstadoResultadosController::class, 'index'])->name('estado-resultados.index');
 Route::get('/estado-resultados/export', [EstadoResultadosController::class, 'export'])->name('estado-resultados.export');
@@ -23,3 +24,4 @@ Route::post('/estado-resultados/import-pdf', [EstadoResultadosController::class,
 Route::get('/poa', [PoaController::class, 'index'])->name('poa.index');
 Route::get('/poa/export', [PoaController::class, 'export'])->name('poa.export');
 Route::post('/poa/nota', [PoaController::class, 'saveNota'])->name('poa.nota.save');
+Route::post('/poa/sync', [PoaController::class, 'sync'])->name('poa.sync');

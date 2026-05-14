@@ -81,6 +81,41 @@
 | 12 | TAMAZULAPAN |
 | 13 | VALLES CENTRALES |
 
+### 7. Documentación del Proyecto (Scribe + VitePress)
+
+#### Scribe (Documentación de Endpoints)
+- **Instalación**: `composer require --dev knuckleswtf/scribe`
+- **Config**: `config/scribe.php` — escanea todas las rutas (`prefixes => ['*']`), protegido con middleware `auth`
+- **PHPDoc**: Se agregaron anotaciones `@group`, `@bodyParam`, `@queryParam` a todos los controladores:
+  - `ImportController` (index + 7 imports)
+  - `PoaController` (index, export, saveNota, sync)
+  - `EstadoResultadosController` (index, export, store, import, importPDF)
+  - `DashboardController` (index)
+  - `MovimientoController` (import)
+- **Generación**: `php artisan scribe:generate` o `composer run docs:api`
+- **URL**: `/docs` (requiere autenticación)
+
+#### VitePress (Documentación Técnica)
+- **Instalación**: `npm install --save-dev vitepress`
+- **Estructura**: `docs/` en la raíz del proyecto
+- **Contenido**:
+  - `docs/index.md` — Home del sitio
+  - `docs/guia-rapida.md` — Comandos, estructura del proyecto
+  - `docs/arquitectura/index.md` — Clean Architecture, capas, caché
+  - `docs/arquitectura/domain-services.md` — POADomainService, ERDomainService, DashboardService, PDFERExtractorService
+  - `docs/arquitectura/flujo-datos.md` — Pipeline importación → BD → visualización
+  - `docs/modulos/poa.md` — POA: filtros, exportaciones, casos especiales
+  - `docs/modulos/estado-resultados.md` — ER: fuentes de datos, matriz, sincronización
+  - `docs/modulos/importaciones.md` — Detalle de todos los importers
+  - `docs/base-de-datos/esquema.md` — Schema de tablas y relaciones
+  - `docs/base-de-datos/store-mapping.md` — Mapeo de IDs y normalización de nombres
+- **Scripts**: `npm run docs:dev`, `npm run docs:build`, `npm run docs:preview`
+- **Build**: `npx vitepress build docs`
+
+#### Ruta de sincronización agregada
+- **Archivo**: `routes/web.php`
+- Se agregó `POST /poa/sync` → `PoaController::sync` (existente pero sin ruta)
+
 ## Pending / Next Steps
 - VALLES CENTRALES ahora es almacén independiente (id=13). Re-importar todos los Excel para separar datos previamente combinados con ALMACEN CENTRAL OAXACA.
 - Import Q2, Q3, Q4 data when `CONS 2026.xlsx` is updated (re-run import to update existing records via `updateOrCreate`)

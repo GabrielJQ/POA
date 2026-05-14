@@ -185,6 +185,9 @@
                     $dec1 = $esMoneda ? 2 : ($esPorcentaje ? 2 : 0);
                     $dec2 = $esMoneda ? 2 : ($esPorcentaje ? 2 : 0);
                 @endphp
+                @php
+                    $notaConcepto = ($fila1->nota_aclaratoria ?? '') ?: ($fila2->nota_aclaratoria ?? '');
+                @endphp
                 <tr class="row-1">
                     <td class="concept-name" rowspan="2">{{ $compromiso->nombre }}</td>
                     <td>{{ $compromiso->label_fila_1 }}</td>
@@ -193,7 +196,7 @@
                     <td class="monto {{ $avance1 == 0 ? '' : '' }}">{{ fmt($avance1, $dec1) }}</td>
                     <td class="monto {{ $pctClass }}">{{ fmt($pctPeriodo, 2) }}%</td>
                     <td class="monto {{ $pctAClass }}">{{ fmt($pctAnual, 2) }}%</td>
-                    <td class="left">{{ $fila1->nota_aclaratoria ?? '' }}</td>
+                    <td class="left" rowspan="2">{{ $notaConcepto }}</td>
                 </tr>
                 <tr class="row-2">
                     <td>{{ $compromiso->label_fila_2 }}</td>
@@ -201,7 +204,6 @@
                     <td class="monto">{{ fmt($avance2, $dec2) }}</td>
                     <td class="monto {{ $pctClass }}">{{ fmt($pctPeriodo, 2) }}%</td>
                     <td class="monto {{ $pctAClass }}">{{ fmt($pctAnual, 2) }}%</td>
-                    <td class="left">{{ $fila2->nota_aclaratoria ?? '' }}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -124,9 +124,10 @@ class POAExportService
             $sheet->setCellValue("E{$rowComp}", $avance1/1);
             $sheet->setCellValue("F{$rowComp}", $pctPeriodo);
             $sheet->setCellValue("G{$rowComp}", $pctAnual);
-            if ($fila1) {
-                $sheet->setCellValue("H{$rowComp}", $fila1->nota_aclaratoria ?? '');
-            }
+
+            $notaConcepto = ($fila1->nota_aclaratoria ?? '') ?: ($fila2->nota_aclaratoria ?? '');
+            $sheet->setCellValue("H{$rowComp}", $notaConcepto);
+            $sheet->mergeCells("H{$rowComp}:H{$rowReal}");
 
             $sheet->setCellValue("A{$rowReal}", '');
             $sheet->setCellValue("B{$rowReal}", $compromiso->label_fila_2);
@@ -135,9 +136,6 @@ class POAExportService
             $sheet->setCellValue("E{$rowReal}", $avance2/1);
             $sheet->setCellValue("F{$rowReal}", $pctPeriodo);
             $sheet->setCellValue("G{$rowReal}", $pctAnual);
-            if ($fila2) {
-                $sheet->setCellValue("H{$rowReal}", $fila2->nota_aclaratoria ?? '');
-            }
 
             $this->applyRowStyles($sheet, $rowComp, $rowReal);
         }

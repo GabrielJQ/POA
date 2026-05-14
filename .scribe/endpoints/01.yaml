@@ -1,0 +1,2389 @@
+name: Dashboard
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: /
+    metadata:
+      custom: []
+      groupName: Dashboard
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mostrar dashboard principal'
+      description: |-
+        Renderiza el dashboard con indicadores de eficiencia por almacén:
+        índice consolidado, top/bottom 3 almacenes, semáforo de rendimiento.
+        Calcula el % de logro por concepto vs meta para cada almacén.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+
+          <head>
+
+              
+              <meta charset="utf-8">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <meta name="csrf-token" content="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF">
+
+              
+              
+              
+              <title>
+                          Dashboard Operativo            </title>
+
+              
+              <!-- IFrame Preloader Removal Workaround -->
+              <style type="text/css">
+                  body.iframe-mode .preloader {
+                      display: none !important;
+                  }
+              </style>
+
+              
+              
+              
+                                      <link rel="stylesheet" href="http://localhost/vendor/fontawesome-free/css/all.min.css">
+                          <link rel="stylesheet" href="http://localhost/vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
+                          <link rel="stylesheet" href="http://localhost/vendor/adminlte/dist/css/adminlte.min.css">
+
+                                              <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+                                      
+              
+              <link rel="stylesheet" href="http://localhost/css/variables-institucionales.css">
+                      
+                      
+
+              
+              
+              
+                          <style>
+                  .dashboard-card { border-radius: 10px; transition: transform 0.2s; }
+                  .dashboard-card:hover { transform: translateY(-3px); }
+                  .stat-card { border-left: 4px solid var(--gob-verde); }
+                  .stat-card-blue { border-left-color: #007bff; }
+                  .stat-card-orange { border-left-color: #fd7e14; }
+                  .stat-card-red { border-left-color: #dc3545; }
+                  .stat-card-purple { border-left-color: #6f42c1; }
+                  .stat-icon { font-size: 2rem; opacity: 0.8; }
+                  .stat-value { font-size: 1.8rem; font-weight: 700; }
+                  .indice-bar { height: 10px; border-radius: 5px; }
+                  .indice-label { font-size: 0.85rem; font-weight: 600; }
+                  .rank-medal { font-size: 1.5rem; }
+                  .alert-badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; }
+                  .alert-badge-red { background-color: #f8d7da; color: #721c24; }
+                  .alert-badge-yellow { background-color: #fff3cd; color: #856404; }
+                  .alert-badge-green { background-color: #d4edda; color: #155724; }
+                  .alert-badge-gray { background-color: #e2e3e5; color: #383d41; }
+                  .detalle-row { display: none; }
+                  .detalle-row.show { display: table-row; }
+                  .expand-icon { cursor: pointer; user-select: none; }
+              </style>
+
+              
+              
+          </head>
+
+          <body class="sidebar-mini" >
+
+              
+                  <div class="wrapper">
+
+                  
+                              <div class="preloader flex-column justify-content-center align-items-center" style="">
+
+              
+                  
+                  <img src="http://localhost/vendor/adminlte/dist/img/AdminLTELogo.png"
+                       class="img-circle animation__shake"
+                       alt="AdminLTE Preloader Image"
+                       width="60"
+                       height="60"
+                       style="animation-iteration-count:infinite;">
+
+              
+          </div>
+                  
+                  
+                              <nav class="main-header navbar
+              navbar-expand
+              navbar-white navbar-light">
+
+              
+              <ul class="navbar-nav">
+                  
+                  <li class="nav-item">
+              <a class="nav-link" data-widget="pushmenu" href="#"
+                                  >
+                  <i class="fas fa-bars"></i>
+                  <span class="sr-only">Toggle navigation</span>
+              </a>
+          </li>
+                  
+                  
+                  
+                      </ul>
+
+              
+              <ul class="navbar-nav ml-auto">
+                  
+                  
+                  
+                  <li class="nav-item">
+
+              
+              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                  <i class="fas fa-search"></i>
+              </a>
+
+              
+              <div class="navbar-search-block">
+                  <form class="form-inline" action="#" method="get">
+                      <input type="hidden" name="_token" value="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF" autocomplete="off">
+
+                      <div class="input-group">
+
+                          
+                          <input class="form-control form-control-navbar" type="search"
+                                                  name="adminlteSearch"
+                              placeholder="search"
+                              aria-label="search">
+
+                          
+                          <div class="input-group-append">
+                              <button class="btn btn-navbar" type="submit">
+                                  <i class="fas fa-search"></i>
+                              </button>
+                              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                  <i class="fas fa-times"></i>
+                              </button>
+                          </div>
+
+                      </div>
+                  </form>
+              </div>
+
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                  <i class="fas fa-expand-arrows-alt"></i>
+              </a>
+          </li>
+
+
+                  
+                  
+                  
+                      </ul>
+
+          </nav>
+                  
+                  
+                              <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+              
+                      <a href="http://localhost/home"
+                      class="brand-link "
+              >
+
+              
+              <img src="http://localhost/vendor/adminlte/dist/img/AdminLTELogo.png"
+                   alt="Admin Logo"
+                   class="brand-image img-circle elevation-3"
+                   style="opacity:.8">
+
+              
+              <span class="brand-text font-weight-light ">
+                  <b>Admin</b>LTE
+              </span>
+
+          </a>
+              
+              
+              <div class="sidebar">
+                  <nav class="pt-2">
+                      <ul class="nav nav-pills nav-sidebar flex-column "
+                          data-widget="treeview" role="menu"
+                                          >
+                          
+                          <li>
+
+              <div class="form-inline my-2">
+                  <div class="input-group" data-widget="sidebar-search" data-arrow-sign="&raquo;">
+
+                      
+                      <input class="form-control form-control-sidebar" type="search"
+                                          placeholder="search"
+                          aria-label="search">
+
+                      
+                      <div class="input-group-append">
+                          <button class="btn btn-sidebar">
+                              <i class="fas fa-fw fa-search"></i>
+                          </button>
+                      </div>
+
+                  </div>
+              </div>
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link active "
+                 href="http://localhost"        >
+
+                  <i class="nav-icon fas fa-fw fa-tachometer-alt "></i>
+
+                  <p>
+                      Dashboard
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="http://localhost/importaciones"        >
+
+                  <i class="nav-icon fas fa-fw fa-file-import "></i>
+
+                  <p>
+                      Centro de Importación
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="http://localhost/estado-resultados"        >
+
+                  <i class="nav-icon fas fa-fw fa-chart-line "></i>
+
+                  <p>
+                      Estado de Resultados
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="http://localhost/poa"        >
+
+                  <i class="nav-icon fas fa-fw fa-bullseye "></i>
+
+                  <p>
+                      Formato POA
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-header ">
+
+              ACCOUNT SETTINGS
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="http://localhost/admin/settings"        >
+
+                  <i class="nav-icon fas fa-fw fa-user "></i>
+
+                  <p>
+                      Profile
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="http://localhost/admin/settings"        >
+
+                  <i class="nav-icon fas fa-fw fa-lock "></i>
+
+                  <p>
+                      Change Password
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item has-treeview ">
+
+              
+              <a class="nav-link  "
+                 href="" >
+
+                  <i class="nav-icon fas fa-fw fa-share "></i>
+
+                  <p>
+                      Multi Level
+                      <i class="fas fa-angle-left right"></i>
+
+                              </p>
+
+              </a>
+
+              
+              <ul class="nav nav-treeview">
+                  <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="#"        >
+
+                  <i class="nav-icon far fa-fw fa-circle "></i>
+
+                  <p>
+                      Level 1
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item has-treeview ">
+
+              
+              <a class="nav-link  "
+                 href="" >
+
+                  <i class="nav-icon far fa-fw fa-circle "></i>
+
+                  <p>
+                      Level 1
+                      <i class="fas fa-angle-left right"></i>
+
+                              </p>
+
+              </a>
+
+              
+              <ul class="nav nav-treeview">
+                  <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="#"        >
+
+                  <i class="nav-icon far fa-fw fa-circle "></i>
+
+                  <p>
+                      Level 2
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item has-treeview ">
+
+              
+              <a class="nav-link  "
+                 href="" >
+
+                  <i class="nav-icon far fa-fw fa-circle "></i>
+
+                  <p>
+                      Level 2
+                      <i class="fas fa-angle-left right"></i>
+
+                              </p>
+
+              </a>
+
+              
+              <ul class="nav nav-treeview">
+                  <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="#"        >
+
+                  <i class="nav-icon far fa-fw fa-circle "></i>
+
+                  <p>
+                      Level 3
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="#"        >
+
+                  <i class="nav-icon far fa-fw fa-circle "></i>
+
+                  <p>
+                      Level 3
+
+                              </p>
+
+              </a>
+
+          </li>
+
+              </ul>
+
+          </li>
+
+              </ul>
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="#"        >
+
+                  <i class="nav-icon far fa-fw fa-circle "></i>
+
+                  <p>
+                      Level 1
+
+                              </p>
+
+              </a>
+
+          </li>
+
+              </ul>
+
+          </li>
+
+          <li  class="nav-header ">
+
+              LABELS
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="#"        >
+
+                  <i class="nav-icon far fa-fw fa-circle text-red"></i>
+
+                  <p>
+                      Important
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="#"        >
+
+                  <i class="nav-icon far fa-fw fa-circle text-yellow"></i>
+
+                  <p>
+                      Warning
+
+                              </p>
+
+              </a>
+
+          </li>
+
+          <li  class="nav-item">
+
+              <a class="nav-link  "
+                 href="#"        >
+
+                  <i class="nav-icon far fa-fw fa-circle text-cyan"></i>
+
+                  <p>
+                      Information
+
+                              </p>
+
+              </a>
+
+          </li>
+
+                      </ul>
+                  </nav>
+              </div>
+
+          </aside>
+                  
+                  
+                              <div class="content-wrapper">
+
+              
+              
+              
+                      <div class="content-header">
+                      <div class="container-fluid">
+                              <h1><i class="fas fa-tachometer-alt text-institucional-verde"></i> Dashboard Operativo</h1>
+                      </div>
+                  </div>
+              
+              
+              <div class="content">
+                  <div class="container-fluid">
+                                  
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="card stat-card dashboard-card">
+                      <div class="card-body">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div>
+                                  <p class="text-muted mb-0">Almacenes</p>
+                                  <h2 class="stat-value mb-0">13</h2>
+                                  <small class="text-muted">13 con datos</small>
+                              </div>
+                              <div class="stat-icon text-institucional-verde">
+                                  <i class="fas fa-warehouse"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                          <div class="card stat-card stat-card-red dashboard-card">
+                      <div class="card-body">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div>
+                                  <p class="text-muted mb-0">Eficiencia Global</p>
+                                  <h2 class="stat-value mb-0 text-danger">
+                                      24.3%
+                                  </h2>
+                                  <small class="text-muted">2026</small>
+                              </div>
+                              <div class="stat-icon text-danger">
+                                  <i class="fas fa-chart-pie"></i>
+                              </div>
+                          </div>
+                          <div class="progress mt-2" style="height: 6px;">
+                              <div class="progress-bar bg-danger" style="width: 24.250886837145%"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="card stat-card stat-card-red dashboard-card">
+                      <div class="card-body">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div>
+                                  <p class="text-muted mb-0">En Rojo</p>
+                                  <h2 class="stat-value mb-0 text-danger">12</h2>
+                                  <small class="text-muted">Índice &lt; 30%</small>
+                              </div>
+                              <div class="stat-icon text-danger">
+                                  <i class="fas fa-exclamation-triangle"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="card stat-card stat-card-orange dashboard-card">
+                      <div class="card-body">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div>
+                                  <p class="text-muted mb-0">Atención</p>
+                                  <h2 class="stat-value mb-0 text-warning">1</h2>
+                                  <small class="text-muted">Índice 30-50%</small>
+                              </div>
+                              <div class="stat-icon text-warning">
+                                  <i class="fas fa-exclamation-circle"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="row mt-3">
+              <div class="col-md-7">
+                  <div class="card">
+                      <div class="card-header">
+                          <h3 class="card-title"><i class="fas fa-list text-danger"></i> Almacenes por Índice de Eficiencia</h3>
+                      </div>
+                      <div class="card-body p-2">
+                                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> ALMACEN CENTRAL OAXACA
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">3.9%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 3.8548612800054%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> SANTIAGO TEOTITLAN
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">21.9%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 21.885235572081%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> SAN JOSE EL CHILAR
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">22.5%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 22.518169323694%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> IXTLAN DE JUAREZ
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">22.8%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 22.763075365074%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> TAMAZULAPAN
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">23.0%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 23.047657837333%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> AYUTLA MIXES
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">23.1%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 23.09427113485%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> SAN ANDRES HIDALGO
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">23.7%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 23.739274682493%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> CUAJIMOLOYAS
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">24.1%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 24.079432086415%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> SAN PEDRO JUCHATENGO
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">24.4%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 24.370049533247%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> LACHIXIO
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">26.7%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 26.702551752493%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> SANTIAGO MATATLAN
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">27.0%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 26.95256507386%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> MAGDALENA OCOTLAN
+                                          </span>
+                                          <span class="alert-badge alert-badge-red">29.2%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-danger" style="width: 29.204270545184%"></div>
+                                      </div>
+                                  </div>
+                                                                              <div class="mb-2 px-1">
+                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                          <span class="indice-label">
+                                              <i class="fas fa-store text-muted mr-1"></i> VALLES CENTRALES
+                                          </span>
+                                          <span class="alert-badge alert-badge-yellow">43.1%</span>
+                                      </div>
+                                      <div class="progress indice-bar">
+                                          <div class="progress-bar bg-warning" style="width: 43.050114696154%"></div>
+                                      </div>
+                                  </div>
+                                                          </div>
+                  </div>
+              </div>
+              <div class="col-md-5">
+                  <div class="card">
+                      <div class="card-header">
+                          <h3 class="card-title"><i class="fas fa-trophy text-warning"></i> Top 3 / Bottom 3</h3>
+                      </div>
+                      <div class="card-body">
+                                              <p class="font-weight-bold text-success mb-2"><i class="fas fa-arrow-up"></i> Mejores</p>
+                                                                              <div class="d-flex justify-content-between align-items-center mb-1">
+                                      <span><span class="rank-medal">🥇</span> VALLES CENTRALES</span>
+                                      <span class="font-weight-bold text-success">43.1%</span>
+                                  </div>
+                                                                              <div class="d-flex justify-content-between align-items-center mb-1">
+                                      <span><span class="rank-medal">🥈</span> MAGDALENA OCOTLAN</span>
+                                      <span class="font-weight-bold text-success">29.2%</span>
+                                  </div>
+                                                                              <div class="d-flex justify-content-between align-items-center mb-1">
+                                      <span><span class="rank-medal">🥉</span> SANTIAGO MATATLAN</span>
+                                      <span class="font-weight-bold text-success">27.0%</span>
+                                  </div>
+                                                  <hr>
+                              <p class="font-weight-bold text-danger mb-2"><i class="fas fa-arrow-down"></i> Peores</p>
+                                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                      <span><span class="rank-medal">⚠️</span> ALMACEN CENTRAL OAXACA</span>
+                                      <span class="font-weight-bold text-danger">3.9%</span>
+                                  </div>
+                                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                      <span><span class="rank-medal">⚠️</span> SANTIAGO TEOTITLAN</span>
+                                      <span class="font-weight-bold text-danger">21.9%</span>
+                                  </div>
+                                                      <div class="d-flex justify-content-between align-items-center mb-1">
+                                      <span><span class="rank-medal">⚠️</span> SAN JOSE EL CHILAR</span>
+                                      <span class="font-weight-bold text-danger">22.5%</span>
+                                  </div>
+                                                          </div>
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="row mt-3">
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <h3 class="card-title"><i class="fas fa-table"></i> Detalle de Eficiencia por Almacén</h3>
+                      </div>
+                      <div class="card-body p-0">
+                          <div class="table-responsive">
+                              <table class="table table-bordered table-hover mb-0">
+                                  <thead class="bg-institucional-verde text-white">
+                                      <tr>
+                                          <th style="width: 30px;"></th>
+                                          <th>Almacén</th>
+                                          <th class="text-center" style="width: 120px;">Índice Global</th>
+                                          <th style="width: 200px;">Barra</th>
+                                          <th class="text-center" style="width: 100px;">Conceptos</th>
+                                          <th style="width: 80px;">Detalle</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(0)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-0"></i>
+                                              </td>
+                                              <td class="font-weight-bold">ALMACEN CENTRAL OAXACA</td>
+                                              <td class="text-center font-weight-bold">
+                                                  3.9%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 3.8548612800054%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">1</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">1 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-0">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $133,753,970.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $5,156,030.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      3.9%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(1)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-1"></i>
+                                              </td>
+                                              <td class="font-weight-bold">SANTIAGO TEOTITLAN</td>
+                                              <td class="text-center font-weight-bold">
+                                                  21.9%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 21.885235572081%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">7</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">7 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-1">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $44,168,422.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $8,576,474.52
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      19.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $4,501,952.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $20,910.40
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.5%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $48,670,374.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $8,597,384.92
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      17.7%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $9,140,369.39
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      21.63%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      21.6%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      94.02%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      94.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $58,036.03
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(2)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-2"></i>
+                                              </td>
+                                              <td class="font-weight-bold">SAN JOSE EL CHILAR</td>
+                                              <td class="text-center font-weight-bold">
+                                                  22.5%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 22.518169323694%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">7</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">7 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-2">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $46,970,655.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $8,035,349.47
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      17.1%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $4,688,608.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $19,138.46
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $51,659,263.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $8,054,487.93
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      15.6%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $9,996,583.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $2,065,320.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      20.7%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      14.46%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      14.5%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      89.40%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      89.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $58,337.92
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(3)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-3"></i>
+                                              </td>
+                                              <td class="font-weight-bold">IXTLAN DE JUAREZ</td>
+                                              <td class="text-center font-weight-bold">
+                                                  22.8%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 22.763075365074%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">7</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">7 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-3">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $45,050,588.18
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $8,378,829.44
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      18.6%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $10,729,669.95
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $33,302.44
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.3%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $55,780,258.13
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $8,412,131.88
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      15.1%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $10,342,499.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $1,841,130.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      17.8%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      15.66%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      15.7%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      91.89%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      91.9%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $59,160.77
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(4)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-4"></i>
+                                              </td>
+                                              <td class="font-weight-bold">TAMAZULAPAN</td>
+                                              <td class="text-center font-weight-bold">
+                                                  23.0%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 23.047657837333%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">8</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">8 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-4">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $104,095,678.41
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $19,649,591.54
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      18.9%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $3,314,364.98
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $101,980.85
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      3.1%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $107,410,043.36
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $19,751,572.39
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      18.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">RESULTADO DIRECTO DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $8,131,570.21
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $-418,830.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $14,811,932.20
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $1,503,250.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      10.1%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      41.64%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-warning">
+                                                                      41.6%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      92.25%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      92.3%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $177,818.87
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(5)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-5"></i>
+                                              </td>
+                                              <td class="font-weight-bold">AYUTLA MIXES</td>
+                                              <td class="text-center font-weight-bold">
+                                                  23.1%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 23.09427113485%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">7</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">7 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-5">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $85,705,998.02
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $14,691,639.85
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      17.1%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $3,881,374.65
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $6,041.77
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.2%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $89,587,372.67
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $14,697,681.62
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      16.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $16,576,720.30
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $2,517,250.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      15.2%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      11.49%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      11.5%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      98.76%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      98.8%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $119,103.20
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $3,002.48
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      2.5%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(6)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-6"></i>
+                                              </td>
+                                              <td class="font-weight-bold">SAN ANDRES HIDALGO</td>
+                                              <td class="text-center font-weight-bold">
+                                                  23.7%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 23.739274682493%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">7</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">7 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-6">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $48,222,093.79
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $7,956,835.42
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      16.5%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $2,492,578.99
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $29,580.63
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      1.2%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $50,714,672.76
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $7,986,416.05
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      15.7%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $10,336,541.21
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $1,673,490.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      16.2%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      21.69%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      21.7%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      94.86%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      94.9%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $62,823.58
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(7)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-7"></i>
+                                              </td>
+                                              <td class="font-weight-bold">CUAJIMOLOYAS</td>
+                                              <td class="text-center font-weight-bold">
+                                                  24.1%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 24.079432086415%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">7</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">7 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-7">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $35,410,296.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $6,513,612.18
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      18.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $4,732,293.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $9,474.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.2%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $40,142,590.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $6,523,086.18
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      16.2%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $4,117,995.60
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $1,392,350.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      33.8%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      8.49%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      8.5%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      91.41%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      91.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $37,264.23
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(8)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-8"></i>
+                                              </td>
+                                              <td class="font-weight-bold">SAN PEDRO JUCHATENGO</td>
+                                              <td class="text-center font-weight-bold">
+                                                  24.4%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 24.370049533247%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">7</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">7 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-8">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $57,218,000.92
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $10,979,906.54
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      19.2%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $1,004,736.43
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $14,679.71
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      1.5%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $58,222,737.35
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $10,994,586.25
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      18.9%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $11,422,453.56
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $2,092,140.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      18.3%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      17.76%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      17.8%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      94.98%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      95.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $69,680.84
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(9)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-9"></i>
+                                              </td>
+                                              <td class="font-weight-bold">LACHIXIO</td>
+                                              <td class="text-center font-weight-bold">
+                                                  26.7%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 26.702551752493%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">7</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">7 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-9">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $46,573,409.23
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $9,635,801.04
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      20.7%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $350,000.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $23,043.51
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      6.6%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $46,923,409.23
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $9,658,844.55
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      20.6%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $6,365,443.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $1,725,050.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      27.1%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      20.22%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      20.2%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      91.74%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      91.7%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $54,824.85
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(10)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-10"></i>
+                                              </td>
+                                              <td class="font-weight-bold">SANTIAGO MATATLAN</td>
+                                              <td class="text-center font-weight-bold">
+                                                  27.0%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 26.95256507386%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">7</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">7 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-10">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $42,504,643.78
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $7,172,283.55
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      16.9%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $2,606,465.24
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $9,340.85
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $45,111,109.03
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $7,181,624.40
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      15.9%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $10,419,719.78
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $3,284,880.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      31.5%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      25.11%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      25.1%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      98.88%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      98.9%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $60,101.89
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-danger">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(11)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-11"></i>
+                                              </td>
+                                              <td class="font-weight-bold">MAGDALENA OCOTLAN</td>
+                                              <td class="text-center font-weight-bold">
+                                                  29.2%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-danger" style="width: 29.204270545184%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">6</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">6 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-11">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $37,581,155.83
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $7,608,929.50
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      20.2%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $37,581,155.83
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $7,625,900.53
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      20.3%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $22,818,203.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $1,468,840.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      6.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      29.88%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      29.9%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      98.37%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      98.4%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $54,455.28
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                                                                      <tr class="table-warning">
+                                              <td class="text-center expand-icon" onclick="toggleDetalle(12)">
+                                                  <i class="fas fa-plus-circle text-primary" id="icon-12"></i>
+                                              </td>
+                                              <td class="font-weight-bold">VALLES CENTRALES</td>
+                                              <td class="text-center font-weight-bold">
+                                                  43.1%
+                                              </td>
+                                              <td>
+                                                  <div class="progress" style="height: 8px;">
+                                                      <div class="progress-bar bg-warning" style="width: 43.050114696154%"></div>
+                                                  </div>
+                                              </td>
+                                              <td class="text-center">8</td>
+                                              <td class="text-center">
+                                                                                              <span class="badge bg-info text-white">8 conceptos</span>
+                                                                                      </td>
+                                          </tr>
+                                          <tr class="detalle-row" id="detalle-12">
+                                              <td colspan="6" class="p-0">
+                                                  <table class="table table-sm table-striped mb-0">
+                                                      <thead>
+                                                          <tr class="bg-light">
+                                                              <th style="width: 40%; padding-left: 40px;">Concepto</th>
+                                                              <th class="text-right" style="width: 20%;">META</th>
+                                                              <th class="text-right" style="width: 20%;">REAL</th>
+                                                              <th class="text-center" style="width: 20%;">% Logro</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PAR</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $45,710,806.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $68,989,542.61
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      100.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA PE</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $8,043,185.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $387,952.77
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      4.8%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">PRESUPUESTO DE VENTA TOTAL</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $53,753,991.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $69,377,495.38
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      100.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">RESULTADO DIRECTO DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $41,146,521.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $-701,120.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">GASTOS DE OPERACIÓN</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $7,405,510.00
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $701,120.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      9.5%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">OPORTUNIDAD DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      31.11%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      31.1%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">EFICIENCIA DE SURTIMIENTO A TIENDAS</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      100%
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      99.00%
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-success">
+                                                                      99.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                                                                                  <tr>
+                                                                  <td style="padding-left: 40px;">MERMAS, QUEBRANTOS Y MAL ESTADO</td>
+                                                                  <td class="text-right font-weight-bold">
+                                                                                                                                      $58,523.45
+                                                                                                                              </td>
+                                                                  <td class="text-right">
+                                                                                                                                      $0.00
+                                                                                                                              </td>
+                                                                  <td class="text-center font-weight-bold text-danger">
+                                                                      0.0%
+                                                                  </td>
+                                                              </tr>
+                                                                                                      </tbody>
+                                                  </table>
+                                              </td>
+                                          </tr>
+                                                              </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+                  </div>
+              </div>
+
+          </div>
+                  
+                  
+                  
+                  
+                  
+              </div>
+
+              
+                                      <script src="http://localhost/vendor/jquery/jquery.min.js"></script>
+                          <script src="http://localhost/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                          <script src="http://localhost/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+                          <script src="http://localhost/vendor/adminlte/dist/js/adminlte.min.js"></script>
+                      
+              
+              
+              
+              
+              
+                      <script>
+              window.toggleDetalle = function(index) {
+                  var row = document.getElementById('detalle-' + index);
+                  var icon = document.getElementById('icon-' + index);
+                  if (row.classList.contains('show')) {
+                      row.classList.remove('show');
+                      icon.className = 'fas fa-plus-circle text-primary';
+                  } else {
+                      row.classList.add('show');
+                      icon.className = 'fas fa-minus-circle text-primary';
+                  }
+              };
+          </script>
+
+          </body>
+
+          </html>
+        headers:
+          content-type: 'text/html; charset=utf-8'
+          cache-control: 'no-cache, private'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV1ZvOXc2QnRYd08rN1RKVjhDOTUzQk5PK0dLOHQvWUZ1eTYvWVdkZnBCeHYxQ2pvOTZMTHpvanBNa1NIMjFWMWN1cGNXYmtpRUYvcm10SmhrV1BSUEhIYWhXNHZham9QZnJMWFVUcHRyM2hQYUhqaGo5Q0VVYUs4ajNwQ2FEU3giLCJtYWMiOiIyYmVmMjA4MGY2NDZmODY4YTZiMGIwMGZiYWQ1NzhjNDhhMmMxNjJjOTI3NGNlZDNhNzNjOWNhMjJjODlkM2EwIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:35 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6InJydFg2SVZmeWMyd1VHN2o4eXhscGc9PSIsInZhbHVlIjoiNndWbzV6NWpBemFPSVVKTW1hNzFodm9OVHhXYkxxbEs5Q3lrUmhzOXZtcklZelgrejVSUjh1RnRvMWpjcXovOG9ZYS90RTNhQTBCWFFMcGcyblVyeGF1ckhqK1dIOHJYZzVlLy9hYzJMS09YdzFIR1pGeDM3MlhBMWpmVnozN1QiLCJtYWMiOiJjZmM2ZmU1YzM5MjM5Mzg1Yjc0MGVkZGU0MmRiYTk5ODVmNGYxZWZhOTAxZGE2ODU5YWFmZDBiZTVmMTdmZjBjIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:35 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

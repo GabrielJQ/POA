@@ -1,0 +1,415 @@
+name: POA
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: poa
+    metadata:
+      custom: []
+      groupName: POA
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mostrar POA'
+      description: |-
+        Renderiza la tabla del Programa Anual de Trabajo con filtros por
+        almacén, año, período (mensual/trimestral/anual). Soporta consolidado
+        (todas las tiendas) o vista individual por almacén.
+        Si la petición es AJAX, devuelve solo el HTML de la tabla.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      anio:
+        custom: []
+        name: anio
+        description: 'Año (default: año actual).'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      almacen_id:
+        custom: []
+        name: almacen_id
+        description: 'ID del almacén (opcional, para vista individual).'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      consolidado:
+        custom: []
+        name: consolidado
+        description: '"si" o "no" (default: "si").'
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      periodo:
+        custom: []
+        name: periodo
+        description: '"mensual", "trimestral" o "anual" (default: "mensual").'
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      mes:
+        custom: []
+        name: mes
+        description: 'Mes (1-12, default: mes actual).'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      trimestre:
+        custom: []
+        name: trimestre
+        description: 'Trimestre (1-4).'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      anio: 17
+      almacen_id: 17
+      consolidado: consequatur
+      periodo: consequatur
+      mes: 17
+      trimestre: 17
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 500
+        content: |-
+          {
+              "message": "Server Error"
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IitCNTZIcGhmckQ4ZlVSZU0ycC9WcVE9PSIsInZhbHVlIjoidVBYUUJSUmZIK0Rldi9hRTdYSVpuWVpRRnVqTThTUldwTW5HS1BKL0xmVXBrZkoxVDFKVUdCL0EwUUxKcEJIcmx4cEkzdHBva1dpcDVUV0hyZVN5MTlVUGRpL00rYWxEYUxCTlJZcnJIZUtObDRGTXNBRGpzMEdkYnd4Z0dtNTIiLCJtYWMiOiI2MjU5ZjE0NGE3MmI2MDIwOWQ0NDA2MWZjN2U3MmZlY2MzM2ExOGM1MDg4Yzk3NGIzZDZkYjNlYjk1ZTc3YTNlIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:40 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6InFOL25ZT0tqeFlNTC9vQ3JLTllQT0E9PSIsInZhbHVlIjoiSi9QMld2RWRtSmtGUHJNbHVHWVBZajQyVTU0Q0N4SXZUUW02OThDd1hlNEVFYmJwU2JwYVF4dE1tZlpubjlFTnBXSy8yOU03QSt5aFFrbGJseVQ4UCtNZFMyWmJqL21DSTB0bWpheitoSnVmR2p5cnJiOUhpQVNkQU1wMDMwNk4iLCJtYWMiOiJlODZmNGNjZTQ0YzE5ZTY0NDE1MmRkMzVkMjhjOTBkYmQ1ZTRmZTJiMDdiYjdjOWZhMTI2OWQxMTk5MDU3MmY3IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:40 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: poa/export
+    metadata:
+      custom: []
+      groupName: POA
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Exportar POA (Excel/PDF)'
+      description: |-
+        Descarga el POA en formato Excel (.xlsx) con plantilla predefinida
+        o PDF. Incluye metas comprometidas, realizadas, avance del período,
+        % de logro y notas aclaratorias.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      tipo:
+        custom: []
+        name: tipo
+        description: '"xlsx" o "pdf" (default: "xlsx").'
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      anio:
+        custom: []
+        name: anio
+        description: Año.
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      almacen_id:
+        custom: []
+        name: almacen_id
+        description: 'ID del almacén.'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      consolidado:
+        custom: []
+        name: consolidado
+        description: '"si" o "no".'
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      periodo:
+        custom: []
+        name: periodo
+        description: '"mensual", "trimestral" o "anual".'
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      trimestre:
+        custom: []
+        name: trimestre
+        description: 'Trimestre (1-4).'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      mes:
+        custom: []
+        name: mes
+        description: 'Mes (1-12).'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      tipo: consequatur
+      anio: 17
+      almacen_id: 17
+      consolidado: consequatur
+      periodo: consequatur
+      trimestre: 17
+      mes: 17
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 400
+        content: |-
+          {
+              "message": "Tipo de exportaci\u00f3n no v\u00e1lido. Use xlsx o pdf."
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkFObXFNQ2RWcGZBZFUvMC9XSnhQekE9PSIsInZhbHVlIjoiWjBoR3ZZRVJHN2J5c3U0ZEJQVkp0WHgyN0ptaUJ5Y3BEQ01jR3B4cVc5MFBrTlFDVVlWL0lOSFBLYzVmSTVTN3g1WEFRMHdQNHlRNU1xdDlzQmFwcGttNnJaL01qdHFTK1FEYVJ5M3Q3ekdrRlNUcmphdjhzRmRrQk9oMlBhelciLCJtYWMiOiI5ZjRkMjEzM2VkY2I4N2Y5ODQ2ODUyOTZhZmY2MTM5MTlkY2JjYjVkNzIxMjk1YWY2ZDZmYmI2MDJiYzIzOTdlIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:41 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6ImVhWHN6d3FCUFAyYzFza25ra3BqVFE9PSIsInZhbHVlIjoidmxidHhGZUowQ0M1Um1QYnpmSjB6Wk5HR2lZV1B4YzA5K3ZIMlVyLytlQnZVUzArZE5WbmROMVU5VHdTaEVmK1l0SDk5bHZIVVd3c25GU2ZrNGs1U05BajZwMVNkTURLa1Iwb2NzZ3dXaldzeURQRGhTdEw5STh2UUtMZjhUUG8iLCJtYWMiOiI0ZWU2MmFlY2JjNjg1OWUyZGQwZTI2YWQ1ZGQ1NTYzMTEzMDAxMzg1ZGEzZTQ3NTUzMGYwNDE4ODg3Nzc4MjE1IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:41 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: poa/nota
+    metadata:
+      custom: []
+      groupName: POA
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Guardar nota aclaratoria'
+      description: |-
+        Guarda o actualiza una nota aclaratoria para un concepto, almacén,
+        año y período específicos. Soporta notas por mes, trimestre o anual.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      concepto_id:
+        custom: []
+        name: concepto_id
+        description: 'ID del concepto maestro.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      label:
+        custom: []
+        name: label
+        description: 'Label de la fila (ej. "COMPROMETIDO", "REALIZADO").'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      anio:
+        custom: []
+        name: anio
+        description: 'Año (2000-2100).'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      nota_aclaratoria:
+        custom: []
+        name: nota_aclaratoria
+        description: 'Texto de la nota (max 500 caracteres).'
+        required: false
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      almacen_id:
+        custom: []
+        name: almacen_id
+        description: 'ID del almacén (opcional, null = consolidado).'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      mes:
+        custom: []
+        name: mes
+        description: 'Mes del período (1-12, 101-104 para trimestre, 0 para anual).'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      concepto_id: 17
+      label: consequatur
+      anio: 17
+      nota_aclaratoria: consequatur
+      almacen_id: 17
+      mes: 17
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: poa/sync
+    metadata:
+      custom: []
+      groupName: POA
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Sincronizar metas POA desde ER'
+      description: |-
+        Sincroniza las metas del POA desde los registros META del Estado de Resultados
+        para un año y almacén específicos. Si no se especifica almacén,
+        sincroniza todos los almacenes con datos.
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      anio:
+        custom: []
+        name: anio
+        description: 'Año (2000-2100).'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      almacen_id:
+        custom: []
+        name: almacen_id
+        description: 'ID del almacén (opcional).'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      anio: 17
+      almacen_id: 17
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
