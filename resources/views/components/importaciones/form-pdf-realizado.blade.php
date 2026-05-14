@@ -7,7 +7,7 @@
         <form action="{{ route('importaciones.pdf-realizado') }}" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-fill">
             @csrf
             <div class="form-group">
-                <label class="font-weight-bold">Año de ejecución</label>
+                <label class="font-weight-bold">Año</label>
                 <input type="number" name="anio" class="form-control" value="{{ date('Y') }}" min="2000" max="2100" required>
             </div>
             <div class="form-group">

@@ -3,11 +3,11 @@
 @section('title', 'Centro de Importación')
 
 @section('css')
-    @vite('resources/css/importaciones.css')
+@vite('resources/css/importaciones.css')
 @stop
 
 @section('content_header')
-    <h1><i class="fas fa-file-import text-institucional-oro"></i> Centro de Importación Homologado</h1>
+<h1><i class="fas fa-file-import text-institucional-oro"></i> Centro de Importación Homologado</h1>
 @stop
 
 @section('content')
@@ -40,12 +40,16 @@
         </div>
     </div>
 
-    <div class="col-xl-6 col-lg-6 mb-4">
+    <div class="col-xl-4 col-lg-4 mb-4">
         <x-importaciones.form-er action="{{ route('importaciones.er') }}" />
     </div>
 
-    <div class="col-xl-6 col-lg-6 mb-4">
+    <div class="col-xl-4 col-lg-4 mb-4">
         <x-importaciones.form-mermas />
+    </div>
+
+    <div class="col-xl-4 col-lg-4 mb-4">
+        <x-importaciones.form-apertura />
     </div>
 </div>
 
@@ -88,15 +92,15 @@
 @stop
 
 @section('js')
-    @vite('resources/js/importaciones.js')
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
+@vite('resources/js/importaciones.js')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
         const overlay = document.getElementById('loading-overlay');
-        document.querySelectorAll('.import-card form').forEach(function(form) {
-            form.addEventListener('submit', function() {
+        document.querySelectorAll('.import-card form').forEach(function (form) {
+            form.addEventListener('submit', function () {
                 overlay.classList.add('active');
             });
         });
     });
-    </script>
+</script>
 @stop

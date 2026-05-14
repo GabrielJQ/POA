@@ -1,5 +1,5 @@
 <div class="card import-card import-card-poa">
-    <div class="card-header">
+    <div class="card-header d-flex justify-content-between align-items-center">
         <h3 class="card-title"><i class="fas fa-bullseye"></i> Metas POA</h3>
     </div>
     <div class="card-body">

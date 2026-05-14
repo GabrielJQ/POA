@@ -30,21 +30,17 @@
         No hay compromisos POA configurados. Ejecuta el seeder: <code>php artisan db:seed --class=CompromisosPoaSeeder</code>
     </div>
 @else
-    <div class="table-responsive">
-        <table class="table poa-table table-bordered mb-0">
+    <table class="table poa-table table-bordered mb-0">
             <thead>
                 <tr>
-                    <th rowspan="2" style="min-width: 220px;">COMPROMISO</th>
-                    <th rowspan="2" style="min-width: 120px;"></th>
-                    <th rowspan="2" style="min-width: 90px;">META ANUAL</th>
-                    <th rowspan="2" style="min-width: 100px;">UNIDAD DE MEDIDA</th>
-                    <th colspan="1">AVANCE {{ $labelPeriodo ?? 'MENSUAL' }}</th>
-                    <th rowspan="2" style="min-width: 90px;">% DE LOGRO<br>DEL PERIODO<br>SELECCIONADO</th>
-                    <th rowspan="2" style="min-width: 90px;">% DE LOGRO<br>SOBRE LA<br>META ANUAL</th>
-                    <th rowspan="2" style="min-width: 130px;">NOTA ACLARATORIA</th>
-                </tr>
-                <tr>
-                    <th>{{ $labelPeriodo ?? 'ENERO' }}</th>
+                    <th style="min-width: 220px;">COMPROMISO</th>
+                    <th style="min-width: 120px;"></th>
+                    <th style="min-width: 90px;">META ANUAL</th>
+                    <th style="min-width: 100px;">UNIDAD DE MEDIDA</th>
+                    <th style="min-width: 130px;">AVANCE {{ $labelPeriodo ?? 'PERIODO' }}</th>
+                    <th style="min-width: 90px;">% LOGRO PERIODO</th>
+                    <th style="min-width: 90px;">% LOGRO ANUAL</th>
+                    <th style="min-width: 130px;">NOTA ACLARATORIA</th>
                 </tr>
             </thead>
             <tbody>
@@ -82,12 +78,12 @@
                         $esMoneda = in_array(strtoupper($compromiso->unidad_medida), ['PESOS']);
                     @endphp
 
-                    <tr class="poa-row-comprometido">
+                    <tr class="poa-row-comprometido poa-row-group">
                         <td class="poa-concepto-nombre" rowspan="2">
                             {{ $compromiso->nombre }}
                         </td>
                         <td class="poa-tipo-badge">
-                            <span class="badge bg-institucional-verde px-2 py-1" style="font-size: 0.65rem;">
+                            <span class="badge bg-institucional-verde px-3 py-1" style="font-size: 0.7rem; border-radius: 6px;">
                                 {{ $compromiso->label_fila_1 }}
                             </span>
                         </td>
@@ -123,13 +119,14 @@
                                 data-anio="{{ $anioSeleccionado ?? date('Y') }}"
                                 data-mes="{{ $notaMes }}"
                                 data-almacen-id="{{ $notaAlmacen }}"
-                                rows="2" style="width:100%; border:none; resize:vertical; background:transparent; font-size:inherit;">{{ $fila1->nota_aclaratoria ?? '' }}</textarea>
+                                placeholder="Escribe una nota..."
+                                rows="2">{{ $fila1->nota_aclaratoria ?? '' }}</textarea>
                         </td>
                     </tr>
 
-                    <tr class="poa-row-realizado">
+                    <tr class="poa-row-realizado poa-row-group">
                         <td class="poa-tipo-badge">
-                            <span class="badge" style="background-color: var(--gob-oro); color: white; font-size: 0.65rem; padding: 4px 8px;">
+                            <span class="badge bg-institucional-oro px-3 py-1" style="color: white; font-size: 0.7rem; border-radius: 6px;">
                                 {{ $compromiso->label_fila_2 }}
                             </span>
                         </td>
@@ -155,16 +152,15 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
 
-    <div class="mt-2 px-2 text-muted small">
-        <i class="fas fa-info-circle mr-1"></i>
-        <strong>Leyenda:</strong>
-        <span class="poa-pct-ok mx-1">■ ≥90%</span>
-        <span class="poa-pct-warn mx-1">■ 50-89%</span>
-        <span class="poa-pct-bad mx-1">■ <50%</span>
-        &nbsp;|&nbsp;
-        <i class="fas fa-database mr-1"></i>
-        Los datos de compromisos mapeados al ER se sincronizan automáticamente.
-    </div>
+        <div class="poa-leyenda-footer">
+            <i class="fas fa-info-circle mr-1"></i>
+            <strong>Leyenda:</strong>
+            <span class="poa-pct-ok mx-1">■ ≥90%</span>
+            <span class="poa-pct-warn mx-1">■ 50-89%</span>
+            <span class="poa-pct-bad mx-1">■ <50%</span>
+            &nbsp;|&nbsp;
+            <i class="fas fa-database mr-1"></i>
+            Los datos de compromisos mapeados al ER se sincronizan automáticamente.
+        </div>
 @endif

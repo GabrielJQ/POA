@@ -7,6 +7,7 @@ use App\Imports\ERImport;
 use App\Imports\VentasDetalladasImport;
 use App\Imports\SurtimientoTiendasImport;
 use App\Imports\MermasQuebrantosImport;
+use App\Imports\AperturaTiendasMetaImport;
 use App\Models\Almacen;
 use App\Models\ConceptoMaestro;
 use App\Models\RegistroFinanciero;
@@ -36,7 +37,10 @@ class ImportController extends Controller
      */
     public function index()
     {
-        $almacenes = Cache::remember('almacenes_ordenados', 86400, fn() =>
+        $almacenes = Cache::remember(
+            'almacenes_ordenados',
+            86400,
+            fn() =>
             Almacen::orderBy('nombre')->get()
         );
         return view('importaciones.index', compact('almacenes'));
@@ -338,6 +342,36 @@ class ImportController extends Controller
             ]);
             return redirect()->route('importaciones.index')
                 ->with('error', 'Error al procesar PDF: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Importar apertura de tiendas (Excel)
+     *
+     * @group Importaciones
+     */
+    public function importAperturaTiendas(Request $request)
+    {
+        set_time_limit(300);
+        ini_set('memory_limit', '512M');
+        $request->validate([
+            'archivo' => 'required|file|mimes:xlsx,xls|max:102400',
+            'anio' => 'required|integer|min:2000|max:2100',
+        ]);
+
+        try {
+            $anio = (int) $request->anio;
+            $import = new AperturaTiendasMetaImport();
+            $count = $import->import($request->file('archivo')->getRealPath(), $anio);
+
+            $this->invalidateCache();
+            Log::info("[ImportController] Apertura de tiendas (META) importado para {$anio}: {$count} registros.");
+            return redirect()->route('importaciones.index')
+                ->with('success', "Apertura de tiendas (COMPROMETIDO) importado para {$anio}. {$count} registros de METAS guardados.");
+        } catch (Exception $e) {
+            Log::error("[ImportController] Error al importar apertura de tiendas: " . $e->getMessage());
+            return redirect()->route('importaciones.index')
+                ->with('error', 'Error al importar apertura de tiendas: ' . $e->getMessage());
         }
     }
 

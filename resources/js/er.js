@@ -6,6 +6,13 @@ $(document).ready(function() {
         }
     });
 
+    // Inicializar Select2
+    $('.select2').select2({
+        width: '100%',
+        dropdownAutoWidth: true,
+        placeholder: 'Seleccionar...'
+    });
+
     $('#filtro-form').on('submit', function(e) {
         e.preventDefault();
         let url = $(this).attr('action');

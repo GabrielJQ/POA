@@ -8,6 +8,18 @@ $(document).ready(function() {
         }
     });
 
+    // Inicializar Select2
+    $('.select2').select2({
+        width: '100%',
+        dropdownAutoWidth: true,
+        placeholder: 'Seleccionar...'
+    });
+
+    // Sincronizar cambios de Select2 con los eventos de recarga
+    $('.select2').on('select2:select', function() {
+        $(this).trigger('change');
+    });
+
     function toggleAlmacen() {
         var consolidado = $('#consolidado-select').val();
         if (consolidado === 'si') {

@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
             filename.innerHTML = `<i class="fas ${icon}"></i> ${file.name}`;
         }
 
+        dropZone.addEventListener('click', () => inputFile.click());
+
         dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             e.stopPropagation();
             dropZone.classList.remove('dragover');
-            if (e.dataTransfer5.files.length) {
+            if (e.dataTransfer.files.length) {
                 inputFile.files = e.dataTransfer.files;
                 updateFilename(e.dataTransfer.files[0]);
             }
@@ -43,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initDropZone('zone-upload-er', 'archivo-er', 'filename-er');
+    initDropZone('zone-upload-mermas', 'archivo-mermas', 'filename-mermas');
     initDropZone('zone-upload-ventas', 'archivo-ventas', 'filename-ventas');
     initDropZone('zone-upload-pdf', 'archivo-pdf', 'filename-pdf');
+    initDropZone('zone-upload-surt', 'archivo-surtimiento', 'filename-surt');
+    initDropZone('zone-upload-apertura', 'archivo-apertura', 'filename-apertura');
 });

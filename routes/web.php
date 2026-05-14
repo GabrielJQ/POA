@@ -15,6 +15,7 @@ Route::post('/importaciones/pdf-realizado', [ImportController::class, 'importPDF
 Route::post('/importaciones/surtimiento', [ImportController::class, 'importSurtimiento'])->name('importaciones.surtimiento');
 Route::post('/importaciones/mermas', [ImportController::class, 'importMermas'])->name('importaciones.mermas');
 Route::post('/importaciones/mermas-comprometido', [ImportController::class, 'importMermasComprometido'])->name('importaciones.mermas-comprometido');
+Route::post('/importaciones/apertura-tiendas', [ImportController::class, 'importAperturaTiendas'])->name('importaciones.apertura-tiendas');
 
 Route::get('/estado-resultados', [EstadoResultadosController::class, 'index'])->name('estado-resultados.index');
 Route::get('/estado-resultados/export', [EstadoResultadosController::class, 'export'])->name('estado-resultados.export');

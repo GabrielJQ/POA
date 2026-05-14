@@ -6,32 +6,44 @@
     <div class="card-body d-flex flex-column">
         <form action="{{ route('importaciones.mermas-comprometido') }}" method="POST" class="d-flex flex-column flex-fill">
             @csrf
-            <div class="form-group">
-                <label class="font-weight-bold">Almacén</label>
-                <select name="almacen_id" class="form-control" required>
-                    <option value="">Seleccionar almacén...</option>
-                    @foreach($almacenes as $almacen)
-                        <option value="{{ $almacen->id }}">{{ $almacen->nombre }}</option>
-                    @endforeach
-                </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Almacén</label>
+                        <select name="almacen_id" class="form-control" required>
+                            <option value="">Almacén...</option>
+                            @foreach($almacenes as $almacen)
+                                <option value="{{ $almacen->id }}">{{ $almacen->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Año</label>
+                        <input type="number" name="anio" class="form-control" value="{{ date('Y') }}" min="2000" max="2100" required>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label class="font-weight-bold">Año</label>
-                <input type="number" name="anio" class="form-control" value="{{ date('Y') }}" min="2000" max="2100" required>
-            </div>
-            <div class="form-group">
-                <label class="font-weight-bold">Trimestre</label>
-                <select name="trimestre" class="form-control" required>
-                    <option value="">Seleccionar trimestre...</option>
-                    <option value="1">Q1 — Ene + Feb + Mar</option>
-                    <option value="2">Q2 — Abr + May + Jun</option>
-                    <option value="3">Q3 — Jul + Ago + Sep</option>
-                    <option value="4">Q4 — Oct + Nov + Dic</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="font-weight-bold">Monto trimestral</label>
-                <input type="number" name="monto" class="form-control" step="0.01" lang="en" placeholder="0.00" required>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Trimestre</label>
+                        <select name="trimestre" class="form-control" required>
+                            <option value="">Trime...</option>
+                            <option value="1">Q1</option>
+                            <option value="2">Q2</option>
+                            <option value="3">Q3</option>
+                            <option value="4">Q4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Monto</label>
+                        <input type="number" name="monto" class="form-control" step="0.01" lang="en" placeholder="0.00" required>
+                    </div>
+                </div>
             </div>
             <div class="alert alert-guinda small mt-1">
                 <i class="fas fa-hand-holding-usd"></i>

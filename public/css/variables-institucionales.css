@@ -24,23 +24,83 @@
 
 /* --- Personalización de AdminLTE --- */
 
-/* 1. Barra Lateral (Sidebar) */
+/* 1. Barra Lateral (Sidebar Novedoso) */
 .main-sidebar {
-    background-color: var(--gob-verde) !important;
+    background: linear-gradient(180deg, var(--gob-verde) 0%, #0d241f 100%) !important;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.2) !important;
+    border-right: 1px solid rgba(255,255,255,0.05) !important;
 }
 
-.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
-.sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
-    background-color: var(--gob-oro) !important;
-    color: var(--white) !important;
+.brand-link {
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    padding: 18px 20px !important; /* Más respiro */
+    background: rgba(0,0,0,0.1) !important;
+}
+
+/* Buscador lateral */
+.form-control-sidebar {
+    border-radius: 8px !important;
+    background-color: rgba(0,0,0,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    color: #fff !important;
+}
+
+.btn-sidebar {
+    background-color: rgba(0,0,0,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-left: none !important;
+    border-radius: 0 8px 8px 0 !important;
+}
+
+.nav-sidebar .nav-item {
+    margin: 4px 8px 4px 12px !important; /* Menos margen a la derecha para evitar corte */
+}
+
+.nav-sidebar .nav-link {
+    border-radius: 10px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    padding: 10px 12px !important;
+    border: 1px solid transparent !important;
+    color: rgba(255,255,255,0.75) !important;
+    font-size: 0.88rem !important;
+}
+
+.nav-sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+    transform: translateX(4px);
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active {
+    background: linear-gradient(90deg, var(--gob-oro) 0%, #856d44 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important; /* Brillo mucho más sutil */
+    font-weight: 600 !important;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+/* Efecto de borde negro en el item activo para combinar con las cards del POA */
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background-color: #000000;
 }
 
 .nav-sidebar .nav-header {
     background-color: transparent;
     color: var(--gob-oro) !important;
     text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    padding: 1.5rem 1.5rem 0.5rem !important;
+    opacity: 0.8;
 }
 
 /* 2. Botones */
@@ -69,7 +129,57 @@
 
 /* 4. Navbar superior */
 .main-header {
-    border-bottom: 4px solid var(--gob-oro) !important;
+    border-bottom: 2px solid var(--gob-oro) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.main-header .nav-link {
+    color: var(--gob-verde) !important;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.main-header .nav-link:hover {
+    color: var(--gob-oro) !important;
+    transform: translateY(-1px);
+}
+
+/* 5. Cabecera de Contenido (Títulos de página) */
+.content-header {
+    padding: 25px 0.5rem !important;
+}
+
+.content-header h1 {
+    font-weight: 800 !important;
+    color: var(--gob-verde) !important;
+    font-size: 1.8rem !important;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.content-header h1::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--gob-oro);
+    border-radius: 2px;
+}
+
+.breadcrumb-item a {
+    color: var(--gob-oro) !important;
+    font-weight: 600;
+}
+
+.breadcrumb-item.active {
+    color: var(--gob-gris-oscuro) !important;
+    opacity: 0.7;
 }
 
 /* --- Modernización y Soft UI --- */
@@ -123,44 +233,151 @@ body {
     border-top: 4px solid var(--gob-oro) !important;
 }
 
-/* Botones Modernos */
+/* Botones Modernos e Institucionales */
 .btn {
     border-radius: var(--border-radius-md) !important;
-    font-weight: 600 !important;
-    padding: 0.5rem 1.25rem;
-    transition: var(--transition-base) !important;
+    font-weight: 700 !important;
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     border: none !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-sm {
-    padding: 0.35rem 0.75rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.82rem !important;
     border-radius: var(--border-radius-sm) !important;
 }
 
+/* Variantes Premium */
+.btn-institucional-verde, .btn-success {
+    background: linear-gradient(135deg, var(--gob-verde) 0%, #0d241f 100%) !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(19, 50, 43, 0.2);
+}
+
+.btn-institucional-oro, .btn-warning {
+    background: linear-gradient(135deg, var(--gob-oro) 0%, #856d44 100%) !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(152, 130, 86, 0.25);
+}
+
+.btn-institucional-negro, .btn-dark {
+    background: linear-gradient(135deg, #333 0%, #000 100%) !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-institucional-rojo, .btn-primary, .btn-danger {
+    background: linear-gradient(135deg, var(--gob-rojo) 0%, #4d1425 100%) !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(105, 28, 50, 0.2);
+}
+
+.btn-outline-institucional-verde {
+    background: transparent !important;
+    border: 2px solid var(--gob-verde) !important;
+    color: var(--gob-verde) !important;
+    box-shadow: none;
+}
+
+/* Hover Effects */
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    filter: brightness(1.1);
 }
 
 .btn:active {
     transform: translateY(0);
+    filter: brightness(0.9);
 }
 
-/* Inputs y Selects */
-.form-control, .custom-select {
-    border-radius: var(--border-radius-sm) !important;
-    border: 1px solid #e2e8f0;
-    padding: 0.6rem 1rem;
-    height: auto;
-    transition: var(--transition-base);
-    background-color: #fcfcfc;
+.btn i {
+    font-size: 1.1em;
+    transition: transform 0.3s;
 }
 
-.form-control:focus, .custom-select:focus {
+.btn:hover i {
+    transform: scale(1.1);
+}
+
+/* Inputs y Selects Modernos */
+.form-control, .custom-select, select.form-control {
+    border-radius: 10px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    padding: 0.65rem 1.2rem !important;
+    height: auto !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background-color: #ffffff !important;
+    font-size: 0.9rem !important;
+    color: #334155 !important;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.02) !important;
+}
+
+.form-control:focus, .custom-select:focus, select.form-control:focus {
     border-color: var(--gob-oro) !important;
-    box-shadow: 0 0 0 3px rgba(152, 130, 86, 0.2) !important;
-    background-color: var(--white);
+    box-shadow: 0 0 0 4px rgba(152, 130, 86, 0.15) !important;
+    outline: none !important;
+    transform: translateY(-1px);
+}
+
+/* Dropdowns Novedosos (Bootstrap) */
+.dropdown-menu {
+    border: none !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    padding: 8px !important;
+    margin-top: 8px !important;
+    animation: dropdownFadeIn 0.3s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+    border-radius: 10px !important;
+    padding: 8px 16px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    color: var(--gob-gris-oscuro) !important;
+    transition: all 0.2s !important;
+}
+
+.dropdown-item:hover {
+    background-color: var(--gob-oro) !important;
+    color: white !important;
+    padding-left: 20px !important;
+    box-shadow: 0 4px 10px rgba(152, 130, 86, 0.3);
+}
+
+.dropdown-item:hover i {
+    color: white !important;
+}
+
+.dropdown-item i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    color: var(--gob-oro);
+}
+
+/* Dropdown Toggle Fix */
+.dropdown-toggle::after {
+    margin-left: 0.5em !important;
+    vertical-align: 0.15em !important;
+    transition: transform 0.3s !important;
+}
+
+.show > .dropdown-toggle::after {
+    transform: rotate(180deg);
 }
 
 /* Estilización de Tablas */
@@ -191,4 +408,96 @@ body {
 
 .table thead th:last-child {
     border-top-right-radius: var(--border-radius-md);
+}
+
+/* Elite Search Filters */
+#filtro-poa-form, #filtro-form {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 20px !important;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px !important;
+}
+
+.poa-filter-label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.65rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.2px;
+    color: var(--gob-verde);
+    margin-bottom: 8px !important;
+    opacity: 0.8;
+}
+
+/* Custom Select Arrow (for native selects if any remain) */
+select.form-control:not(.select2) {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23988256' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 1rem center !important;
+    background-size: 12px !important;
+    padding-right: 2.5rem !important;
+}
+
+.form-control-sm {
+    height: 38px !important;
+    font-weight: 600 !important;
+    padding: 0 12px !important; /* Quitar padding vertical para centrado perfecto */
+    line-height: 35px !important;
+}
+
+/* Select2 Premium Styling */
+.select2-container--default .select2-selection--single {
+    border-radius: 10px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    height: 38px !important;
+    padding: 0 !important; /* Centrado por line-height */
+    transition: all 0.3s !important;
+    background-color: #fff !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 35px !important; /* Igual que la altura interna */
+    color: #334155 !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
+    padding-left: 15px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 35px !important;
+    right: 12px !important;
+}
+
+.select2-dropdown {
+    border: none !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+    padding: 8px !important;
+    margin-top: 5px !important;
+    overflow: hidden !important;
+}
+
+.select2-results__option {
+    border-radius: 10px !important;
+    padding: 8px 16px !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    transition: all 0.2s !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--gob-oro) !important;
+    color: white !important;
+}
+
+/* Botones de acción alineados */
+#filtro-poa-form .btn, #filtro-form .btn {
+    height: 38px;
+    margin-bottom: 0;
 }

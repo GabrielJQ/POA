@@ -9,6 +9,10 @@
         <form action="{{ route('importaciones.ventas') }}" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-fill">
             @csrf
             <div class="form-group">
+                <label class="font-weight-bold">Año</label>
+                <input type="number" name="anio" class="form-control" value="{{ date('Y') }}" min="2000" max="2100" required>
+            </div>
+            <div class="form-group">
                 <label class="font-weight-bold">Archivo Excel</label>
                 <label for="archivo-ventas" class="upload-area upload-area-azul" id="zone-upload-ventas" style="display: block;">
                     <i class="fas fa-file-excel fa-2x text-muted mb-2"></i>

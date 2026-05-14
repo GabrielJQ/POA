@@ -1,0 +1,136 @@
+/* 
+ * Estado de Resultados - Estilos de Tabla Premium con Navegación Persistente
+ */
+
+#contenedor-tabla-er {
+    overflow: auto;
+    max-height: 75vh;
+    border: 1.5px solid #000;
+    border-radius: 12px;
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.table-er {
+    font-variant-numeric: tabular-nums;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+}
+
+/* Header Fijo */
+.table-er thead th {
+    background-color: var(--gob-verde) !important;
+    color: white !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    padding: 12px 10px !important;
+    border: none !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100;
+}
+
+/* Intersección Esquina Izquierda Header */
+.table-er thead th:first-child {
+    z-index: 110;
+    left: 0 !important;
+}
+
+/* Columna de Concepto FIJA (Sticky) */
+.concepto-col {
+    font-weight: 700 !important;
+    color: var(--gob-verde) !important;
+    font-size: 0.88rem;
+    position: sticky !important;
+    left: 0;
+    z-index: 50;
+    background-color: #ffffff !important;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+/* Filas de Título (Secciones) */
+.er-row-title {
+    background-color: rgba(19, 50, 43, 0.05) !important;
+}
+
+.er-row-title td {
+    color: var(--gob-verde) !important;
+    font-weight: 800 !important;
+    font-size: 0.9rem !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    border-top: 2px solid var(--gob-oro) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+.er-row-title .concepto-col {
+    padding-left: 20px !important;
+}
+
+.er-row-title .concepto-col::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 4px;
+    background-color: var(--gob-oro);
+    border-radius: 2px;
+}
+
+/* Filas Calculadas (Totales) */
+.er-row-calculated {
+    background-color: rgba(152, 130, 86, 0.08) !important;
+}
+
+.er-row-calculated td {
+    font-weight: 700 !important;
+    color: #000 !important;
+    border-top: 1px solid rgba(152, 130, 86, 0.3) !important;
+    border-bottom: 1.5px solid rgba(152, 130, 86, 0.5) !important;
+}
+
+/* Estilo de los números */
+.table-er td {
+    vertical-align: middle !important;
+    padding: 10px 12px !important;
+    border-top: 1px solid #f1f5f9;
+    font-size: 0.85rem;
+}
+
+.er-monto {
+    text-align: right;
+    font-weight: 700;
+    color: var(--gob-gris-oscuro);
+}
+
+.er-monto-cero { color: #cbd5e0; }
+.er-monto-negativo { color: #e53e3e; }
+
+.table-er .text-muted-dash {
+    color: #cbd5e0;
+    font-weight: 300;
+}
+
+/* Hover effect */
+.table-er tbody tr:hover:not(.er-row-title) {
+    background-color: rgba(152, 130, 86, 0.12) !important;
+    box-shadow: inset 6px 0 0 var(--gob-oro);
+    cursor: pointer;
+}
+
+.table-er tbody tr:hover td {
+    color: #000 !important;
+}
+
+.table-er tbody tr:hover .concepto-col {
+    background-color: #f8f9fa !important;
+}
+
+/* Total column highlight */
+.table-er .total-col {
+    background-color: rgba(0,0,0,0.03) !important;
+}

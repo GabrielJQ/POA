@@ -2,6 +2,10 @@
 
 @section('title', 'Estado de Resultados')
 
+@section('css')
+    @vite(['resources/css/er.css'])
+@stop
+
 @section('content_header')
     <h1><i class="fas fa-chart-line text-institucional-verde"></i> Estado de Resultados</h1>
 @stop

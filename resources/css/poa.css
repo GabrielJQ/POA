@@ -1,65 +1,142 @@
-.poa-table {
-    font-size: 0.78rem;
-    border-collapse: collapse;
+/* Contenedor con scroll interno para asegurar que el Sticky funcione siempre */
+#contenedor-tabla-poa {
+    overflow: auto;
+    max-height: 75vh; /* Altura ajustable para ver la tabla cómoda */
+    border: 1.5px solid #000;
+    border-radius: 12px;
+    background-color: #fff;
+    position: relative;
 }
-.poa-table th {
+
+.poa-table thead th {
+    position: sticky !important;
+    top: 0 !important; /* Ahora se pega al borde del contenedor, no de la página */
+    z-index: 100;
     background-color: var(--gob-verde) !important;
     color: white !important;
     text-align: center;
     vertical-align: middle !important;
-    font-size: 0.72rem;
-    padding: 6px 8px !important;
-    border: 1px solid #0d241f !important;
-}
-.poa-table td {
-    padding: 4px 8px !important;
-    border: 1px solid #ddd !important;
-    vertical-align: middle !important;
-}
-.poa-row-comprometido {
-    background-color: #FFF8E7 !important;
-}
-.poa-row-realizado {
-    background-color: #FFFFFF !important;
-}
-.poa-concepto-nombre {
+    font-size: 0.75rem;
     font-weight: 700;
+    padding: 12px 10px !important;
+    border: none !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Intersección (Esquina superior izquierda fija) */
+.poa-table thead th:first-child { 
+    z-index: 110;
+    left: 0 !important;
+    top: 0 !important;
+}
+
+/* Filas de Compromiso */
+.poa-row-group:hover td {
+    background-color: rgba(152, 130, 86, 0.08) !important;
+}
+
+/* Columna de Concepto FIJA (Sticky) */
+.poa-concepto-nombre {
+    font-weight: 800 !important;
     color: var(--gob-verde);
-    text-align: center;
-    background-color: #f8f9fa !important;
-    border-right: 2px solid var(--gob-oro) !important;
+    background-color: #ffffff !important;
+    font-size: 0.9rem !important;
+    border-right: 2px solid rgba(0,0,0,0.05) !important;
+    position: sticky !important;
+    left: 0;
+    z-index: 50;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
 }
+
+.poa-row-comprometido .poa-concepto-nombre::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 5px;
+    background-color: var(--gob-oro);
+    border-radius: 2px;
+}
+
 .poa-tipo-badge {
-    font-size: 0.68rem;
-    font-weight: 600;
-    white-space: nowrap;
+    text-align: center;
 }
+
 .poa-monto {
     text-align: right;
-    font-family: 'Courier New', monospace;
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--gob-gris-oscuro);
 }
-.poa-monto-cero {
-    color: #999;
-}
-.poa-monto-negativo {
-    color: #dc3545;
-}
+
+.poa-monto-cero { color: #cbd5e0; }
+.poa-monto-negativo { color: #e53e3e; }
+
 .poa-unidad {
     text-align: center;
-    font-size: 0.68rem;
-    color: var(--gob-gris-oscuro);
+    font-size: 0.75rem;
+    color: #718096;
     font-weight: 600;
 }
+
+/* Porcentajes de Logro (Semáforo Moderno) */
 .poa-pct {
     text-align: center;
-    font-weight: 600;
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: 8px;
 }
-.poa-pct-ok { color: #28a745; }
-.poa-pct-warn { color: #ffc107; }
-.poa-pct-bad { color: #dc3545; }
-.poa-nota {
-    font-size: 0.65rem;
-    color: #666;
-    max-width: 120px;
+
+.poa-pct-ok {
+    color: #1b5e20;
+    background-color: #e8f5e9 !important;
+}
+
+.poa-pct-warn {
+    color: #b45309;
+    background-color: #fffbeb !important;
+}
+
+.poa-pct-bad {
+    color: #9b1c1c;
+    background-color: #fdf2f2 !important;
+}
+
+/* Notas Aclaratorias */
+.nota-textarea {
+    border-radius: 8px !important;
+    border: 1px solid transparent !important;
+    background-color: rgba(0,0,0,0.02) !important;
+    transition: all 0.3s;
+    font-size: 0.8rem !important;
+    padding: 8px !important;
+}
+
+.nota-textarea:focus {
+    background-color: #fff !important;
+    border-color: var(--gob-oro) !important;
+    box-shadow: 0 4px 10px rgba(152, 130, 86, 0.15) !important;
+}
+
+/* Separación entre compromisos */
+tr.poa-row-realizado td {
+    border-bottom: 2px solid #edf2f7 !important;
+}
+
+/* Leyenda fija al fondo del contenedor */
+.poa-leyenda-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    padding: 8px 15px;
+    font-size: 0.75rem;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }

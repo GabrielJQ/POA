@@ -1,6 +1,6 @@
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-info-circle"></i> Instrucciones</h3>
+<div class="card import-card import-card-poa">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title"><i class="fas fa-info-circle"></i> Instrucciones de Uso</h3>
     </div>
     <div class="card-body">
         <h5>Estado de Resultados</h5>
