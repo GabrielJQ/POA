@@ -180,9 +180,6 @@
                                                                                 <li class="tocify-item level-2" data-unique="poa-POSTpoa-nota">
                                 <a href="#poa-POSTpoa-nota">Guardar nota aclaratoria</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="poa-POSTpoa-sync">
-                                <a href="#poa-POSTpoa-sync">Sincronizar metas POA desde ER</a>
-                            </li>
                                                                         </ul>
                             </ul>
             </div>
@@ -265,7 +262,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=utf-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IllmK2p4cElKUjIxOExmbHVTaFpad1E9PSIsInZhbHVlIjoiK2hPbHM2bmFlRzMwdjloVlJEdUljZnM0aU9EbU84NUxyUlo3ZDc4elo4L3h6cnJjTlRab0NBb2xLUC9GcHdWT1RWazVzajhPeExWanMzOFZKUTJWVTl4cm5WUlBsMGZiYnB0bnhUUUsvRVhNTGNKS1dPNkNsTmhJT3BvWm5OaFUiLCJtYWMiOiJkMTg4ZjRjZWNmMGMyNjQ1MzdhZjM1M2ZkZmMxNmFjYmRhYzg5Y2RkYmI2NWE1YTUwYjZiN2Q3OGZhYzY1Mzk5IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:20 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IlU1NTNUZk5CcUl2UGIyMWdtZVZiaHc9PSIsInZhbHVlIjoiUHBlK2dNdHZiNmpvRGdnSFJpc2xRTU5tT0MvclBNcDNvTll0d3lKdEV3T0s2S242Njg2T05VZ0N2eUwrcjlWNmNwZ0I2WFR1NnU1bEJ1K2dEKzF5VDZoZFgycFFGd0k5TVZGRkJrVDBYMHpiY2FMU2cyVElRSFc5OUpBTUk5b0MiLCJtYWMiOiIwNDJiNjAyODg5ZGRiMGIyOWY4MjU1MzRlOGY3NjcxNzgyNzY4YzY1MjViYjZjYTRmZGZjYTU5MjIwNThkNzI3IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:20 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6ImZqK3VtNFdQY3d3b1dkUDlYZDRXUFE9PSIsInZhbHVlIjoiMjRkMFV3alpGU2xyVVF3SzJiOERUWEhDLzNmcHJrY0VHeUJUbEpqZTM5Uk8xeU02SFBvNkducmcxZDBHUFp3RVUwdy9KNytDQzJlRzNXMW1MWGFlWTlKMmcwdUZ6QTNPTTRhWjRHa1BoR1ZjSXZCQVo3aU1BRERtcmI0N0dvN2siLCJtYWMiOiI4NGEyNmUzYTFmNWJiM2VmZmM4YmNjN2JiOGVmMWRmYjAyYWM2NjIyZjg5MzZjZjcyNDkzMmFmY2IxNGZjMWVmIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:07 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6Ijk1aW4wWmZEVFE4MloydUxKbjBXK1E9PSIsInZhbHVlIjoid01GbjYvSURnUFJWV0F6NFBveHpxbEQzMjhXdXgybjl1ZnUvSnRKOFVsUXJNYzJIdzg5QU9VS3k2bUtHcnRsTU5nTTliKzZab2k1dnVDT25YcVlpcUVNVGJUNUp6Q3BXY1hwK0txbG9jUWpsVlAwYUc5VFJjWk5tVlU1aCs1Z0EiLCJtYWMiOiI2Yjg1YTVjNDRhODRkNDI3MDQzZDc0MTM1Y2Y1MGI0Y2EwZTYwZjdlODQxZmUwNmMwODE1OTVjNzdkZjI0ZGFmIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:07 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;!DOCTYPE html&gt;
@@ -277,7 +274,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IllmK2p4cElKUjIxOExmbHVTaFpad1E9PSIsInZhbHVlIjoiK
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-    &lt;meta name=&quot;csrf-token&quot; content=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot;&gt;
+    &lt;meta name=&quot;csrf-token&quot; content=&quot;l9NIfOY5uciiEKVW7lcgb9K9bEgfoxAotpEXtUwe&quot;&gt;
 
     
         &lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;http://localhost/brand-icon.png?v=5&quot;&gt;
@@ -3087,7 +3084,7 @@ fetch(url, {
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/javascript; charset=utf-8
-expires: Tue, 18 May 2027 18:39:05 GMT
+expires: Tue, 18 May 2027 20:18:03 GMT
 cache-control: max-age=31536000, public
 accept-ranges: bytes
  </code></pre></details>         <pre>
@@ -3196,7 +3193,7 @@ fetch(url, {
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/javascript; charset=utf-8
-expires: Tue, 18 May 2027 18:39:06 GMT
+expires: Tue, 18 May 2027 20:18:03 GMT
 cache-control: max-age=31536000, public
 accept-ranges: bytes
  </code></pre></details>         <pre>
@@ -3305,7 +3302,7 @@ fetch(url, {
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/javascript; charset=utf-8
-expires: Tue, 18 May 2027 18:39:06 GMT
+expires: Tue, 18 May 2027 20:18:03 GMT
 cache-control: max-age=31536000, public
 accept-ranges: bytes
  </code></pre></details>         <pre>
@@ -3509,7 +3506,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-set-cookie: XSRF-TOKEN=eyJpdiI6InhycFJIV1ZmOUNKVnY1dENsOVNwY1E9PSIsInZhbHVlIjoiR0lkM084RFdhN2lSUUVVVEdwcEg5SzN3cG5OOEdkMXdYWGwzZlVZU3JEck02SGVvN1ZkRHdkcDI5djFaQWw3cTFkSnN1b3MzWE1mVnFMTU5XdkdxZDFSTTVjQXRlRHBxZlZvalhHZWhkUFBjZGVXWDZoN2xjTitMSUEwcWlpU1UiLCJtYWMiOiJhNDZmZmEwMGFiZWY3ZTA1ZGIwMjljODY0NjY5NWZkYzAxMDQzNDM0YTM2NDY1M2FmMjM5NDc5OTc1ZTljZTBkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:10 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IkdaMUVpb0FoOVRNckRFN1pFNldpbmc9PSIsInZhbHVlIjoiZjNsTk9kbG8zNktMQ1FYU1JMNWJnbGxrUTdKRmZtTVdZSVZKZ0NlNlZhYUZvYy9yNm5GZUFCcVdQaGRzWDlDVU1NYXlEZUt3S21WcFNITkZ0WFIvclo3ekZTNEdsc2FmZWRMMENZWkxGMEdDVzJHbHpSV0FwNkdkV3o2ZThRTmwiLCJtYWMiOiIxNzRkZTEwZTQ4YjY1Yjk1ZDUxNGQ4ZjdjZTRlYzZmMmRiYTIzZmE1Y2Y2ZDljY2I2MDBmOWFjYmQ1M2QxYjBkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:10 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6InBGS215YkVMYUJOc3kxTzhYS2JOK2c9PSIsInZhbHVlIjoicDZKOTVmNFdwT2ZvM0orSFMvelJxQndrRW5LR1NuUUZOTlM4YS9iUDZJUzRBempORHk5ekNNSy91bWMzdFFlVUt6YkE1R2dPSGxVWGlTQ1QwRmxjUTF1eWIxcGhUWUNvZ3FhcVJOTWxrWVk0T2FvVjZXbW5VOWw2VXJHVEhVSmEiLCJtYWMiOiI3ZTFiZmJiZmY5MmE0ZDkwZTRhYWY2MjVmZDRjZjIyZWUzNmZkMDUyOGUxMDk5MjZhZTViOGEzZTdkODgyYTQzIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:04 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6Ino3akR5MUI5aEFaVEUzQ0Y4MGM3Tnc9PSIsInZhbHVlIjoiZmJKVkV4MVFnU2hQZHhuQ3VRbTc3d1BMc2FHTElZeVNvVXJoejJvOFZkMEdQOU10L21tVlkvMGprZVNnbW1UYktsUTIvNDRpb1o0Y3VKbkZrMy9oWTgrN1lnUHQ0UjNVdzZDaUk5SFpJMXNFVUNKa2xXS3I4SkJKbWxaUUJkcDMiLCJtYWMiOiI3NTFjYzUwZjgzZGM0ZTI2OTJmNDNmN2YyNDVhYmIwMTU1ZDNkMDY1YTNjZGI3NDFjYTZmMjVjYjc4MjkzOGU5IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:04 GMT; Max-Age=7199; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -4036,7 +4033,7 @@ content-type: application/json
                 &lt;p class=&quot;mt-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed&quot;&gt;
                     HTTP request received.
 
-                                            Response rendered in 57074ms.
+                                            Response rendered in 5357ms.
                                     &lt;/p&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -4391,7 +4388,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=utf-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IjlRaWtLWkpKemhua2J4Mzg2NjIzTHc9PSIsInZhbHVlIjoiVzNmeThkeXNDZC83N25ncnF2OW94bHdHMFZsdjJhbE1QQysrSlhVUG5aSDdFTm1RR0hKT0dnUVdVUjJjSmRSazVPZjFvYmQ4YWtraHRqNUkwME9KdVVYeWljUDVDQVRhdjhKN2RXblN2Z1VzSi9jS1hCRVlsM3VWRk5LSG1EQ3IiLCJtYWMiOiI0MjJiYzVmYTIzMDcyOWRkNjczMDI2NTZiZmRhMDBlYWExNTU1OTQ4NmQ3Y2Q3Nzk5NGFjOWNjNTQyNTkyMjgwIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:25 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IlRxKzdDOElEVU5YMFB6WVdRcUZqNnc9PSIsInZhbHVlIjoiUFlPVDM2cE4zY1RxV1BnQi82LzlGYUNxV1Q3UklnNkU4Ykg4aWx2ckdxS3Z5VnE4Nm8wK3d0dUp5OS9od3NUYjBzMWJ1cFdnYWZINlpCQzliRmNORHdPK0gyRW8xbWV2WUVicUlOdjJUTUp2eTZvQlFMd1JvUDYrWVFSa1M1TzMiLCJtYWMiOiI2NjFmY2JmZmVlNTgzYzNmYmM3ODIxNWFhMDA3MDcwYzMzNzJiNGEzZjhiYjNiMGI1ZWI2NWQ0NzU1ODRhNTBhIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:25 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IjFYYm81a0g1RGMvR2dhWjh2QlYrOXc9PSIsInZhbHVlIjoiWXFOU2M4alRzYjllcU00MmYwanhzbEdCS05QeVd6a2h3c3ZkTGlveUZqMGJpbmdxeVhnbjBNYjBzQityL2FyVTBHcXJPVVRSTEhxUG1QaDFXaGhVVzNObFYvN292b2FJRzFxQW1XZm1lWFhUVUFJT0twYnlyQ2g2TU5OMXlhTmMiLCJtYWMiOiIwMjAzODcyZmU2YzI1OWViYzFhNDk0NjcwMDE0YmVmNTA2NWU4YmYxODI2NTE2ODg5Zjc1ZjU3YzZhY2VlZWU4IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:09 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6InVFY2FKSThQSDlNaFZwQW1jMTJqZkE9PSIsInZhbHVlIjoiNWowMjN1REV1TmNDRFpscjRxOXdKZlhPWllMd1pVczVFVFZpME9WWFJUd1hTY2FXSmdxT3FQR25meHBiczJ1NHRRK1d1SjIxSTRaYS91Y29jMGZaMGFVR3dhYnZtd3dwbmYwUVVUS2pHTWtvMXpnQm1Qa0x3b2xhNTBCN0hUbVUiLCJtYWMiOiIxMjhlZWQ4Mzg1ZDE3MDI3MWQzNGU1YjVhOTgyMzIzZjE3ZWE3M2I3NWQ4N2U3NGMzNGM3YzRmOWMzOWVmNWQ2IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:09 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;div class=&quot;table-responsive&quot;&gt;
@@ -5639,7 +5636,7 @@ fetch(url, {
 content-disposition: attachment; filename=Estado_Resultados_17_Almacen_17.xlsx
 content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
 accept-ranges: bytes
-set-cookie: XSRF-TOKEN=eyJpdiI6IktxM0JRdVRoUDdhQ2o4M1N4eStmMkE9PSIsInZhbHVlIjoiVksxNVRaWFptVXpEVUxqa1QrRXFpeTFZMWpFRVpmTVJ1bVBTNVlyOGpUdjd6aDd6NDJsUTdCcTUzeUNUZ3Y3aURNSXdKRWp3cFRwUDhvcjZEY3VQL292Qmc2VkRVby9nTFZEMno0U255MEhvZ1lDUmVpbkdKcTRSQTdlSUdkU24iLCJtYWMiOiIxYTVhOWVhNDNiNzdiY2QzN2JlYWM4YWQ1ZTRkYWMwODc4ZDFkNTAwZWU1ZDE2YWQ4NDMyOTgzOTBkZTM2MTdkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:33 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IktheCtZd1ExRDh2LzZxRUZkWmJVZ1E9PSIsInZhbHVlIjoiOVEyN0dGeXIybzY1eEFmRU5wZjVQOGlRamhxTVdzR3JlczNBN21uSW9nUGZXVEhzRHh1b3dsdDZUa0xVaStLeVBIcGZGYWg0TWYvcHYxTFJsVi8yT3FRQStUWnNZODByQ0ZoTlNMZlZjRzJmd3lpQktjczVHeXlNamVqdFplVXUiLCJtYWMiOiJjMmEwNzAzZjUzNWNiYjc1MjZiOWY2MWU4YjU5Mzg5MTBiZTJlYmU4YmEyODRiNDE3YTY0ZDYzYzcwZDViYjI4IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:33 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IkNUdXhvY3B5Q3dKbHRYMzFMQlEzbFE9PSIsInZhbHVlIjoiVnpnUTg5RlA0U242QTlMN1AzeFpodFlwb0lXTHhhZC9hdzdqeE1aNVA5dTVubUdMQXVJVWpzdlM5ODBJYUNZQTh5cTZYOERsOXhpbGl0ZjNjSG9ZbzQwaGg2VTBOMVZRMkRhTHRkL1RocDdoWjFNRUV6STgvTjRFVEFWeVRFOEkiLCJtYWMiOiJhMjBjODBiYjBjZDAwNzI2MGYyMDY1ZjUwZmE1Mjg5NjFjMTU4OTM4MTQwNGMwNzhjYTIwMGJjMWU1YWU5MWYxIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:10 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IjRWbjNPajRUUldqRTdUazFkQSs2OVE9PSIsInZhbHVlIjoiMkJaRExJcFRMcUpUcE5tSXUwS1F6cFpYYVBROWxRTFJPQ3FaUVdtUm9XclIwVmJNWXNIaHhtdVNHYVJtMlNaNW1ZYklMak9DbUx5RGQxZDlYbHJ5TkJnNmV3NGNxcWtlanI3ZlpXdElwWStmcHZxRGFHaGJTMGt4L2kyZ01FdjMiLCJtYWMiOiIzZmExYjFmOThhYTUyMDFjOTUxZTFjZTg0YTQ1MGFkYjgzNjVjZmRlY2QzM2EyMTUxMmMwZjc2ZDY1NDU0N2QxIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:10 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;"></code>
@@ -5917,7 +5914,7 @@ Detecta automáticamente el mes y almacén.</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo_pdf=@C:\Users\qange\AppData\Local\Temp\phpE9FB.tmp" </code></pre></div>
+    --form "archivo_pdf=@C:\Users\qange\AppData\Local\Temp\php31FE.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6009,7 +6006,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo PDF hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpE9FB.tmp</code></p>
+<p>Archivo PDF hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php31FE.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -6076,7 +6073,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=utf-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiOCtQYWxYLzkzNXpYK2VvUlY2U1hQcVlRREt0QUxCRzBld0tFSFliamhGdnU0eXFkK0p6emZaRXllTFpLRnBJWWUvQ3ZpeFhTeG9zSjc1WC9CYXdBNllNKy9TYXNSWEc1NjFIUHdtSDNCSC9BOTdNak01UUpkc29QYXZtMGZxVjYiLCJtYWMiOiI0MTViNmFkZjE5MDE0NmRlZjhiNmZmOGQwZjExODMwNmY3NzA4MmYxNDkwOWQ5M2ExYjUxYWFjNmRmYzM3YTc3IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:22 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IjE5VlNIZUZ6OHFBQjk5VzlxS1doMnc9PSIsInZhbHVlIjoiSmNobmdwYy9oaXBPcC9YYjl4VHZGOSt0cDkwdWlyNUcyTm8yeDkwOVRLaHh2cGhPUG53Vm9GMGNEeFZMaWpYU2hlZHh1ekd1MzlyeTJuVVVBbkNvWjFyV1F6MzU0enRaVEp5aDFTL2lkTVpLYlZGbVdpZWNHRGx5bkcxMVZkeTgiLCJtYWMiOiJjMWY4MTRhMjNhYjQ5ZDFkOTBkMWQ4ZmQwODRhZGRiNDY2NWE0OGNjMDdmZjQ5OTIwMTcwN2M5MmYxMmRkYWRkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:22 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IndkVUFuQnIzMEVWR1BZNTFwS1pqNXc9PSIsInZhbHVlIjoiM1ZHRjB0NitwdEJYZDhINnhiMVFDMTNocFZsUDZJaVduV1NBS28xeElva3ovSDF3TG8vK0hobHkvVWNyZVY3MTcyWmtwU01CSVV6WVVFM1daSURJc2t6Y1Avd2JqWE0vTXdVaCtSUGEyS0oyZFJqN09NandCTXkwc1VhNWR1aUUiLCJtYWMiOiIxOTZhMDE3ZTVkMDllOTc4ODZmYzU5NmY1NWQ0NGVjODg1MmJiOWRiNzNkNDBiMWE1M2UwZmIxNTk2Zjc3NGI3IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:08 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6ImpXUk1xc0RSZXRQWE84YjZtWVBnVFE9PSIsInZhbHVlIjoidkxKenVNSThPTGtYMmtRS3kzY2xDTFBWQlduNTkzNGNwWXhrUXBMQnUzZXM5c05yNXRwcEJDSitzaytSUXNSTWV0TDlFZmVjQUJUVGZsaTN0NzVnbVBIdzlHQS9pcnJwV0lMb1pTUFArVnBTbS96WnpkR2VVaUJYRmpIZXRkdWMiLCJtYWMiOiI3MmM0NTRmODFlMGJiNWEwZWQxODdhZjUyOTU5MGVjZjA1NGUxNGE0MWNlMmE5ZmJiOTkxOTAzOWEzNGIxNjllIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:08 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;!DOCTYPE html&gt;
@@ -6088,7 +6085,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiO
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-    &lt;meta name=&quot;csrf-token&quot; content=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot;&gt;
+    &lt;meta name=&quot;csrf-token&quot; content=&quot;l9NIfOY5uciiEKVW7lcgb9K9bEgfoxAotpEXtUwe&quot;&gt;
 
     
         &lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;http://localhost/brand-icon.png?v=5&quot;&gt;
@@ -6394,7 +6391,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiO
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/er&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;l9NIfOY5uciiEKVW7lcgb9K9bEgfoxAotpEXtUwe&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o fiscal&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
@@ -6427,7 +6424,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiO
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/mermas&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;l9NIfOY5uciiEKVW7lcgb9K9bEgfoxAotpEXtUwe&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
@@ -6462,7 +6459,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiO
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/apertura-tiendas&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;l9NIfOY5uciiEKVW7lcgb9K9bEgfoxAotpEXtUwe&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
@@ -6507,7 +6504,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiO
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/ventas&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;l9NIfOY5uciiEKVW7lcgb9K9bEgfoxAotpEXtUwe&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
@@ -6540,7 +6537,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiO
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/pdf-realizado&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;l9NIfOY5uciiEKVW7lcgb9K9bEgfoxAotpEXtUwe&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
@@ -6574,7 +6571,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiO
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/surtimiento&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;l9NIfOY5uciiEKVW7lcgb9K9bEgfoxAotpEXtUwe&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
@@ -6608,7 +6605,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiO
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/mermas-comprometido&quot; method=&quot;POST&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;row&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;l9NIfOY5uciiEKVW7lcgb9K9bEgfoxAotpEXtUwe&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;row&quot;&gt;
                 &lt;div class=&quot;col-md-6&quot;&gt;
                     &lt;div class=&quot;form-group&quot;&gt;
                         &lt;label class=&quot;font-weight-bold&quot;&gt;Almac&eacute;n&lt;/label&gt;
@@ -6894,7 +6891,7 @@ Cada hoja se procesa con ERSheetImport.</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC26C.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php2982.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6986,7 +6983,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo Excel (.xlsx, .xls, .csv) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC26C.tmp</code></p>
+<p>Archivo Excel (.xlsx, .xls, .csv) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php2982.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -7021,7 +7018,7 @@ Los datos se guardan como tipo_dato=REAL con programa=PAR|PE.</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "programa=consequatur"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC26F.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php2995.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -7113,7 +7110,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo Excel (.xlsx, .xls, .csv) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC26F.tmp</code></p>
+<p>Archivo Excel (.xlsx, .xls, .csv) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php2995.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>programa</code></b>&nbsp;&nbsp;
@@ -7149,7 +7146,7 @@ y RESULTADO DIRECTO DE OPERACIÓN.</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC282.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php29A7.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -7241,7 +7238,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo PDF hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC282.tmp</code></p>
+<p>Archivo PDF hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php29A7.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -7276,7 +7273,7 @@ Guarda registros REAL para los conceptos de Oportunidad y Eficiencia de Surtimie
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC285.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php29BA.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -7368,7 +7365,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo Excel (.xlsx, .xls) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC285.tmp</code></p>
+<p>Archivo Excel (.xlsx, .xls) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php29BA.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -7403,7 +7400,7 @@ sobre las ventas de cada línea de producto (config/mermas.php).</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC298.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php29BD.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -7495,7 +7492,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo Excel (.xlsx, .xls) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC298.tmp</code></p>
+<p>Archivo Excel (.xlsx, .xls) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php29BD.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -7687,7 +7684,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=21"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC2A9.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php29CF.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -7779,7 +7776,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Must not be greater than 102400 kilobytes. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC2A9.tmp</code></p>
+<p>Must be a file. Must not be greater than 102400 kilobytes. Example: <code>C:\Users\qange\AppData\Local\Temp\php29CF.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -7859,7 +7856,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-set-cookie: XSRF-TOKEN=eyJpdiI6IldLV0pCYUNNcUhQcVBMU2NNa2NuMlE9PSIsInZhbHVlIjoiV3YvUHEvVHFtdGIyQjBHMWFkbUFMd3pMcDNIQ3dDUG9KdUh5OHNQSDNnYUhsV2FlY2t4Skw0T2JqOFBzZDQzamVId21zTzRmMDVXZEg5LzNRUWQ3bE9za0dxUGV1TFRrc3ZlRWRhSjZoQ0w0WTBOZUE0QitaUmNqSHR4dUNWRWIiLCJtYWMiOiI3MDE5OGFjMmEyNjFhMjBhNWEzMzYyMjc0OTEwZGIyNWJhODYwOTY0MTIyYjliY2FmNGI4NTM4ZGZhZDgwNGZhIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:34 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IlJWc2tCdXd2cUYyeXkxMWZCUHY1Z0E9PSIsInZhbHVlIjoibnNsOXdVWmxFRzZPcnJPY2ZFMGZndHplYnpMbnkrMzhONWdLSkh3c00vU2dyQWZWL1owV1lEWXhsZmhJYmhtOEhNMDRvVkswek1KRVQxSTA2cjcwTVlkMXlYZ1M1R3g2SCtxL2ExdUhsejVqc0ErTERNQ1pETVhMZHluWG9GZisiLCJtYWMiOiI4MDFhYzBjMmExMWE0ZmRiYjU2Yjg3OTY2NjYxNDQ2NWE4MmRkNDM5YzkxZjhjZTFjMGViNjdhOTYyOTA5ZTg4IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:34 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6ImVyT2dBV2VMeHNvRjdFTDgwV250enc9PSIsInZhbHVlIjoiWi9hbUY5MlRUSHAvYStIQk8zMURuUmtBSlluMGpBZnFxdjZ4eG4rcFpFb25JYy9aaWZDaytENzhNcFJPN1RpaVpzam1PcEI5SWNJUVpvcnEzQ21wQzJ5RjNTZmlIejE0ejg1Um14YllSdmQyM1VaRmwyUVBkN001Ung1Rm1jOW0iLCJtYWMiOiI2OWY0ZTZkMjQwN2I0NWYwNjUzZTVhMzczMWJhODMwMmM1Y2VjYjlmNTE2NmNjNTMzYThkZjBlYmIxN2Q0NmExIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:11 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6InVydk9KNGhlZnhuTW4wK2hLZGJLQVE9PSIsInZhbHVlIjoiWm9uWGVwWUo2ZWhMUWZWNnoxQ1g2b0d5RzFGbHpzOFVQL09MK2wvMnp1cFZXN08ySjNpMEV0b2JieFFBZFMrdml1OEFDSUxBemJmUklsbXcvck81UmQ4a3c5TmhJVFFDQno3QWJWalM3aTVYZTFIeHpVam04SWcyQm1acnZiVEgiLCJtYWMiOiIwNGJlZjc3YTMyOGEyODJkYTQwMDJiZjg3NDNkYjU4NGUxZDllODZiZTQ0OWU1NThkY2U1ZjI1YjRmNzczOWRjIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -8056,7 +8053,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-set-cookie: XSRF-TOKEN=eyJpdiI6IkowVjVJWWdtbHY0K0ZtajFEV2VZMkE9PSIsInZhbHVlIjoiaGhKeWxEVzFZcTN0VmFMZFJPb2QrNEl6d0JDbXFJQUt3Y0tHWXdlY1B0MlpWb0FoNnpWcm9JOE85cEpLYTY3dzVTUXlEUUs4NHBoaVFVUDYyRDRvalp4RnVJTFdpN2hqa21nZkJMT0RQczJ6OUJ2S2Qzd3Q0YmxjUDNpN2dMK0oiLCJtYWMiOiI5OGE5YzU4MjA3NTczNmY4MzBlYzUxMTQ5N2MzY2I4NWMyYWVkZDRhYTk4YzAwNmZlOGY5NTQ1OTA4YmUyZWI5IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:35 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6InZwTGFYKzVmYjVwbFJnSUphYVBON3c9PSIsInZhbHVlIjoiZG1XYVprdmtXcloySStrQ2NnWmN0aGJScHgrNEt4OVV5eElNRXEzdFJVZEhUaDJoc0dOelhoWEllM1hUU1pISEF6WjR5TWhwVjYwcXZEOTQ4QkhmamNmMitkN3RPOVE3VGp3bmZrc1JwYWhUNUVydkJiVVRtSHFhZUlBQXF5R1ciLCJtYWMiOiJlMDU0Yzc3MWUwMThhMjMxZmI1YjYwYzVhYmZjZGFkZTI4YmI0NmM1MWMzMDdjYzg0ZDI2OGMxYjEyNjNlMTU5IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:35 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6InU4eXFIY1V6N2Fwd082UEk2MHdIa0E9PSIsInZhbHVlIjoiczNpUDUyYjdabEJ2SEgyQjd1akJCcHdodmwxV25kVVkzTlRhU1NoSHdEdnVwU3duWFdEWWtZWEFXOCtNMisvVnhiQmU5SVEyWU42TlEvbXY1R2VHUEZWQjdUUy9XZ3paYmxKSjVLanYvZnZ4ZVlITUR1ZmlJRU0ycWlPRlM0Y1oiLCJtYWMiOiIzZDZjZDcwNDkzOGRjMzdhMTgzNDI1Njc0MGY0YjBlMDhmMzBjMzFjMzM1ZWQ4NjA3OTFlYTgyOTdkZjRkNjFlIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:11 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IkhuYklBRW5QQnBzL21TTmM1LzhDMEE9PSIsInZhbHVlIjoiQVhnM1R4cEN1ZWsrdjJoMEhHejFXelBBSlNGRWNpNElLWE5MSkgrdTVJeE1HY0hIVDBPVjRDbTBrU3VNZVVwcE1WY1N2d2lLRXROVU14S2ZqWm0venNqUm5FMU9ObVNNb1R4a0h0RUo2V01vNjdIQ1BieUZiaDBobkp1QmtxM3AiLCJtYWMiOiJlYTUzYWU4OTViMjk2MjVmMGZiMjM5MWJmZTQ1NTIxMzU1MmQ0MzQxNTQyODdjOWFlZmVjNTA5MTBmZTQyY2NkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 22:18:11 GMT; Max-Age=7199; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -8388,137 +8385,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Mes del período (1-12, 101-104 para trimestre, 0 para anual). Example: <code>17</code></p>
-        </div>
-        </form>
-
-                    <h2 id="poa-POSTpoa-sync">Sincronizar metas POA desde ER</h2>
-
-<p>
-</p>
-
-<p>Sincroniza las metas del POA desde los registros META del Estado de Resultados
-para un año y almacén específicos. Si no se especifica almacén,
-sincroniza todos los almacenes con datos.</p>
-
-<span id="example-requests-POSTpoa-sync">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/poa/sync" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"anio\": 17,
-    \"almacen_id\": 17
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/poa/sync"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "anio": 17,
-    "almacen_id": 17
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTpoa-sync">
-</span>
-<span id="execution-results-POSTpoa-sync" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTpoa-sync"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTpoa-sync"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTpoa-sync" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTpoa-sync">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTpoa-sync" data-method="POST"
-      data-path="poa/sync"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTpoa-sync', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>poa/sync</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTpoa-sync"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTpoa-sync"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="anio"                data-endpoint="POSTpoa-sync"
-               value="17"
-               data-component="body">
-    <br>
-<p>Año (2000-2100). Example: <code>17</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>almacen_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="almacen_id"                data-endpoint="POSTpoa-sync"
-               value="17"
-               data-component="body">
-    <br>
-<p>ID del almacén (opcional). Example: <code>17</code></p>
         </div>
         </form>
 

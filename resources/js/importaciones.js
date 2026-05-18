@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
             filename.innerHTML = `<i class="fas ${icon}"></i> ${file.name}`;
         }
 
-        dropZone.addEventListener('click', () => inputFile.click());
-
         dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
             e.stopPropagation();

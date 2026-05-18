@@ -60,8 +60,8 @@ class VentasDetalladasSheetImport implements ToCollection
                     $montoLimpio = preg_replace('/[^\d.-]/', '', (string)$montoRaw);
 
                     if ($montoLimpio !== '' && is_numeric($montoLimpio)) {
-                        $monto = (float)$montoLimpio;
-                        if ($monto > 0) {
+                        $monto = round((float)$montoLimpio, 2);
+                        if ($monto > 0 && $monto <= 999999999999.99) {
                             $this->upsertData[] = [
                                 'almacen_id' => $almacenActual->id,
                                 'concepto_id' => $lineaId,

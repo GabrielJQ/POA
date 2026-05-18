@@ -143,9 +143,9 @@ class ERSheetImport implements ToCollection
                     $montoLimpio = preg_replace('/[^\d.-]/', '', (string)$montoRaw);
                     if ($montoLimpio === '' || !is_numeric($montoLimpio)) continue;
                     
-                    $monto = (float)$montoLimpio;
+                    $monto = round((float)$montoLimpio, 2);
                     
-                    if ($monto != 0) {
+                    if ($monto != 0 && abs($monto) <= 999999999999.99) {
                         $upsertData[] = [
                             'almacen_id' => $almacen->id,
                             'concepto_id' => $concepto->id,
