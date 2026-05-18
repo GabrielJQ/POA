@@ -11,8 +11,8 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 
 class VentasDetalladasSheetImport implements ToCollection
 {
-    private array $tmAlmacenes;
-    private array $lineas;
+    private Collection $tmAlmacenes;
+    private Collection $lineas;
     private array $upsertData = [];
     private array $columnasMes = [
         1 => 3, 2 => 4, 3 => 5, 4 => 7, 5 => 8, 6 => 9,
@@ -27,7 +27,7 @@ class VentasDetalladasSheetImport implements ToCollection
         Collection $lineas
     ) {
         $this->tmAlmacenes = $almacenRepo->findAllOrdered()->keyBy('id');
-        $this->lineas = $lineas->toArray();
+        $this->lineas = $lineas->map(fn($v) => is_object($v) ? $v->id : $v);
     }
 
     public function collection(Collection $rows): void
@@ -43,7 +43,7 @@ class VentasDetalladasSheetImport implements ToCollection
                 $lineaNumero = (int)$col1;
                 $lineaNombre = $col0;
 
-                $lineaId = $this->lineas[$lineaNumero] ?? null;
+                $lineaId = $this->lineas->get($lineaNumero);
 
                 if (!$lineaId) {
                     $lineaConcepto = $this->conceptoRepo->findByName($lineaNombre, 'LINEA_PRODUCTO');
@@ -52,7 +52,7 @@ class VentasDetalladasSheetImport implements ToCollection
                         continue;
                     }
                     $lineaId = $lineaConcepto->id;
-                    $this->lineas[$lineaNumero] = $lineaId;
+                    $this->lineas->put($lineaNumero, $lineaId);
                 }
 
                 foreach ($this->columnasMes as $mes => $colIndex) {

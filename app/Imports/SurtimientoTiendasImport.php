@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 class SurtimientoTiendasImport implements ToCollection
 {
     private array $upsertData = [];
-    private array $almacenes;
+    private Collection $almacenes;
     private array $conceptos;
     private array $cacheAlmacenes = [];
 

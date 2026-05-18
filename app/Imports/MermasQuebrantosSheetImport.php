@@ -14,7 +14,7 @@ class MermasQuebrantosSheetImport implements ToCollection
         private int $anio,
         private ?int $conceptoId,
         private array $porcentajes,
-        private array $almacenes,
+        private Collection $almacenes,
         private string $sheetName
     ) {}
 
@@ -23,7 +23,7 @@ class MermasQuebrantosSheetImport implements ToCollection
         if (!$this->conceptoId) return;
 
         $nombreAlmacen = StoreNameNormalizer::normalize($this->sheetName);
-        $almacen = $this->almacenes[$nombreAlmacen] ?? null;
+        $almacen = $this->almacenes->get($nombreAlmacen);
         if (!$almacen) return;
 
         $totalesMensuales = array_fill(1, 12, 0.0);

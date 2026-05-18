@@ -13,7 +13,7 @@ class AperturaTiendasSheetImport implements ToCollection
     public function __construct(
         private int $anio,
         private array $conceptos,
-        private array $almacenes,
+        private Collection $almacenes,
         private string $sheetName
     ) {}
 
@@ -85,6 +85,6 @@ class AperturaTiendasSheetImport implements ToCollection
     {
         $nombreExcel = mb_strtoupper(trim($nombreExcel));
         $nombreDB = StoreNameNormalizer::normalize($nombreExcel);
-        return $this->almacenes[$nombreDB] ?? null;
+        return $this->almacenes->get($nombreDB);
     }
 }

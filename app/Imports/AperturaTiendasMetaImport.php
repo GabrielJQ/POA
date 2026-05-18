@@ -4,13 +4,14 @@ namespace App\Imports;
 
 use App\Domain\Contracts\Repositories\IAlmacenRepository;
 use App\Domain\Contracts\Repositories\IConceptoMaestroRepository;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 
 class AperturaTiendasMetaImport implements WithMultipleSheets, SkipsUnknownSheets
 {
     private array $conceptos;
-    private array $almacenes;
+    private Collection $almacenes;
     private array $sheetImports = [];
 
     public function __construct(

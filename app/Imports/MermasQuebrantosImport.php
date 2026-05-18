@@ -4,12 +4,13 @@ namespace App\Imports;
 
 use App\Domain\Contracts\Repositories\IAlmacenRepository;
 use App\Domain\Contracts\Repositories\IConceptoMaestroRepository;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 
 class MermasQuebrantosImport implements WithMultipleSheets, SkipsUnknownSheets
 {
-    private array $almacenes;
+    private Collection $almacenes;
     private ?int $conceptoId;
     private array $porcentajes;
     private array $sheetImports = [];
