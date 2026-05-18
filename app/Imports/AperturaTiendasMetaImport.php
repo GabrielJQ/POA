@@ -2,127 +2,53 @@
 
 namespace App\Imports;
 
-use App\Domain\Entities\Almacen;
-use App\Domain\Entities\ConceptoMaestro;
-use App\Domain\Entities\RegistroFinanciero;
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use Exception;
+use App\Domain\Contracts\Repositories\IAlmacenRepository;
+use App\Domain\Contracts\Repositories\IConceptoMaestroRepository;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 
-class AperturaTiendasMetaImport
+class AperturaTiendasMetaImport implements WithMultipleSheets, SkipsUnknownSheets
 {
-    private $almacenes;
     private array $conceptos;
-    private array $cacheAlmacenes = [];
+    private array $almacenes;
+    private array $sheetImports = [];
 
-    public function __construct()
-    {
+    public function __construct(
+        private int $anio,
+        IAlmacenRepository $almacenRepo,
+        IConceptoMaestroRepository $conceptoRepo
+    ) {
+        $this->almacenes = $almacenRepo->findAllOrdered()->keyBy('nombre');
+
         $this->conceptos = [
-            'TOTAL'       => 33, // APERTURA DE TIENDAS
-            'OBJETIVO'    => 34, // APERTURA DE TIENDAS LOCALIDAD OBJETIVO
-            'ESTRATEGICA' => 35, // APERTURA DE TIENDAS LOCALIDAD ESTRATEGICA
+            'TOTAL'       => $conceptoRepo->findByName('APERTURA DE TIENDAS', 'POA')?->id,
+            'OBJETIVO'    => $conceptoRepo->findByName('APERTURA DE TIENDAS LOCALIDAD OBJETIVO', 'POA')?->id,
+            'ESTRATEGICA' => $conceptoRepo->findByName('APERTURA DE TIENDAS LOCALIDAD ESTRATEGICA', 'POA')?->id,
         ];
-        $this->almacenes = Almacen::all();
     }
 
-    public function import(string $filePath, int $anio): int
+    public function sheets(): array
     {
-        $spreadsheet = IOFactory::load($filePath);
-        $sheets = $spreadsheet->getSheetNames();
-        $count = 0;
-        $upsertData = [];
-
-        foreach ($sheets as $sheetName) {
-            if ($sheetName === 'PT 4') continue; 
-
-            $sheet = $spreadsheet->getSheetByName($sheetName);
-            
-            $almacenName = '';
-            for ($i = 1; $i <= 10; $i++) {
-                $val = $sheet->getCell("A$i")->getValue();
-                if (stripos((string)$val, 'ALMACÉN') !== false) {
-                    $almacenName = trim($sheet->getCell("D$i")->getValue());
-                    break;
-                }
-            }
-            if (!$almacenName) $almacenName = $sheetName;
-
-            $almacen = $this->findAlmacen($almacenName);
-            if (!$almacen) continue;
-
-            $dataRows = $sheet->toArray();
-            $monthlyTotals = []; 
-
-            for ($rowIdx = 11; $rowIdx < count($dataRows); $rowIdx++) {
-                $row = $dataRows[$rowIdx];
-                $firstCell = trim((string)($row[0] ?? ''));
-                if (stripos($firstCell, 'TOTAL') !== false || empty(array_filter($row))) {
-                    if (stripos($firstCell, 'TOTAL') !== false) break;
-                    continue;
-                }
-
-                $esObjetivo = !empty(trim((string)($row[9] ?? '')));
-                $esEstrategica = !empty(trim((string)($row[10] ?? '')));
-
-                for ($m = 1; $m <= 12; $m++) {
-                    $colIdx = 10 + $m; 
-                    $cellValue = $row[$colIdx] ?? null;
-
-                    if ($cellValue !== null && $cellValue !== '') {
-                        $monthlyTotals[$m][$this->conceptos['TOTAL']] = ($monthlyTotals[$m][$this->conceptos['TOTAL']] ?? 0) + 1;
-                        
-                        if ($esObjetivo) {
-                            $monthlyTotals[$m][$this->conceptos['OBJETIVO']] = ($monthlyTotals[$m][$this->conceptos['OBJETIVO']] ?? 0) + 1;
-                        }
-                        if ($esEstrategica) {
-                            $monthlyTotals[$m][$this->conceptos['ESTRATEGICA']] = ($monthlyTotals[$m][$this->conceptos['ESTRATEGICA']] ?? 0) + 1;
-                        }
-                    }
-                }
-            }
-
-            foreach ($monthlyTotals as $mes => $concepts) {
-                foreach ($concepts as $conceptoId => $monto) {
-                    $upsertData[] = [
-                        'almacen_id' => $almacen->id,
-                        'concepto_id' => $conceptoId,
-                        'anio' => $anio,
-                        'mes' => $mes,
-                        'tipo_dato' => 'META',
-                        'programa' => null,
-                        'monto' => $monto
-                    ];
-                    $count++;
-                }
-            }
-        }
-
-        if (!empty($upsertData)) {
-            $chunks = array_chunk($upsertData, 1000);
-            foreach ($chunks as $chunk) {
-                RegistroFinanciero::upsert(
-                    $chunk,
-                    ['almacen_id', 'concepto_id', 'anio', 'mes', 'tipo_dato', 'programa'],
-                    ['monto']
-                );
-            }
-        }
-
-        $spreadsheet->disconnectWorksheets();
-        return $count;
+        return [];
     }
 
-    private function findAlmacen(string $nombreExcel): ?Almacen
+    public function onUnknownSheet($sheetName)
     {
-        $nombreExcel = mb_strtoupper(trim($nombreExcel));
+        if ($sheetName === 'PT 4') return;
 
-        if (isset($this->cacheAlmacenes[$nombreExcel])) {
-            return $this->cacheAlmacenes[$nombreExcel];
+        $sheetImport = new AperturaTiendasSheetImport(
+            $this->anio, $this->conceptos, $this->almacenes, $sheetName
+        );
+        $this->sheetImports[] = $sheetImport;
+        return $sheetImport;
+    }
+
+    public function getUpsertData(): array
+    {
+        $data = [];
+        foreach ($this->sheetImports as $si) {
+            $data = array_merge($data, $si->getUpsertData());
         }
-
-        $nombreDB = \App\Domain\Shared\StoreNameNormalizer::normalize($nombreExcel);
-        $almacen = collect($this->almacenes)->firstWhere('nombre', $nombreDB);
-
-        $this->cacheAlmacenes[$nombreExcel] = $almacen;
-        return $almacen;
+        return $data;
     }
 }

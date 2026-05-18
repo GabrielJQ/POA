@@ -4,27 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Imports\ERImport;
-use App\Imports\VentasDetalladasImport;
-use App\Imports\SurtimientoTiendasImport;
-use App\Imports\MermasQuebrantosImport;
-use App\Imports\AperturaTiendasMetaImport;
 use App\Domain\Entities\Almacen;
 use App\Domain\Entities\ConceptoMaestro;
 use App\Domain\Entities\RegistroFinanciero;
 use App\Domain\Contracts\IPDFERExtractorService;
+use App\Application\UseCases\POA\ImportarSurtimiento;
+use App\Application\UseCases\POA\ImportarAperturaTiendas;
+use App\Application\UseCases\POA\ImportarMermas;
+use App\Application\UseCases\POA\ImportarVentasDetalladas;
 use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ImportController extends Controller
 {
     private IPDFERExtractorService $pdfService;
+    private ImportarSurtimiento $importarSurtimiento;
+    private ImportarAperturaTiendas $importarAperturaTiendas;
+    private ImportarMermas $importarMermas;
+    private ImportarVentasDetalladas $importarVentasDetalladas;
 
-    public function __construct(IPDFERExtractorService $pdfService)
-    {
+    public function __construct(
+        IPDFERExtractorService $pdfService,
+        ImportarSurtimiento $importarSurtimiento,
+        ImportarAperturaTiendas $importarAperturaTiendas,
+        ImportarMermas $importarMermas,
+        ImportarVentasDetalladas $importarVentasDetalladas
+    ) {
         $this->pdfService = $pdfService;
+        $this->importarSurtimiento = $importarSurtimiento;
+        $this->importarAperturaTiendas = $importarAperturaTiendas;
+        $this->importarMermas = $importarMermas;
+        $this->importarVentasDetalladas = $importarVentasDetalladas;
     }
 
     /**
@@ -112,19 +124,17 @@ class ImportController extends Controller
         ini_set('memory_limit', '512M');
         $request->validate([
             'archivo' => 'required|file|mimes:xlsx,xls,csv|max:102400',
-            'programa' => 'nullable|in:PAR,PE',
+            'anio' => 'required|integer|min:2000|max:2100',
         ]);
 
         try {
-            $archivo = $request->file('archivo');
-            $programa = $request->programa ?? 'PAR';
+            $result = $this->importarVentasDetalladas->execute(
+                $request->file('archivo'),
+                (int) $request->anio
+            );
 
-            $import = new \App\Imports\VentasDetalladasImport($programa);
-            $totalRegistros = $import->import($archivo->getRealPath());
-
-            $this->invalidateCache();
-            Log::info("[ImportController] Ventas importadas: {$totalRegistros} registros ({$programa}).");
-            return back()->with('success', "Se han importado {$totalRegistros} registros de ventas ({$programa}) correctamente.");
+            Log::info("[ImportController] Ventas importadas.");
+            return back()->with('success', $result['message']);
         } catch (Exception $e) {
             Log::error("[ImportController] Error al importar ventas: " . $e->getMessage(), [
                 'file' => $e->getFile(),
@@ -158,14 +168,14 @@ class ImportController extends Controller
         ]);
 
         try {
-            $anio = (int) $request->anio;
-            $import = new SurtimientoTiendasImport();
-            $count = $import->import($request->file('archivo')->getRealPath(), $anio);
+            $result = $this->importarSurtimiento->execute(
+                $request->file('archivo'),
+                (int) $request->anio
+            );
 
-            $this->invalidateCache();
-            Log::info("[ImportController] Surtimiento importado para {$anio}: {$count} registros.");
+            Log::info("[ImportController] Surtimiento importado.");
             return redirect()->route('importaciones.index')
-                ->with('success', "Surtimiento a tiendas importado para {$anio}. {$count} registros REALES guardados.");
+                ->with('success', $result['message']);
         } catch (Exception $e) {
             Log::error("[ImportController] Error al importar surtimiento: " . $e->getMessage(), [
                 'file' => $e->getFile(),
@@ -199,14 +209,14 @@ class ImportController extends Controller
         ]);
 
         try {
-            $anio = (int) $request->anio;
-            $import = new MermasQuebrantosImport();
-            $count = $import->import($request->file('archivo')->getRealPath(), $anio);
+            $result = $this->importarMermas->execute(
+                $request->file('archivo'),
+                (int) $request->anio
+            );
 
-            $this->invalidateCache();
-            Log::info("[ImportController] Mermas importadas para {$anio}: {$count} registros.");
+            Log::info("[ImportController] Mermas importadas.");
             return redirect()->route('importaciones.index')
-                ->with('success', "Mermas, Quebrantos y Mal Estado importados para {$anio}. {$count} registros COMPROMETIDO guardados.");
+                ->with('success', $result['message']);
         } catch (Exception $e) {
             Log::error("[ImportController] Error al importar mermas: " . $e->getMessage(), [
                 'file' => $e->getFile(),
@@ -346,14 +356,14 @@ class ImportController extends Controller
         ]);
 
         try {
-            $anio = (int) $request->anio;
-            $import = new AperturaTiendasMetaImport();
-            $count = $import->import($request->file('archivo')->getRealPath(), $anio);
+            $result = $this->importarAperturaTiendas->execute(
+                $request->file('archivo'),
+                (int) $request->anio
+            );
 
-            $this->invalidateCache();
-            Log::info("[ImportController] Apertura de tiendas (META) importado para {$anio}: {$count} registros.");
+            Log::info("[ImportController] Apertura de tiendas importada.");
             return redirect()->route('importaciones.index')
-                ->with('success', "Apertura de tiendas (COMPROMETIDO) importado para {$anio}. {$count} registros de METAS guardados.");
+                ->with('success', $result['message']);
         } catch (Exception $e) {
             Log::error("[ImportController] Error al importar apertura de tiendas: " . $e->getMessage());
             return redirect()->route('importaciones.index')

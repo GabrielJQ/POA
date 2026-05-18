@@ -2,135 +2,50 @@
 
 namespace App\Imports;
 
-use App\Domain\Entities\Almacen;
-use App\Domain\Entities\ConceptoMaestro;
-use App\Domain\Entities\RegistroFinanciero;
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use Exception;
+use App\Domain\Contracts\Repositories\IAlmacenRepository;
+use App\Domain\Contracts\Repositories\IConceptoMaestroRepository;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 
-class MermasQuebrantosImport
+class MermasQuebrantosImport implements WithMultipleSheets, SkipsUnknownSheets
 {
-    private $almacenes;
-    private ?int $conceptoId = null;
-    private array $cacheAlmacenes = [];
+    private array $almacenes;
+    private ?int $conceptoId;
     private array $porcentajes;
+    private array $sheetImports = [];
 
-    public function __construct()
-    {
+    public function __construct(
+        private int $anio,
+        IAlmacenRepository $almacenRepo,
+        IConceptoMaestroRepository $conceptoRepo
+    ) {
         $this->porcentajes = config('mermas.lineas', []);
-        $this->almacenes = Almacen::all();
-        $concepto = ConceptoMaestro::where('nombre', 'MERMAS, QUEBRANTOS Y MAL ESTADO')
-            ->where('categoria', 'POA')
-            ->first();
+        $this->almacenes = $almacenRepo->findAllOrdered()->keyBy('nombre');
+
+        $concepto = $conceptoRepo->findByName('MERMAS, QUEBRANTOS Y MAL ESTADO', 'POA');
         $this->conceptoId = $concepto?->id;
     }
 
-    public function import(string $filePath, int $anio): int
+    public function sheets(): array
     {
-        if (!$this->conceptoId) {
-            throw new Exception('Concepto MERMAS, QUEBRANTOS Y MAL ESTADO no encontrado en la base de datos.');
-        }
-
-        $reader = IOFactory::createReaderForFile($filePath);
-        $reader->setReadDataOnly(true);
-        $spreadsheet = $reader->load($filePath);
-
-        $count = 0;
-        $upsertData = [];
-
-        foreach ($spreadsheet->getSheetNames() as $sheetName) {
-            $nombreAlmacen = \App\Domain\Shared\StoreNameNormalizer::normalize($sheetName);
-            
-            $almacen = $this->almacenes->where('nombre', $nombreAlmacen)->first();
-            if (!$almacen) continue;
-
-            $sheet = $spreadsheet->getSheetByName($sheetName);
-            $rows = $sheet->toArray();
-
-            $totalesMensuales = array_fill(1, 12, 0.0);
-
-            // PROGRAMA ABASTO RURAL: rows 15-22 (1-indexed) = indices 14-21 (0-indexed)
-            for ($i = 14; $i <= 21; $i++) {
-                if (!isset($rows[$i])) continue;
-
-                $nombreLinea = trim((string) ($rows[$i][0] ?? ''));
-                if (empty($nombreLinea)) continue;
-
-                $porcentajes = $this->porcentajes[$nombreLinea] ?? null;
-                if (!$porcentajes) continue;
-
-                $tasaMerma = (float) ($porcentajes['merma'] ?? 0);
-                $tasaQuebranto = (float) ($porcentajes['quebranto'] ?? 0);
-                $tasaTotal = ($tasaMerma + $tasaQuebranto) / 100;
-
-                if ($tasaTotal <= 0) continue;
-
-                // Columnas $ por mes: col E(4)=ENERO, G(6)=FEBRERO, ..., col AA(26)=DICIEMBRE
-                for ($mes = 1; $mes <= 12; $mes++) {
-                    $colIdx = ($mes - 1) * 2 + 4;
-                    $montoVenta = $this->parseMonto($rows[$i][$colIdx] ?? null);
-                    if ($montoVenta === null || $montoVenta <= 0) continue;
-
-                    $totalesMensuales[$mes] += $montoVenta * $tasaTotal;
-                }
-            }
-
-            for ($mes = 1; $mes <= 12; $mes++) {
-                if ($totalesMensuales[$mes] <= 0) continue;
-
-                $upsertData[] = [
-                    'almacen_id' => $almacen->id,
-                    'concepto_id' => $this->conceptoId,
-                    'anio' => $anio,
-                    'mes' => $mes,
-                    'tipo_dato' => 'META',
-                    'programa' => null,
-                    'monto' => round($totalesMensuales[$mes], 2)
-                ];
-                $count++;
-            }
-        }
-
-        if (!empty($upsertData)) {
-            $chunks = array_chunk($upsertData, 1000);
-            foreach ($chunks as $chunk) {
-                RegistroFinanciero::upsert(
-                    $chunk,
-                    ['almacen_id', 'concepto_id', 'anio', 'mes', 'tipo_dato', 'programa'],
-                    ['monto']
-                );
-            }
-        }
-
-        $spreadsheet->disconnectWorksheets();
-        return $count;
+        return [];
     }
 
-    private function findAlmacen(string $nombre): ?Almacen
+    public function onUnknownSheet($sheetName)
     {
-        if (isset($this->cacheAlmacenes[$nombre])) {
-            return $this->cacheAlmacenes[$nombre];
-        }
-
-        $almacen = Almacen::where('nombre', $nombre)->first();
-        $this->cacheAlmacenes[$nombre] = $almacen;
-        return $almacen;
+        $sheetImport = new MermasQuebrantosSheetImport(
+            $this->anio, $this->conceptoId, $this->porcentajes, $this->almacenes, $sheetName
+        );
+        $this->sheetImports[] = $sheetImport;
+        return $sheetImport;
     }
 
-    private function parseMonto($valor): ?float
+    public function getUpsertData(): array
     {
-        if ($valor === null || $valor === '') return null;
-
-        if (is_numeric($valor)) {
-            $num = (float) $valor;
-            return $num > 0 ? $num : null;
+        $data = [];
+        foreach ($this->sheetImports as $si) {
+            $data = array_merge($data, $si->getUpsertData());
         }
-
-        $limpio = str_replace(',', '', trim((string) $valor));
-        $limpio = preg_replace('/[^\d.-]/', '', $limpio);
-
-        if (!is_numeric($limpio)) return null;
-        $num = (float) $limpio;
-        return $num > 0 ? $num : null;
+        return $data;
     }
 }
