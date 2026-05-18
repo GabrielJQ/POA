@@ -80,17 +80,24 @@ class ERDomainService
 
     public function guardarManual(array $datos): void
     {
+        $upsertData = [];
         foreach ($datos as $dato) {
-            RegistroFinanciero::updateOrCreate(
-                [
-                    'almacen_id' => $dato['almacen_id'],
-                    'concepto_id' => $dato['concepto_id'],
-                    'anio' => $dato['anio'],
-                    'mes' => $dato['mes'],
-                    'tipo_dato' => 'REAL',
-                    'programa' => null,
-                ],
-                ['monto' => $dato['monto']]
+            $upsertData[] = [
+                'almacen_id' => $dato['almacen_id'],
+                'concepto_id' => $dato['concepto_id'],
+                'anio' => $dato['anio'],
+                'mes' => $dato['mes'],
+                'tipo_dato' => 'REAL',
+                'programa' => null,
+                'monto' => $dato['monto']
+            ];
+        }
+
+        if (!empty($upsertData)) {
+            RegistroFinanciero::upsert(
+                $upsertData,
+                ['almacen_id', 'concepto_id', 'anio', 'mes', 'tipo_dato', 'programa'],
+                ['monto']
             );
         }
     }

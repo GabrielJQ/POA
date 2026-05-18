@@ -38,6 +38,7 @@ class AperturaTiendasMetaImport
         $spreadsheet = IOFactory::load($filePath);
         $sheets = $spreadsheet->getSheetNames();
         $count = 0;
+        $upsertData = [];
 
         foreach ($sheets as $sheetName) {
             if ($sheetName === 'PT 4') continue; 
@@ -90,18 +91,28 @@ class AperturaTiendasMetaImport
 
             foreach ($monthlyTotals as $mes => $concepts) {
                 foreach ($concepts as $conceptoId => $monto) {
-                    RegistroFinanciero::updateOrCreate(
-                        [
-                            'almacen_id' => $almacen->id,
-                            'concepto_id' => $conceptoId,
-                            'anio' => $anio,
-                            'mes' => $mes,
-                            'tipo_dato' => 'META',
-                        ],
-                        ['monto' => $monto]
-                    );
+                    $upsertData[] = [
+                        'almacen_id' => $almacen->id,
+                        'concepto_id' => $conceptoId,
+                        'anio' => $anio,
+                        'mes' => $mes,
+                        'tipo_dato' => 'META',
+                        'programa' => null,
+                        'monto' => $monto
+                    ];
                     $count++;
                 }
+            }
+        }
+
+        if (!empty($upsertData)) {
+            $chunks = array_chunk($upsertData, 1000);
+            foreach ($chunks as $chunk) {
+                RegistroFinanciero::upsert(
+                    $chunk,
+                    ['almacen_id', 'concepto_id', 'anio', 'mes', 'tipo_dato', 'programa'],
+                    ['monto']
+                );
             }
         }
 

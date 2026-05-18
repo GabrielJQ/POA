@@ -53,6 +53,7 @@ class SurtimientoTiendasImport
         ];
 
         $count = 0;
+        $upsertData = [];
 
         foreach ($rows as $rowNum => $row) {
             if ($rowNum < 5) continue;
@@ -66,45 +67,49 @@ class SurtimientoTiendasImport
                 $valorOportunidad = $this->parseValor($row[$t['op']] ?? null);
                 $valorEficiencia = $this->parseValor($row[$t['ef']] ?? null);
 
-                if ($valorOportunidad !== null) {
-                    $count += $this->guardarMensual(
-                        $almacen->id, $this->conceptos['OPORTUNIDAD'],
-                        $anio, $t['meses'], $valorOportunidad / 3
-                    );
+                if ($valorOportunidad !== null && $this->conceptos['OPORTUNIDAD']) {
+                    foreach ($t['meses'] as $mes) {
+                        $upsertData[] = [
+                            'almacen_id' => $almacen->id,
+                            'concepto_id' => $this->conceptos['OPORTUNIDAD'],
+                            'anio' => $anio,
+                            'mes' => $mes,
+                            'tipo_dato' => 'REAL',
+                            'programa' => null,
+                            'monto' => $valorOportunidad / 3
+                        ];
+                        $count++;
+                    }
                 }
-                if ($valorEficiencia !== null) {
-                    $count += $this->guardarMensual(
-                        $almacen->id, $this->conceptos['EFICIENCIA'],
-                        $anio, $t['meses'], $valorEficiencia / 3
-                    );
+                if ($valorEficiencia !== null && $this->conceptos['EFICIENCIA']) {
+                    foreach ($t['meses'] as $mes) {
+                        $upsertData[] = [
+                            'almacen_id' => $almacen->id,
+                            'concepto_id' => $this->conceptos['EFICIENCIA'],
+                            'anio' => $anio,
+                            'mes' => $mes,
+                            'tipo_dato' => 'REAL',
+                            'programa' => null,
+                            'monto' => $valorEficiencia / 3
+                        ];
+                        $count++;
+                    }
                 }
             }
         }
 
-        $spreadsheet->disconnectWorksheets();
-        return $count;
-    }
-
-    private function guardarMensual(int $almacenId, ?int $conceptoId, int $anio, array $meses, float $montoMensual): int
-    {
-        if (!$conceptoId) return 0;
-        if ($montoMensual == 0) return 0;
-
-        $count = 0;
-        foreach ($meses as $mes) {
-            RegistroFinanciero::updateOrCreate(
-                [
-                    'almacen_id' => $almacenId,
-                    'concepto_id' => $conceptoId,
-                    'anio' => $anio,
-                    'mes' => $mes,
-                    'tipo_dato' => 'REAL',
-                    'programa' => null,
-                ],
-                ['monto' => $montoMensual]
-            );
-            $count++;
+        if (!empty($upsertData)) {
+            $chunks = array_chunk($upsertData, 1000);
+            foreach ($chunks as $chunk) {
+                RegistroFinanciero::upsert(
+                    $chunk,
+                    ['almacen_id', 'concepto_id', 'anio', 'mes', 'tipo_dato', 'programa'],
+                    ['monto']
+                );
+            }
         }
+
+        $spreadsheet->disconnectWorksheets();
         return $count;
     }
 

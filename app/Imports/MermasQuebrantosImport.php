@@ -49,6 +49,7 @@ class MermasQuebrantosImport
         $spreadsheet = $reader->load($filePath);
 
         $count = 0;
+        $upsertData = [];
 
         foreach ($spreadsheet->getSheetNames() as $sheetName) {
             if ($sheetName === 'PT 2') continue;
@@ -93,18 +94,27 @@ class MermasQuebrantosImport
             for ($mes = 1; $mes <= 12; $mes++) {
                 if ($totalesMensuales[$mes] <= 0) continue;
 
-                RegistroFinanciero::updateOrCreate(
-                    [
-                        'almacen_id' => $almacen->id,
-                        'concepto_id' => $this->conceptoId,
-                        'anio' => $anio,
-                        'mes' => $mes,
-                        'tipo_dato' => 'META',
-                        'programa' => null,
-                    ],
-                    ['monto' => round($totalesMensuales[$mes], 2)]
-                );
+                $upsertData[] = [
+                    'almacen_id' => $almacen->id,
+                    'concepto_id' => $this->conceptoId,
+                    'anio' => $anio,
+                    'mes' => $mes,
+                    'tipo_dato' => 'META',
+                    'programa' => null,
+                    'monto' => round($totalesMensuales[$mes], 2)
+                ];
                 $count++;
+            }
+        }
+
+        if (!empty($upsertData)) {
+            $chunks = array_chunk($upsertData, 1000);
+            foreach ($chunks as $chunk) {
+                RegistroFinanciero::upsert(
+                    $chunk,
+                    ['almacen_id', 'concepto_id', 'anio', 'mes', 'tipo_dato', 'programa'],
+                    ['monto']
+                );
             }
         }
 

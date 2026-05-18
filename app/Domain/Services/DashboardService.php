@@ -39,6 +39,25 @@ class DashboardService
             $ventas = $reales->filter(fn($r) => $lpIds->contains($r->concepto_id));
             $realesPOA = $reales->reject(fn($r) => $lpIds->contains($r->concepto_id));
 
+            // Optimización de N+1 en memoria: pre-agrupar para evitar O(N*A*C) con collections
+            $realesPoaGrouped = [];
+            foreach ($realesPOA as $r) {
+                $realesPoaGrouped[$r->almacen_id][$r->concepto_id] = ($realesPoaGrouped[$r->almacen_id][$r->concepto_id] ?? 0) + (float)$r->monto;
+            }
+
+            $metasGrouped = [];
+            foreach ($metas as $m) {
+                $metasGrouped[$m->almacen_id][$m->concepto_id] = ($metasGrouped[$m->almacen_id][$m->concepto_id] ?? 0) + (float)$m->monto;
+            }
+
+            $ventasGrouped = [];
+            foreach ($ventas as $v) {
+                $ventasGrouped[$v->almacen_id]['TOTAL'] = ($ventasGrouped[$v->almacen_id]['TOTAL'] ?? 0) + (float)$v->monto;
+                if ($v->programa) {
+                    $ventasGrouped[$v->almacen_id][$v->programa] = ($ventasGrouped[$v->almacen_id][$v->programa] ?? 0) + (float)$v->monto;
+                }
+            }
+
             $indicePorAlmacen = [];
         $totalSinDatos = 0;
         $enRojo = 0;
@@ -62,10 +81,7 @@ class DashboardService
                 }
 
                 if ($esPorcentaje) {
-                    $realSum = (float) $realesPOA
-                        ->where('concepto_id', $metaConceptoId)
-                        ->where('almacen_id', $almacen->id)
-                        ->sum('monto');
+                    $realSum = (float) ($realesPoaGrouped[$almacen->id][$metaConceptoId] ?? 0);
 
                     if ($realSum > 0) {
                         $pctLogro = max(0, min($realSum, 100));
@@ -78,10 +94,7 @@ class DashboardService
                         ];
                     }
                 } else {
-                    $metasStore = $metas
-                        ->where('concepto_id', $metaConceptoId)
-                        ->where('almacen_id', $almacen->id);
-                    $metaSum = (float) $metasStore->sum('monto');
+                    $metaSum = (float) ($metasGrouped[$almacen->id][$metaConceptoId] ?? 0);
 
                     if ($metaSum > 0) {
                         $isVentas = stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA') !== false;
@@ -92,16 +105,14 @@ class DashboardService
                             } elseif (stripos($compromiso->nombre, 'PE') !== false) {
                                 $programa = 'PE';
                             }
-                            $realRecords = $ventas->where('almacen_id', $almacen->id);
+                            
                             if ($programa) {
-                                $realRecords = $realRecords->where('programa', $programa);
+                                $realSum = (float) ($ventasGrouped[$almacen->id][$programa] ?? 0);
+                            } else {
+                                $realSum = (float) ($ventasGrouped[$almacen->id]['TOTAL'] ?? 0);
                             }
-                            $realSum = (float) $realRecords->sum('monto');
                         } else {
-                            $realSum = (float) $realesPOA
-                                ->where('concepto_id', $metaConceptoId)
-                                ->where('almacen_id', $almacen->id)
-                                ->sum('monto');
+                            $realSum = (float) ($realesPoaGrouped[$almacen->id][$metaConceptoId] ?? 0);
                         }
 
                         $pctLogro = $realSum > 0 ? min(($realSum / $metaSum) * 100, 100) : 0;
