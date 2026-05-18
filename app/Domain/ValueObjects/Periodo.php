@@ -17,13 +17,13 @@ class Periodo
         4 => [10, 11, 12],
     ];
 
-    private const NOMBRES_MESES = [
+    public const NOMBRES_MESES = [
         1 => 'ENERO', 2 => 'FEBRERO', 3 => 'MARZO', 4 => 'ABRIL',
         5 => 'MAYO', 6 => 'JUNIO', 7 => 'JULIO', 8 => 'AGOSTO',
         9 => 'SEPTIEMBRE', 10 => 'OCTUBRE', 11 => 'NOVIEMBRE', 12 => 'DICIEMBRE',
     ];
 
-    private const NOMBRES_TRIMESTRES = [
+    public const NOMBRES_TRIMESTRES = [
         1 => 'ENE-MAR', 2 => 'ABR-JUN', 3 => 'JUL-SEP', 4 => 'OCT-DIC',
     ];
 

@@ -155,7 +155,7 @@
                     $fila2 = $dataPoa[$compromiso->id][$compromiso->label_fila_2] ?? null;
                     if (!$fila1 && !$fila2) continue;
 
-                    $esPorcentaje = stripos($compromiso->unidad_medida ?? '', 'PORCENTAJE') !== false;
+                    $esPorcentaje = \App\Domain\Shared\PoaHelpers::esPorcentaje($compromiso->unidad_medida);
                     $esMoneda = strtoupper($compromiso->unidad_medida ?? '') === 'PESOS';
 
                     $metaAnual1 = $fila1 ? (float)$fila1->meta_anual : 0;
@@ -163,12 +163,12 @@
 
                     $avance1 = 0;
                     foreach ($mesesConfig as $m) {
-                        $col = 'mes_' . str_pad($m, 2, '0', STR_PAD_LEFT);
+                        $col = \App\Domain\Shared\PoaHelpers::columnaMes($m);
                         $avance1 += $fila1 ? (float)($fila1->$col ?? 0) : 0;
                     }
                     $avance2 = 0;
                     foreach ($mesesConfig as $m) {
-                        $col = 'mes_' . str_pad($m, 2, '0', STR_PAD_LEFT);
+                        $col = \App\Domain\Shared\PoaHelpers::columnaMes($m);
                         $avance2 += $fila2 ? (float)($fila2->$col ?? 0) : 0;
                     }
 

@@ -10,21 +10,13 @@ use Exception;
 
 class SurtimientoTiendasImport
 {
-    private array $mapeoAlmacenes = [
-        'AYUTLA MIXE'        => 'AYUTLA MIXES',
-        'SN ANDRES HIDALGO.' => 'SAN ANDRES HIDALGO',
-        'EL CHILAR'          => 'SAN JOSE EL CHILAR',
-        'JUCHATENGO'         => 'SAN PEDRO JUCHATENGO',
-        'SANTA MA. LACHIXIO' => 'LACHIXIO',
-        'TAMAZULAPAM'        => 'TAMAZULAPAN',
-        'TEOTITLAN DE F.M.'  => 'SANTIAGO TEOTITLAN',
-    ];
-
+    private $almacenes;
     private array $conceptos;
     private array $cacheAlmacenes = [];
 
     public function __construct()
     {
+        $this->almacenes = Almacen::all();
         $this->conceptos = [
             'OPORTUNIDAD' => ConceptoMaestro::where('nombre', 'OPORTUNIDAD DE SURTIMIENTO A TIENDAS')
                 ->where('categoria', 'POA')->first()?->id,
@@ -121,8 +113,8 @@ class SurtimientoTiendasImport
             return $this->cacheAlmacenes[$nombreExcel];
         }
 
-        $nombreDB = $this->mapeoAlmacenes[$nombreExcel] ?? $nombreExcel;
-        $almacen = Almacen::where('nombre', $nombreDB)->first();
+        $nombreDB = \App\Domain\Shared\StoreNameNormalizer::normalize($nombreExcel);
+        $almacen = collect($this->almacenes)->firstWhere('nombre', $nombreDB);
         $this->cacheAlmacenes[$nombreExcel] = $almacen;
         return $almacen;
     }

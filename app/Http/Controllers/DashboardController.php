@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Domain\Services\DashboardService;
+use App\Domain\Contracts\IDashboardService;
 
 class DashboardController extends Controller
 {
-    private DashboardService $dashboardService;
+    private IDashboardService $dashboardService;
 
-    public function __construct(DashboardService $dashboardService)
+    public function __construct(IDashboardService $dashboardService)
     {
         $this->dashboardService = $dashboardService;
     }

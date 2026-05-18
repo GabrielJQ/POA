@@ -11,7 +11,7 @@ use App\Imports\AperturaTiendasMetaImport;
 use App\Models\Almacen;
 use App\Models\ConceptoMaestro;
 use App\Models\RegistroFinanciero;
-use App\Domain\Services\PDFERExtractorService;
+use App\Domain\Contracts\IPDFERExtractorService;
 use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -20,9 +20,9 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ImportController extends Controller
 {
-    private PDFERExtractorService $pdfService;
+    private IPDFERExtractorService $pdfService;
 
-    public function __construct(PDFERExtractorService $pdfService)
+    public function __construct(IPDFERExtractorService $pdfService)
     {
         $this->pdfService = $pdfService;
     }
@@ -38,7 +38,7 @@ class ImportController extends Controller
     public function index()
     {
         $almacenes = Cache::remember(
-            'almacenes_ordenados',
+            \App\Domain\Shared\CacheKeys::ALMACENES,
             86400,
             fn() =>
             Almacen::orderBy('nombre')->get()
@@ -71,23 +71,9 @@ class ImportController extends Controller
             $anio = (int) $request->anio;
             $archivo = $request->file('archivo');
 
-            // Carga única del libro completo
-            $reader = IOFactory::createReaderForFile($archivo->getRealPath());
-            $reader->setReadDataOnly(true);
-            $spreadsheet = $reader->load($archivo->getRealPath());
-            $sheetNames = $spreadsheet->getSheetNames();
-            $totalRegistros = 0;
-
-            foreach ($sheetNames as $index => $actualSheetName) {
-                $sheet = $spreadsheet->getSheet($index);
-                $rows = $sheet->toArray();
-                $sheetImport = new \App\Imports\ERSheetImport($anio, $actualSheetName);
-                $registros = $sheetImport->import($rows);
-                if ($registros > 0) {
-                    $totalRegistros += $registros;
-                }
-            }
-            $spreadsheet->disconnectWorksheets();
+            // Carga única del libro completo mediante Maatwebsite Excel delegando a ERImport
+            \Maatwebsite\Excel\Facades\Excel::import(new \App\Imports\ERImport($anio), $archivo);
+            $totalRegistros = 1; // Indicador de éxito
 
             if ($totalRegistros === 0) {
                 throw new Exception("No se encontraron datos válidos en las hojas del archivo. Asegúrate de que el formato sea correcto.");
@@ -377,7 +363,6 @@ class ImportController extends Controller
 
     private function invalidateCache(): void
     {
-        Cache::rememberForever('poa_cache_version', fn() => 0);
-        Cache::increment('poa_cache_version');
+        \App\Domain\Shared\CacheManager::invalidatePoaCache();
     }
 }

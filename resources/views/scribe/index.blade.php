@@ -161,6 +161,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="importaciones-POSTimportaciones-mermas-comprometido">
                                 <a href="#importaciones-POSTimportaciones-mermas-comprometido">Guardar mermas realizadas (formulario manual)</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="importaciones-POSTimportaciones-apertura-tiendas">
+                                <a href="#importaciones-POSTimportaciones-apertura-tiendas">Importar apertura de tiendas (Excel)</a>
+                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-poa" class="tocify-header">
@@ -191,7 +194,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 14, 2026</li>
+        <li>Last updated: May 18, 2026</li>
     </ul>
 </div>
 
@@ -262,7 +265,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=utf-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV1ZvOXc2QnRYd08rN1RKVjhDOTUzQk5PK0dLOHQvWUZ1eTYvWVdkZnBCeHYxQ2pvOTZMTHpvanBNa1NIMjFWMWN1cGNXYmtpRUYvcm10SmhrV1BSUEhIYWhXNHZham9QZnJMWFVUcHRyM2hQYUhqaGo5Q0VVYUs4ajNwQ2FEU3giLCJtYWMiOiIyYmVmMjA4MGY2NDZmODY4YTZiMGIwMGZiYWQ1NzhjNDhhMmMxNjJjOTI3NGNlZDNhNzNjOWNhMjJjODlkM2EwIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:35 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6InJydFg2SVZmeWMyd1VHN2o4eXhscGc9PSIsInZhbHVlIjoiNndWbzV6NWpBemFPSVVKTW1hNzFodm9OVHhXYkxxbEs5Q3lrUmhzOXZtcklZelgrejVSUjh1RnRvMWpjcXovOG9ZYS90RTNhQTBCWFFMcGcyblVyeGF1ckhqK1dIOHJYZzVlLy9hYzJMS09YdzFIR1pGeDM3MlhBMWpmVnozN1QiLCJtYWMiOiJjZmM2ZmU1YzM5MjM5Mzg1Yjc0MGVkZGU0MmRiYTk5ODVmNGYxZWZhOTAxZGE2ODU5YWFmZDBiZTVmMTdmZjBjIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:35 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IllmK2p4cElKUjIxOExmbHVTaFpad1E9PSIsInZhbHVlIjoiK2hPbHM2bmFlRzMwdjloVlJEdUljZnM0aU9EbU84NUxyUlo3ZDc4elo4L3h6cnJjTlRab0NBb2xLUC9GcHdWT1RWazVzajhPeExWanMzOFZKUTJWVTl4cm5WUlBsMGZiYnB0bnhUUUsvRVhNTGNKS1dPNkNsTmhJT3BvWm5OaFUiLCJtYWMiOiJkMTg4ZjRjZWNmMGMyNjQ1MzdhZjM1M2ZkZmMxNmFjYmRhYzg5Y2RkYmI2NWE1YTUwYjZiN2Q3OGZhYzY1Mzk5IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:20 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IlU1NTNUZk5CcUl2UGIyMWdtZVZiaHc9PSIsInZhbHVlIjoiUHBlK2dNdHZiNmpvRGdnSFJpc2xRTU5tT0MvclBNcDNvTll0d3lKdEV3T0s2S242Njg2T05VZ0N2eUwrcjlWNmNwZ0I2WFR1NnU1bEJ1K2dEKzF5VDZoZFgycFFGd0k5TVZGRkJrVDBYMHpiY2FMU2cyVElRSFc5OUpBTUk5b0MiLCJtYWMiOiIwNDJiNjAyODg5ZGRiMGIyOWY4MjU1MzRlOGY3NjcxNzgyNzY4YzY1MjViYjZjYTRmZGZjYTU5MjIwNThkNzI3IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:20 GMT; Max-Age=7199; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;!DOCTYPE html&gt;
@@ -274,13 +277,14 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-    &lt;meta name=&quot;csrf-token&quot; content=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot;&gt;
+    &lt;meta name=&quot;csrf-token&quot; content=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot;&gt;
 
     
-    
+        &lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;http://localhost/brand-icon.png?v=5&quot;&gt;
+
     
     &lt;title&gt;
-                Dashboard Operativo            &lt;/title&gt;
+                Dashboard            &lt;/title&gt;
 
     
     &lt;!-- IFrame Preloader Removal Workaround --&gt;
@@ -300,7 +304,43 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                     &lt;link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic&quot;&gt;
                             
     
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/css/variables-institucionales.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css&quot;&gt;
+            
+            
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+            
+            
+
+            
+            
+
+                            &lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/css/variables-institucionales.css&quot;&gt;
             
             
 
@@ -344,9 +384,9 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
 
     
         
-        &lt;img src=&quot;http://localhost/vendor/adminlte/dist/img/AdminLTELogo.png&quot;
+        &lt;img src=&quot;http://localhost/img/logos/logoAlimentacionBienestar1.png&quot;
              class=&quot;img-circle animation__shake&quot;
-             alt=&quot;AdminLTE Preloader Image&quot;
+             alt=&quot;POA Preloader Image&quot;
              width=&quot;60&quot;
              height=&quot;60&quot;
              style=&quot;animation-iteration-count:infinite;&quot;&gt;
@@ -372,56 +412,16 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
         
         
         
-            &lt;/ul&gt;
+            &lt;img src=&quot;/img/logos/logoAlimentacionBienestar.png&quot; style=&quot;height: 33px; margin-top: 5px; margin-left: 10px;&quot;&gt;
+    &lt;/ul&gt;
 
     
     &lt;ul class=&quot;navbar-nav ml-auto&quot;&gt;
         
+            &lt;img src=&quot;/img/logos/gobierno.png&quot; style=&quot;height: 33px; margin-top: 5px; margin-right: 10px;&quot;&gt;
+
         
         
-        &lt;li class=&quot;nav-item&quot;&gt;
-
-    
-    &lt;a class=&quot;nav-link&quot; data-widget=&quot;navbar-search&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;
-        &lt;i class=&quot;fas fa-search&quot;&gt;&lt;/i&gt;
-    &lt;/a&gt;
-
-    
-    &lt;div class=&quot;navbar-search-block&quot;&gt;
-        &lt;form class=&quot;form-inline&quot; action=&quot;#&quot; method=&quot;get&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot; autocomplete=&quot;off&quot;&gt;
-
-            &lt;div class=&quot;input-group&quot;&gt;
-
-                
-                &lt;input class=&quot;form-control form-control-navbar&quot; type=&quot;search&quot;
-                                        name=&quot;adminlteSearch&quot;
-                    placeholder=&quot;search&quot;
-                    aria-label=&quot;search&quot;&gt;
-
-                
-                &lt;div class=&quot;input-group-append&quot;&gt;
-                    &lt;button class=&quot;btn btn-navbar&quot; type=&quot;submit&quot;&gt;
-                        &lt;i class=&quot;fas fa-search&quot;&gt;&lt;/i&gt;
-                    &lt;/button&gt;
-                    &lt;button class=&quot;btn btn-navbar&quot; type=&quot;button&quot; data-widget=&quot;navbar-search&quot;&gt;
-                        &lt;i class=&quot;fas fa-times&quot;&gt;&lt;/i&gt;
-                    &lt;/button&gt;
-                &lt;/div&gt;
-
-            &lt;/div&gt;
-        &lt;/form&gt;
-    &lt;/div&gt;
-
-&lt;/li&gt;
-
-&lt;li class=&quot;nav-item&quot;&gt;
-    &lt;a class=&quot;nav-link&quot; data-widget=&quot;fullscreen&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;
-        &lt;i class=&quot;fas fa-expand-arrows-alt&quot;&gt;&lt;/i&gt;
-    &lt;/a&gt;
-&lt;/li&gt;
-
-
         
         
         
@@ -438,14 +438,14 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
     &gt;
 
     
-    &lt;img src=&quot;http://localhost/vendor/adminlte/dist/img/AdminLTELogo.png&quot;
-         alt=&quot;Admin Logo&quot;
+    &lt;img src=&quot;http://localhost/img/logos/logoAlimentacionBienestar1.png&quot;
+         alt=&quot;POA Logo&quot;
          class=&quot;brand-image img-circle elevation-3&quot;
          style=&quot;opacity:.8&quot;&gt;
 
     
     &lt;span class=&quot;brand-text font-weight-light &quot;&gt;
-        &lt;b&gt;Admin&lt;/b&gt;LTE
+        &lt;b&gt;POA&lt;/b&gt; Bienestar
     &lt;/span&gt;
 
 &lt;/a&gt;
@@ -457,29 +457,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                 data-widget=&quot;treeview&quot; role=&quot;menu&quot;
                                 &gt;
                 
-                &lt;li&gt;
-
-    &lt;div class=&quot;form-inline my-2&quot;&gt;
-        &lt;div class=&quot;input-group&quot; data-widget=&quot;sidebar-search&quot; data-arrow-sign=&quot;&amp;raquo;&quot;&gt;
-
-            
-            &lt;input class=&quot;form-control form-control-sidebar&quot; type=&quot;search&quot;
-                                placeholder=&quot;search&quot;
-                aria-label=&quot;search&quot;&gt;
-
-            
-            &lt;div class=&quot;input-group-append&quot;&gt;
-                &lt;button class=&quot;btn btn-sidebar&quot;&gt;
-                    &lt;i class=&quot;fas fa-fw fa-search&quot;&gt;&lt;/i&gt;
-                &lt;/button&gt;
-            &lt;/div&gt;
-
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
+                &lt;li  class=&quot;nav-item&quot;&gt;
 
     &lt;a class=&quot;nav-link active &quot;
        href=&quot;http://localhost&quot;        &gt;
@@ -581,206 +559,6 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
 
 &lt;/li&gt;
 
-&lt;li  class=&quot;nav-item has-treeview &quot;&gt;
-
-    
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;&quot; &gt;
-
-        &lt;i class=&quot;nav-icon fas fa-fw fa-share &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Multi Level
-            &lt;i class=&quot;fas fa-angle-left right&quot;&gt;&lt;/i&gt;
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-    
-    &lt;ul class=&quot;nav nav-treeview&quot;&gt;
-        &lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 1
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item has-treeview &quot;&gt;
-
-    
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;&quot; &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 1
-            &lt;i class=&quot;fas fa-angle-left right&quot;&gt;&lt;/i&gt;
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-    
-    &lt;ul class=&quot;nav nav-treeview&quot;&gt;
-        &lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 2
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item has-treeview &quot;&gt;
-
-    
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;&quot; &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 2
-            &lt;i class=&quot;fas fa-angle-left right&quot;&gt;&lt;/i&gt;
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-    
-    &lt;ul class=&quot;nav nav-treeview&quot;&gt;
-        &lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 3
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 3
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-    &lt;/ul&gt;
-
-&lt;/li&gt;
-
-    &lt;/ul&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 1
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-    &lt;/ul&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-header &quot;&gt;
-
-    LABELS
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle text-red&quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Important
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle text-yellow&quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Warning
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle text-cyan&quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Information
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
             &lt;/ul&gt;
         &lt;/nav&gt;
     &lt;/div&gt;
@@ -827,7 +605,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                     &lt;div&gt;
                         &lt;p class=&quot;text-muted mb-0&quot;&gt;Eficiencia Global&lt;/p&gt;
                         &lt;h2 class=&quot;stat-value mb-0 text-danger&quot;&gt;
-                            24.3%
+                            18.1%
                         &lt;/h2&gt;
                         &lt;small class=&quot;text-muted&quot;&gt;2026&lt;/small&gt;
                     &lt;/div&gt;
@@ -836,7 +614,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                     &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class=&quot;progress mt-2&quot; style=&quot;height: 6px;&quot;&gt;
-                    &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 24.250886837145%&quot;&gt;&lt;/div&gt;
+                    &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 18.137298471133%&quot;&gt;&lt;/div&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -897,23 +675,12 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
                             &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
                                 &lt;span class=&quot;indice-label&quot;&gt;
-                                    &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; SANTIAGO TEOTITLAN
-                                &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;21.9%&lt;/span&gt;
-                            &lt;/div&gt;
-                            &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 21.885235572081%&quot;&gt;&lt;/div&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                                                                    &lt;div class=&quot;mb-2 px-1&quot;&gt;
-                            &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
-                                &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; SAN JOSE EL CHILAR
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;22.5%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;15.8%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 22.518169323694%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 15.762718526586%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
@@ -921,21 +688,10 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                 &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; IXTLAN DE JUAREZ
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;22.8%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;15.9%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 22.763075365074%&quot;&gt;&lt;/div&gt;
-                            &lt;/div&gt;
-                        &lt;/div&gt;
-                                                                    &lt;div class=&quot;mb-2 px-1&quot;&gt;
-                            &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
-                                &lt;span class=&quot;indice-label&quot;&gt;
-                                    &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; TAMAZULAPAN
-                                &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;23.0%&lt;/span&gt;
-                            &lt;/div&gt;
-                            &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 23.047657837333%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 15.934152755552%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
@@ -943,10 +699,10 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                 &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; AYUTLA MIXES
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;23.1%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;16.2%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 23.09427113485%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 16.165989794395%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
@@ -954,10 +710,10 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                 &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; SAN ANDRES HIDALGO
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;23.7%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;16.6%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 23.739274682493%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 16.617492277745%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
@@ -965,10 +721,21 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                 &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; CUAJIMOLOYAS
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;24.1%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;16.9%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 24.079432086415%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 16.85560246049%&quot;&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                                                                    &lt;div class=&quot;mb-2 px-1&quot;&gt;
+                            &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
+                                &lt;span class=&quot;indice-label&quot;&gt;
+                                    &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; SANTIAGO TEOTITLAN
+                                &lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;17.0%&lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;progress indice-bar&quot;&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 17.021849889397%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
@@ -976,10 +743,21 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                 &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; SAN PEDRO JUCHATENGO
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;24.4%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;17.1%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 24.370049533247%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 17.059034673273%&quot;&gt;&lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                                                                    &lt;div class=&quot;mb-2 px-1&quot;&gt;
+                            &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
+                                &lt;span class=&quot;indice-label&quot;&gt;
+                                    &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; TAMAZULAPAN
+                                &lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;18.4%&lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;progress indice-bar&quot;&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 18.438126269867%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
@@ -987,10 +765,10 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                 &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; LACHIXIO
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;26.7%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;20.8%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 26.702551752493%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 20.76865136305%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
@@ -998,10 +776,10 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                 &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; SANTIAGO MATATLAN
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;27.0%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;21.0%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 26.95256507386%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 20.963106168558%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
@@ -1009,10 +787,10 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                 &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; MAGDALENA OCOTLAN
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;29.2%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-red&quot;&gt;21.9%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 29.204270545184%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 21.903202908888%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;mb-2 px-1&quot;&gt;
@@ -1020,10 +798,10 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                 &lt;span class=&quot;indice-label&quot;&gt;
                                     &lt;i class=&quot;fas fa-store text-muted mr-1&quot;&gt;&lt;/i&gt; VALLES CENTRALES
                                 &lt;/span&gt;
-                                &lt;span class=&quot;alert-badge alert-badge-yellow&quot;&gt;43.1%&lt;/span&gt;
+                                &lt;span class=&quot;alert-badge alert-badge-yellow&quot;&gt;34.4%&lt;/span&gt;
                             &lt;/div&gt;
                             &lt;div class=&quot;progress indice-bar&quot;&gt;
-                                &lt;div class=&quot;progress-bar bg-warning&quot; style=&quot;width: 43.050114696154%&quot;&gt;&lt;/div&gt;
+                                &lt;div class=&quot;progress-bar bg-warning&quot; style=&quot;width: 34.440091756923%&quot;&gt;&lt;/div&gt;
                             &lt;/div&gt;
                         &lt;/div&gt;
                                                 &lt;/div&gt;
@@ -1038,15 +816,15 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                     &lt;p class=&quot;font-weight-bold text-success mb-2&quot;&gt;&lt;i class=&quot;fas fa-arrow-up&quot;&gt;&lt;/i&gt; Mejores&lt;/p&gt;
                                                                     &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
                             &lt;span&gt;&lt;span class=&quot;rank-medal&quot;&gt;🥇&lt;/span&gt; VALLES CENTRALES&lt;/span&gt;
-                            &lt;span class=&quot;font-weight-bold text-success&quot;&gt;43.1%&lt;/span&gt;
+                            &lt;span class=&quot;font-weight-bold text-success&quot;&gt;34.4%&lt;/span&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
                             &lt;span&gt;&lt;span class=&quot;rank-medal&quot;&gt;🥈&lt;/span&gt; MAGDALENA OCOTLAN&lt;/span&gt;
-                            &lt;span class=&quot;font-weight-bold text-success&quot;&gt;29.2%&lt;/span&gt;
+                            &lt;span class=&quot;font-weight-bold text-success&quot;&gt;21.9%&lt;/span&gt;
                         &lt;/div&gt;
                                                                     &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
                             &lt;span&gt;&lt;span class=&quot;rank-medal&quot;&gt;🥉&lt;/span&gt; SANTIAGO MATATLAN&lt;/span&gt;
-                            &lt;span class=&quot;font-weight-bold text-success&quot;&gt;27.0%&lt;/span&gt;
+                            &lt;span class=&quot;font-weight-bold text-success&quot;&gt;21.0%&lt;/span&gt;
                         &lt;/div&gt;
                                         &lt;hr&gt;
                     &lt;p class=&quot;font-weight-bold text-danger mb-2&quot;&gt;&lt;i class=&quot;fas fa-arrow-down&quot;&gt;&lt;/i&gt; Peores&lt;/p&gt;
@@ -1055,12 +833,12 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                             &lt;span class=&quot;font-weight-bold text-danger&quot;&gt;3.9%&lt;/span&gt;
                         &lt;/div&gt;
                                             &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
-                            &lt;span&gt;&lt;span class=&quot;rank-medal&quot;&gt;⚠️&lt;/span&gt; SANTIAGO TEOTITLAN&lt;/span&gt;
-                            &lt;span class=&quot;font-weight-bold text-danger&quot;&gt;21.9%&lt;/span&gt;
+                            &lt;span&gt;&lt;span class=&quot;rank-medal&quot;&gt;⚠️&lt;/span&gt; SAN JOSE EL CHILAR&lt;/span&gt;
+                            &lt;span class=&quot;font-weight-bold text-danger&quot;&gt;15.8%&lt;/span&gt;
                         &lt;/div&gt;
                                             &lt;div class=&quot;d-flex justify-content-between align-items-center mb-1&quot;&gt;
-                            &lt;span&gt;&lt;span class=&quot;rank-medal&quot;&gt;⚠️&lt;/span&gt; SAN JOSE EL CHILAR&lt;/span&gt;
-                            &lt;span class=&quot;font-weight-bold text-danger&quot;&gt;22.5%&lt;/span&gt;
+                            &lt;span&gt;&lt;span class=&quot;rank-medal&quot;&gt;⚠️&lt;/span&gt; IXTLAN DE JUAREZ&lt;/span&gt;
+                            &lt;span class=&quot;font-weight-bold text-danger&quot;&gt;15.9%&lt;/span&gt;
                         &lt;/div&gt;
                                                 &lt;/div&gt;
         &lt;/div&gt;
@@ -1138,139 +916,21 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                     &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(1)&quot;&gt;
                                         &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-1&quot;&gt;&lt;/i&gt;
                                     &lt;/td&gt;
-                                    &lt;td class=&quot;font-weight-bold&quot;&gt;SANTIAGO TEOTITLAN&lt;/td&gt;
+                                    &lt;td class=&quot;font-weight-bold&quot;&gt;SAN JOSE EL CHILAR&lt;/td&gt;
                                     &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        21.9%
+                                        15.8%
                                     &lt;/td&gt;
                                     &lt;td&gt;
                                         &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 21.885235572081%&quot;&gt;&lt;/div&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 15.762718526586%&quot;&gt;&lt;/div&gt;
                                         &lt;/div&gt;
                                     &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;7&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;10&lt;/td&gt;
                                     &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;7 conceptos&lt;/span&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;10 conceptos&lt;/span&gt;
                                                                             &lt;/td&gt;
                                 &lt;/tr&gt;
                                 &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-1&quot;&gt;
-                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
-                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
-                                            &lt;thead&gt;
-                                                &lt;tr class=&quot;bg-light&quot;&gt;
-                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
-                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
-                                                &lt;/tr&gt;
-                                            &lt;/thead&gt;
-                                            &lt;tbody&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $44,168,422.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $8,576,474.52
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            19.4%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $4,501,952.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $20,910.40
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            0.5%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $48,670,374.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $8,597,384.92
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            17.7%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $9,140,369.39
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $0.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            0.0%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            21.63%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            21.6%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            94.02%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
-                                                            94.0%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $58,036.03
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $0.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            0.0%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                            &lt;/tbody&gt;
-                                        &lt;/table&gt;
-                                    &lt;/td&gt;
-                                &lt;/tr&gt;
-                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
-                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(2)&quot;&gt;
-                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-2&quot;&gt;&lt;/i&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;font-weight-bold&quot;&gt;SAN JOSE EL CHILAR&lt;/td&gt;
-                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        22.5%
-                                    &lt;/td&gt;
-                                    &lt;td&gt;
-                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 22.518169323694%&quot;&gt;&lt;/div&gt;
-                                        &lt;/div&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;7&lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;7 conceptos&lt;/span&gt;
-                                                                            &lt;/td&gt;
-                                &lt;/tr&gt;
-                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-2&quot;&gt;
                                     &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
                                         &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
                                             &lt;thead&gt;
@@ -1366,29 +1026,65 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                                             0.0%
                                                         &lt;/td&gt;
                                                     &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $9.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $7.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD ESTRATEGICA&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $2.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
                                                                                             &lt;/tbody&gt;
                                         &lt;/table&gt;
                                     &lt;/td&gt;
                                 &lt;/tr&gt;
                                                                                             &lt;tr class=&quot;table-danger&quot;&gt;
-                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(3)&quot;&gt;
-                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-3&quot;&gt;&lt;/i&gt;
+                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(2)&quot;&gt;
+                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-2&quot;&gt;&lt;/i&gt;
                                     &lt;/td&gt;
                                     &lt;td class=&quot;font-weight-bold&quot;&gt;IXTLAN DE JUAREZ&lt;/td&gt;
                                     &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        22.8%
+                                        15.9%
                                     &lt;/td&gt;
                                     &lt;td&gt;
                                         &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 22.763075365074%&quot;&gt;&lt;/div&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 15.934152755552%&quot;&gt;&lt;/div&gt;
                                         &lt;/div&gt;
                                     &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;7&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;10&lt;/td&gt;
                                     &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;7 conceptos&lt;/span&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;10 conceptos&lt;/span&gt;
                                                                             &lt;/td&gt;
                                 &lt;/tr&gt;
-                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-3&quot;&gt;
+                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-2&quot;&gt;
                                     &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
                                         &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
                                             &lt;thead&gt;
@@ -1484,6 +1180,196 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                                             0.0%
                                                         &lt;/td&gt;
                                                     &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $7.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $6.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD ESTRATEGICA&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $1.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                            &lt;/tbody&gt;
+                                        &lt;/table&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
+                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(3)&quot;&gt;
+                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-3&quot;&gt;&lt;/i&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;font-weight-bold&quot;&gt;AYUTLA MIXES&lt;/td&gt;
+                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
+                                        16.2%
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 16.165989794395%&quot;&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;10&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;10 conceptos&lt;/span&gt;
+                                                                            &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-3&quot;&gt;
+                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
+                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
+                                            &lt;thead&gt;
+                                                &lt;tr class=&quot;bg-light&quot;&gt;
+                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
+                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/thead&gt;
+                                            &lt;tbody&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $85,705,998.02
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $14,691,639.85
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            17.1%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $3,881,374.65
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $6,041.77
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.2%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $89,587,372.67
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $14,697,681.62
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            16.4%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $16,576,720.30
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $2,517,250.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            15.2%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            11.49%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            11.5%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            98.76%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
+                                                            98.8%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $119,103.20
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $3,002.48
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            2.5%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $12.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $5.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD ESTRATEGICA&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $7.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
                                                                                             &lt;/tbody&gt;
                                         &lt;/table&gt;
                                     &lt;/td&gt;
@@ -1492,21 +1378,625 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                     &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(4)&quot;&gt;
                                         &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-4&quot;&gt;&lt;/i&gt;
                                     &lt;/td&gt;
-                                    &lt;td class=&quot;font-weight-bold&quot;&gt;TAMAZULAPAN&lt;/td&gt;
+                                    &lt;td class=&quot;font-weight-bold&quot;&gt;SAN ANDRES HIDALGO&lt;/td&gt;
                                     &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        23.0%
+                                        16.6%
                                     &lt;/td&gt;
                                     &lt;td&gt;
                                         &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 23.047657837333%&quot;&gt;&lt;/div&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 16.617492277745%&quot;&gt;&lt;/div&gt;
                                         &lt;/div&gt;
                                     &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;8&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;10&lt;/td&gt;
                                     &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;8 conceptos&lt;/span&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;10 conceptos&lt;/span&gt;
                                                                             &lt;/td&gt;
                                 &lt;/tr&gt;
                                 &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-4&quot;&gt;
+                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
+                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
+                                            &lt;thead&gt;
+                                                &lt;tr class=&quot;bg-light&quot;&gt;
+                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
+                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/thead&gt;
+                                            &lt;tbody&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $48,222,093.79
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $7,956,835.42
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            16.5%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $2,492,578.99
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $29,580.63
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            1.2%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $50,714,672.76
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $7,986,416.05
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            15.7%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $10,336,541.21
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $1,673,490.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            16.2%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            21.69%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            21.7%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            94.86%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
+                                                            94.9%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $62,823.58
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $9.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $5.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD ESTRATEGICA&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $4.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                            &lt;/tbody&gt;
+                                        &lt;/table&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
+                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(5)&quot;&gt;
+                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-5&quot;&gt;&lt;/i&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;font-weight-bold&quot;&gt;CUAJIMOLOYAS&lt;/td&gt;
+                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
+                                        16.9%
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 16.85560246049%&quot;&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;10&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;10 conceptos&lt;/span&gt;
+                                                                            &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-5&quot;&gt;
+                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
+                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
+                                            &lt;thead&gt;
+                                                &lt;tr class=&quot;bg-light&quot;&gt;
+                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
+                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/thead&gt;
+                                            &lt;tbody&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $35,410,296.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $6,513,612.18
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            18.4%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $4,732,293.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $9,474.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.2%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $40,142,590.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $6,523,086.18
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            16.2%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $4,117,995.60
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $1,392,350.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            33.8%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            8.49%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            8.5%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            91.41%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
+                                                            91.4%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $37,264.23
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $6.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $3.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD ESTRATEGICA&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $3.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                            &lt;/tbody&gt;
+                                        &lt;/table&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
+                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(6)&quot;&gt;
+                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-6&quot;&gt;&lt;/i&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;font-weight-bold&quot;&gt;SANTIAGO TEOTITLAN&lt;/td&gt;
+                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
+                                        17.0%
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 17.021849889397%&quot;&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;9&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;9 conceptos&lt;/span&gt;
+                                                                            &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-6&quot;&gt;
+                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
+                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
+                                            &lt;thead&gt;
+                                                &lt;tr class=&quot;bg-light&quot;&gt;
+                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
+                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/thead&gt;
+                                            &lt;tbody&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $44,168,422.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $8,576,474.52
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            19.4%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $4,501,952.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $20,910.40
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.5%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $48,670,374.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $8,597,384.92
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            17.7%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $9,140,369.39
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            21.63%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            21.6%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            94.02%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
+                                                            94.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $58,036.03
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $6.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $6.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                            &lt;/tbody&gt;
+                                        &lt;/table&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
+                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(7)&quot;&gt;
+                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-7&quot;&gt;&lt;/i&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;font-weight-bold&quot;&gt;SAN PEDRO JUCHATENGO&lt;/td&gt;
+                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
+                                        17.1%
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 17.059034673273%&quot;&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;10&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;10 conceptos&lt;/span&gt;
+                                                                            &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-7&quot;&gt;
+                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
+                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
+                                            &lt;thead&gt;
+                                                &lt;tr class=&quot;bg-light&quot;&gt;
+                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
+                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
+                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/thead&gt;
+                                            &lt;tbody&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $57,218,000.92
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $10,979,906.54
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            19.2%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $1,004,736.43
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $14,679.71
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            1.5%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $58,222,737.35
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $10,994,586.25
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            18.9%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $11,422,453.56
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $2,092,140.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            18.3%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            17.76%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            17.8%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            100%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            94.98%
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
+                                                            95.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $69,680.84
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $9.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $1.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD ESTRATEGICA&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $8.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                            &lt;/tbody&gt;
+                                        &lt;/table&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
+                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(8)&quot;&gt;
+                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-8&quot;&gt;&lt;/i&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;font-weight-bold&quot;&gt;TAMAZULAPAN&lt;/td&gt;
+                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
+                                        18.4%
+                                    &lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 18.438126269867%&quot;&gt;&lt;/div&gt;
+                                        &lt;/div&gt;
+                                    &lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;10&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;10 conceptos&lt;/span&gt;
+                                                                            &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-8&quot;&gt;
                                     &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
                                         &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
                                             &lt;thead&gt;
@@ -1614,234 +2104,10 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                                             0.0%
                                                         &lt;/td&gt;
                                                     &lt;/tr&gt;
-                                                                                            &lt;/tbody&gt;
-                                        &lt;/table&gt;
-                                    &lt;/td&gt;
-                                &lt;/tr&gt;
-                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
-                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(5)&quot;&gt;
-                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-5&quot;&gt;&lt;/i&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;font-weight-bold&quot;&gt;AYUTLA MIXES&lt;/td&gt;
-                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        23.1%
-                                    &lt;/td&gt;
-                                    &lt;td&gt;
-                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 23.09427113485%&quot;&gt;&lt;/div&gt;
-                                        &lt;/div&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;7&lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;7 conceptos&lt;/span&gt;
-                                                                            &lt;/td&gt;
-                                &lt;/tr&gt;
-                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-5&quot;&gt;
-                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
-                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
-                                            &lt;thead&gt;
-                                                &lt;tr class=&quot;bg-light&quot;&gt;
-                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
-                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
-                                                &lt;/tr&gt;
-                                            &lt;/thead&gt;
-                                            &lt;tbody&gt;
                                                                                                                                                         &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
                                                         &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $85,705,998.02
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $14,691,639.85
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            17.1%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $3,881,374.65
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $6,041.77
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            0.2%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $89,587,372.67
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $14,697,681.62
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            16.4%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $16,576,720.30
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $2,517,250.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            15.2%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            11.49%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            11.5%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            98.76%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
-                                                            98.8%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $119,103.20
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $3,002.48
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            2.5%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                            &lt;/tbody&gt;
-                                        &lt;/table&gt;
-                                    &lt;/td&gt;
-                                &lt;/tr&gt;
-                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
-                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(6)&quot;&gt;
-                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-6&quot;&gt;&lt;/i&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;font-weight-bold&quot;&gt;SAN ANDRES HIDALGO&lt;/td&gt;
-                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        23.7%
-                                    &lt;/td&gt;
-                                    &lt;td&gt;
-                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 23.739274682493%&quot;&gt;&lt;/div&gt;
-                                        &lt;/div&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;7&lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;7 conceptos&lt;/span&gt;
-                                                                            &lt;/td&gt;
-                                &lt;/tr&gt;
-                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-6&quot;&gt;
-                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
-                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
-                                            &lt;thead&gt;
-                                                &lt;tr class=&quot;bg-light&quot;&gt;
-                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
-                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
-                                                &lt;/tr&gt;
-                                            &lt;/thead&gt;
-                                            &lt;tbody&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $48,222,093.79
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $7,956,835.42
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            16.5%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $2,492,578.99
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $29,580.63
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            1.2%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $50,714,672.76
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $7,986,416.05
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            15.7%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $10,336,541.21
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $1,673,490.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            16.2%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            21.69%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            21.7%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            94.86%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
-                                                            94.9%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $62,823.58
+                                                                                                                            $15.00
                                                                                                                     &lt;/td&gt;
                                                         &lt;td class=&quot;text-right&quot;&gt;
                                                                                                                             $0.00
@@ -1850,234 +2116,10 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                                             0.0%
                                                         &lt;/td&gt;
                                                     &lt;/tr&gt;
-                                                                                            &lt;/tbody&gt;
-                                        &lt;/table&gt;
-                                    &lt;/td&gt;
-                                &lt;/tr&gt;
-                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
-                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(7)&quot;&gt;
-                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-7&quot;&gt;&lt;/i&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;font-weight-bold&quot;&gt;CUAJIMOLOYAS&lt;/td&gt;
-                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        24.1%
-                                    &lt;/td&gt;
-                                    &lt;td&gt;
-                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 24.079432086415%&quot;&gt;&lt;/div&gt;
-                                        &lt;/div&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;7&lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;7 conceptos&lt;/span&gt;
-                                                                            &lt;/td&gt;
-                                &lt;/tr&gt;
-                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-7&quot;&gt;
-                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
-                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
-                                            &lt;thead&gt;
-                                                &lt;tr class=&quot;bg-light&quot;&gt;
-                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
-                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
-                                                &lt;/tr&gt;
-                                            &lt;/thead&gt;
-                                            &lt;tbody&gt;
                                                                                                                                                         &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
                                                         &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $35,410,296.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $6,513,612.18
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            18.4%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $4,732,293.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $9,474.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            0.2%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $40,142,590.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $6,523,086.18
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            16.2%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $4,117,995.60
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $1,392,350.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            33.8%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            8.49%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            8.5%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            91.41%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
-                                                            91.4%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $37,264.23
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $0.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            0.0%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                            &lt;/tbody&gt;
-                                        &lt;/table&gt;
-                                    &lt;/td&gt;
-                                &lt;/tr&gt;
-                                                                                            &lt;tr class=&quot;table-danger&quot;&gt;
-                                    &lt;td class=&quot;text-center expand-icon&quot; onclick=&quot;toggleDetalle(8)&quot;&gt;
-                                        &lt;i class=&quot;fas fa-plus-circle text-primary&quot; id=&quot;icon-8&quot;&gt;&lt;/i&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;font-weight-bold&quot;&gt;SAN PEDRO JUCHATENGO&lt;/td&gt;
-                                    &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        24.4%
-                                    &lt;/td&gt;
-                                    &lt;td&gt;
-                                        &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 24.370049533247%&quot;&gt;&lt;/div&gt;
-                                        &lt;/div&gt;
-                                    &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;7&lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;7 conceptos&lt;/span&gt;
-                                                                            &lt;/td&gt;
-                                &lt;/tr&gt;
-                                &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-8&quot;&gt;
-                                    &lt;td colspan=&quot;6&quot; class=&quot;p-0&quot;&gt;
-                                        &lt;table class=&quot;table table-sm table-striped mb-0&quot;&gt;
-                                            &lt;thead&gt;
-                                                &lt;tr class=&quot;bg-light&quot;&gt;
-                                                    &lt;th style=&quot;width: 40%; padding-left: 40px;&quot;&gt;Concepto&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;META&lt;/th&gt;
-                                                    &lt;th class=&quot;text-right&quot; style=&quot;width: 20%;&quot;&gt;REAL&lt;/th&gt;
-                                                    &lt;th class=&quot;text-center&quot; style=&quot;width: 20%;&quot;&gt;% Logro&lt;/th&gt;
-                                                &lt;/tr&gt;
-                                            &lt;/thead&gt;
-                                            &lt;tbody&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PAR&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $57,218,000.92
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $10,979,906.54
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            19.2%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA PE&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $1,004,736.43
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $14,679.71
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            1.5%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;PRESUPUESTO DE VENTA TOTAL&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $58,222,737.35
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $10,994,586.25
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            18.9%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;GASTOS DE OPERACI&Oacute;N&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $11,422,453.56
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            $2,092,140.00
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            18.3%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;OPORTUNIDAD DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            17.76%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
-                                                            17.8%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;EFICIENCIA DE SURTIMIENTO A TIENDAS&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            100%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-right&quot;&gt;
-                                                                                                                            94.98%
-                                                                                                                    &lt;/td&gt;
-                                                        &lt;td class=&quot;text-center font-weight-bold text-success&quot;&gt;
-                                                            95.0%
-                                                        &lt;/td&gt;
-                                                    &lt;/tr&gt;
-                                                                                                                                                        &lt;tr&gt;
-                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;MERMAS, QUEBRANTOS Y MAL ESTADO&lt;/td&gt;
-                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
-                                                                                                                            $69,680.84
+                                                                                                                            $15.00
                                                                                                                     &lt;/td&gt;
                                                         &lt;td class=&quot;text-right&quot;&gt;
                                                                                                                             $0.00
@@ -2096,16 +2138,16 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                     &lt;/td&gt;
                                     &lt;td class=&quot;font-weight-bold&quot;&gt;LACHIXIO&lt;/td&gt;
                                     &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        26.7%
+                                        20.8%
                                     &lt;/td&gt;
                                     &lt;td&gt;
                                         &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 26.702551752493%&quot;&gt;&lt;/div&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 20.76865136305%&quot;&gt;&lt;/div&gt;
                                         &lt;/div&gt;
                                     &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;7&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;9&lt;/td&gt;
                                     &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;7 conceptos&lt;/span&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;9 conceptos&lt;/span&gt;
                                                                             &lt;/td&gt;
                                 &lt;/tr&gt;
                                 &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-9&quot;&gt;
@@ -2204,6 +2246,30 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                                             0.0%
                                                         &lt;/td&gt;
                                                     &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $10.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $10.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
                                                                                             &lt;/tbody&gt;
                                         &lt;/table&gt;
                                     &lt;/td&gt;
@@ -2214,16 +2280,16 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                     &lt;/td&gt;
                                     &lt;td class=&quot;font-weight-bold&quot;&gt;SANTIAGO MATATLAN&lt;/td&gt;
                                     &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        27.0%
+                                        21.0%
                                     &lt;/td&gt;
                                     &lt;td&gt;
                                         &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 26.95256507386%&quot;&gt;&lt;/div&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 20.963106168558%&quot;&gt;&lt;/div&gt;
                                         &lt;/div&gt;
                                     &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;7&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;9&lt;/td&gt;
                                     &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;7 conceptos&lt;/span&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;9 conceptos&lt;/span&gt;
                                                                             &lt;/td&gt;
                                 &lt;/tr&gt;
                                 &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-10&quot;&gt;
@@ -2322,6 +2388,30 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                                             0.0%
                                                         &lt;/td&gt;
                                                     &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $10.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $10.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
                                                                                             &lt;/tbody&gt;
                                         &lt;/table&gt;
                                     &lt;/td&gt;
@@ -2332,16 +2422,16 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                     &lt;/td&gt;
                                     &lt;td class=&quot;font-weight-bold&quot;&gt;MAGDALENA OCOTLAN&lt;/td&gt;
                                     &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        29.2%
+                                        21.9%
                                     &lt;/td&gt;
                                     &lt;td&gt;
                                         &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 29.204270545184%&quot;&gt;&lt;/div&gt;
+                                            &lt;div class=&quot;progress-bar bg-danger&quot; style=&quot;width: 21.903202908888%&quot;&gt;&lt;/div&gt;
                                         &lt;/div&gt;
                                     &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;6&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;8&lt;/td&gt;
                                     &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;6 conceptos&lt;/span&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;8 conceptos&lt;/span&gt;
                                                                             &lt;/td&gt;
                                 &lt;/tr&gt;
                                 &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-11&quot;&gt;
@@ -2428,6 +2518,30 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                                             0.0%
                                                         &lt;/td&gt;
                                                     &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $9.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $9.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
                                                                                             &lt;/tbody&gt;
                                         &lt;/table&gt;
                                     &lt;/td&gt;
@@ -2438,16 +2552,16 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                     &lt;/td&gt;
                                     &lt;td class=&quot;font-weight-bold&quot;&gt;VALLES CENTRALES&lt;/td&gt;
                                     &lt;td class=&quot;text-center font-weight-bold&quot;&gt;
-                                        43.1%
+                                        34.4%
                                     &lt;/td&gt;
                                     &lt;td&gt;
                                         &lt;div class=&quot;progress&quot; style=&quot;height: 8px;&quot;&gt;
-                                            &lt;div class=&quot;progress-bar bg-warning&quot; style=&quot;width: 43.050114696154%&quot;&gt;&lt;/div&gt;
+                                            &lt;div class=&quot;progress-bar bg-warning&quot; style=&quot;width: 34.440091756923%&quot;&gt;&lt;/div&gt;
                                         &lt;/div&gt;
                                     &lt;/td&gt;
-                                    &lt;td class=&quot;text-center&quot;&gt;8&lt;/td&gt;
+                                    &lt;td class=&quot;text-center&quot;&gt;10&lt;/td&gt;
                                     &lt;td class=&quot;text-center&quot;&gt;
-                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;8 conceptos&lt;/span&gt;
+                                                                                    &lt;span class=&quot;badge bg-info text-white&quot;&gt;10 conceptos&lt;/span&gt;
                                                                             &lt;/td&gt;
                                 &lt;/tr&gt;
                                 &lt;tr class=&quot;detalle-row&quot; id=&quot;detalle-12&quot;&gt;
@@ -2558,6 +2672,30 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                                                             0.0%
                                                         &lt;/td&gt;
                                                     &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $27.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
+                                                                                                                                                        &lt;tr&gt;
+                                                        &lt;td style=&quot;padding-left: 40px;&quot;&gt;APERTURA DE TIENDAS LOCALIDAD OBJETIVO&lt;/td&gt;
+                                                        &lt;td class=&quot;text-right font-weight-bold&quot;&gt;
+                                                                                                                            $27.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-right&quot;&gt;
+                                                                                                                            $0.00
+                                                                                                                    &lt;/td&gt;
+                                                        &lt;td class=&quot;text-center font-weight-bold text-danger&quot;&gt;
+                                                            0.0%
+                                                        &lt;/td&gt;
+                                                    &lt;/tr&gt;
                                                                                             &lt;/tbody&gt;
                                         &lt;/table&gt;
                                     &lt;/td&gt;
@@ -2587,7 +2725,52 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Ikwrc0pCNWVhaFdRL0wxZ2E1NzAwYWc9PSIsInZhbHVlIjoiV
                 &lt;script src=&quot;http://localhost/vendor/adminlte/dist/js/adminlte.min.js&quot;&gt;&lt;/script&gt;
             
     
+    &lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js&quot; &gt;&lt;/script&gt;
+            
+        
+            
+
+            
+            
+
+            
+            
+
     
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+            
+            
+
+            
+            
+
+            
+            
+
     
     
     
@@ -2904,7 +3087,7 @@ fetch(url, {
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/javascript; charset=utf-8
-expires: Fri, 14 May 2027 18:39:21 GMT
+expires: Tue, 18 May 2027 18:39:05 GMT
 cache-control: max-age=31536000, public
 accept-ranges: bytes
  </code></pre></details>         <pre>
@@ -3013,7 +3196,7 @@ fetch(url, {
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/javascript; charset=utf-8
-expires: Fri, 14 May 2027 18:39:22 GMT
+expires: Tue, 18 May 2027 18:39:06 GMT
 cache-control: max-age=31536000, public
 accept-ranges: bytes
  </code></pre></details>         <pre>
@@ -3122,7 +3305,7 @@ fetch(url, {
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/javascript; charset=utf-8
-expires: Fri, 14 May 2027 18:39:22 GMT
+expires: Tue, 18 May 2027 18:39:06 GMT
 cache-control: max-age=31536000, public
 accept-ranges: bytes
  </code></pre></details>         <pre>
@@ -3326,7 +3509,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-set-cookie: XSRF-TOKEN=eyJpdiI6Ii93UncwSEdxdlA4OXUvbWJsRHh6ZFE9PSIsInZhbHVlIjoiZ0UxSXQramo1clNFeGUvUVRDMmxpd2k1T1ROQThJM2g0TkZqcnB5S0FNRDdMRlJuMlZMVDNvUlBCdUlJTnIvRG45cmQ1dTlMMlROY3llTTNzMGlsY0hyVTZYZTY2U0lmVnZBYWkzSE1qaGZLRGs5bXdzWDdla3NCZmFUNjUrczQiLCJtYWMiOiI1MDUxMDJiYmYzNTU1Njc2MTZmYmM5NDgwODZhZDU2NWI5MWRjY2NiZTdhYWY1NjI5NWQ4NzRlODRhM2QyOWIzIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:23 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6InRSZDdFWWZiSTlhWUk2M1JqUllDZHc9PSIsInZhbHVlIjoiTXdvVmg3YnpLUE5DYWlLNHJyZTNuODBid0s3ZUxNb05aazNKQ2o3QTEvQXhweWlVS0JvYS9uZ09nVmU0dEhjdUl5Sml5Nnp0OTJWWlVhNmw2c2RGaUt5K2FwQjdyc2xLL1JadGpoSUY1N2M4bHhOUkVuVnRNS0NKL1BwbmR1RUMiLCJtYWMiOiJlOTUxYjNkMWI5OWYwZjlkMzYwODYwZThmNjllNzdiODVkNDJmYjQ1NjQ1NGI1NmYxZjYxN2Y1ZGNhZTRlYTYwIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:23 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6InhycFJIV1ZmOUNKVnY1dENsOVNwY1E9PSIsInZhbHVlIjoiR0lkM084RFdhN2lSUUVVVEdwcEg5SzN3cG5OOEdkMXdYWGwzZlVZU3JEck02SGVvN1ZkRHdkcDI5djFaQWw3cTFkSnN1b3MzWE1mVnFMTU5XdkdxZDFSTTVjQXRlRHBxZlZvalhHZWhkUFBjZGVXWDZoN2xjTitMSUEwcWlpU1UiLCJtYWMiOiJhNDZmZmEwMGFiZWY3ZTA1ZGIwMjljODY0NjY5NWZkYzAxMDQzNDM0YTM2NDY1M2FmMjM5NDc5OTc1ZTljZTBkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:10 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IkdaMUVpb0FoOVRNckRFN1pFNldpbmc9PSIsInZhbHVlIjoiZjNsTk9kbG8zNktMQ1FYU1JMNWJnbGxrUTdKRmZtTVdZSVZKZ0NlNlZhYUZvYy9yNm5GZUFCcVdQaGRzWDlDVU1NYXlEZUt3S21WcFNITkZ0WFIvclo3ekZTNEdsc2FmZWRMMENZWkxGMEdDVzJHbHpSV0FwNkdkV3o2ZThRTmwiLCJtYWMiOiIxNzRkZTEwZTQ4YjY1Yjk1ZDUxNGQ4ZjdjZTRlYzZmMmRiYTIzZmE1Y2Y2ZDljY2I2MDBmOWFjYmQ1M2QxYjBkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:10 GMT; Max-Age=7199; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -3853,7 +4036,7 @@ content-type: application/json
                 &lt;p class=&quot;mt-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed&quot;&gt;
                     HTTP request received.
 
-                                            Response rendered in 7945ms.
+                                            Response rendered in 57074ms.
                                     &lt;/p&gt;
             &lt;/div&gt;
         &lt;/div&gt;
@@ -4208,488 +4391,1114 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=utf-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IjJvZFZGbXc4VSt1ZXhyL0FWVTY1ZHc9PSIsInZhbHVlIjoiS2haZDBRYkxKK0M1WWp5Wm5vekkvYjN4TGVjZTUzUDd3QzJoc3hqNExqZ3ZjU3RZM0Y5RkxaUEpyL2RsSGQzQ1JocFJobEd1TkJiSDVJTkZKb0NHaUZzNHRobWNlWnJGYlFoUThUMEJxM0t0LzIwbU1OSUpENHF3c3JVeHJ3VmUiLCJtYWMiOiI0NmU2ZGY0NGNlN2NhN2MwMTE0ODgwMDYyNTA4YmNiYWQ4ODhhMmZiNWU0OTAzMjAwM2Y5OTllODRmYTJjMTk2IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:38 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IlFRMDFHZFlrMmYwckkzOEFkRGp4bkE9PSIsInZhbHVlIjoiQVBPaSs1T1UwbVFLVjNYKzBDa0hJUXV4TVE2OWJSVDdCVFBFNlhSOEpVSmJXMmFGLzEyeDFBQmN4TUlJb0JacUY0RTc1VDBmUDRDOGU5SGpCVFlkMHp2MWhBdlA4eTl4a0VvdzRzSlRKNzFLUVNIQVpadWF4REFqUFczZmtrN2QiLCJtYWMiOiJiODZlYmFmZDJmZjRmZTQ0OTRhY2I0NTA2ZTZlZGY4YjhiYmViYmE5ZGVlZWRmZGQ3NzFhNmQwNmM2MDg4MWJkIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:38 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IjlRaWtLWkpKemhua2J4Mzg2NjIzTHc9PSIsInZhbHVlIjoiVzNmeThkeXNDZC83N25ncnF2OW94bHdHMFZsdjJhbE1QQysrSlhVUG5aSDdFTm1RR0hKT0dnUVdVUjJjSmRSazVPZjFvYmQ4YWtraHRqNUkwME9KdVVYeWljUDVDQVRhdjhKN2RXblN2Z1VzSi9jS1hCRVlsM3VWRk5LSG1EQ3IiLCJtYWMiOiI0MjJiYzVmYTIzMDcyOWRkNjczMDI2NTZiZmRhMDBlYWExNTU1OTQ4NmQ3Y2Q3Nzk5NGFjOWNjNTQyNTkyMjgwIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:25 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IlRxKzdDOElEVU5YMFB6WVdRcUZqNnc9PSIsInZhbHVlIjoiUFlPVDM2cE4zY1RxV1BnQi82LzlGYUNxV1Q3UklnNkU4Ykg4aWx2ckdxS3Z5VnE4Nm8wK3d0dUp5OS9od3NUYjBzMWJ1cFdnYWZINlpCQzliRmNORHdPK0gyRW8xbWV2WUVicUlOdjJUTUp2eTZvQlFMd1JvUDYrWVFSa1M1TzMiLCJtYWMiOiI2NjFmY2JmZmVlNTgzYzNmYmM3ODIxNWFhMDA3MDcwYzMzNzJiNGEzZjhiYjNiMGI1ZWI2NWQ0NzU1ODRhNTBhIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:25 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;div class=&quot;table-responsive&quot;&gt;
-    &lt;table class=&quot;table table-sm table-hover text-right&quot; style=&quot;font-size: 0.85rem; white-space: nowrap;&quot;&gt;
-    &lt;thead class=&quot;text-center&quot;&gt;
-        &lt;tr&gt;
-            &lt;th class=&quot;text-left&quot; style=&quot;min-width: 250px;&quot;&gt;CONCEPTO&lt;/th&gt;
-            &lt;th&gt;ENERO&lt;/th&gt;
-            &lt;th&gt;FEBRERO&lt;/th&gt;
-            &lt;th&gt;MARZO&lt;/th&gt;
-            &lt;th&gt;ABRIL&lt;/th&gt;
-            &lt;th&gt;MAYO&lt;/th&gt;
-            &lt;th&gt;JUNIO&lt;/th&gt;
-            &lt;th&gt;JULIO&lt;/th&gt;
-            &lt;th&gt;AGOSTO&lt;/th&gt;
-            &lt;th&gt;SEPTIEMBRE&lt;/th&gt;
-            &lt;th&gt;OCTUBRE&lt;/th&gt;
-            &lt;th&gt;NOVIEMBRE&lt;/th&gt;
-            &lt;th&gt;DICIEMBRE&lt;/th&gt;
-            &lt;th&gt;TOTAL&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    VENTAS A TIENDAS
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    VENTAS PROGRAMAS ESPECIALES
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    VENTAS NETAS
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    COSTO DE VENTA
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    REMANENTE BRUTO
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    GASTOS DE DISTRIBUCION
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    REMUNERACION Y PREV. SOCIAL
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    SERVICIO A COMUNIDADES
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    COMBUSTIBLE Y LUBRICANTES
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    MTTO CONSV. Y REPARA.
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    MTTO DE EQUIPO DE TRANSP.
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    FLETES Y MANIOBRAS
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    ALMACENAJE
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    DEPRECIACIONES Y AMORTIZACIONES
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    GASTOS DE VIAJE
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    MATERIALES Y SERVICIOS DE OFICINA
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    PRIMA DE SEGUROS
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    ESTIMACION PARA CUENTAS INCOBRABLES
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    DIVERSOS
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    ASESORIAS
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    IMPUESTOS Y DERECHOS
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    LIQUIDACION
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    TOTAL DE GTOS DE DISTRIBUCION
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-                                    &lt;tr class=&quot;&quot;&gt;
-                &lt;td class=&quot;text-left  pl-4&quot;&gt;
-                    RESULTADO DIRECTO DE OPERACI&Oacute;N
-                &lt;/td&gt;
-                
-                                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                            &lt;td&gt;-&lt;/td&gt;
-                                        &lt;td class=&quot;font-weight-bold bg-light&quot;&gt;-&lt;/td&gt;
-                            &lt;/tr&gt;
-            &lt;/tbody&gt;
-&lt;/table&gt;
+    &lt;div id=&quot;contenedor-tabla-er&quot;&gt;
+    &lt;table class=&quot;table table-sm table-hover text-right table-er&quot; style=&quot;font-size: 0.85rem; white-space: nowrap;&quot;&gt;
+        &lt;thead class=&quot;text-center&quot;&gt;
+            &lt;tr&gt;
+                &lt;th class=&quot;text-left&quot; style=&quot;min-width: 250px;&quot;&gt;CONCEPTO&lt;/th&gt;
+                &lt;th&gt;ENERO&lt;/th&gt;
+                &lt;th&gt;FEBRERO&lt;/th&gt;
+                &lt;th&gt;MARZO&lt;/th&gt;
+                &lt;th&gt;ABRIL&lt;/th&gt;
+                &lt;th&gt;MAYO&lt;/th&gt;
+                &lt;th&gt;JUNIO&lt;/th&gt;
+                &lt;th&gt;JULIO&lt;/th&gt;
+                &lt;th&gt;AGOSTO&lt;/th&gt;
+                &lt;th&gt;SEPTIEMBRE&lt;/th&gt;
+                &lt;th&gt;OCTUBRE&lt;/th&gt;
+                &lt;th&gt;NOVIEMBRE&lt;/th&gt;
+                &lt;th&gt;DICIEMBRE&lt;/th&gt;
+                &lt;th class=&quot;bg-dark&quot;&gt;TOTAL&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        VENTAS A TIENDAS
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        VENTAS PROGRAMAS ESPECIALES
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        VENTAS NETAS
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        COSTO DE VENTA
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        REMANENTE BRUTO
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        GASTOS DE DISTRIBUCION
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        REMUNERACION Y PREV. SOCIAL
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        SERVICIO A COMUNIDADES
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        COMBUSTIBLE Y LUBRICANTES
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        MTTO CONSV. Y REPARA.
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        MTTO DE EQUIPO DE TRANSP.
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        FLETES Y MANIOBRAS
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        ALMACENAJE
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        DEPRECIACIONES Y AMORTIZACIONES
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        GASTOS DE VIAJE
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        MATERIALES Y SERVICIOS DE OFICINA
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        PRIMA DE SEGUROS
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        ESTIMACION PARA CUENTAS INCOBRABLES
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        DIVERSOS
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        ASESORIAS
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        IMPUESTOS Y DERECHOS
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        LIQUIDACION
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        TOTAL DE GTOS DE DISTRIBUCION
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                            &lt;tr class=&quot;&quot;&gt;
+                    &lt;td class=&quot;text-left concepto-col  pl-4&quot;&gt;
+                        RESULTADO DIRECTO DE OPERACI&Oacute;N
+                    &lt;/td&gt;
+                    
+                                                                                                    &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                                                &lt;td class=&quot;er-monto er-monto-cero &quot;&gt;
+                                                                    &lt;span class=&quot;text-muted-dash&quot;&gt;-&lt;/span&gt;
+                                                            &lt;/td&gt;
+                                                &lt;td class=&quot;font-weight-bold total-col er-monto er-monto-cero &quot;&gt;
+                            -
+                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                    &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
 &lt;/div&gt;</code>
  </pre>
     </span>
@@ -4830,7 +5639,7 @@ fetch(url, {
 content-disposition: attachment; filename=Estado_Resultados_17_Almacen_17.xlsx
 content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
 accept-ranges: bytes
-set-cookie: XSRF-TOKEN=eyJpdiI6IjNCWEw5dHZTQ3EzaEJIaFRIS05ZVUE9PSIsInZhbHVlIjoiV00zVWd2RHZpMFhndkJpYmVWYkxHVVVxVXd1QWRuNTJlNUFVY09oRkdHMWxaekI0UUkzM2xHOFJDWkNLNnd5cnNoR1E3MXdibUwwRG04YlFDVXdQTnpSMFBLODVRbXlqUFlscTRtck0xVTQwSHN3VUJ3a2dVUnFPN1JZbXV1MFEiLCJtYWMiOiIwY2EzMWY4MDU1OTkyNGE0ZDFlOTFjOWQyYWNmNWMyNGQwZjEwZjZhNzhlNzc4Y2NlNWVjYmIxZDM1NDA4OGY3IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:39 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IjhVcDNETjFXQ0FOcWtXSEc3NUpWa0E9PSIsInZhbHVlIjoicHFrUGlvcEJLL3NET1ZyTzlxVDY4SXdYaGpnMC81ZVM3SmRJZ2p3STllZ2J5MEVrUFlPWmhlZWtCTytPZU9QWVVqSGJFODRDZTgzZ3lsOVBRcnBCd1BLYi9WbDgvdDVkem5YUmFFTms0a0RhaFFSdkptMzRBeUc2TGViRzdFT0UiLCJtYWMiOiI0NmQyNjMxMWYxMDM5NDc3ZGI3MTQ0MjRmMzkwZjg3NmZjNzkxMmEwOWMwOTM2MGM3NTUyMDUzZDIwMzY4NGM5IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:39 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IktxM0JRdVRoUDdhQ2o4M1N4eStmMkE9PSIsInZhbHVlIjoiVksxNVRaWFptVXpEVUxqa1QrRXFpeTFZMWpFRVpmTVJ1bVBTNVlyOGpUdjd6aDd6NDJsUTdCcTUzeUNUZ3Y3aURNSXdKRWp3cFRwUDhvcjZEY3VQL292Qmc2VkRVby9nTFZEMno0U255MEhvZ1lDUmVpbkdKcTRSQTdlSUdkU24iLCJtYWMiOiIxYTVhOWVhNDNiNzdiY2QzN2JlYWM4YWQ1ZTRkYWMwODc4ZDFkNTAwZWU1ZDE2YWQ4NDMyOTgzOTBkZTM2MTdkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:33 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IktheCtZd1ExRDh2LzZxRUZkWmJVZ1E9PSIsInZhbHVlIjoiOVEyN0dGeXIybzY1eEFmRU5wZjVQOGlRamhxTVdzR3JlczNBN21uSW9nUGZXVEhzRHh1b3dsdDZUa0xVaStLeVBIcGZGYWg0TWYvcHYxTFJsVi8yT3FRQStUWnNZODByQ0ZoTlNMZlZjRzJmd3lpQktjczVHeXlNamVqdFplVXUiLCJtYWMiOiJjMmEwNzAzZjUzNWNiYjc1MjZiOWY2MWU4YjU5Mzg5MTBiZTJlYmU4YmEyODRiNDE3YTY0ZDYzYzcwZDViYjI4IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:33 GMT; Max-Age=7199; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;"></code>
@@ -5108,7 +5917,7 @@ Detecta automáticamente el mes y almacén.</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo_pdf=@C:\Users\qange\AppData\Local\Temp\php8554.tmp" </code></pre></div>
+    --form "archivo_pdf=@C:\Users\qange\AppData\Local\Temp\phpE9FB.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -5200,7 +6009,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo PDF hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php8554.tmp</code></p>
+<p>Archivo PDF hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpE9FB.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -5267,7 +6076,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">content-type: text/html; charset=utf-8
 cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY09VMHBkUlp1WjlwRDU0TW92R2psY0YzZ2I4M0RmUlIxYU5uSzc0QWNjYlhqM2hPWHBBZ0xzaEhhS1A2MHF1UWZzUjZkeW9xRzdXVUlNQUovdE9XN011aEhhU0FkSEZrMWtJVjN1UEZkTHNZNVFHQWJWVU8zSnFnNGxodXltQWgiLCJtYWMiOiI4YjUyZDY4ZWQwYzhiOTQ0MDgwN2M3MDg4YTMyYzNhMzhhMTM1N2NkNmI2YmI3Nzk4YzFjNjI3ZjdiY2UyMGVjIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:36 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IlBRT3g1NW9iaXhOWlZsWm9rd2tOU0E9PSIsInZhbHVlIjoiUU1oOTF0Z2lSSmhIN1dPSk9uK29xL0xQaHRlMVh2MmhrUU92RGdLMHZLRzIvNllhRyt1TXp3OTNKUFY3VWtVN05ZOGY3dEJpMEsrRDhRTmVTYWNUUFh1a2tpV3lSejV3Uys1bTFSTWErcmw2c1lHNnVFWEMwcWhvWEcyZysxRmUiLCJtYWMiOiIzNjI2ZTc5ZGZhM2YwOTViODc3NzA0YzhhYWFmY2ExMDc3MzNiYjJlNmY3ZWM4ZWM3YjYwM2FhMzJkYjk5YWIzIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:36 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiOCtQYWxYLzkzNXpYK2VvUlY2U1hQcVlRREt0QUxCRzBld0tFSFliamhGdnU0eXFkK0p6emZaRXllTFpLRnBJWWUvQ3ZpeFhTeG9zSjc1WC9CYXdBNllNKy9TYXNSWEc1NjFIUHdtSDNCSC9BOTdNak01UUpkc29QYXZtMGZxVjYiLCJtYWMiOiI0MTViNmFkZjE5MDE0NmRlZjhiNmZmOGQwZjExODMwNmY3NzA4MmYxNDkwOWQ5M2ExYjUxYWFjNmRmYzM3YTc3IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:22 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IjE5VlNIZUZ6OHFBQjk5VzlxS1doMnc9PSIsInZhbHVlIjoiSmNobmdwYy9oaXBPcC9YYjl4VHZGOSt0cDkwdWlyNUcyTm8yeDkwOVRLaHh2cGhPUG53Vm9GMGNEeFZMaWpYU2hlZHh1ekd1MzlyeTJuVVVBbkNvWjFyV1F6MzU0enRaVEp5aDFTL2lkTVpLYlZGbVdpZWNHRGx5bkcxMVZkeTgiLCJtYWMiOiJjMWY4MTRhMjNhYjQ5ZDFkOTBkMWQ4ZmQwODRhZGRiNDY2NWE0OGNjMDdmZjQ5OTIwMTcwN2M5MmYxMmRkYWRkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:22 GMT; Max-Age=7199; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">&lt;!DOCTYPE html&gt;
@@ -5279,10 +6088,11 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-    &lt;meta name=&quot;csrf-token&quot; content=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot;&gt;
+    &lt;meta name=&quot;csrf-token&quot; content=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot;&gt;
 
     
-    
+        &lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;http://localhost/brand-icon.png?v=5&quot;&gt;
+
     
     &lt;title&gt;
                 Centro de Importaci&oacute;n            &lt;/title&gt;
@@ -5305,14 +6115,50 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
                                     &lt;link rel=&quot;stylesheet&quot; href=&quot;https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic&quot;&gt;
                             
     
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/css/variables-institucionales.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css&quot;&gt;
+            
+            
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+            
+            
+
+            
+            
+
+                            &lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/css/variables-institucionales.css&quot;&gt;
             
             
 
     
     
     
-                &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/importaciones-Dk1TVZM5.css&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/importaciones-Dk1TVZM5.css&quot; data-navigate-track=&quot;reload&quot; /&gt;
+            &lt;link rel=&quot;preload&quot; as=&quot;style&quot; href=&quot;http://localhost/build/assets/importaciones-Ddo0Swuo.css&quot; /&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://localhost/build/assets/importaciones-Ddo0Swuo.css&quot; data-navigate-track=&quot;reload&quot; /&gt;
     
     
 &lt;/head&gt;
@@ -5327,9 +6173,9 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
 
     
         
-        &lt;img src=&quot;http://localhost/vendor/adminlte/dist/img/AdminLTELogo.png&quot;
+        &lt;img src=&quot;http://localhost/img/logos/logoAlimentacionBienestar1.png&quot;
              class=&quot;img-circle animation__shake&quot;
-             alt=&quot;AdminLTE Preloader Image&quot;
+             alt=&quot;POA Preloader Image&quot;
              width=&quot;60&quot;
              height=&quot;60&quot;
              style=&quot;animation-iteration-count:infinite;&quot;&gt;
@@ -5355,56 +6201,16 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
         
         
         
-            &lt;/ul&gt;
+            &lt;img src=&quot;/img/logos/logoAlimentacionBienestar.png&quot; style=&quot;height: 33px; margin-top: 5px; margin-left: 10px;&quot;&gt;
+    &lt;/ul&gt;
 
     
     &lt;ul class=&quot;navbar-nav ml-auto&quot;&gt;
         
+            &lt;img src=&quot;/img/logos/gobierno.png&quot; style=&quot;height: 33px; margin-top: 5px; margin-right: 10px;&quot;&gt;
+
         
         
-        &lt;li class=&quot;nav-item&quot;&gt;
-
-    
-    &lt;a class=&quot;nav-link&quot; data-widget=&quot;navbar-search&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;
-        &lt;i class=&quot;fas fa-search&quot;&gt;&lt;/i&gt;
-    &lt;/a&gt;
-
-    
-    &lt;div class=&quot;navbar-search-block&quot;&gt;
-        &lt;form class=&quot;form-inline&quot; action=&quot;#&quot; method=&quot;get&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot; autocomplete=&quot;off&quot;&gt;
-
-            &lt;div class=&quot;input-group&quot;&gt;
-
-                
-                &lt;input class=&quot;form-control form-control-navbar&quot; type=&quot;search&quot;
-                                        name=&quot;adminlteSearch&quot;
-                    placeholder=&quot;search&quot;
-                    aria-label=&quot;search&quot;&gt;
-
-                
-                &lt;div class=&quot;input-group-append&quot;&gt;
-                    &lt;button class=&quot;btn btn-navbar&quot; type=&quot;submit&quot;&gt;
-                        &lt;i class=&quot;fas fa-search&quot;&gt;&lt;/i&gt;
-                    &lt;/button&gt;
-                    &lt;button class=&quot;btn btn-navbar&quot; type=&quot;button&quot; data-widget=&quot;navbar-search&quot;&gt;
-                        &lt;i class=&quot;fas fa-times&quot;&gt;&lt;/i&gt;
-                    &lt;/button&gt;
-                &lt;/div&gt;
-
-            &lt;/div&gt;
-        &lt;/form&gt;
-    &lt;/div&gt;
-
-&lt;/li&gt;
-
-&lt;li class=&quot;nav-item&quot;&gt;
-    &lt;a class=&quot;nav-link&quot; data-widget=&quot;fullscreen&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;
-        &lt;i class=&quot;fas fa-expand-arrows-alt&quot;&gt;&lt;/i&gt;
-    &lt;/a&gt;
-&lt;/li&gt;
-
-
         
         
         
@@ -5421,14 +6227,14 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     &gt;
 
     
-    &lt;img src=&quot;http://localhost/vendor/adminlte/dist/img/AdminLTELogo.png&quot;
-         alt=&quot;Admin Logo&quot;
+    &lt;img src=&quot;http://localhost/img/logos/logoAlimentacionBienestar1.png&quot;
+         alt=&quot;POA Logo&quot;
          class=&quot;brand-image img-circle elevation-3&quot;
          style=&quot;opacity:.8&quot;&gt;
 
     
     &lt;span class=&quot;brand-text font-weight-light &quot;&gt;
-        &lt;b&gt;Admin&lt;/b&gt;LTE
+        &lt;b&gt;POA&lt;/b&gt; Bienestar
     &lt;/span&gt;
 
 &lt;/a&gt;
@@ -5440,29 +6246,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
                 data-widget=&quot;treeview&quot; role=&quot;menu&quot;
                                 &gt;
                 
-                &lt;li&gt;
-
-    &lt;div class=&quot;form-inline my-2&quot;&gt;
-        &lt;div class=&quot;input-group&quot; data-widget=&quot;sidebar-search&quot; data-arrow-sign=&quot;&amp;raquo;&quot;&gt;
-
-            
-            &lt;input class=&quot;form-control form-control-sidebar&quot; type=&quot;search&quot;
-                                placeholder=&quot;search&quot;
-                aria-label=&quot;search&quot;&gt;
-
-            
-            &lt;div class=&quot;input-group-append&quot;&gt;
-                &lt;button class=&quot;btn btn-sidebar&quot;&gt;
-                    &lt;i class=&quot;fas fa-fw fa-search&quot;&gt;&lt;/i&gt;
-                &lt;/button&gt;
-            &lt;/div&gt;
-
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
+                &lt;li  class=&quot;nav-item&quot;&gt;
 
     &lt;a class=&quot;nav-link active &quot;
        href=&quot;http://localhost&quot;        &gt;
@@ -5564,206 +6348,6 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
 
 &lt;/li&gt;
 
-&lt;li  class=&quot;nav-item has-treeview &quot;&gt;
-
-    
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;&quot; &gt;
-
-        &lt;i class=&quot;nav-icon fas fa-fw fa-share &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Multi Level
-            &lt;i class=&quot;fas fa-angle-left right&quot;&gt;&lt;/i&gt;
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-    
-    &lt;ul class=&quot;nav nav-treeview&quot;&gt;
-        &lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 1
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item has-treeview &quot;&gt;
-
-    
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;&quot; &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 1
-            &lt;i class=&quot;fas fa-angle-left right&quot;&gt;&lt;/i&gt;
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-    
-    &lt;ul class=&quot;nav nav-treeview&quot;&gt;
-        &lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 2
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item has-treeview &quot;&gt;
-
-    
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;&quot; &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 2
-            &lt;i class=&quot;fas fa-angle-left right&quot;&gt;&lt;/i&gt;
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-    
-    &lt;ul class=&quot;nav nav-treeview&quot;&gt;
-        &lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 3
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 3
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-    &lt;/ul&gt;
-
-&lt;/li&gt;
-
-    &lt;/ul&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle &quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Level 1
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-    &lt;/ul&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-header &quot;&gt;
-
-    LABELS
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle text-red&quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Important
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle text-yellow&quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Warning
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
-&lt;li  class=&quot;nav-item&quot;&gt;
-
-    &lt;a class=&quot;nav-link  &quot;
-       href=&quot;#&quot;        &gt;
-
-        &lt;i class=&quot;nav-icon far fa-fw fa-circle text-cyan&quot;&gt;&lt;/i&gt;
-
-        &lt;p&gt;
-            Information
-
-                    &lt;/p&gt;
-
-    &lt;/a&gt;
-
-&lt;/li&gt;
-
             &lt;/ul&gt;
         &lt;/nav&gt;
     &lt;/div&gt;
@@ -5778,7 +6362,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     
             &lt;div class=&quot;content-header&quot;&gt;
             &lt;div class=&quot;container-fluid&quot;&gt;
-                    &lt;h1&gt;&lt;i class=&quot;fas fa-file-import text-institucional-oro&quot;&gt;&lt;/i&gt; Centro de Importaci&oacute;n Homologado&lt;/h1&gt;
+                &lt;h1&gt;&lt;i class=&quot;fas fa-file-import text-institucional-oro&quot;&gt;&lt;/i&gt; Centro de Importaci&oacute;n Homologado&lt;/h1&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     
@@ -5802,7 +6386,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
         &lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;div class=&quot;col-xl-6 col-lg-6 mb-4&quot;&gt;
+    &lt;div class=&quot;col-xl-4 col-lg-4 mb-4&quot;&gt;
         &lt;div class=&quot;card import-card&quot;&gt;
     &lt;div class=&quot;card-header d-flex justify-content-between align-items-center&quot;&gt;
         &lt;h3 class=&quot;card-title&quot;&gt;&lt;i class=&quot;fas fa-chart-line&quot;&gt;&lt;/i&gt; Estado de Resultados&lt;/h3&gt;
@@ -5810,7 +6394,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/er&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o fiscal&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
@@ -5835,7 +6419,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     &lt;/div&gt;
 &lt;/div&gt;    &lt;/div&gt;
 
-    &lt;div class=&quot;col-xl-6 col-lg-6 mb-4&quot;&gt;
+    &lt;div class=&quot;col-xl-4 col-lg-4 mb-4&quot;&gt;
         &lt;div class=&quot;card import-card import-card-orange&quot;&gt;
     &lt;div class=&quot;card-header d-flex justify-content-between align-items-center&quot;&gt;
         &lt;h3 class=&quot;card-title&quot;&gt;&lt;i class=&quot;fas fa-weight-hanging&quot;&gt;&lt;/i&gt; Mermas, Quebrantos y Mal Estado&lt;/h3&gt;
@@ -5843,7 +6427,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/mermas&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
@@ -5869,6 +6453,40 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
 &lt;/div&gt;
 
     &lt;/div&gt;
+
+    &lt;div class=&quot;col-xl-4 col-lg-4 mb-4&quot;&gt;
+        &lt;div class=&quot;card import-card&quot;&gt;
+    &lt;div class=&quot;card-header d-flex justify-content-between align-items-center&quot;&gt;
+        &lt;h3 class=&quot;card-title&quot;&gt;&lt;i class=&quot;fas fa-store&quot;&gt;&lt;/i&gt; Apertura de Tiendas&lt;/h3&gt;
+        &lt;span class=&quot;badge bg-white text-secondary font-weight-bold&quot; style=&quot;font-size:0.7rem;&quot;&gt;COMPROMETIDO (Conc. 33, 34, 35)&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
+        &lt;form action=&quot;http://localhost/importaciones/apertura-tiendas&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
+                &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label class=&quot;font-weight-bold&quot;&gt;Archivo Excel (Anexo 4)&lt;/label&gt;
+                &lt;label for=&quot;archivo-apertura&quot; class=&quot;upload-area&quot; id=&quot;zone-upload-apertura&quot; style=&quot;display: block;&quot;&gt;
+                    &lt;i class=&quot;fas fa-file-excel fa-2x text-muted mb-2&quot;&gt;&lt;/i&gt;
+                    &lt;p class=&quot;mb-1&quot;&gt;Arrastra el archivo o haz clic aqu&iacute;&lt;/p&gt;
+                    &lt;small class=&quot;text-muted&quot;&gt;Formatos: Excel (.xlsx, .xls)&lt;/small&gt;
+                &lt;/label&gt;
+                &lt;input type=&quot;file&quot; name=&quot;archivo&quot; id=&quot;archivo-apertura&quot; accept=&quot;.xlsx,.xls&quot; style=&quot;display:none&quot; required&gt;
+                &lt;div id=&quot;filename-apertura&quot; class=&quot;mt-2 text-muted small&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;alert alert-guinda small mt-1&quot;&gt;
+                &lt;i class=&quot;fas fa-bullseye&quot;&gt;&lt;/i&gt;
+                Importa el &lt;strong&gt;COMPROMETIDO (META)&lt;/strong&gt; de apertura de tiendas seg&uacute;n la programaci&oacute;n anual del Excel (Anexo 4).
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;btn btn-oro btn-import btn-block mt-auto&quot;&gt;
+                &lt;i class=&quot;fas fa-upload&quot;&gt;&lt;/i&gt; Importar
+            &lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+    &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;!-- ==================== SECCI&Oacute;N: REALIZADOS ==================== --&gt;
@@ -5889,7 +6507,11 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/ventas&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
+                &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;Archivo Excel&lt;/label&gt;
                 &lt;label for=&quot;archivo-ventas&quot; class=&quot;upload-area upload-area-azul&quot; id=&quot;zone-upload-ventas&quot; style=&quot;display: block;&quot;&gt;
                     &lt;i class=&quot;fas fa-file-excel fa-2x text-muted mb-2&quot;&gt;&lt;/i&gt;
@@ -5918,8 +6540,8 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/pdf-realizado&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
-                &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o de ejecuci&oacute;n&lt;/label&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
             &lt;div class=&quot;form-group&quot;&gt;
@@ -5952,7 +6574,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/surtimiento&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
                 &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
                 &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
             &lt;/div&gt;
@@ -5986,42 +6608,54 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
     &lt;/div&gt;
     &lt;div class=&quot;card-body d-flex flex-column&quot;&gt;
         &lt;form action=&quot;http://localhost/importaciones/mermas-comprometido&quot; method=&quot;POST&quot; class=&quot;d-flex flex-column flex-fill&quot;&gt;
-            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;form-group&quot;&gt;
-                &lt;label class=&quot;font-weight-bold&quot;&gt;Almac&eacute;n&lt;/label&gt;
-                &lt;select name=&quot;almacen_id&quot; class=&quot;form-control&quot; required&gt;
-                    &lt;option value=&quot;&quot;&gt;Seleccionar almac&eacute;n...&lt;/option&gt;
-                                            &lt;option value=&quot;1&quot;&gt;ALMACEN CENTRAL OAXACA&lt;/option&gt;
-                                            &lt;option value=&quot;2&quot;&gt;AYUTLA MIXES&lt;/option&gt;
-                                            &lt;option value=&quot;3&quot;&gt;CUAJIMOLOYAS&lt;/option&gt;
-                                            &lt;option value=&quot;5&quot;&gt;IXTLAN DE JUAREZ&lt;/option&gt;
-                                            &lt;option value=&quot;7&quot;&gt;LACHIXIO&lt;/option&gt;
-                                            &lt;option value=&quot;9&quot;&gt;MAGDALENA OCOTLAN&lt;/option&gt;
-                                            &lt;option value=&quot;10&quot;&gt;SAN ANDRES HIDALGO&lt;/option&gt;
-                                            &lt;option value=&quot;4&quot;&gt;SAN JOSE EL CHILAR&lt;/option&gt;
-                                            &lt;option value=&quot;6&quot;&gt;SAN PEDRO JUCHATENGO&lt;/option&gt;
-                                            &lt;option value=&quot;8&quot;&gt;SANTIAGO MATATLAN&lt;/option&gt;
-                                            &lt;option value=&quot;11&quot;&gt;SANTIAGO TEOTITLAN&lt;/option&gt;
-                                            &lt;option value=&quot;12&quot;&gt;TAMAZULAPAN&lt;/option&gt;
-                                            &lt;option value=&quot;13&quot;&gt;VALLES CENTRALES&lt;/option&gt;
-                                    &lt;/select&gt;
+            &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz&quot; autocomplete=&quot;off&quot;&gt;            &lt;div class=&quot;row&quot;&gt;
+                &lt;div class=&quot;col-md-6&quot;&gt;
+                    &lt;div class=&quot;form-group&quot;&gt;
+                        &lt;label class=&quot;font-weight-bold&quot;&gt;Almac&eacute;n&lt;/label&gt;
+                        &lt;select name=&quot;almacen_id&quot; class=&quot;form-control&quot; required&gt;
+                            &lt;option value=&quot;&quot;&gt;Almac&eacute;n...&lt;/option&gt;
+                                                            &lt;option value=&quot;1&quot;&gt;ALMACEN CENTRAL OAXACA&lt;/option&gt;
+                                                            &lt;option value=&quot;2&quot;&gt;AYUTLA MIXES&lt;/option&gt;
+                                                            &lt;option value=&quot;3&quot;&gt;CUAJIMOLOYAS&lt;/option&gt;
+                                                            &lt;option value=&quot;5&quot;&gt;IXTLAN DE JUAREZ&lt;/option&gt;
+                                                            &lt;option value=&quot;7&quot;&gt;LACHIXIO&lt;/option&gt;
+                                                            &lt;option value=&quot;9&quot;&gt;MAGDALENA OCOTLAN&lt;/option&gt;
+                                                            &lt;option value=&quot;10&quot;&gt;SAN ANDRES HIDALGO&lt;/option&gt;
+                                                            &lt;option value=&quot;4&quot;&gt;SAN JOSE EL CHILAR&lt;/option&gt;
+                                                            &lt;option value=&quot;6&quot;&gt;SAN PEDRO JUCHATENGO&lt;/option&gt;
+                                                            &lt;option value=&quot;8&quot;&gt;SANTIAGO MATATLAN&lt;/option&gt;
+                                                            &lt;option value=&quot;11&quot;&gt;SANTIAGO TEOTITLAN&lt;/option&gt;
+                                                            &lt;option value=&quot;12&quot;&gt;TAMAZULAPAN&lt;/option&gt;
+                                                            &lt;option value=&quot;13&quot;&gt;VALLES CENTRALES&lt;/option&gt;
+                                                    &lt;/select&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-md-6&quot;&gt;
+                    &lt;div class=&quot;form-group&quot;&gt;
+                        &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
+                        &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
             &lt;/div&gt;
-            &lt;div class=&quot;form-group&quot;&gt;
-                &lt;label class=&quot;font-weight-bold&quot;&gt;A&ntilde;o&lt;/label&gt;
-                &lt;input type=&quot;number&quot; name=&quot;anio&quot; class=&quot;form-control&quot; value=&quot;2026&quot; min=&quot;2000&quot; max=&quot;2100&quot; required&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;form-group&quot;&gt;
-                &lt;label class=&quot;font-weight-bold&quot;&gt;Trimestre&lt;/label&gt;
-                &lt;select name=&quot;trimestre&quot; class=&quot;form-control&quot; required&gt;
-                    &lt;option value=&quot;&quot;&gt;Seleccionar trimestre...&lt;/option&gt;
-                    &lt;option value=&quot;1&quot;&gt;Q1 &mdash; Ene + Feb + Mar&lt;/option&gt;
-                    &lt;option value=&quot;2&quot;&gt;Q2 &mdash; Abr + May + Jun&lt;/option&gt;
-                    &lt;option value=&quot;3&quot;&gt;Q3 &mdash; Jul + Ago + Sep&lt;/option&gt;
-                    &lt;option value=&quot;4&quot;&gt;Q4 &mdash; Oct + Nov + Dic&lt;/option&gt;
-                &lt;/select&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;form-group&quot;&gt;
-                &lt;label class=&quot;font-weight-bold&quot;&gt;Monto trimestral&lt;/label&gt;
-                &lt;input type=&quot;number&quot; name=&quot;monto&quot; class=&quot;form-control&quot; step=&quot;0.01&quot; lang=&quot;en&quot; placeholder=&quot;0.00&quot; required&gt;
+            &lt;div class=&quot;row&quot;&gt;
+                &lt;div class=&quot;col-md-6&quot;&gt;
+                    &lt;div class=&quot;form-group&quot;&gt;
+                        &lt;label class=&quot;font-weight-bold&quot;&gt;Trimestre&lt;/label&gt;
+                        &lt;select name=&quot;trimestre&quot; class=&quot;form-control&quot; required&gt;
+                            &lt;option value=&quot;&quot;&gt;Trime...&lt;/option&gt;
+                            &lt;option value=&quot;1&quot;&gt;Q1&lt;/option&gt;
+                            &lt;option value=&quot;2&quot;&gt;Q2&lt;/option&gt;
+                            &lt;option value=&quot;3&quot;&gt;Q3&lt;/option&gt;
+                            &lt;option value=&quot;4&quot;&gt;Q4&lt;/option&gt;
+                        &lt;/select&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-md-6&quot;&gt;
+                    &lt;div class=&quot;form-group&quot;&gt;
+                        &lt;label class=&quot;font-weight-bold&quot;&gt;Monto&lt;/label&gt;
+                        &lt;input type=&quot;number&quot; name=&quot;monto&quot; class=&quot;form-control&quot; step=&quot;0.01&quot; lang=&quot;en&quot; placeholder=&quot;0.00&quot; required&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
             &lt;/div&gt;
             &lt;div class=&quot;alert alert-guinda small mt-1&quot;&gt;
                 &lt;i class=&quot;fas fa-hand-holding-usd&quot;&gt;&lt;/i&gt;
@@ -6040,9 +6674,9 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
 &lt;div class=&quot;row&quot;&gt;
     &lt;!-- BLOQUE 4: INFO / ESTADO POA --&gt;
     &lt;div class=&quot;col-lg-8 mb-4&quot;&gt;
-        &lt;div class=&quot;card&quot;&gt;
-    &lt;div class=&quot;card-header&quot;&gt;
-        &lt;h3 class=&quot;card-title&quot;&gt;&lt;i class=&quot;fas fa-info-circle&quot;&gt;&lt;/i&gt; Instrucciones&lt;/h3&gt;
+        &lt;div class=&quot;card import-card import-card-poa&quot;&gt;
+    &lt;div class=&quot;card-header d-flex justify-content-between align-items-center&quot;&gt;
+        &lt;h3 class=&quot;card-title&quot;&gt;&lt;i class=&quot;fas fa-info-circle&quot;&gt;&lt;/i&gt; Instrucciones de Uso&lt;/h3&gt;
     &lt;/div&gt;
     &lt;div class=&quot;card-body&quot;&gt;
         &lt;h5&gt;Estado de Resultados&lt;/h5&gt;
@@ -6062,7 +6696,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
 &lt;/div&gt;    &lt;/div&gt;
     &lt;div class=&quot;col-lg-4 mb-4&quot;&gt;
         &lt;div class=&quot;card import-card import-card-poa&quot;&gt;
-    &lt;div class=&quot;card-header&quot;&gt;
+    &lt;div class=&quot;card-header d-flex justify-content-between align-items-center&quot;&gt;
         &lt;h3 class=&quot;card-title&quot;&gt;&lt;i class=&quot;fas fa-bullseye&quot;&gt;&lt;/i&gt; Metas POA&lt;/h3&gt;
     &lt;/div&gt;
     &lt;div class=&quot;card-body&quot;&gt;
@@ -6103,47 +6737,56 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY
                 &lt;script src=&quot;http://localhost/vendor/adminlte/dist/js/adminlte.min.js&quot;&gt;&lt;/script&gt;
             
     
+    &lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js&quot; &gt;&lt;/script&gt;
+            
+        
+            
+
+            
+            
+
+            
+            
+
     
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
+            
+            
+
+            
+            
+
+            
+            
+
     
     
     
         &lt;script&gt;
-document.addEventListener(&#039;DOMContentLoaded&#039;, function() {
-    const input = document.getElementById(&#039;archivo-mermas&#039;);
-    const zone = document.getElementById(&#039;zone-upload-mermas&#039;);
-    const filename = document.getElementById(&#039;filename-mermas&#039;);
-
-    zone.addEventListener(&#039;click&#039;, function(e) {
-        e.preventDefault();
-        input.click();
-    });
-
-    zone.addEventListener(&#039;dragover&#039;, function(e) {
-        e.preventDefault();
-        zone.style.borderColor = &#039;#fd7e14&#039;;
-    });
-
-    zone.addEventListener(&#039;dragleave&#039;, function() {
-        zone.style.borderColor = &#039;#ccc&#039;;
-    });
-
-    zone.addEventListener(&#039;drop&#039;, function(e) {
-        e.preventDefault();
-        zone.style.borderColor = &#039;#ccc&#039;;
-        if (e.dataTransfer.files.length &gt; 0) {
-            input.files = e.dataTransfer.files;
-            filename.textContent = &#039;Archivo: &#039; + e.dataTransfer.files[0].name;
-        }
-    });
-
-    input.addEventListener(&#039;change&#039;, function() {
-        if (input.files.length &gt; 0) {
-            filename.textContent = &#039;Archivo: &#039; + input.files[0].name;
-        }
-    });
-});
-&lt;/script&gt;
-&lt;script&gt;
 document.addEventListener(&#039;DOMContentLoaded&#039;, function() {
     const inputs = document.querySelectorAll(&#039;input[type=&quot;number&quot;][lang=&quot;en&quot;]&#039;);
     inputs.forEach(function(input) {
@@ -6159,16 +6802,16 @@ document.addEventListener(&#039;DOMContentLoaded&#039;, function() {
     });
 });
 &lt;/script&gt;
-        &lt;link rel=&quot;modulepreload&quot; as=&quot;script&quot; href=&quot;http://localhost/build/assets/importaciones-DkwpDtfc.js&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/importaciones-DkwpDtfc.js&quot; data-navigate-track=&quot;reload&quot;&gt;&lt;/script&gt;    &lt;script&gt;
-    document.addEventListener(&#039;DOMContentLoaded&#039;, function() {
+    &lt;link rel=&quot;modulepreload&quot; as=&quot;script&quot; href=&quot;http://localhost/build/assets/importaciones-DxsJYjMt.js&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://localhost/build/assets/importaciones-DxsJYjMt.js&quot; data-navigate-track=&quot;reload&quot;&gt;&lt;/script&gt;&lt;script&gt;
+    document.addEventListener(&#039;DOMContentLoaded&#039;, function () {
         const overlay = document.getElementById(&#039;loading-overlay&#039;);
-        document.querySelectorAll(&#039;.import-card form&#039;).forEach(function(form) {
-            form.addEventListener(&#039;submit&#039;, function() {
+        document.querySelectorAll(&#039;.import-card form&#039;).forEach(function (form) {
+            form.addEventListener(&#039;submit&#039;, function () {
                 overlay.classList.add(&#039;active&#039;);
             });
         });
     });
-    &lt;/script&gt;
+&lt;/script&gt;
 
 &lt;/body&gt;
 
@@ -6251,7 +6894,7 @@ Cada hoja se procesa con ERSheetImport.</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php78B6.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC26C.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6343,7 +6986,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo Excel (.xlsx, .xls, .csv) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php78B6.tmp</code></p>
+<p>Archivo Excel (.xlsx, .xls, .csv) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC26C.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -6378,7 +7021,7 @@ Los datos se guardan como tipo_dato=REAL con programa=PAR|PE.</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "programa=consequatur"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php78B8.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC26F.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6470,7 +7113,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo Excel (.xlsx, .xls, .csv) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php78B8.tmp</code></p>
+<p>Archivo Excel (.xlsx, .xls, .csv) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC26F.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>programa</code></b>&nbsp;&nbsp;
@@ -6506,7 +7149,7 @@ y RESULTADO DIRECTO DE OPERACIÓN.</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php78CA.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC282.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6598,7 +7241,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo PDF hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php78CA.tmp</code></p>
+<p>Archivo PDF hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC282.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -6633,7 +7276,7 @@ Guarda registros REAL para los conceptos de Oportunidad y Eficiencia de Surtimie
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php78EB.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC285.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6725,7 +7368,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo Excel (.xlsx, .xls) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php78EB.tmp</code></p>
+<p>Archivo Excel (.xlsx, .xls) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC285.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -6760,7 +7403,7 @@ sobre las ventas de cada línea de producto (config/mermas.php).</p>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --form "anio=17"\
-    --form "archivo=@C:\Users\qange\AppData\Local\Temp\php78ED.tmp" </code></pre></div>
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC298.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6852,7 +7495,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Archivo Excel (.xlsx, .xls) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\php78ED.tmp</code></p>
+<p>Archivo Excel (.xlsx, .xls) hasta 100MB. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC298.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
@@ -7027,6 +7670,131 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
+                    <h2 id="importaciones-POSTimportaciones-apertura-tiendas">Importar apertura de tiendas (Excel)</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTimportaciones-apertura-tiendas">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/importaciones/apertura-tiendas" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "anio=21"\
+    --form "archivo=@C:\Users\qange\AppData\Local\Temp\phpC2A9.tmp" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/importaciones/apertura-tiendas"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('anio', '21');
+body.append('archivo', document.querySelector('input[name="archivo"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTimportaciones-apertura-tiendas">
+</span>
+<span id="execution-results-POSTimportaciones-apertura-tiendas" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTimportaciones-apertura-tiendas"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTimportaciones-apertura-tiendas"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTimportaciones-apertura-tiendas" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTimportaciones-apertura-tiendas">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTimportaciones-apertura-tiendas" data-method="POST"
+      data-path="importaciones/apertura-tiendas"
+      data-authed="0"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTimportaciones-apertura-tiendas', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>importaciones/apertura-tiendas</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTimportaciones-apertura-tiendas"
+               value="multipart/form-data"
+               data-component="header">
+    <br>
+<p>Example: <code>multipart/form-data</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTimportaciones-apertura-tiendas"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>archivo</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="file" style="display: none"
+                              name="archivo"                data-endpoint="POSTimportaciones-apertura-tiendas"
+               value=""
+               data-component="body">
+    <br>
+<p>Must be a file. Must not be greater than 102400 kilobytes. Example: <code>C:\Users\qange\AppData\Local\Temp\phpC2A9.tmp</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>anio</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="anio"                data-endpoint="POSTimportaciones-apertura-tiendas"
+               value="21"
+               data-component="body">
+    <br>
+<p>Must be at least 2000. Must not be greater than 2100. Example: <code>21</code></p>
+        </div>
+        </form>
+
                 <h1 id="poa">POA</h1>
 
     
@@ -7091,7 +7859,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-set-cookie: XSRF-TOKEN=eyJpdiI6IitCNTZIcGhmckQ4ZlVSZU0ycC9WcVE9PSIsInZhbHVlIjoidVBYUUJSUmZIK0Rldi9hRTdYSVpuWVpRRnVqTThTUldwTW5HS1BKL0xmVXBrZkoxVDFKVUdCL0EwUUxKcEJIcmx4cEkzdHBva1dpcDVUV0hyZVN5MTlVUGRpL00rYWxEYUxCTlJZcnJIZUtObDRGTXNBRGpzMEdkYnd4Z0dtNTIiLCJtYWMiOiI2MjU5ZjE0NGE3MmI2MDIwOWQ0NDA2MWZjN2U3MmZlY2MzM2ExOGM1MDg4Yzk3NGIzZDZkYjNlYjk1ZTc3YTNlIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:40 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6InFOL25ZT0tqeFlNTC9vQ3JLTllQT0E9PSIsInZhbHVlIjoiSi9QMld2RWRtSmtGUHJNbHVHWVBZajQyVTU0Q0N4SXZUUW02OThDd1hlNEVFYmJwU2JwYVF4dE1tZlpubjlFTnBXSy8yOU03QSt5aFFrbGJseVQ4UCtNZFMyWmJqL21DSTB0bWpheitoSnVmR2p5cnJiOUhpQVNkQU1wMDMwNk4iLCJtYWMiOiJlODZmNGNjZTQ0YzE5ZTY0NDE1MmRkMzVkMjhjOTBkYmQ1ZTRmZTJiMDdiYjdjOWZhMTI2OWQxMTk5MDU3MmY3IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:40 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IldLV0pCYUNNcUhQcVBMU2NNa2NuMlE9PSIsInZhbHVlIjoiV3YvUHEvVHFtdGIyQjBHMWFkbUFMd3pMcDNIQ3dDUG9KdUh5OHNQSDNnYUhsV2FlY2t4Skw0T2JqOFBzZDQzamVId21zTzRmMDVXZEg5LzNRUWQ3bE9za0dxUGV1TFRrc3ZlRWRhSjZoQ0w0WTBOZUE0QitaUmNqSHR4dUNWRWIiLCJtYWMiOiI3MDE5OGFjMmEyNjFhMjBhNWEzMzYyMjc0OTEwZGIyNWJhODYwOTY0MTIyYjliY2FmNGI4NTM4ZGZhZDgwNGZhIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:34 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IlJWc2tCdXd2cUYyeXkxMWZCUHY1Z0E9PSIsInZhbHVlIjoibnNsOXdVWmxFRzZPcnJPY2ZFMGZndHplYnpMbnkrMzhONWdLSkh3c00vU2dyQWZWL1owV1lEWXhsZmhJYmhtOEhNMDRvVkswek1KRVQxSTA2cjcwTVlkMXlYZ1M1R3g2SCtxL2ExdUhsejVqc0ErTERNQ1pETVhMZHluWG9GZisiLCJtYWMiOiI4MDFhYzBjMmExMWE0ZmRiYjU2Yjg3OTY2NjYxNDQ2NWE4MmRkNDM5YzkxZjhjZTFjMGViNjdhOTYyOTA5ZTg4IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:34 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -7288,7 +8056,7 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-set-cookie: XSRF-TOKEN=eyJpdiI6IkFObXFNQ2RWcGZBZFUvMC9XSnhQekE9PSIsInZhbHVlIjoiWjBoR3ZZRVJHN2J5c3U0ZEJQVkp0WHgyN0ptaUJ5Y3BEQ01jR3B4cVc5MFBrTlFDVVlWL0lOSFBLYzVmSTVTN3g1WEFRMHdQNHlRNU1xdDlzQmFwcGttNnJaL01qdHFTK1FEYVJ5M3Q3ekdrRlNUcmphdjhzRmRrQk9oMlBhelciLCJtYWMiOiI5ZjRkMjEzM2VkY2I4N2Y5ODQ2ODUyOTZhZmY2MTM5MTlkY2JjYjVkNzIxMjk1YWY2ZDZmYmI2MDJiYzIzOTdlIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:41 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6ImVhWHN6d3FCUFAyYzFza25ra3BqVFE9PSIsInZhbHVlIjoidmxidHhGZUowQ0M1Um1QYnpmSjB6Wk5HR2lZV1B4YzA5K3ZIMlVyLytlQnZVUzArZE5WbmROMVU5VHdTaEVmK1l0SDk5bHZIVVd3c25GU2ZrNGs1U05BajZwMVNkTURLa1Iwb2NzZ3dXaldzeURQRGhTdEw5STh2UUtMZjhUUG8iLCJtYWMiOiI0ZWU2MmFlY2JjNjg1OWUyZGQwZTI2YWQ1ZGQ1NTYzMTEzMDAxMzg1ZGEzZTQ3NTUzMGYwNDE4ODg3Nzc4MjE1IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:41 GMT; Max-Age=7199; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IkowVjVJWWdtbHY0K0ZtajFEV2VZMkE9PSIsInZhbHVlIjoiaGhKeWxEVzFZcTN0VmFMZFJPb2QrNEl6d0JDbXFJQUt3Y0tHWXdlY1B0MlpWb0FoNnpWcm9JOE85cEpLYTY3dzVTUXlEUUs4NHBoaVFVUDYyRDRvalp4RnVJTFdpN2hqa21nZkJMT0RQczJ6OUJ2S2Qzd3Q0YmxjUDNpN2dMK0oiLCJtYWMiOiI5OGE5YzU4MjA3NTczNmY4MzBlYzUxMTQ5N2MzY2I4NWMyYWVkZDRhYTk4YzAwNmZlOGY5NTQ1OTA4YmUyZWI5IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:35 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6InZwTGFYKzVmYjVwbFJnSUphYVBON3c9PSIsInZhbHVlIjoiZG1XYVprdmtXcloySStrQ2NnWmN0aGJScHgrNEt4OVV5eElNRXEzdFJVZEhUaDJoc0dOelhoWEllM1hUU1pISEF6WjR5TWhwVjYwcXZEOTQ4QkhmamNmMitkN3RPOVE3VGp3bmZrc1JwYWhUNUVydkJiVVRtSHFhZUlBQXF5R1ciLCJtYWMiOiJlMDU0Yzc3MWUwMThhMjMxZmI1YjYwYzVhYmZjZGFkZTI4YmI0NmM1MWMzMDdjYzg0ZDI2OGMxYjEyNjNlMTU5IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:35 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{

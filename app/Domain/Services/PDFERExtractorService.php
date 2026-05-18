@@ -8,7 +8,9 @@ use App\Models\RegistroFinanciero;
 use Smalot\PdfParser\Parser;
 use Exception;
 
-class PDFERExtractorService
+use App\Domain\Contracts\IPDFERExtractorService;
+
+class PDFERExtractorService implements IPDFERExtractorService
 {
     private array $bloques = [
         0 => [
@@ -89,7 +91,8 @@ class PDFERExtractorService
                     $monto = (float) str_replace(',', '', $numeros[$idx]) * 1000;
                     if ($monto == 0) continue;
 
-                    $almacen = Almacen::where('nombre', $nombreAlmacen)->first();
+                    $nombreAlmacenNorm = \App\Domain\Shared\StoreNameNormalizer::normalize($nombreAlmacen);
+                    $almacen = Almacen::where('nombre', $nombreAlmacenNorm)->first();
                     if (!$almacen) continue;
 
                     RegistroFinanciero::updateOrCreate(

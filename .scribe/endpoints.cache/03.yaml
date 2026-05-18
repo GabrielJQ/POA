@@ -61,489 +61,1115 @@ endpoints:
         status: 200
         content: |-
           <div class="table-responsive">
-              <table class="table table-sm table-hover text-right" style="font-size: 0.85rem; white-space: nowrap;">
-              <thead class="text-center">
-                  <tr>
-                      <th class="text-left" style="min-width: 250px;">CONCEPTO</th>
-                      <th>ENERO</th>
-                      <th>FEBRERO</th>
-                      <th>MARZO</th>
-                      <th>ABRIL</th>
-                      <th>MAYO</th>
-                      <th>JUNIO</th>
-                      <th>JULIO</th>
-                      <th>AGOSTO</th>
-                      <th>SEPTIEMBRE</th>
-                      <th>OCTUBRE</th>
-                      <th>NOVIEMBRE</th>
-                      <th>DICIEMBRE</th>
-                      <th>TOTAL</th>
-                  </tr>
-              </thead>
-              <tbody>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              VENTAS A TIENDAS
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              VENTAS PROGRAMAS ESPECIALES
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              VENTAS NETAS
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              COSTO DE VENTA
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              REMANENTE BRUTO
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              GASTOS DE DISTRIBUCION
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              REMUNERACION Y PREV. SOCIAL
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              SERVICIO A COMUNIDADES
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              COMBUSTIBLE Y LUBRICANTES
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              MTTO CONSV. Y REPARA.
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              MTTO DE EQUIPO DE TRANSP.
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              FLETES Y MANIOBRAS
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              ALMACENAJE
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              DEPRECIACIONES Y AMORTIZACIONES
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              GASTOS DE VIAJE
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              MATERIALES Y SERVICIOS DE OFICINA
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              PRIMA DE SEGUROS
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              ESTIMACION PARA CUENTAS INCOBRABLES
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              DIVERSOS
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              ASESORIAS
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              IMPUESTOS Y DERECHOS
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              LIQUIDACION
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              TOTAL DE GTOS DE DISTRIBUCION
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                                              <tr class="">
-                          <td class="text-left  pl-4">
-                              RESULTADO DIRECTO DE OPERACIÓN
-                          </td>
-                          
-                                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                      <td>-</td>
-                                                  <td class="font-weight-bold bg-light">-</td>
-                                      </tr>
-                      </tbody>
-          </table>
+              <div id="contenedor-tabla-er">
+              <table class="table table-sm table-hover text-right table-er" style="font-size: 0.85rem; white-space: nowrap;">
+                  <thead class="text-center">
+                      <tr>
+                          <th class="text-left" style="min-width: 250px;">CONCEPTO</th>
+                          <th>ENERO</th>
+                          <th>FEBRERO</th>
+                          <th>MARZO</th>
+                          <th>ABRIL</th>
+                          <th>MAYO</th>
+                          <th>JUNIO</th>
+                          <th>JULIO</th>
+                          <th>AGOSTO</th>
+                          <th>SEPTIEMBRE</th>
+                          <th>OCTUBRE</th>
+                          <th>NOVIEMBRE</th>
+                          <th>DICIEMBRE</th>
+                          <th class="bg-dark">TOTAL</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  VENTAS A TIENDAS
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  VENTAS PROGRAMAS ESPECIALES
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  VENTAS NETAS
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  COSTO DE VENTA
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  REMANENTE BRUTO
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  GASTOS DE DISTRIBUCION
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  REMUNERACION Y PREV. SOCIAL
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  SERVICIO A COMUNIDADES
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  COMBUSTIBLE Y LUBRICANTES
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  MTTO CONSV. Y REPARA.
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  MTTO DE EQUIPO DE TRANSP.
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  FLETES Y MANIOBRAS
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  ALMACENAJE
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  DEPRECIACIONES Y AMORTIZACIONES
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  GASTOS DE VIAJE
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  MATERIALES Y SERVICIOS DE OFICINA
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  PRIMA DE SEGUROS
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  ESTIMACION PARA CUENTAS INCOBRABLES
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  DIVERSOS
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  ASESORIAS
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  IMPUESTOS Y DERECHOS
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  LIQUIDACION
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  TOTAL DE GTOS DE DISTRIBUCION
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                                                      <tr class="">
+                              <td class="text-left concepto-col  pl-4">
+                                  RESULTADO DIRECTO DE OPERACIÓN
+                              </td>
+                              
+                                                                                                              <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                                                          <td class="er-monto er-monto-cero ">
+                                                                              <span class="text-muted-dash">-</span>
+                                                                      </td>
+                                                          <td class="font-weight-bold total-col er-monto er-monto-cero ">
+                                      -
+                                  </td>
+                                              </tr>
+                              </tbody>
+              </table>
+          </div>
           </div>
         headers:
           content-type: 'text/html; charset=utf-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjJvZFZGbXc4VSt1ZXhyL0FWVTY1ZHc9PSIsInZhbHVlIjoiS2haZDBRYkxKK0M1WWp5Wm5vekkvYjN4TGVjZTUzUDd3QzJoc3hqNExqZ3ZjU3RZM0Y5RkxaUEpyL2RsSGQzQ1JocFJobEd1TkJiSDVJTkZKb0NHaUZzNHRobWNlWnJGYlFoUThUMEJxM0t0LzIwbU1OSUpENHF3c3JVeHJ3VmUiLCJtYWMiOiI0NmU2ZGY0NGNlN2NhN2MwMTE0ODgwMDYyNTA4YmNiYWQ4ODhhMmZiNWU0OTAzMjAwM2Y5OTllODRmYTJjMTk2IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:38 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IlFRMDFHZFlrMmYwckkzOEFkRGp4bkE9PSIsInZhbHVlIjoiQVBPaSs1T1UwbVFLVjNYKzBDa0hJUXV4TVE2OWJSVDdCVFBFNlhSOEpVSmJXMmFGLzEyeDFBQmN4TUlJb0JacUY0RTc1VDBmUDRDOGU5SGpCVFlkMHp2MWhBdlA4eTl4a0VvdzRzSlRKNzFLUVNIQVpadWF4REFqUFczZmtrN2QiLCJtYWMiOiJiODZlYmFmZDJmZjRmZTQ0OTRhY2I0NTA2ZTZlZGY4YjhiYmViYmE5ZGVlZWRmZGQ3NzFhNmQwNmM2MDg4MWJkIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:38 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjlRaWtLWkpKemhua2J4Mzg2NjIzTHc9PSIsInZhbHVlIjoiVzNmeThkeXNDZC83N25ncnF2OW94bHdHMFZsdjJhbE1QQysrSlhVUG5aSDdFTm1RR0hKT0dnUVdVUjJjSmRSazVPZjFvYmQ4YWtraHRqNUkwME9KdVVYeWljUDVDQVRhdjhKN2RXblN2Z1VzSi9jS1hCRVlsM3VWRk5LSG1EQ3IiLCJtYWMiOiI0MjJiYzVmYTIzMDcyOWRkNjczMDI2NTZiZmRhMDBlYWExNTU1OTQ4NmQ3Y2Q3Nzk5NGFjOWNjNTQyNTkyMjgwIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:25 GMT; Max-Age=7200; path=/; samesite=lax; laravel-session=eyJpdiI6IlRxKzdDOElEVU5YMFB6WVdRcUZqNnc9PSIsInZhbHVlIjoiUFlPVDM2cE4zY1RxV1BnQi82LzlGYUNxV1Q3UklnNkU4Ykg4aWx2ckdxS3Z5VnE4Nm8wK3d0dUp5OS9od3NUYjBzMWJ1cFdnYWZINlpCQzliRmNORHdPK0gyRW8xbWV2WUVicUlOdjJUTUp2eTZvQlFMd1JvUDYrWVFSa1M1TzMiLCJtYWMiOiI2NjFmY2JmZmVlNTgzYzNmYmM3ODIxNWFhMDA3MDcwYzMzNzJiNGEzZjhiYjNiMGI1ZWI2NWQ0NzU1ODRhNTBhIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:25 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
     auth: []
@@ -611,7 +1237,7 @@ endpoints:
           content-disposition: 'attachment; filename=Estado_Resultados_17_Almacen_17.xlsx'
           content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
           accept-ranges: bytes
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjNCWEw5dHZTQ3EzaEJIaFRIS05ZVUE9PSIsInZhbHVlIjoiV00zVWd2RHZpMFhndkJpYmVWYkxHVVVxVXd1QWRuNTJlNUFVY09oRkdHMWxaekI0UUkzM2xHOFJDWkNLNnd5cnNoR1E3MXdibUwwRG04YlFDVXdQTnpSMFBLODVRbXlqUFlscTRtck0xVTQwSHN3VUJ3a2dVUnFPN1JZbXV1MFEiLCJtYWMiOiIwY2EzMWY4MDU1OTkyNGE0ZDFlOTFjOWQyYWNmNWMyNGQwZjEwZjZhNzhlNzc4Y2NlNWVjYmIxZDM1NDA4OGY3IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:39 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IjhVcDNETjFXQ0FOcWtXSEc3NUpWa0E9PSIsInZhbHVlIjoicHFrUGlvcEJLL3NET1ZyTzlxVDY4SXdYaGpnMC81ZVM3SmRJZ2p3STllZ2J5MEVrUFlPWmhlZWtCTytPZU9QWVVqSGJFODRDZTgzZ3lsOVBRcnBCd1BLYi9WbDgvdDVkem5YUmFFTms0a0RhaFFSdkptMzRBeUc2TGViRzdFT0UiLCJtYWMiOiI0NmQyNjMxMWYxMDM5NDc3ZGI3MTQ0MjRmMzkwZjg3NmZjNzkxMmEwOWMwOTM2MGM3NTUyMDUzZDIwMzY4NGM5IiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:39 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IktxM0JRdVRoUDdhQ2o4M1N4eStmMkE9PSIsInZhbHVlIjoiVksxNVRaWFptVXpEVUxqa1QrRXFpeTFZMWpFRVpmTVJ1bVBTNVlyOGpUdjd6aDd6NDJsUTdCcTUzeUNUZ3Y3aURNSXdKRWp3cFRwUDhvcjZEY3VQL292Qmc2VkRVby9nTFZEMno0U255MEhvZ1lDUmVpbkdKcTRSQTdlSUdkU24iLCJtYWMiOiIxYTVhOWVhNDNiNzdiY2QzN2JlYWM4YWQ1ZTRkYWMwODc4ZDFkNTAwZWU1ZDE2YWQ4NDMyOTgzOTBkZTM2MTdkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:33 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IktheCtZd1ExRDh2LzZxRUZkWmJVZ1E9PSIsInZhbHVlIjoiOVEyN0dGeXIybzY1eEFmRU5wZjVQOGlRamhxTVdzR3JlczNBN21uSW9nUGZXVEhzRHh1b3dsdDZUa0xVaStLeVBIcGZGYWg0TWYvcHYxTFJsVi8yT3FRQStUWnNZODByQ0ZoTlNMZlZjRzJmd3lpQktjczVHeXlNamVqdFplVXUiLCJtYWMiOiJjMmEwNzAzZjUzNWNiYjc1MjZiOWY2MWU4YjU5Mzg5MTBiZTJlYmU4YmEyODRiNDE3YTY0ZDYzYzcwZDViYjI4IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:33 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
     auth: []

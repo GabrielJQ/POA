@@ -44,10 +44,11 @@ endpoints:
               <meta charset="utf-8">
               <meta http-equiv="X-UA-Compatible" content="IE=edge">
               <meta name="viewport" content="width=device-width, initial-scale=1">
-              <meta name="csrf-token" content="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF">
+              <meta name="csrf-token" content="CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz">
 
               
-              
+                  <link rel="icon" type="image/png" href="http://localhost/brand-icon.png?v=5">
+
               
               <title>
                           Centro de Importación            </title>
@@ -70,14 +71,50 @@ endpoints:
                                               <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
                                       
               
-              <link rel="stylesheet" href="http://localhost/css/variables-institucionales.css">
+              <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
+                      
+                      
+
+              
+
+              
+              
+
+              
+
+              
+
+              
+              
+
+              
+
+              
+
+              
+              
+
+              
+
+              
+
+              
+              
+
+                      
+                      
+
+                      
+                      
+
+                                      <link rel="stylesheet" href="http://localhost/css/variables-institucionales.css">
                       
                       
 
               
               
               
-                          <link rel="preload" as="style" href="http://localhost/build/assets/importaciones-Dk1TVZM5.css" /><link rel="stylesheet" href="http://localhost/build/assets/importaciones-Dk1TVZM5.css" data-navigate-track="reload" />
+                      <link rel="preload" as="style" href="http://localhost/build/assets/importaciones-Ddo0Swuo.css" /><link rel="stylesheet" href="http://localhost/build/assets/importaciones-Ddo0Swuo.css" data-navigate-track="reload" />
               
               
           </head>
@@ -92,9 +129,9 @@ endpoints:
 
               
                   
-                  <img src="http://localhost/vendor/adminlte/dist/img/AdminLTELogo.png"
+                  <img src="http://localhost/img/logos/logoAlimentacionBienestar1.png"
                        class="img-circle animation__shake"
-                       alt="AdminLTE Preloader Image"
+                       alt="POA Preloader Image"
                        width="60"
                        height="60"
                        style="animation-iteration-count:infinite;">
@@ -120,56 +157,16 @@ endpoints:
                   
                   
                   
-                      </ul>
+                      <img src="/img/logos/logoAlimentacionBienestar.png" style="height: 33px; margin-top: 5px; margin-left: 10px;">
+              </ul>
 
               
               <ul class="navbar-nav ml-auto">
                   
+                      <img src="/img/logos/gobierno.png" style="height: 33px; margin-top: 5px; margin-right: 10px;">
+
                   
                   
-                  <li class="nav-item">
-
-              
-              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                  <i class="fas fa-search"></i>
-              </a>
-
-              
-              <div class="navbar-search-block">
-                  <form class="form-inline" action="#" method="get">
-                      <input type="hidden" name="_token" value="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF" autocomplete="off">
-
-                      <div class="input-group">
-
-                          
-                          <input class="form-control form-control-navbar" type="search"
-                                                  name="adminlteSearch"
-                              placeholder="search"
-                              aria-label="search">
-
-                          
-                          <div class="input-group-append">
-                              <button class="btn btn-navbar" type="submit">
-                                  <i class="fas fa-search"></i>
-                              </button>
-                              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                  <i class="fas fa-times"></i>
-                              </button>
-                          </div>
-
-                      </div>
-                  </form>
-              </div>
-
-          </li>
-
-          <li class="nav-item">
-              <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                  <i class="fas fa-expand-arrows-alt"></i>
-              </a>
-          </li>
-
-
                   
                   
                   
@@ -186,14 +183,14 @@ endpoints:
               >
 
               
-              <img src="http://localhost/vendor/adminlte/dist/img/AdminLTELogo.png"
-                   alt="Admin Logo"
+              <img src="http://localhost/img/logos/logoAlimentacionBienestar1.png"
+                   alt="POA Logo"
                    class="brand-image img-circle elevation-3"
                    style="opacity:.8">
 
               
               <span class="brand-text font-weight-light ">
-                  <b>Admin</b>LTE
+                  <b>POA</b> Bienestar
               </span>
 
           </a>
@@ -205,29 +202,7 @@ endpoints:
                           data-widget="treeview" role="menu"
                                           >
                           
-                          <li>
-
-              <div class="form-inline my-2">
-                  <div class="input-group" data-widget="sidebar-search" data-arrow-sign="&raquo;">
-
-                      
-                      <input class="form-control form-control-sidebar" type="search"
-                                          placeholder="search"
-                          aria-label="search">
-
-                      
-                      <div class="input-group-append">
-                          <button class="btn btn-sidebar">
-                              <i class="fas fa-fw fa-search"></i>
-                          </button>
-                      </div>
-
-                  </div>
-              </div>
-
-          </li>
-
-          <li  class="nav-item">
+                          <li  class="nav-item">
 
               <a class="nav-link active "
                  href="http://localhost"        >
@@ -329,206 +304,6 @@ endpoints:
 
           </li>
 
-          <li  class="nav-item has-treeview ">
-
-              
-              <a class="nav-link  "
-                 href="" >
-
-                  <i class="nav-icon fas fa-fw fa-share "></i>
-
-                  <p>
-                      Multi Level
-                      <i class="fas fa-angle-left right"></i>
-
-                              </p>
-
-              </a>
-
-              
-              <ul class="nav nav-treeview">
-                  <li  class="nav-item">
-
-              <a class="nav-link  "
-                 href="#"        >
-
-                  <i class="nav-icon far fa-fw fa-circle "></i>
-
-                  <p>
-                      Level 1
-
-                              </p>
-
-              </a>
-
-          </li>
-
-          <li  class="nav-item has-treeview ">
-
-              
-              <a class="nav-link  "
-                 href="" >
-
-                  <i class="nav-icon far fa-fw fa-circle "></i>
-
-                  <p>
-                      Level 1
-                      <i class="fas fa-angle-left right"></i>
-
-                              </p>
-
-              </a>
-
-              
-              <ul class="nav nav-treeview">
-                  <li  class="nav-item">
-
-              <a class="nav-link  "
-                 href="#"        >
-
-                  <i class="nav-icon far fa-fw fa-circle "></i>
-
-                  <p>
-                      Level 2
-
-                              </p>
-
-              </a>
-
-          </li>
-
-          <li  class="nav-item has-treeview ">
-
-              
-              <a class="nav-link  "
-                 href="" >
-
-                  <i class="nav-icon far fa-fw fa-circle "></i>
-
-                  <p>
-                      Level 2
-                      <i class="fas fa-angle-left right"></i>
-
-                              </p>
-
-              </a>
-
-              
-              <ul class="nav nav-treeview">
-                  <li  class="nav-item">
-
-              <a class="nav-link  "
-                 href="#"        >
-
-                  <i class="nav-icon far fa-fw fa-circle "></i>
-
-                  <p>
-                      Level 3
-
-                              </p>
-
-              </a>
-
-          </li>
-
-          <li  class="nav-item">
-
-              <a class="nav-link  "
-                 href="#"        >
-
-                  <i class="nav-icon far fa-fw fa-circle "></i>
-
-                  <p>
-                      Level 3
-
-                              </p>
-
-              </a>
-
-          </li>
-
-              </ul>
-
-          </li>
-
-              </ul>
-
-          </li>
-
-          <li  class="nav-item">
-
-              <a class="nav-link  "
-                 href="#"        >
-
-                  <i class="nav-icon far fa-fw fa-circle "></i>
-
-                  <p>
-                      Level 1
-
-                              </p>
-
-              </a>
-
-          </li>
-
-              </ul>
-
-          </li>
-
-          <li  class="nav-header ">
-
-              LABELS
-
-          </li>
-
-          <li  class="nav-item">
-
-              <a class="nav-link  "
-                 href="#"        >
-
-                  <i class="nav-icon far fa-fw fa-circle text-red"></i>
-
-                  <p>
-                      Important
-
-                              </p>
-
-              </a>
-
-          </li>
-
-          <li  class="nav-item">
-
-              <a class="nav-link  "
-                 href="#"        >
-
-                  <i class="nav-icon far fa-fw fa-circle text-yellow"></i>
-
-                  <p>
-                      Warning
-
-                              </p>
-
-              </a>
-
-          </li>
-
-          <li  class="nav-item">
-
-              <a class="nav-link  "
-                 href="#"        >
-
-                  <i class="nav-icon far fa-fw fa-circle text-cyan"></i>
-
-                  <p>
-                      Information
-
-                              </p>
-
-              </a>
-
-          </li>
-
                       </ul>
                   </nav>
               </div>
@@ -543,7 +318,7 @@ endpoints:
               
                       <div class="content-header">
                       <div class="container-fluid">
-                              <h1><i class="fas fa-file-import text-institucional-oro"></i> Centro de Importación Homologado</h1>
+                          <h1><i class="fas fa-file-import text-institucional-oro"></i> Centro de Importación Homologado</h1>
                       </div>
                   </div>
               
@@ -567,7 +342,7 @@ endpoints:
                   </div>
               </div>
 
-              <div class="col-xl-6 col-lg-6 mb-4">
+              <div class="col-xl-4 col-lg-4 mb-4">
                   <div class="card import-card">
               <div class="card-header d-flex justify-content-between align-items-center">
                   <h3 class="card-title"><i class="fas fa-chart-line"></i> Estado de Resultados</h3>
@@ -575,7 +350,7 @@ endpoints:
               </div>
               <div class="card-body d-flex flex-column">
                   <form action="http://localhost/importaciones/er" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-fill">
-                      <input type="hidden" name="_token" value="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF" autocomplete="off">            <div class="form-group">
+                      <input type="hidden" name="_token" value="CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz" autocomplete="off">            <div class="form-group">
                           <label class="font-weight-bold">Año fiscal</label>
                           <input type="number" name="anio" class="form-control" value="2026" min="2000" max="2100" required>
                       </div>
@@ -600,7 +375,7 @@ endpoints:
               </div>
           </div>    </div>
 
-              <div class="col-xl-6 col-lg-6 mb-4">
+              <div class="col-xl-4 col-lg-4 mb-4">
                   <div class="card import-card import-card-orange">
               <div class="card-header d-flex justify-content-between align-items-center">
                   <h3 class="card-title"><i class="fas fa-weight-hanging"></i> Mermas, Quebrantos y Mal Estado</h3>
@@ -608,7 +383,7 @@ endpoints:
               </div>
               <div class="card-body d-flex flex-column">
                   <form action="http://localhost/importaciones/mermas" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-fill">
-                      <input type="hidden" name="_token" value="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF" autocomplete="off">            <div class="form-group">
+                      <input type="hidden" name="_token" value="CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz" autocomplete="off">            <div class="form-group">
                           <label class="font-weight-bold">Año</label>
                           <input type="number" name="anio" class="form-control" value="2026" min="2000" max="2100" required>
                       </div>
@@ -634,6 +409,40 @@ endpoints:
           </div>
 
               </div>
+
+              <div class="col-xl-4 col-lg-4 mb-4">
+                  <div class="card import-card">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                  <h3 class="card-title"><i class="fas fa-store"></i> Apertura de Tiendas</h3>
+                  <span class="badge bg-white text-secondary font-weight-bold" style="font-size:0.7rem;">COMPROMETIDO (Conc. 33, 34, 35)</span>
+              </div>
+              <div class="card-body d-flex flex-column">
+                  <form action="http://localhost/importaciones/apertura-tiendas" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-fill">
+                      <input type="hidden" name="_token" value="CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz" autocomplete="off">            <div class="form-group">
+                          <label class="font-weight-bold">Año</label>
+                          <input type="number" name="anio" class="form-control" value="2026" min="2000" max="2100" required>
+                      </div>
+                      <div class="form-group">
+                          <label class="font-weight-bold">Archivo Excel (Anexo 4)</label>
+                          <label for="archivo-apertura" class="upload-area" id="zone-upload-apertura" style="display: block;">
+                              <i class="fas fa-file-excel fa-2x text-muted mb-2"></i>
+                              <p class="mb-1">Arrastra el archivo o haz clic aquí</p>
+                              <small class="text-muted">Formatos: Excel (.xlsx, .xls)</small>
+                          </label>
+                          <input type="file" name="archivo" id="archivo-apertura" accept=".xlsx,.xls" style="display:none" required>
+                          <div id="filename-apertura" class="mt-2 text-muted small"></div>
+                      </div>
+                      <div class="alert alert-guinda small mt-1">
+                          <i class="fas fa-bullseye"></i>
+                          Importa el <strong>COMPROMETIDO (META)</strong> de apertura de tiendas según la programación anual del Excel (Anexo 4).
+                      </div>
+                      <button type="submit" class="btn btn-oro btn-import btn-block mt-auto">
+                          <i class="fas fa-upload"></i> Importar
+                      </button>
+                  </form>
+              </div>
+          </div>
+              </div>
           </div>
 
           <!-- ==================== SECCIÓN: REALIZADOS ==================== -->
@@ -654,7 +463,11 @@ endpoints:
               </div>
               <div class="card-body d-flex flex-column">
                   <form action="http://localhost/importaciones/ventas" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-fill">
-                      <input type="hidden" name="_token" value="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF" autocomplete="off">            <div class="form-group">
+                      <input type="hidden" name="_token" value="CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz" autocomplete="off">            <div class="form-group">
+                          <label class="font-weight-bold">Año</label>
+                          <input type="number" name="anio" class="form-control" value="2026" min="2000" max="2100" required>
+                      </div>
+                      <div class="form-group">
                           <label class="font-weight-bold">Archivo Excel</label>
                           <label for="archivo-ventas" class="upload-area upload-area-azul" id="zone-upload-ventas" style="display: block;">
                               <i class="fas fa-file-excel fa-2x text-muted mb-2"></i>
@@ -683,8 +496,8 @@ endpoints:
               </div>
               <div class="card-body d-flex flex-column">
                   <form action="http://localhost/importaciones/pdf-realizado" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-fill">
-                      <input type="hidden" name="_token" value="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF" autocomplete="off">            <div class="form-group">
-                          <label class="font-weight-bold">Año de ejecución</label>
+                      <input type="hidden" name="_token" value="CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz" autocomplete="off">            <div class="form-group">
+                          <label class="font-weight-bold">Año</label>
                           <input type="number" name="anio" class="form-control" value="2026" min="2000" max="2100" required>
                       </div>
                       <div class="form-group">
@@ -717,7 +530,7 @@ endpoints:
               </div>
               <div class="card-body d-flex flex-column">
                   <form action="http://localhost/importaciones/surtimiento" method="POST" enctype="multipart/form-data" class="d-flex flex-column flex-fill">
-                      <input type="hidden" name="_token" value="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF" autocomplete="off">            <div class="form-group">
+                      <input type="hidden" name="_token" value="CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz" autocomplete="off">            <div class="form-group">
                           <label class="font-weight-bold">Año</label>
                           <input type="number" name="anio" class="form-control" value="2026" min="2000" max="2100" required>
                       </div>
@@ -751,42 +564,54 @@ endpoints:
               </div>
               <div class="card-body d-flex flex-column">
                   <form action="http://localhost/importaciones/mermas-comprometido" method="POST" class="d-flex flex-column flex-fill">
-                      <input type="hidden" name="_token" value="XFucYUR8CxS8YxOIGMY52yjBnNRDz1LweKI3XxcF" autocomplete="off">            <div class="form-group">
-                          <label class="font-weight-bold">Almacén</label>
-                          <select name="almacen_id" class="form-control" required>
-                              <option value="">Seleccionar almacén...</option>
-                                                      <option value="1">ALMACEN CENTRAL OAXACA</option>
-                                                      <option value="2">AYUTLA MIXES</option>
-                                                      <option value="3">CUAJIMOLOYAS</option>
-                                                      <option value="5">IXTLAN DE JUAREZ</option>
-                                                      <option value="7">LACHIXIO</option>
-                                                      <option value="9">MAGDALENA OCOTLAN</option>
-                                                      <option value="10">SAN ANDRES HIDALGO</option>
-                                                      <option value="4">SAN JOSE EL CHILAR</option>
-                                                      <option value="6">SAN PEDRO JUCHATENGO</option>
-                                                      <option value="8">SANTIAGO MATATLAN</option>
-                                                      <option value="11">SANTIAGO TEOTITLAN</option>
-                                                      <option value="12">TAMAZULAPAN</option>
-                                                      <option value="13">VALLES CENTRALES</option>
-                                              </select>
+                      <input type="hidden" name="_token" value="CuaA4a5bzYvqf5J8Yj0lSfDjpPNARnkxvepwzAmz" autocomplete="off">            <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="font-weight-bold">Almacén</label>
+                                  <select name="almacen_id" class="form-control" required>
+                                      <option value="">Almacén...</option>
+                                                                      <option value="1">ALMACEN CENTRAL OAXACA</option>
+                                                                      <option value="2">AYUTLA MIXES</option>
+                                                                      <option value="3">CUAJIMOLOYAS</option>
+                                                                      <option value="5">IXTLAN DE JUAREZ</option>
+                                                                      <option value="7">LACHIXIO</option>
+                                                                      <option value="9">MAGDALENA OCOTLAN</option>
+                                                                      <option value="10">SAN ANDRES HIDALGO</option>
+                                                                      <option value="4">SAN JOSE EL CHILAR</option>
+                                                                      <option value="6">SAN PEDRO JUCHATENGO</option>
+                                                                      <option value="8">SANTIAGO MATATLAN</option>
+                                                                      <option value="11">SANTIAGO TEOTITLAN</option>
+                                                                      <option value="12">TAMAZULAPAN</option>
+                                                                      <option value="13">VALLES CENTRALES</option>
+                                                              </select>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="font-weight-bold">Año</label>
+                                  <input type="number" name="anio" class="form-control" value="2026" min="2000" max="2100" required>
+                              </div>
+                          </div>
                       </div>
-                      <div class="form-group">
-                          <label class="font-weight-bold">Año</label>
-                          <input type="number" name="anio" class="form-control" value="2026" min="2000" max="2100" required>
-                      </div>
-                      <div class="form-group">
-                          <label class="font-weight-bold">Trimestre</label>
-                          <select name="trimestre" class="form-control" required>
-                              <option value="">Seleccionar trimestre...</option>
-                              <option value="1">Q1 — Ene + Feb + Mar</option>
-                              <option value="2">Q2 — Abr + May + Jun</option>
-                              <option value="3">Q3 — Jul + Ago + Sep</option>
-                              <option value="4">Q4 — Oct + Nov + Dic</option>
-                          </select>
-                      </div>
-                      <div class="form-group">
-                          <label class="font-weight-bold">Monto trimestral</label>
-                          <input type="number" name="monto" class="form-control" step="0.01" lang="en" placeholder="0.00" required>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="font-weight-bold">Trimestre</label>
+                                  <select name="trimestre" class="form-control" required>
+                                      <option value="">Trime...</option>
+                                      <option value="1">Q1</option>
+                                      <option value="2">Q2</option>
+                                      <option value="3">Q3</option>
+                                      <option value="4">Q4</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="font-weight-bold">Monto</label>
+                                  <input type="number" name="monto" class="form-control" step="0.01" lang="en" placeholder="0.00" required>
+                              </div>
+                          </div>
                       </div>
                       <div class="alert alert-guinda small mt-1">
                           <i class="fas fa-hand-holding-usd"></i>
@@ -805,9 +630,9 @@ endpoints:
           <div class="row">
               <!-- BLOQUE 4: INFO / ESTADO POA -->
               <div class="col-lg-8 mb-4">
-                  <div class="card">
-              <div class="card-header">
-                  <h3 class="card-title"><i class="fas fa-info-circle"></i> Instrucciones</h3>
+                  <div class="card import-card import-card-poa">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                  <h3 class="card-title"><i class="fas fa-info-circle"></i> Instrucciones de Uso</h3>
               </div>
               <div class="card-body">
                   <h5>Estado de Resultados</h5>
@@ -827,7 +652,7 @@ endpoints:
           </div>    </div>
               <div class="col-lg-4 mb-4">
                   <div class="card import-card import-card-poa">
-              <div class="card-header">
+              <div class="card-header d-flex justify-content-between align-items-center">
                   <h3 class="card-title"><i class="fas fa-bullseye"></i> Metas POA</h3>
               </div>
               <div class="card-body">
@@ -868,47 +693,56 @@ endpoints:
                           <script src="http://localhost/vendor/adminlte/dist/js/adminlte.min.js"></script>
                       
               
+              <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js" ></script>
+                      
+                  
+                      
+
+                      
+                      
+
+                      
+                      
+
               
+
+              
+              
+
+              
+
+              
+
+              
+              
+
+              
+
+              
+
+              
+              
+
+              
+
+              
+
+              
+              
+
+                      
+                      
+
+                      
+                      
+
+                      
+                      
+
               
               
               
                   <script>
-          document.addEventListener('DOMContentLoaded', function() {
-              const input = document.getElementById('archivo-mermas');
-              const zone = document.getElementById('zone-upload-mermas');
-              const filename = document.getElementById('filename-mermas');
-
-              zone.addEventListener('click', function(e) {
-                  e.preventDefault();
-                  input.click();
-              });
-
-              zone.addEventListener('dragover', function(e) {
-                  e.preventDefault();
-                  zone.style.borderColor = '#fd7e14';
-              });
-
-              zone.addEventListener('dragleave', function() {
-                  zone.style.borderColor = '#ccc';
-              });
-
-              zone.addEventListener('drop', function(e) {
-                  e.preventDefault();
-                  zone.style.borderColor = '#ccc';
-                  if (e.dataTransfer.files.length > 0) {
-                      input.files = e.dataTransfer.files;
-                      filename.textContent = 'Archivo: ' + e.dataTransfer.files[0].name;
-                  }
-              });
-
-              input.addEventListener('change', function() {
-                  if (input.files.length > 0) {
-                      filename.textContent = 'Archivo: ' + input.files[0].name;
-                  }
-              });
-          });
-          </script>
-          <script>
           document.addEventListener('DOMContentLoaded', function() {
               const inputs = document.querySelectorAll('input[type="number"][lang="en"]');
               inputs.forEach(function(input) {
@@ -924,16 +758,16 @@ endpoints:
               });
           });
           </script>
-                  <link rel="modulepreload" as="script" href="http://localhost/build/assets/importaciones-DkwpDtfc.js" /><script type="module" src="http://localhost/build/assets/importaciones-DkwpDtfc.js" data-navigate-track="reload"></script>    <script>
-              document.addEventListener('DOMContentLoaded', function() {
+              <link rel="modulepreload" as="script" href="http://localhost/build/assets/importaciones-DxsJYjMt.js" /><script type="module" src="http://localhost/build/assets/importaciones-DxsJYjMt.js" data-navigate-track="reload"></script><script>
+              document.addEventListener('DOMContentLoaded', function () {
                   const overlay = document.getElementById('loading-overlay');
-                  document.querySelectorAll('.import-card form').forEach(function(form) {
-                      form.addEventListener('submit', function() {
+                  document.querySelectorAll('.import-card form').forEach(function (form) {
+                      form.addEventListener('submit', function () {
                           overlay.classList.add('active');
                       });
                   });
               });
-              </script>
+          </script>
 
           </body>
 
@@ -941,7 +775,7 @@ endpoints:
         headers:
           content-type: 'text/html; charset=utf-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjVJL0dvNE5jTkJDZkJOeU53bVgyb3c9PSIsInZhbHVlIjoiY09VMHBkUlp1WjlwRDU0TW92R2psY0YzZ2I4M0RmUlIxYU5uSzc0QWNjYlhqM2hPWHBBZ0xzaEhhS1A2MHF1UWZzUjZkeW9xRzdXVUlNQUovdE9XN011aEhhU0FkSEZrMWtJVjN1UEZkTHNZNVFHQWJWVU8zSnFnNGxodXltQWgiLCJtYWMiOiI4YjUyZDY4ZWQwYzhiOTQ0MDgwN2M3MDg4YTMyYzNhMzhhMTM1N2NkNmI2YmI3Nzk4YzFjNjI3ZjdiY2UyMGVjIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:36 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IlBRT3g1NW9iaXhOWlZsWm9rd2tOU0E9PSIsInZhbHVlIjoiUU1oOTF0Z2lSSmhIN1dPSk9uK29xL0xQaHRlMVh2MmhrUU92RGdLMHZLRzIvNllhRyt1TXp3OTNKUFY3VWtVN05ZOGY3dEJpMEsrRDhRTmVTYWNUUFh1a2tpV3lSejV3Uys1bTFSTWErcmw2c1lHNnVFWEMwcWhvWEcyZysxRmUiLCJtYWMiOiIzNjI2ZTc5ZGZhM2YwOTViODc3NzA0YzhhYWFmY2ExMDc3MzNiYjJlNmY3ZWM4ZWM3YjYwM2FhMzJkYjk5YWIzIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:36 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InpZRGNXYmdxMXB0WXdGNFBBQXhyTEE9PSIsInZhbHVlIjoiOCtQYWxYLzkzNXpYK2VvUlY2U1hQcVlRREt0QUxCRzBld0tFSFliamhGdnU0eXFkK0p6emZaRXllTFpLRnBJWWUvQ3ZpeFhTeG9zSjc1WC9CYXdBNllNKy9TYXNSWEc1NjFIUHdtSDNCSC9BOTdNak01UUpkc29QYXZtMGZxVjYiLCJtYWMiOiI0MTViNmFkZjE5MDE0NmRlZjhiNmZmOGQwZjExODMwNmY3NzA4MmYxNDkwOWQ5M2ExYjUxYWFjNmRmYzM3YTc3IiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:22 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IjE5VlNIZUZ6OHFBQjk5VzlxS1doMnc9PSIsInZhbHVlIjoiSmNobmdwYy9oaXBPcC9YYjl4VHZGOSt0cDkwdWlyNUcyTm8yeDkwOVRLaHh2cGhPUG53Vm9GMGNEeFZMaWpYU2hlZHh1ekd1MzlyeTJuVVVBbkNvWjFyV1F6MzU0enRaVEp5aDFTL2lkTVpLYlZGbVdpZWNHRGx5bkcxMVZkeTgiLCJtYWMiOiJjMWY4MTRhMjNhYjQ5ZDFkOTBkMWQ4ZmQwODRhZGRiNDY2NWE0OGNjMDdmZjQ5OTIwMTcwN2M5MmYxMmRkYWRkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:22 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
     auth: []
@@ -1315,6 +1149,61 @@ endpoints:
       trimestre: 17
       monto: consequatur
     fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: importaciones/apertura-tiendas
+    metadata:
+      custom: []
+      groupName: Importaciones
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Importar apertura de tiendas (Excel)'
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      archivo:
+        custom: []
+        name: archivo
+        description: 'Must be a file. Must not be greater than 102400 kilobytes.'
+        required: true
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      anio:
+        custom: []
+        name: anio
+        description: 'Must be at least 2000. Must not be greater than 2100.'
+        required: true
+        example: 21
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      anio: 21
+    fileParameters:
+      archivo: null
     responses: []
     responseFields: []
     auth: []

@@ -95,7 +95,7 @@ endpoints:
         content: ''
         headers:
           content-type: 'application/javascript; charset=utf-8'
-          expires: 'Fri, 14 May 2027 18:39:21 GMT'
+          expires: 'Tue, 18 May 2027 18:39:05 GMT'
           cache-control: 'max-age=31536000, public'
           accept-ranges: bytes
         description: null
@@ -136,7 +136,7 @@ endpoints:
         content: ''
         headers:
           content-type: 'application/javascript; charset=utf-8'
-          expires: 'Fri, 14 May 2027 18:39:22 GMT'
+          expires: 'Tue, 18 May 2027 18:39:06 GMT'
           cache-control: 'max-age=31536000, public'
           accept-ranges: bytes
         description: null
@@ -177,7 +177,7 @@ endpoints:
         content: ''
         headers:
           content-type: 'application/javascript; charset=utf-8'
-          expires: 'Fri, 14 May 2027 18:39:22 GMT'
+          expires: 'Tue, 18 May 2027 18:39:06 GMT'
           cache-control: 'max-age=31536000, public'
           accept-ranges: bytes
         description: null
@@ -265,7 +265,7 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Ii93UncwSEdxdlA4OXUvbWJsRHh6ZFE9PSIsInZhbHVlIjoiZ0UxSXQramo1clNFeGUvUVRDMmxpd2k1T1ROQThJM2g0TkZqcnB5S0FNRDdMRlJuMlZMVDNvUlBCdUlJTnIvRG45cmQ1dTlMMlROY3llTTNzMGlsY0hyVTZYZTY2U0lmVnZBYWkzSE1qaGZLRGs5bXdzWDdla3NCZmFUNjUrczQiLCJtYWMiOiI1MDUxMDJiYmYzNTU1Njc2MTZmYmM5NDgwODZhZDU2NWI5MWRjY2NiZTdhYWY1NjI5NWQ4NzRlODRhM2QyOWIzIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:23 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6InRSZDdFWWZiSTlhWUk2M1JqUllDZHc9PSIsInZhbHVlIjoiTXdvVmg3YnpLUE5DYWlLNHJyZTNuODBid0s3ZUxNb05aazNKQ2o3QTEvQXhweWlVS0JvYS9uZ09nVmU0dEhjdUl5Sml5Nnp0OTJWWlVhNmw2c2RGaUt5K2FwQjdyc2xLL1JadGpoSUY1N2M4bHhOUkVuVnRNS0NKL1BwbmR1RUMiLCJtYWMiOiJlOTUxYjNkMWI5OWYwZjlkMzYwODYwZThmNjllNzdiODVkNDJmYjQ1NjQ1NGI1NmYxZjYxN2Y1ZGNhZTRlYTYwIiwidGFnIjoiIn0%3D; expires=Thu, 14 May 2026 20:39:23 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InhycFJIV1ZmOUNKVnY1dENsOVNwY1E9PSIsInZhbHVlIjoiR0lkM084RFdhN2lSUUVVVEdwcEg5SzN3cG5OOEdkMXdYWGwzZlVZU3JEck02SGVvN1ZkRHdkcDI5djFaQWw3cTFkSnN1b3MzWE1mVnFMTU5XdkdxZDFSTTVjQXRlRHBxZlZvalhHZWhkUFBjZGVXWDZoN2xjTitMSUEwcWlpU1UiLCJtYWMiOiJhNDZmZmEwMGFiZWY3ZTA1ZGIwMjljODY0NjY5NWZkYzAxMDQzNDM0YTM2NDY1M2FmMjM5NDc5OTc1ZTljZTBkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:10 GMT; Max-Age=7199; path=/; samesite=lax; laravel-session=eyJpdiI6IkdaMUVpb0FoOVRNckRFN1pFNldpbmc9PSIsInZhbHVlIjoiZjNsTk9kbG8zNktMQ1FYU1JMNWJnbGxrUTdKRmZtTVdZSVZKZ0NlNlZhYUZvYy9yNm5GZUFCcVdQaGRzWDlDVU1NYXlEZUt3S21WcFNITkZ0WFIvclo3ekZTNEdsc2FmZWRMMENZWkxGMEdDVzJHbHpSV0FwNkdkV3o2ZThRTmwiLCJtYWMiOiIxNzRkZTEwZTQ4YjY1Yjk1ZDUxNGQ4ZjdjZTRlYzZmMmRiYTIzZmE1Y2Y2ZDljY2I2MDBmOWFjYmQ1M2QxYjBkIiwidGFnIjoiIn0%3D; expires=Mon, 18 May 2026 20:39:10 GMT; Max-Age=7199; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
     auth: []
@@ -500,7 +500,7 @@ endpoints:
                           <p class="mt-2 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                               HTTP request received.
 
-                                                      Response rendered in 7945ms.
+                                                      Response rendered in 57074ms.
                                               </p>
                       </div>
                   </div>

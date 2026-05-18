@@ -10,17 +10,7 @@ use Exception;
 
 class AperturaTiendasMetaImport
 {
-    private array $mapeoAlmacenes = [
-        'AYUTLA MIXE'               => 'AYUTLA MIXES',
-        'SN ANDRES HIDALGO.'        => 'SAN ANDRES HIDALGO',
-        'EL CHILAR'                 => 'SAN JOSE EL CHILAR',
-        'JUCHATENGO'                => 'SAN PEDRO JUCHATENGO',
-        'SANTA MARIA LACHIXIO'      => 'LACHIXIO',
-        'TAMAZULAPAM'               => 'TAMAZULAPAN',
-        'TEOTITLAN DE FLORES MAGON' => 'SANTIAGO TEOTITLAN',
-        'SANTO TOMAS TAMAZULAPAN'   => 'TAMAZULAPAN',
-    ];
-
+    private $almacenes;
     private array $conceptos;
     private array $cacheAlmacenes = [];
 
@@ -31,6 +21,7 @@ class AperturaTiendasMetaImport
             'OBJETIVO'    => 34, // APERTURA DE TIENDAS LOCALIDAD OBJETIVO
             'ESTRATEGICA' => 35, // APERTURA DE TIENDAS LOCALIDAD ESTRATEGICA
         ];
+        $this->almacenes = Almacen::all();
     }
 
     public function import(string $filePath, int $anio): int
@@ -128,12 +119,8 @@ class AperturaTiendasMetaImport
             return $this->cacheAlmacenes[$nombreExcel];
         }
 
-        $nombreLimpio = str_replace('PT ', '', $nombreExcel);
-        $nombreDB = $this->mapeoAlmacenes[$nombreLimpio] ?? $this->mapeoAlmacenes[$nombreExcel] ?? $nombreLimpio;
-        
-        $almacen = Almacen::where('nombre', $nombreDB)
-            ->orWhere('nombre', 'LIKE', "%$nombreDB%")
-            ->first();
+        $nombreDB = \App\Domain\Shared\StoreNameNormalizer::normalize($nombreExcel);
+        $almacen = collect($this->almacenes)->firstWhere('nombre', $nombreDB);
 
         $this->cacheAlmacenes[$nombreExcel] = $almacen;
         return $almacen;

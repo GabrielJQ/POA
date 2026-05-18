@@ -150,11 +150,7 @@ class VentasDetalladasImport
             if (str_contains($textoNorm, $word)) return null;
         }
 
-        if (str_contains($textoNorm, 'MAGADALENA')) $textoNorm = str_replace('MAGADALENA', 'MAGDALENA', $textoNorm);
-        if (str_contains($textoNorm, 'TAMAZULAPAM')) $textoNorm = str_replace('TAMAZULAPAM', 'TAMAZULAPAN', $textoNorm);
-        if (str_contains($textoNorm, 'TEOTITLAN DE FLORES MAGON')) $textoNorm = str_replace('TEOTITLAN DE FLORES MAGON', 'SANTIAGO TEOTITLAN', $textoNorm);
-        if (str_contains($textoNorm, 'EL CHILAR') && !str_contains($textoNorm, 'SAN JOSE')) $textoNorm = str_replace('EL CHILAR', 'SAN JOSE EL CHILAR', $textoNorm);
-        if (str_contains($textoNorm, 'ALMACEN DE VALLES CENTRALES') || str_contains($textoNorm, 'UNIDAD OPERATIVA VALLES CENTRALES')) $textoNorm = 'VALLES CENTRALES';
+        $textoNorm = \App\Domain\Shared\StoreNameNormalizer::normalize($textoNorm);
 
         foreach ($this->todosAlmacenes as $almacen) {
             $nombreAlmNorm = strtoupper(trim(preg_replace('/[^\w\s]/u', '', $almacen->nombre)));

@@ -3,15 +3,15 @@
 namespace App\Application\UseCases\ER;
 
 use App\Domain\ValueObjects\FiltrosER;
-use App\Domain\Services\ERDomainService;
+use App\Domain\Contracts\IERDomainService;
 use App\Models\Almacen;
 use Illuminate\Support\Facades\Cache;
 
 class ObtenerDatosER
 {
-    private ERDomainService $domainService;
+    private IERDomainService $domainService;
 
-    public function __construct(ERDomainService $domainService)
+    public function __construct(IERDomainService $domainService)
     {
         $this->domainService = $domainService;
     }

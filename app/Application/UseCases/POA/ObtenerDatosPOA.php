@@ -3,15 +3,15 @@
 namespace App\Application\UseCases\POA;
 
 use App\Domain\ValueObjects\FiltrosPOA;
-use App\Domain\Services\POADomainService;
+use App\Domain\Contracts\IPOADomainService;
 use App\Models\Almacen;
 use Illuminate\Support\Facades\Cache;
 
 class ObtenerDatosPOA
 {
-    private POADomainService $domainService;
+    private IPOADomainService $domainService;
 
-    public function __construct(POADomainService $domainService)
+    public function __construct(IPOADomainService $domainService)
     {
         $this->domainService = $domainService;
     }
@@ -39,8 +39,8 @@ class ObtenerDatosPOA
             'periodoTipo' => $filtros->getPeriodo()->getTipo(),
             'mostrarConsolidado' => $filtros->isConsolidado(),
             'labelPeriodo' => $filtros->getPeriodo()->getLabel(),
-            'meses' => $this->getNombresMeses(),
-            'trimestres' => $this->getNombresTrimestres(),
+            'meses' => \App\Domain\ValueObjects\Periodo::NOMBRES_MESES,
+            'trimestres' => \App\Domain\ValueObjects\Periodo::NOMBRES_TRIMESTRES,
             'config' => [
                 'meses' => $filtros->getPeriodo()->getMeses(),
                 'nombre' => $filtros->getPeriodo()->getTipo(),
@@ -65,24 +65,9 @@ class ObtenerDatosPOA
                 'meses' => $filtros->getPeriodo()->getMeses(),
                 'nombre' => $filtros->getPeriodo()->getTipo(),
             ],
-            'meses' => $this->getNombresMeses(),
-            'trimestres' => $this->getNombresTrimestres(),
+            'meses' => \App\Domain\ValueObjects\Periodo::NOMBRES_MESES,
+            'trimestres' => \App\Domain\ValueObjects\Periodo::NOMBRES_TRIMESTRES,
         ];
     }
 
-    private function getNombresMeses(): array
-    {
-        return [
-            1 => 'ENERO', 2 => 'FEBRERO', 3 => 'MARZO', 4 => 'ABRIL',
-            5 => 'MAYO', 6 => 'JUNIO', 7 => 'JULIO', 8 => 'AGOSTO',
-            9 => 'SEPTIEMBRE', 10 => 'OCTUBRE', 11 => 'NOVIEMBRE', 12 => 'DICIEMBRE',
-        ];
-    }
-
-    private function getNombresTrimestres(): array
-    {
-        return [
-            1 => 'ENE-MAR', 2 => 'ABR-JUN', 3 => 'JUL-SEP', 4 => 'OCT-DIC',
-        ];
-    }
 }

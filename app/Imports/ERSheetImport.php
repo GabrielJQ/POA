@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Exception;
 
-class ERSheetImport
+use Maatwebsite\Excel\Concerns\ToCollection;
+
+class ERSheetImport implements ToCollection
 {
     protected $anio;
     protected $sheetName;
@@ -57,7 +59,7 @@ class ERSheetImport
         return $this->conceptosNormalizadosCache;
     }
 
-    public function import(array $rows)
+    public function collection(Collection $rows)
     {
         // 1. Identificar Almacén y Unidad Operativa
         $unidadOperativaNombre = trim($rows[3][3] ?? '');
@@ -65,20 +67,13 @@ class ERSheetImport
         
         $almacen = null;
 
-        // PRIORIDAD 1: Usar nombre de pestaña (ej: " PT AYUTLA" → "AYUTLA" → "AYUTLA MIXES")
-        $pestañaLimpia = trim(preg_replace(
-            ['/^\s*PT\s+/i', '/\s+PROFORMA\s*$/i', '/\s+CONSOLIDADO\s*$/i', '/\s*\([^)]*\)\s*/'],
-            ['', '', '', ''],
-            $this->sheetName
-        ));
-        $pestañaLimpia = trim($pestañaLimpia);
-
-        // Casos especiales
-        $pestañaLower = mb_strtolower($pestañaLimpia);
+        // PRIORIDAD 1: Usar nombre de pestaña
+        $pestañaLimpia = \App\Domain\Shared\StoreNameNormalizer::normalize($this->sheetName);
+        
         if ($pestañaLimpia === '1') {
             $almacen = Almacen::find(1);
-        } elseif ($pestañaLower === 'valles' || $pestañaLower === 'valles centrales') {
-            $almacen = Almacen::where('nombre', 'VALLES CENTRALES')->first();
+        } else {
+            $almacen = Almacen::where('nombre', $pestañaLimpia)->first();
         }
 
         if (!$almacen && strlen($pestañaLimpia) > 3) {
@@ -87,6 +82,7 @@ class ERSheetImport
 
         // PRIORIDAD 2: Usar D5 como respaldo si la pestaña no dio resultado
         if (!$almacen && !empty($almacenNombreInterno) && $almacenNombreInterno !== 'N/A') {
+            $almacenNombreInterno = \App\Domain\Shared\StoreNameNormalizer::normalize($almacenNombreInterno);
             $almacen = Almacen::where('nombre', 'ilike', $almacenNombreInterno)->first();
             if (!$almacen) {
                 $almacen = Almacen::where('nombre', 'ilike', '%' . $almacenNombreInterno . '%')->first();

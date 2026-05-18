@@ -6,19 +6,22 @@ use App\Domain\ValueObjects\FiltrosER;
 use App\Models\ConceptoMaestro;
 use App\Models\RegistroFinanciero;
 use Illuminate\Support\Facades\Cache;
+use App\Domain\Shared\CacheKeys;
 
-class ERDomainService
+use App\Domain\Contracts\IERDomainService;
+
+class ERDomainService implements IERDomainService
 {
     public function obtenerDatosER(FiltrosER $filtros): array
     {
         $anio = $filtros->getAnio();
         $almacenId = $filtros->getAlmacenId();
 
-        $version = Cache::get('poa_cache_version', 0);
-        $cacheKey = 'er_data_' . $anio . '_' . ($almacenId ?? 'all') . '_v' . $version;
+        $version = Cache::get(CacheKeys::POA_VERSION, 0);
+        $cacheKey = CacheKeys::erData($anio, $almacenId, $version);
 
         return Cache::remember($cacheKey, 300, function () use ($anio, $almacenId) {
-            $erConceptos = Cache::remember('conceptos_er', 86400, fn() =>
+            $erConceptos = Cache::remember(CacheKeys::CONCEPTOS_ER, 86400, fn() =>
                 ConceptoMaestro::where('categoria', 'ER')->orderBy('orden')->get()
             )->keyBy('id');
 
@@ -63,7 +66,7 @@ class ERDomainService
 
     public function obtenerConceptosER(): array
     {
-        return Cache::remember('conceptos_er', 86400, fn() =>
+        return Cache::remember(CacheKeys::CONCEPTOS_ER, 86400, fn() =>
             ConceptoMaestro::where('categoria', 'ER')->orderBy('orden')->get()
         )
             ->map(function ($item) {

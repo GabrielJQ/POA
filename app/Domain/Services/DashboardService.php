@@ -7,21 +7,31 @@ use App\Models\ConceptoMaestro;
 use App\Models\RegistroFinanciero;
 use Illuminate\Support\Facades\Cache;
 
-class DashboardService
+use App\Domain\Contracts\IDashboardService;
+use App\Domain\Shared\CacheKeys;
+use App\Domain\Services\Dashboard\Builders\EficienciaCalculator;
+use App\Domain\Services\Dashboard\Builders\DashboardDataAssembler;
+
+class DashboardService implements IDashboardService
 {
+    public function __construct(
+        private EficienciaCalculator $calculator,
+        private DashboardDataAssembler $assembler
+    ) {}
+
     public function calcularEficiencia(int $anio): array
     {
-        $version = Cache::get('poa_cache_version', 0);
-        $cacheKey = 'dashboard_data_' . $anio . '_v' . $version;
+        $version = Cache::get(CacheKeys::POA_VERSION, 0);
+        $cacheKey = CacheKeys::dashboardData($anio, $version);
 
         return Cache::remember($cacheKey, 300, function () use ($anio) {
-            $almacenes = Cache::remember('almacenes_ordenados', 86400, fn() =>
+            $almacenes = Cache::remember(CacheKeys::ALMACENES, 86400, fn() =>
                 Almacen::orderBy('nombre')->get()
             );
-            $compromisos = Cache::remember('conceptos_poa', 86400, fn() =>
+            $compromisos = Cache::remember(CacheKeys::CONCEPTOS_POA, 86400, fn() =>
                 ConceptoMaestro::where('categoria', 'POA')->orderBy('orden')->get()
             );
-            $erConceptos = Cache::remember('conceptos_er_pluck', 86400, fn() =>
+            $erConceptos = Cache::remember(CacheKeys::CONCEPTOS_ER_PLUCK, 86400, fn() =>
                 ConceptoMaestro::where('categoria', 'ER')->pluck('id', 'nombre')
             );
 
@@ -32,14 +42,13 @@ class DashboardService
             $metas = $records->where('tipo_dato', 'META');
             $reales = $records->where('tipo_dato', 'REAL');
 
-            $lpIds = Cache::remember('conceptos_lp_ids', 86400, fn() =>
+            $lpIds = Cache::remember(CacheKeys::CONCEPTOS_LP_IDS, 86400, fn() =>
                 ConceptoMaestro::where('categoria', 'LINEA_PRODUCTO')->pluck('id')
             );
 
             $ventas = $reales->filter(fn($r) => $lpIds->contains($r->concepto_id));
             $realesPOA = $reales->reject(fn($r) => $lpIds->contains($r->concepto_id));
 
-            // Optimización de N+1 en memoria: pre-agrupar para evitar O(N*A*C) con collections
             $realesPoaGrouped = [];
             foreach ($realesPOA as $r) {
                 $realesPoaGrouped[$r->almacen_id][$r->concepto_id] = ($realesPoaGrouped[$r->almacen_id][$r->concepto_id] ?? 0) + (float)$r->monto;
@@ -58,124 +67,14 @@ class DashboardService
                 }
             }
 
-            $indicePorAlmacen = [];
-        $totalSinDatos = 0;
-        $enRojo = 0;
-        $enAtencion = 0;
+            $indicePorAlmacen = $this->calculator->calcular(
+                $almacenes, $compromisos, $erConceptos,
+                $realesPoaGrouped, $metasGrouped, $ventasGrouped
+            );
 
-        foreach ($almacenes as $almacen) {
-            $logros = [];
-            $detalles = [];
-
-            foreach ($compromisos as $compromiso) {
-                $esPorcentaje = stripos($compromiso->unidad_medida ?? '', 'PORCENTAJE') !== false;
-                $metaConceptoId = $compromiso->id;
-                $conceptoNombre = trim($compromiso->concepto_er_nombre ?? '');
-                if ($conceptoNombre !== '') {
-                    $conceptoER = $erConceptos->get($conceptoNombre)
-                        ?? $erConceptos->first(fn($id, $name) => stripos($name, $conceptoNombre) !== false
-                            || stripos($conceptoNombre, $name) !== false);
-                    if ($conceptoER) {
-                        $metaConceptoId = $conceptoER;
-                    }
-                }
-
-                if ($esPorcentaje) {
-                    $realSum = (float) ($realesPoaGrouped[$almacen->id][$metaConceptoId] ?? 0);
-
-                    if ($realSum > 0) {
-                        $pctLogro = max(0, min($realSum, 100));
-                        $logros[] = $pctLogro;
-                        $detalles[] = [
-                            'concepto' => $compromiso->nombre,
-                            'meta' => 100,
-                            'real' => $realSum,
-                            'pct' => $pctLogro,
-                        ];
-                    }
-                } else {
-                    $metaSum = (float) ($metasGrouped[$almacen->id][$metaConceptoId] ?? 0);
-
-                    if ($metaSum > 0) {
-                        $isVentas = stripos($compromiso->nombre, 'PRESUPUESTO DE VENTA') !== false;
-                        if ($isVentas) {
-                            $programa = null;
-                            if (stripos($compromiso->nombre, 'PAR') !== false) {
-                                $programa = 'PAR';
-                            } elseif (stripos($compromiso->nombre, 'PE') !== false) {
-                                $programa = 'PE';
-                            }
-                            
-                            if ($programa) {
-                                $realSum = (float) ($ventasGrouped[$almacen->id][$programa] ?? 0);
-                            } else {
-                                $realSum = (float) ($ventasGrouped[$almacen->id]['TOTAL'] ?? 0);
-                            }
-                        } else {
-                            $realSum = (float) ($realesPoaGrouped[$almacen->id][$metaConceptoId] ?? 0);
-                        }
-
-                        $pctLogro = $realSum > 0 ? min(($realSum / $metaSum) * 100, 100) : 0;
-                        $logros[] = $pctLogro;
-                        $detalles[] = [
-                            'concepto' => $compromiso->nombre,
-                            'meta' => $metaSum,
-                            'real' => $realSum,
-                            'pct' => $pctLogro,
-                        ];
-                    }
-                }
-            }
-
-            if (count($logros) > 0) {
-                $indice = array_sum($logros) / count($logros);
-            } else {
-                $indice = null;
-                $totalSinDatos++;
-            }
-
-            if ($indice !== null) {
-                if ($indice < 30) {
-                    $enRojo++;
-                } elseif ($indice < 50) {
-                    $enAtencion++;
-                }
-            }
-
-            $indicePorAlmacen[] = [
-                'id' => $almacen->id,
-                'nombre' => $almacen->nombre,
-                'indice' => $indice,
-                'numConceptos' => count($logros),
-                'detalles' => $detalles,
-            ];
-        }
-
-        usort($indicePorAlmacen, fn($a, $b) => ($a['indice'] ?? 999) <=> ($b['indice'] ?? 999));
-
-        $conDatos = array_filter($indicePorAlmacen, fn($s) => $s['indice'] !== null);
-        $conDatos = array_values($conDatos);
-
-        $top3 = array_slice(array_reverse($conDatos), 0, 3);
-        $bottom3 = array_slice($conDatos, 0, 3);
-
-        $suma = 0;
-        $count = 0;
-        foreach ($indicePorAlmacen as $s) {
-            if ($s['indice'] !== null) {
-                $suma += $s['indice'];
-                $count++;
-            }
-        }
-        $indiceConsolidado = $count > 0 ? $suma / $count : 0;
-
-            $totalAlmacenes = $almacenes->count();
-            $totalConDatos = $totalAlmacenes - $totalSinDatos;
-
-            return compact(
-                'totalAlmacenes', 'totalConDatos', 'totalSinDatos',
-                'indiceConsolidado', 'enRojo', 'enAtencion',
-                'indicePorAlmacen', 'top3', 'bottom3',
+            return $this->assembler->assemble(
+                $indicePorAlmacen,
+                $almacenes->count()
             );
         });
     }

@@ -2,14 +2,14 @@
 
 namespace App\Application\UseCases\POA;
 
-use App\Domain\Services\POADomainService;
+use App\Domain\Contracts\IPOADomainService;
 use App\Models\RegistroFinanciero;
 
 class SincronizarPOA
 {
-    private POADomainService $domainService;
+    private IPOADomainService $domainService;
 
-    public function __construct(POADomainService $domainService)
+    public function __construct(IPOADomainService $domainService)
     {
         $this->domainService = $domainService;
     }

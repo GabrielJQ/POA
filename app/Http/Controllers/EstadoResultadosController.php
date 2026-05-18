@@ -7,7 +7,7 @@ use App\Exports\ERExport;
 use App\Application\UseCases\ER\ObtenerDatosER;
 use App\Application\UseCases\ER\ImportarER;
 use App\Application\UseCases\ER\GuardarRegistroER;
-use App\Domain\Services\PDFERExtractorService;
+use App\Domain\Contracts\IPDFERExtractorService;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -16,13 +16,13 @@ class EstadoResultadosController extends Controller
     private ObtenerDatosER $obtenerDatosER;
     private ImportarER $importarER;
     private GuardarRegistroER $guardarRegistroER;
-    private PDFERExtractorService $pdfService;
+    private IPDFERExtractorService $pdfService;
 
     public function __construct(
         ObtenerDatosER $obtenerDatosER,
         ImportarER $importarER,
         GuardarRegistroER $guardarRegistroER,
-        PDFERExtractorService $pdfService
+        IPDFERExtractorService $pdfService
     ) {
         $this->obtenerDatosER = $obtenerDatosER;
         $this->importarER = $importarER;

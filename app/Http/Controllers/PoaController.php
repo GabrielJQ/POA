@@ -61,15 +61,13 @@ class PoaController extends Controller
             ])->render();
         }
 
-        $almacenes = CacheFacade::remember('almacenes_ordenados', 86400, fn() =>
+        $almacenes = CacheFacade::remember(\App\Domain\Shared\CacheKeys::ALMACENES, 86400, fn() =>
             Almacen::orderBy('nombre')->get()
         );
 
         return view('poa.index', array_merge($data, [
             'almacenes' => $almacenes,
-            'trimestres' => [
-                1 => 'ENE-MAR', 2 => 'ABR-JUN', 3 => 'JUL-SEP', 4 => 'OCT-DIC',
-            ],
+            'trimestres' => \App\Domain\ValueObjects\Periodo::NOMBRES_TRIMESTRES,
         ]));
     }
 
@@ -152,8 +150,7 @@ class PoaController extends Controller
             ['nota_aclaratoria' => $validated['nota_aclaratoria'] ?? '']
         );
 
-        CacheFacade::rememberForever('poa_cache_version', fn() => 0);
-        CacheFacade::increment('poa_cache_version');
+        \App\Domain\Shared\CacheManager::invalidatePoaCache();
 
         return response()->json(['success' => true]);
     }

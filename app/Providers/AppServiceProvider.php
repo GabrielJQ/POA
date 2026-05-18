@@ -18,37 +18,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(POADomainService::class, function ($app) {
-            return new POADomainService();
-        });
+        $this->app->singleton(
+            \App\Domain\Contracts\IPOADomainService::class,
+            \App\Domain\Services\POADomainService::class
+        );
 
-        $this->app->singleton(ERDomainService::class, function ($app) {
-            return new ERDomainService();
-        });
+        $this->app->singleton(
+            \App\Domain\Contracts\IERDomainService::class,
+            \App\Domain\Services\ERDomainService::class
+        );
 
-        $this->app->when(ObtenerDatosPOA::class)
-            ->needs('$domainService')
-            ->give(POADomainService::class);
+        $this->app->singleton(
+            \App\Domain\Contracts\IDashboardService::class,
+            \App\Domain\Services\DashboardService::class
+        );
 
-        $this->app->when(SincronizarPOA::class)
-            ->needs('$domainService')
-            ->give(POADomainService::class);
-
-        $this->app->when(ObtenerDatosER::class)
-            ->needs('$domainService')
-            ->give(ERDomainService::class);
-
-        $this->app->when(ImportarER::class)
-            ->needs('$erDomainService')
-            ->give(ERDomainService::class);
-
-        $this->app->when(ImportarER::class)
-            ->needs('$poaDomainService')
-            ->give(POADomainService::class);
-
-        $this->app->when(GuardarRegistroER::class)
-            ->needs('$domainService')
-            ->give(ERDomainService::class);
+        $this->app->singleton(
+            \App\Domain\Contracts\IPDFERExtractorService::class,
+            \App\Domain\Services\PDFERExtractorService::class
+        );
     }
 
     /**

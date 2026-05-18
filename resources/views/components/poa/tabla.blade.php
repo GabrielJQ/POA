@@ -52,23 +52,23 @@
                         $mesesConfig = $config['meses'] ?? [1];
                         $primerMes = $mesesConfig[0] ?? 1;
                         $ultimoMes = $mesesConfig[count($mesesConfig) - 1] ?? $primerMes;
-                        $mesCol = 'mes_' . str_pad($primerMes, 2, '0', STR_PAD_LEFT);
+                        $mesCol = \App\Domain\Shared\PoaHelpers::columnaMes($primerMes);
                         
                         $metaAnual1 = $fila1 ? (float)$fila1->meta_anual : 0;
                         $avancePeriodo1 = 0;
                         foreach ($mesesConfig as $m) {
-                            $col = 'mes_' . str_pad($m, 2, '0', STR_PAD_LEFT);
+                            $col = \App\Domain\Shared\PoaHelpers::columnaMes($m);
                             $avancePeriodo1 += $fila1 ? (float)($fila1->$col ?? 0) : 0;
                         }
 
                         $metaAnual2 = $fila2 ? (float)$fila2->meta_anual : 0;
                         $avancePeriodo2 = 0;
                         foreach ($mesesConfig as $m) {
-                            $col = 'mes_' . str_pad($m, 2, '0', STR_PAD_LEFT);
+                            $col = \App\Domain\Shared\PoaHelpers::columnaMes($m);
                             $avancePeriodo2 += $fila2 ? (float)($fila2->$col ?? 0) : 0;
                         }
 
-                        $esPorcentaje = stripos($compromiso->unidad_medida ?? '', 'PORCENTAJE') !== false;
+                        $esPorcentaje = \App\Domain\Shared\PoaHelpers::esPorcentaje($compromiso->unidad_medida);
                         if ($esPorcentaje) {
                             $avancePeriodo1 = 100;
                         }

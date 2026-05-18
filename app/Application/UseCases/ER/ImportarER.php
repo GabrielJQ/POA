@@ -2,20 +2,20 @@
 
 namespace App\Application\UseCases\ER;
 
-use App\Domain\Services\ERDomainService;
-use App\Domain\Services\POADomainService;
+use App\Domain\Contracts\IERDomainService;
+use App\Domain\Contracts\IPOADomainService;
 use App\Models\RegistroFinanciero;
 use App\Imports\ERImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportarER
 {
-    private ERDomainService $erDomainService;
-    private POADomainService $poaDomainService;
+    private IERDomainService $erDomainService;
+    private IPOADomainService $poaDomainService;
 
     public function __construct(
-        ERDomainService $erDomainService,
-        POADomainService $poaDomainService
+        IERDomainService $erDomainService,
+        IPOADomainService $poaDomainService
     ) {
         $this->erDomainService = $erDomainService;
         $this->poaDomainService = $poaDomainService;

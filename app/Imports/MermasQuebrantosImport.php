@@ -10,21 +10,7 @@ use Exception;
 
 class MermasQuebrantosImport
 {
-    private array $mapeoHojas = [
-        'PT AYUTLA' => 'AYUTLA MIXES',
-        'PT CHILAR' => 'SAN JOSE EL CHILAR',
-        'PT CUAJIMOLOYAS' => 'CUAJIMOLOYAS',
-        'PT IXTLAN' => 'IXTLAN DE JUAREZ',
-        'PT JUCHATENGO' => 'SAN PEDRO JUCHATENGO',
-        'PT LACHIXIO' => 'LACHIXIO',
-        'PT MATATLAN' => 'SANTIAGO MATATLAN',
-        'PT MAGDALENA OCOTLAN' => 'MAGDALENA OCOTLAN',
-        'PT SAN ANDRES' => 'SAN ANDRES HIDALGO',
-        'PT TAMAZULAPAN' => 'TAMAZULAPAN',
-        'PT TEOTITLAN' => 'SANTIAGO TEOTITLAN',
-        'PT VALLES' => 'VALLES CENTRALES',
-    ];
-
+    private $almacenes;
     private ?int $conceptoId = null;
     private array $cacheAlmacenes = [];
     private array $porcentajes;
@@ -32,6 +18,7 @@ class MermasQuebrantosImport
     public function __construct()
     {
         $this->porcentajes = config('mermas.lineas', []);
+        $this->almacenes = Almacen::all();
         $concepto = ConceptoMaestro::where('nombre', 'MERMAS, QUEBRANTOS Y MAL ESTADO')
             ->where('categoria', 'POA')
             ->first();
@@ -52,12 +39,9 @@ class MermasQuebrantosImport
         $upsertData = [];
 
         foreach ($spreadsheet->getSheetNames() as $sheetName) {
-            if ($sheetName === 'PT 2') continue;
-
-            $nombreAlmacen = $this->mapeoHojas[$sheetName] ?? null;
-            if (!$nombreAlmacen) continue;
-
-            $almacen = $this->findAlmacen($nombreAlmacen);
+            $nombreAlmacen = \App\Domain\Shared\StoreNameNormalizer::normalize($sheetName);
+            
+            $almacen = $this->almacenes->where('nombre', $nombreAlmacen)->first();
             if (!$almacen) continue;
 
             $sheet = $spreadsheet->getSheetByName($sheetName);

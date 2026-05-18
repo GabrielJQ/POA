@@ -2,13 +2,13 @@
 
 namespace App\Application\UseCases\ER;
 
-use App\Domain\Services\ERDomainService;
+use App\Domain\Contracts\IERDomainService;
 
 class GuardarRegistroER
 {
-    private ERDomainService $domainService;
+    private IERDomainService $domainService;
 
-    public function __construct(ERDomainService $domainService)
+    public function __construct(IERDomainService $domainService)
     {
         $this->domainService = $domainService;
     }

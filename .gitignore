@@ -25,3 +25,6 @@ Thumbs.db
 /config/scribe.php
 /public/docs
 /resources/docs
+/.scribe
+/docs/.vitepress/dist
+/docs/.vitepress/cache

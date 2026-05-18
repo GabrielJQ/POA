@@ -3,8 +3,9 @@
 namespace App\Imports;
 
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use Maatwebsite\Excel\Concerns\SkipsUnknownSheets;
 
-class ERImport implements WithMultipleSheets
+class ERImport implements WithMultipleSheets, SkipsUnknownSheets
 {
     protected $anio;
 
@@ -15,18 +16,11 @@ class ERImport implements WithMultipleSheets
 
     public function sheets(): array
     {
-        // Usamos un objeto que maneje todas las hojas dinámicamente
-        // En Laravel Excel, si no definimos índices, podemos usar el evento 
-        // o simplemente procesar todas si implementamos ToCollection en el objeto de la hoja.
-        
-        // Pero para tener control total, vamos a usar una técnica donde ERSheetImport 
-        // se encarga de cada hoja.
-        
-        return [
-            // Procesaremos todas las hojas. 
-            // Si queremos procesar todas sin saber los nombres, 
-            // usamos SkipsUnknownSheets o simplemente registramos un handler global.
-            // Una forma común es usar el índice de la hoja.
-        ];
+        return [];
+    }
+
+    public function onUnknownSheet($sheetName)
+    {
+        return new ERSheetImport($this->anio, $sheetName);
     }
 }
