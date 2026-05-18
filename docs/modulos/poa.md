@@ -11,7 +11,6 @@ El **Programa Anual de Trabajo (POA)** compara metas comprometidas contra ejecuc
 | GET | `/poa` | Vista principal con filtros |
 | GET | `/poa/export` | Descarga Excel o PDF |
 | POST | `/poa/nota` | Guardar nota aclaratoria |
-| POST | `/poa/sync` | Sincronizar desde ER |
 
 ## Filtros
 

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Application\UseCases\POA\ObtenerDatosPOA;
-use App\Application\UseCases\POA\SincronizarPOA;
 use App\Exports\POAExportService;
 use App\Domain\Entities\Almacen;
 use App\Domain\Entities\PoaNota;
@@ -13,16 +12,13 @@ use Illuminate\Support\Facades\Cache as CacheFacade;
 class PoaController extends Controller
 {
     private ObtenerDatosPOA $obtenerDatosPOA;
-    private SincronizarPOA $sincronizarPOA;
     private POAExportService $exportService;
 
     public function __construct(
         ObtenerDatosPOA $obtenerDatosPOA,
-        SincronizarPOA $sincronizarPOA,
         POAExportService $exportService
     ) {
         $this->obtenerDatosPOA = $obtenerDatosPOA;
-        $this->sincronizarPOA = $sincronizarPOA;
         $this->exportService = $exportService;
     }
 
@@ -155,44 +151,4 @@ class PoaController extends Controller
         return response()->json(['success' => true]);
     }
 
-    /**
-     * Sincronizar metas POA desde ER
-     *
-     * Sincroniza las metas del POA desde los registros META del Estado de Resultados
-     * para un año y almacén específicos. Si no se especifica almacén,
-     * sincroniza todos los almacenes con datos.
-     *
-     * @group POA
-     *
-     * @bodyParam anio int required Año (2000-2100).
-     * @bodyParam almacen_id int ID del almacén (opcional).
-     */
-    public function sync(Request $request)
-    {
-        $request->validate([
-            'anio' => 'required|integer|min:2000|max:2100',
-        ]);
-
-        $anio = (int) $request->anio;
-        $almacenId = $request->input('almacen_id');
-
-        try {
-            $result = $this->sincronizarPOA->execute($anio, $almacenId ? (int) $almacenId : null);
-
-            if ($request->ajax() || $request->expectsJson()) {
-                return response()->json(['message' => $result['message'], 'success' => true]);
-            }
-
-            return redirect()->route('poa.index', [
-                'anio' => $anio,
-                'almacen_id' => $almacenId,
-            ])->with('success', $result['message']);
-        } catch (\Exception $e) {
-            if ($request->ajax() || $request->expectsJson()) {
-                return response()->json(['message' => $e->getMessage(), 'success' => false], 500);
-            }
-            return redirect()->back()
-                ->with('error', 'Error al sincronizar: ' . $e->getMessage());
-        }
-    }
 }

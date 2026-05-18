@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use App\Domain\Services\POADomainService;
 use App\Domain\Services\ERDomainService;
 use App\Application\UseCases\POA\ObtenerDatosPOA;
-use App\Application\UseCases\POA\SincronizarPOA;
 use App\Application\UseCases\ER\ObtenerDatosER;
 use App\Application\UseCases\ER\ImportarER;
 use App\Application\UseCases\ER\GuardarRegistroER;

@@ -62,8 +62,4 @@ class POADomainService implements IPOADomainService
         });
     }
 
-    public function sincronizarDesdeER(int $almacenId, int $anio): int
-    {
-        return 0;
-    }
 }

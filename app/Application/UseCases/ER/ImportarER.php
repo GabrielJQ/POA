@@ -2,44 +2,30 @@
 
 namespace App\Application\UseCases\ER;
 
-use App\Domain\Contracts\IERDomainService;
-use App\Domain\Contracts\IPOADomainService;
-use App\Domain\Contracts\Repositories\IRegistroFinancieroRepository;
+use App\Domain\Contracts\ICacheStore;
+use App\Domain\Shared\CacheKeys;
 use App\Imports\ERImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportarER
 {
-    private IERDomainService $erDomainService;
-    private IPOADomainService $poaDomainService;
-    private IRegistroFinancieroRepository $registroRepo;
+    private ICacheStore $cache;
 
     public function __construct(
-        IERDomainService $erDomainService,
-        IPOADomainService $poaDomainService,
-        IRegistroFinancieroRepository $registroRepo
+        ICacheStore $cache
     ) {
-        $this->erDomainService = $erDomainService;
-        $this->poaDomainService = $poaDomainService;
-        $this->registroRepo = $registroRepo;
+        $this->cache = $cache;
     }
 
     public function execute(int $anio, $archivo): array
     {
         Excel::import(new ERImport($anio), $archivo);
 
-        $almacenesAfectados = $this->registroRepo->getDistinctAlmacenesByAnioYTipo($anio, 'REAL')
-            ->pluck('almacen_id');
-
-        $totalSincronizados = 0;
-        foreach ($almacenesAfectados as $almacenId) {
-            $totalSincronizados += $this->poaDomainService->sincronizarDesdeER($almacenId, $anio);
-        }
+        $this->cache->increment(CacheKeys::POA_VERSION);
 
         return [
-            'message' => "Archivo importado y {$totalSincronizados} metas POA sincronizadas.",
-            'count' => $totalSincronizados,
-            'almacenesCount' => $almacenesAfectados->count(),
+            'message' => "Estado de Resultados importado para {$anio}. Los datos del POA se actualizan automáticamente.",
+            'success' => true,
         ];
     }
 }

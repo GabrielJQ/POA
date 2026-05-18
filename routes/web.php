@@ -25,4 +25,3 @@ Route::post('/estado-resultados/import-pdf', [EstadoResultadosController::class,
 Route::get('/poa', [PoaController::class, 'index'])->name('poa.index');
 Route::get('/poa/export', [PoaController::class, 'export'])->name('poa.export');
 Route::post('/poa/nota', [PoaController::class, 'saveNota'])->name('poa.nota.save');
-Route::post('/poa/sync', [PoaController::class, 'sync'])->name('poa.sync');
