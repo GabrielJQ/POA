@@ -4,16 +4,17 @@ namespace App\Application\UseCases\POA;
 
 use App\Domain\ValueObjects\FiltrosPOA;
 use App\Domain\Contracts\IPOADomainService;
-use App\Models\Almacen;
-use Illuminate\Support\Facades\Cache;
+use App\Domain\Contracts\Repositories\IAlmacenRepository;
 
 class ObtenerDatosPOA
 {
     private IPOADomainService $domainService;
+    private IAlmacenRepository $almacenRepo;
 
-    public function __construct(IPOADomainService $domainService)
+    public function __construct(IPOADomainService $domainService, IAlmacenRepository $almacenRepo)
     {
         $this->domainService = $domainService;
+        $this->almacenRepo = $almacenRepo;
     }
 
     public function execute(array $request): array
@@ -23,9 +24,7 @@ class ObtenerDatosPOA
         $result = $this->domainService->obtenerDatosPOA($filtros);
         $compromisos = $result['compromisos'];
         $dataPoa = $result['dataPoa'];
-        $almacenes = Cache::remember('almacenes_ordenados', 86400, fn() =>
-            Almacen::orderBy('nombre')->get()
-        );
+        $almacenes = $this->almacenRepo->findAllOrdered();
 
         return [
             'compromisos' => $compromisos,

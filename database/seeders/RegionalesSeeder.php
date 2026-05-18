@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Regional;
+use App\Domain\Entities\Regional;
 
 class RegionalesSeeder extends Seeder
 {

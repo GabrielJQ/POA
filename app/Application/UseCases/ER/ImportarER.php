@@ -4,7 +4,7 @@ namespace App\Application\UseCases\ER;
 
 use App\Domain\Contracts\IERDomainService;
 use App\Domain\Contracts\IPOADomainService;
-use App\Models\RegistroFinanciero;
+use App\Domain\Contracts\Repositories\IRegistroFinancieroRepository;
 use App\Imports\ERImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -12,22 +12,23 @@ class ImportarER
 {
     private IERDomainService $erDomainService;
     private IPOADomainService $poaDomainService;
+    private IRegistroFinancieroRepository $registroRepo;
 
     public function __construct(
         IERDomainService $erDomainService,
-        IPOADomainService $poaDomainService
+        IPOADomainService $poaDomainService,
+        IRegistroFinancieroRepository $registroRepo
     ) {
         $this->erDomainService = $erDomainService;
         $this->poaDomainService = $poaDomainService;
+        $this->registroRepo = $registroRepo;
     }
 
     public function execute(int $anio, $archivo): array
     {
         Excel::import(new ERImport($anio), $archivo);
 
-        $almacenesAfectados = RegistroFinanciero::where('anio', $anio)
-            ->where('tipo_dato', 'REAL')
-            ->distinct()
+        $almacenesAfectados = $this->registroRepo->getDistinctAlmacenesByAnioYTipo($anio, 'REAL')
             ->pluck('almacen_id');
 
         $totalSincronizados = 0;

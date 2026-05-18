@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\ConceptoMaestro;
+use App\Domain\Entities\ConceptoMaestro;
 
 class LineasProductosSeeder extends Seeder
 {

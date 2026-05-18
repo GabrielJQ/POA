@@ -8,9 +8,9 @@ use App\Imports\VentasDetalladasImport;
 use App\Imports\SurtimientoTiendasImport;
 use App\Imports\MermasQuebrantosImport;
 use App\Imports\AperturaTiendasMetaImport;
-use App\Models\Almacen;
-use App\Models\ConceptoMaestro;
-use App\Models\RegistroFinanciero;
+use App\Domain\Entities\Almacen;
+use App\Domain\Entities\ConceptoMaestro;
+use App\Domain\Entities\RegistroFinanciero;
 use App\Domain\Contracts\IPDFERExtractorService;
 use Exception;
 use Illuminate\Support\Facades\Cache;
@@ -363,6 +363,6 @@ class ImportController extends Controller
 
     private function invalidateCache(): void
     {
-        \App\Domain\Shared\CacheManager::invalidatePoaCache();
+        \App\Infrastructure\Cache\PoaCacheManager::invalidatePoaCache();
     }
 }

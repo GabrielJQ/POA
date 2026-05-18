@@ -2,9 +2,9 @@
 
 namespace App\Domain\Services;
 
-use App\Models\Almacen;
-use App\Models\ConceptoMaestro;
-use App\Models\RegistroFinanciero;
+use App\Domain\Contracts\Repositories\IAlmacenRepository;
+use App\Domain\Contracts\Repositories\IConceptoMaestroRepository;
+use App\Domain\Contracts\Repositories\IRegistroFinancieroRepository;
 use Smalot\PdfParser\Parser;
 use Exception;
 
@@ -12,6 +12,12 @@ use App\Domain\Contracts\IPDFERExtractorService;
 
 class PDFERExtractorService implements IPDFERExtractorService
 {
+    public function __construct(
+        private IAlmacenRepository $almacenRepo,
+        private IConceptoMaestroRepository $conceptoRepo,
+        private IRegistroFinancieroRepository $registroRepo
+    ) {}
+
     private array $bloques = [
         0 => [
             0 => 'ALMACEN CENTRAL OAXACA',
@@ -55,9 +61,7 @@ class PDFERExtractorService implements IPDFERExtractorService
         $conceptosProcesados = [];
 
         foreach ($this->mapeoConceptos as $textoBuscar => $nombreDB) {
-            $concepto = ConceptoMaestro::where('nombre', $nombreDB)
-                ->where('categoria', 'ER')
-                ->first();
+            $concepto = $this->conceptoRepo->findByName($nombreDB, 'ER');
 
             if (!$concepto) {
                 throw new Exception("Concepto no encontrado en BD: $nombreDB");
@@ -92,10 +96,10 @@ class PDFERExtractorService implements IPDFERExtractorService
                     if ($monto == 0) continue;
 
                     $nombreAlmacenNorm = \App\Domain\Shared\StoreNameNormalizer::normalize($nombreAlmacen);
-                    $almacen = Almacen::where('nombre', $nombreAlmacenNorm)->first();
+                    $almacen = $this->almacenRepo->findByName($nombreAlmacenNorm);
                     if (!$almacen) continue;
 
-                    RegistroFinanciero::updateOrCreate(
+                    $this->registroRepo->updateOrCreate(
                         [
                             'almacen_id' => $almacen->id,
                             'concepto_id' => $concepto->id,

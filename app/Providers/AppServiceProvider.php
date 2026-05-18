@@ -37,6 +37,31 @@ class AppServiceProvider extends ServiceProvider
             \App\Domain\Contracts\IPDFERExtractorService::class,
             \App\Domain\Services\PDFERExtractorService::class
         );
+
+        $this->app->singleton(
+            \App\Domain\Contracts\ICacheStore::class,
+            \App\Infrastructure\Cache\LaravelCacheStore::class
+        );
+
+        $this->app->singleton(
+            \App\Domain\Contracts\Repositories\IAlmacenRepository::class,
+            \App\Infrastructure\Persistence\Eloquent\AlmacenRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Domain\Contracts\Repositories\IConceptoMaestroRepository::class,
+            \App\Infrastructure\Persistence\Eloquent\ConceptoMaestroRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Domain\Contracts\Repositories\IRegistroFinancieroRepository::class,
+            \App\Infrastructure\Persistence\Eloquent\RegistroFinancieroRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Domain\Contracts\Repositories\IPoaNotaRepository::class,
+            \App\Infrastructure\Persistence\Eloquent\PoaNotaRepository::class
+        );
     }
 
     /**

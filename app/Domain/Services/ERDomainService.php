@@ -3,37 +3,33 @@
 namespace App\Domain\Services;
 
 use App\Domain\ValueObjects\FiltrosER;
-use App\Models\ConceptoMaestro;
-use App\Models\RegistroFinanciero;
-use Illuminate\Support\Facades\Cache;
+use App\Domain\Contracts\Repositories\IConceptoMaestroRepository;
+use App\Domain\Contracts\Repositories\IRegistroFinancieroRepository;
+use App\Domain\Contracts\ICacheStore;
 use App\Domain\Shared\CacheKeys;
 
 use App\Domain\Contracts\IERDomainService;
 
 class ERDomainService implements IERDomainService
 {
+    public function __construct(
+        private IConceptoMaestroRepository $conceptoRepo,
+        private IRegistroFinancieroRepository $registroRepo,
+        private ICacheStore $cache
+    ) {}
+
     public function obtenerDatosER(FiltrosER $filtros): array
     {
         $anio = $filtros->getAnio();
         $almacenId = $filtros->getAlmacenId();
 
-        $version = Cache::get(CacheKeys::POA_VERSION, 0);
+        $version = $this->cache->get(CacheKeys::POA_VERSION, 0);
         $cacheKey = CacheKeys::erData($anio, $almacenId, $version);
 
-        return Cache::remember($cacheKey, 300, function () use ($anio, $almacenId) {
-            $erConceptos = Cache::remember(CacheKeys::CONCEPTOS_ER, 86400, fn() =>
-                ConceptoMaestro::where('categoria', 'ER')->orderBy('orden')->get()
-            )->keyBy('id');
+        return $this->cache->remember($cacheKey, 300, function () use ($anio, $almacenId) {
+            $erConceptos = $this->conceptoRepo->getByCategoria('ER')->keyBy('id');
 
-            $query = RegistroFinanciero::whereIn('concepto_id', $erConceptos->keys())
-                ->where('anio', $anio)
-                ->where('tipo_dato', 'META');
-
-            if ($almacenId) {
-                $query->where('almacen_id', $almacenId);
-            }
-
-            $resultados = $query->get();
+            $resultados = $this->registroRepo->getERMeta($anio, $erConceptos->keys()->toArray(), $almacenId);
 
             $dataER = [];
             foreach ($resultados as $r) {
@@ -66,9 +62,7 @@ class ERDomainService implements IERDomainService
 
     public function obtenerConceptosER(): array
     {
-        return Cache::remember(CacheKeys::CONCEPTOS_ER, 86400, fn() =>
-            ConceptoMaestro::where('categoria', 'ER')->orderBy('orden')->get()
-        )
+        return $this->conceptoRepo->getByCategoria('ER')
             ->map(function ($item) {
                 return (object) [
                     'id' => $item->id,
@@ -97,7 +91,7 @@ class ERDomainService implements IERDomainService
         }
 
         if (!empty($upsertData)) {
-            RegistroFinanciero::upsert(
+            $this->registroRepo->upsertMany(
                 $upsertData,
                 ['almacen_id', 'concepto_id', 'anio', 'mes', 'tipo_dato', 'programa'],
                 ['monto']

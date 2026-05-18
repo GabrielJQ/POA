@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Almacen;
-use App\Models\UnidadOperativa;
-use App\Models\Regional;
+use App\Domain\Entities\Almacen;
+use App\Domain\Entities\UnidadOperativa;
+use App\Domain\Entities\Regional;
 use Illuminate\Database\Seeder;
 
 class AlmacenSeeder extends Seeder

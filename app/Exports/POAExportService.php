@@ -5,12 +5,16 @@ namespace App\Exports;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx as XlsxWriter;
 
+use App\Domain\Contracts\Repositories\IAlmacenRepository;
+
 class POAExportService
 {
     private string $templatePath;
+    private IAlmacenRepository $almacenRepo;
 
-    public function __construct()
+    public function __construct(IAlmacenRepository $almacenRepo)
     {
+        $this->almacenRepo = $almacenRepo;
         $this->templatePath = 'C:\GABOITO\GABO ITO\Alimentacion para el bienestar\POA\FORMATO POA VACIO.xlsx';
     }
 
@@ -162,7 +166,7 @@ class POAExportService
             return 'CONSOLIDADO';
         }
         if (!empty($filters['almacenSeleccionado'])) {
-            $almacen = \App\Models\Almacen::find($filters['almacenSeleccionado']);
+            $almacen = $this->almacenRepo->findById($filters['almacenSeleccionado']);
             if ($almacen) {
                 return $almacen->nombre;
             }

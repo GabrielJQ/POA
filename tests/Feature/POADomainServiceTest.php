@@ -5,9 +5,9 @@ namespace Tests\Feature;
 use App\Domain\Services\POADomainService;
 use App\Domain\ValueObjects\FiltrosPOA;
 use App\Domain\ValueObjects\Periodo;
-use App\Models\Almacen;
-use App\Models\ConceptoMaestro;
-use App\Models\RegistroFinanciero;
+use App\Domain\Entities\Almacen;
+use App\Domain\Entities\ConceptoMaestro;
+use App\Domain\Entities\RegistroFinanciero;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -27,8 +27,8 @@ class POADomainServiceTest extends TestCase
     {
         parent::setUp();
 
-        $regional = \App\Models\Regional::create(['nombre' => 'OAXACA']);
-        $uo = \App\Models\UnidadOperativa::create(['regional_id' => $regional->id, 'nombre' => 'VALLES CENTRALES']);
+        $regional = \App\Domain\Entities\Regional::create(['nombre' => 'OAXACA']);
+        $uo = \App\Domain\Entities\UnidadOperativa::create(['regional_id' => $regional->id, 'nombre' => 'VALLES CENTRALES']);
 
         $this->almacen1 = Almacen::create(['unidad_operativa_id' => $uo->id, 'nombre' => 'ALMACEN CENTRAL OAXACA']);
         $this->almacen2 = Almacen::create(['unidad_operativa_id' => $uo->id, 'nombre' => 'AYUTLA MIXES']);

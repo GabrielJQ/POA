@@ -3,10 +3,10 @@
 namespace App\Domain\Services;
 
 use App\Domain\ValueObjects\FiltrosPOA;
-use App\Models\ConceptoMaestro;
-use App\Models\PoaNota;
-use App\Models\RegistroFinanciero;
-use Illuminate\Support\Facades\Cache;
+use App\Domain\Contracts\Repositories\IConceptoMaestroRepository;
+use App\Domain\Contracts\Repositories\IRegistroFinancieroRepository;
+use App\Domain\Contracts\Repositories\IPoaNotaRepository;
+use App\Domain\Contracts\ICacheStore;
 
 use App\Domain\Contracts\IPOADomainService;
 use App\Domain\Shared\CacheKeys;
@@ -15,7 +15,11 @@ use App\Domain\Services\POA\Builders\PoaDataAssembler;
 class POADomainService implements IPOADomainService
 {
     public function __construct(
-        private PoaDataAssembler $assembler
+        private PoaDataAssembler $assembler,
+        private IConceptoMaestroRepository $conceptoRepo,
+        private IRegistroFinancieroRepository $registroRepo,
+        private IPoaNotaRepository $notaRepo,
+        private ICacheStore $cache
     ) {}
 
     public function obtenerDatosPOA(FiltrosPOA $filtros): array
@@ -26,47 +30,24 @@ class POADomainService implements IPOADomainService
         $periodoTipo = $filtros->getPeriodo()->getTipo();
         $notaMes = $filtros->getPeriodo()->getNotaMes();
 
-        $version = Cache::get(CacheKeys::POA_VERSION, 0);
+        $version = $this->cache->get(CacheKeys::POA_VERSION, 0);
         $cacheKey = CacheKeys::poaData($anio, $almacenId, $periodoTipo, $notaMes, $version);
 
-        return Cache::remember($cacheKey, 300, function () use ($filtros, $anio, $almacenId, $meses, $notaMes) {
-            $compromisos = Cache::remember(CacheKeys::CONCEPTOS_POA, 86400, fn() =>
-                ConceptoMaestro::where('categoria', 'POA')->orderBy('orden')->get()
-            );
+        return $this->cache->remember($cacheKey, 300, function () use ($filtros, $anio, $almacenId, $meses, $notaMes) {
+            $compromisos = $this->conceptoRepo->getByCategoria('POA');
+            $erConceptos = $this->conceptoRepo->pluckByCategoria('ER', 'nombre', 'id');
 
-            $erConceptos = Cache::remember(CacheKeys::CONCEPTOS_ER_PLUCK, 86400, fn() =>
-                ConceptoMaestro::where('categoria', 'ER')->pluck('id', 'nombre')
-            );
-
-            $records = RegistroFinanciero::where('anio', $anio)
-                ->whereIn('tipo_dato', ['META', 'REAL']);
-
-            if ($almacenId) {
-                $records = $records->where('almacen_id', $almacenId);
-            }
-
-            $records = $records->get();
+            $records = $this->registroRepo->getByAnioYTipoDato($anio, ['META', 'REAL'], $almacenId);
 
             $metasPorConcepto = $records->where('tipo_dato', 'META')->groupBy('concepto_id');
             $realesPorConcepto = $records->where('tipo_dato', 'REAL')->groupBy('concepto_id');
 
-            $lpIds = Cache::remember(CacheKeys::CONCEPTOS_LP_IDS, 86400, fn() =>
-                ConceptoMaestro::where('categoria', 'LINEA_PRODUCTO')->pluck('id')
-            );
+            $lpIds = $this->conceptoRepo->pluckIdsByCategoria('LINEA_PRODUCTO');
 
             $ventasRecords = $records->where('tipo_dato', 'REAL')
                 ->filter(fn($r) => $lpIds->contains($r->concepto_id));
 
-            $notas = PoaNota::where('anio', $anio)
-                ->where('mes', $notaMes)
-                ->where(function ($q) use ($almacenId) {
-                    if ($almacenId === null) {
-                        $q->whereNull('almacen_id');
-                    } else {
-                        $q->where('almacen_id', $almacenId);
-                    }
-                })
-                ->get()
+            $notas = $this->notaRepo->getByAnioMesYAlmacen($anio, $notaMes, $almacenId)
                 ->keyBy(fn($n) => $n->concepto_id . '|' . $n->label);
 
             $dataPoa = $this->assembler->assemble(

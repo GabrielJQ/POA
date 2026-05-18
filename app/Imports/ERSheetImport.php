@@ -2,11 +2,11 @@
 
 namespace App\Imports;
 
-use App\Models\Almacen;
-use App\Models\ConceptoMaestro;
-use App\Models\RegistroFinanciero;
-use App\Models\UnidadOperativa;
-use App\Models\Regional;
+use App\Domain\Entities\Almacen;
+use App\Domain\Entities\ConceptoMaestro;
+use App\Domain\Entities\RegistroFinanciero;
+use App\Domain\Entities\UnidadOperativa;
+use App\Domain\Entities\Regional;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

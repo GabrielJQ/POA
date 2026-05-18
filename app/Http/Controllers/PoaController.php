@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Application\UseCases\POA\ObtenerDatosPOA;
 use App\Application\UseCases\POA\SincronizarPOA;
 use App\Exports\POAExportService;
-use App\Models\Almacen;
-use App\Models\PoaNota;
+use App\Domain\Entities\Almacen;
+use App\Domain\Entities\PoaNota;
 use Illuminate\Support\Facades\Cache as CacheFacade;
 
 class PoaController extends Controller
@@ -150,7 +150,7 @@ class PoaController extends Controller
             ['nota_aclaratoria' => $validated['nota_aclaratoria'] ?? '']
         );
 
-        \App\Domain\Shared\CacheManager::invalidatePoaCache();
+        \App\Infrastructure\Cache\PoaCacheManager::invalidatePoaCache();
 
         return response()->json(['success' => true]);
     }

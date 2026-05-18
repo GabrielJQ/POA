@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Regional;
-use App\Models\UnidadOperativa;
+use App\Domain\Entities\Regional;
+use App\Domain\Entities\UnidadOperativa;
 
 class UnidadesOperativasSeeder extends Seeder
 {

@@ -2,9 +2,9 @@
 
 namespace App\Imports;
 
-use App\Models\Almacen;
-use App\Models\ConceptoMaestro;
-use App\Models\RegistroFinanciero;
+use App\Domain\Entities\Almacen;
+use App\Domain\Entities\ConceptoMaestro;
+use App\Domain\Entities\RegistroFinanciero;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Exception;
 

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Domain\Entities\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        if (!\App\Models\User::where('email', 'test@example.com')->exists()) {
+        if (!\App\Domain\Entities\User::where('email', 'test@example.com')->exists()) {
             User::factory()->create([
                 'name' => 'Test User',
                 'email' => 'test@example.com',

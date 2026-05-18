@@ -4,16 +4,17 @@ namespace App\Application\UseCases\ER;
 
 use App\Domain\ValueObjects\FiltrosER;
 use App\Domain\Contracts\IERDomainService;
-use App\Models\Almacen;
-use Illuminate\Support\Facades\Cache;
+use App\Domain\Contracts\Repositories\IAlmacenRepository;
 
 class ObtenerDatosER
 {
     private IERDomainService $domainService;
+    private IAlmacenRepository $almacenRepo;
 
-    public function __construct(IERDomainService $domainService)
+    public function __construct(IERDomainService $domainService, IAlmacenRepository $almacenRepo)
     {
         $this->domainService = $domainService;
+        $this->almacenRepo = $almacenRepo;
     }
 
     public function execute(array $request): array
@@ -22,9 +23,7 @@ class ObtenerDatosER
 
         $conceptos = $this->domainService->obtenerConceptosER();
         $matriz = $this->domainService->obtenerDatosER($filtros);
-        $almacenes = Cache::remember('almacenes_ordenados', 86400, fn() =>
-            Almacen::orderBy('nombre')->get()
-        );
+        $almacenes = $this->almacenRepo->findAllOrdered();
 
         return [
             'conceptos' => $conceptos,
