@@ -28,3 +28,4 @@ Thumbs.db
 /.scribe
 /docs/.vitepress/dist
 /docs/.vitepress/cache
+/test_refactor.php
