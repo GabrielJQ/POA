@@ -86,14 +86,19 @@ $(document).ready(function() {
         recargarTodo();
     });
 
-    $('#filtro-poa-form').on('change', 'select[name="mes"], select[name="anio"], select[name="almacen_id"], select[name="trimestre"]', function() {
+    $('#filtro-poa-form').on('change', '[name="anio"], [name="mes"], [name="almacen_id"], [name="trimestre"]', function() {
         recargarTodo();
     });
 
     var cargandoTabla = false;
+    var pendienteRecarga = false;
     window.cargarTablaPOA = function() {
-        if (cargandoTabla) return;
+        if (cargandoTabla) {
+            pendienteRecarga = true;
+            return;
+        }
         cargandoTabla = true;
+        pendienteRecarga = false;
         
         var url = $('#filtro-poa-form').attr('action');
         var data = $('#filtro-poa-form').serialize();
@@ -118,6 +123,9 @@ $(document).ready(function() {
                 btn.html('<i class="fas fa-search"></i>');
                 btn.prop('disabled', false);
                 cargandoTabla = false;
+                if (pendienteRecarga) {
+                    recargarTodo();
+                }
             }
         });
     };

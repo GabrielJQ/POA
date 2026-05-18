@@ -13,13 +13,26 @@ $(document).ready(function() {
         placeholder: 'Seleccionar...'
     });
 
-    $('#filtro-form').on('submit', function(e) {
-        e.preventDefault();
-        let url = $(this).attr('action');
-        let data = $(this).serialize();
-        
-        let btn = $(this).find('button[type="submit"]');
-        let originalText = btn.html();
+    $('.select2').on('select2:select', function() {
+        $(this).trigger('change');
+    });
+
+    var cargando = false;
+    var pendienteRecarga = false;
+
+    function enviarFiltros() {
+        if (cargando) {
+            pendienteRecarga = true;
+            return;
+        }
+        cargando = true;
+        pendienteRecarga = false;
+
+        var url = $('#filtro-form').attr('action');
+        var data = $('#filtro-form').serialize();
+
+        var btn = $('#filtro-form').find('button[type="submit"]');
+        var originalText = btn.html();
         btn.html('<i class="fas fa-spinner fa-spin"></i>');
         btn.prop('disabled', true);
 
@@ -35,14 +48,27 @@ $(document).ready(function() {
             complete: function() {
                 btn.html(originalText);
                 btn.prop('disabled', false);
+                cargando = false;
+                if (pendienteRecarga) {
+                    enviarFiltros();
+                }
             }
         });
+    }
+
+    $('#filtro-form').on('change', '[name="anio"], [name="almacen_id"]', function() {
+        enviarFiltros();
+    });
+
+    $('#filtro-form').on('submit', function(e) {
+        e.preventDefault();
+        enviarFiltros();
     });
 
     $('#btn-limpiar').on('click', function() {
         $('select[name="almacen_id"]').val('');
         $('input[name="anio"]').val(new Date().getFullYear());
-        $('#filtro-form').submit();
+        enviarFiltros();
     });
 
     $('#btn-exportar').on('click', function(e) {
