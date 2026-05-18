@@ -29,3 +29,4 @@ Thumbs.db
 /docs/.vitepress/dist
 /docs/.vitepress/cache
 /test_refactor.php
+/AGENTS.md
