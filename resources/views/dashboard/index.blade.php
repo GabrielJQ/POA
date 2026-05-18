@@ -1,6 +1,6 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', 'Dashboard Operativo')
+@section('title', 'Dashboard')
 
 @section('content_header')
     <h1><i class="fas fa-tachometer-alt text-institucional-verde"></i> Dashboard Operativo</h1>
