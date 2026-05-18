@@ -5,21 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Application\UseCases\POA\ObtenerDatosPOA;
 use App\Exports\POAExportService;
+use App\Domain\Contracts\ICacheStore;
 use App\Domain\Entities\Almacen;
 use App\Domain\Entities\PoaNota;
+use App\Domain\Shared\CacheKeys;
 use Illuminate\Support\Facades\Cache as CacheFacade;
 
 class PoaController extends Controller
 {
     private ObtenerDatosPOA $obtenerDatosPOA;
     private POAExportService $exportService;
+    private ICacheStore $cache;
 
     public function __construct(
         ObtenerDatosPOA $obtenerDatosPOA,
-        POAExportService $exportService
+        POAExportService $exportService,
+        ICacheStore $cache
     ) {
         $this->obtenerDatosPOA = $obtenerDatosPOA;
         $this->exportService = $exportService;
+        $this->cache = $cache;
     }
 
     /**
@@ -146,7 +151,7 @@ class PoaController extends Controller
             ['nota_aclaratoria' => $validated['nota_aclaratoria'] ?? '']
         );
 
-        \App\Infrastructure\Cache\PoaCacheManager::invalidatePoaCache();
+        $this->cache->increment(CacheKeys::POA_VERSION);
 
         return response()->json(['success' => true]);
     }

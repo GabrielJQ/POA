@@ -7,7 +7,9 @@ use App\Imports\ERImport;
 use App\Domain\Entities\Almacen;
 use App\Domain\Entities\ConceptoMaestro;
 use App\Domain\Entities\RegistroFinanciero;
+use App\Domain\Contracts\ICacheStore;
 use App\Domain\Contracts\IPDFERExtractorService;
+use App\Domain\Shared\CacheKeys;
 use App\Application\UseCases\POA\ImportarSurtimiento;
 use App\Application\UseCases\POA\ImportarAperturaTiendas;
 use App\Application\UseCases\POA\ImportarMermas;
@@ -24,19 +26,22 @@ class ImportController extends Controller
     private ImportarAperturaTiendas $importarAperturaTiendas;
     private ImportarMermas $importarMermas;
     private ImportarVentasDetalladas $importarVentasDetalladas;
+    private ICacheStore $cache;
 
     public function __construct(
         IPDFERExtractorService $pdfService,
         ImportarSurtimiento $importarSurtimiento,
         ImportarAperturaTiendas $importarAperturaTiendas,
         ImportarMermas $importarMermas,
-        ImportarVentasDetalladas $importarVentasDetalladas
+        ImportarVentasDetalladas $importarVentasDetalladas,
+        ICacheStore $cache
     ) {
         $this->pdfService = $pdfService;
         $this->importarSurtimiento = $importarSurtimiento;
         $this->importarAperturaTiendas = $importarAperturaTiendas;
         $this->importarMermas = $importarMermas;
         $this->importarVentasDetalladas = $importarVentasDetalladas;
+        $this->cache = $cache;
     }
 
     /**
@@ -373,6 +378,6 @@ class ImportController extends Controller
 
     private function invalidateCache(): void
     {
-        \App\Infrastructure\Cache\PoaCacheManager::invalidatePoaCache();
+        $this->cache->increment(CacheKeys::POA_VERSION);
     }
 }
