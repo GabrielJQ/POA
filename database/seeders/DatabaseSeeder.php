@@ -14,6 +14,15 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
+        $this->call([
+            RegionalesSeeder::class,
+            UnidadesOperativasSeeder::class,
+            AlmacenSeeder::class,
+            ConceptoERSeeder::class,
+            CompromisosPoaSeeder::class,
+            LineasProductosSeeder::class,
+        ]);
+
         // Admin
         if (!User::where('email', 'admin@poa.com')->exists()) {
             User::create([
@@ -49,15 +58,6 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        $this->command->info('Usuarios seedeados correctamente.');
-
-        $this->call([
-            RegionalesSeeder::class,
-            UnidadesOperativasSeeder::class,
-            AlmacenSeeder::class,
-            ConceptoERSeeder::class,
-            CompromisosPoaSeeder::class,
-            LineasProductosSeeder::class,
-        ]);
+        $this->command->info('Seeders ejecutados correctamente.');
     }
 }
