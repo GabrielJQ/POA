@@ -21,7 +21,6 @@
 
 @section('adminlte_css_pre')
     <style>
-        /* === LOGIN PAGE === */
         .login-page {
             background: linear-gradient(135deg, #13322B 0%, #0a1f1a 100%) !important;
             display: flex !important;
@@ -29,11 +28,16 @@
             justify-content: center !important;
             min-height: 100vh !important;
             padding: 20px !important;
+            position: relative;
         }
 
         .login-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
             width: 100%;
-            max-width: 520px;
+            max-width: 1100px;
             margin: 0 auto;
             animation: loginFadeIn 0.6s ease-out;
         }
@@ -43,39 +47,42 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .login-side {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-side img {
+            height: 110px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+        }
+
+        .login-side-left img {
+            height: 120px;
+        }
+
+        .login-side-right img {
+            height: 100px;
+        }
+
         .login-card {
-            background: #ffffff;
-            border-radius: 20px;
+            background: #691C32;
+            border-radius: 24px;
             box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             padding: 45px 40px 35px;
+            width: 100%;
+            max-width: 480px;
+            flex-shrink: 0;
         }
 
         .login-header {
             text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .login-gobierno {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .login-gobierno img {
-            height: 55px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .login-gobierno .divider {
-            width: 1px;
-            height: 40px;
-            background: #e0e0e0;
+            margin-bottom: 8px;
         }
 
         .login-brand {
@@ -83,7 +90,7 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .login-brand-icon {
@@ -91,13 +98,16 @@
             height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 4px 15px rgba(19, 50, 43, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background: white;
+            padding: 4px;
         }
 
         .login-brand-text {
             height: 32px;
             width: auto;
             object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
         .login-title {
@@ -105,8 +115,8 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             font-size: 1rem;
-            color: var(--gob-verde, #13322B);
-            letter-spacing: 2px;
+            color: #ffffff;
+            letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 25px;
             position: relative;
@@ -117,7 +127,7 @@
             display: block;
             width: 50px;
             height: 3px;
-            background: var(--gob-oro, #988256);
+            background: #988256;
             margin: 10px auto 0;
             border-radius: 2px;
         }
@@ -131,30 +141,43 @@
         }
 
         .login-body .input-group-text {
-            background: transparent;
-            border: 1.5px solid #e2e8f0;
-            border-right: none;
-            border-radius: 10px 0 0 10px;
-            color: var(--gob-verde, #13322B);
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 12px 0 0 12px;
+            color: #691C32;
+            padding: 0.65rem 1rem;
         }
 
         .login-body .form-control {
-            border: 1.5px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
             border-left: none;
-            border-radius: 0 10px 10px 0;
-            padding: 0.65rem 1rem;
+            border-radius: 0 12px 12px 0;
+            padding: 0.65rem 1rem 0.65rem 0;
             height: auto;
             font-size: 0.9rem;
+            color: #333;
             transition: all 0.3s;
         }
 
         .login-body .form-control:focus {
-            border-color: var(--gob-oro, #988256);
-            box-shadow: 0 0 0 4px rgba(152, 130, 86, 0.15);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(152, 130, 86, 0.25);
         }
 
         .login-body .input-group:focus-within .input-group-text {
-            border-color: var(--gob-oro, #988256);
+            background: #ffffff;
+        }
+
+        .login-body .form-control::placeholder {
+            color: #999;
+            font-weight: 400;
+        }
+
+        .login-body .invalid-feedback {
+            color: #ffc107;
+            font-weight: 600;
+            font-size: 0.78rem;
         }
 
         .login-body .custom-checkbox {
@@ -168,39 +191,39 @@
         .login-body .custom-checkbox input[type="checkbox"] {
             width: 18px;
             height: 18px;
-            accent-color: var(--gob-verde, #13322B);
+            accent-color: #988256;
             cursor: pointer;
             border-radius: 4px;
         }
 
         .login-body .custom-checkbox label {
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.85rem;
-            color: #4D4D4D;
+            color: rgba(255, 255, 255, 0.85);
             margin: 0;
             cursor: pointer;
             padding-left: 0;
         }
 
         .login-body .btn-login {
-            background: linear-gradient(135deg, #13322B 0%, #0d241f 100%);
+            background: linear-gradient(135deg, #988256 0%, #7a6a44 100%);
             border: none;
-            border-radius: 10px;
-            padding: 0.75rem;
+            border-radius: 12px;
+            padding: 0.75rem 2rem;
             font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             color: #fff;
-            box-shadow: 0 4px 15px rgba(19, 50, 43, 0.3);
+            box-shadow: 0 4px 20px rgba(152, 130, 86, 0.4);
             transition: all 0.3s;
-            width: 100%;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .login-body .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(19, 50, 43, 0.4);
+            box-shadow: 0 8px 30px rgba(152, 130, 86, 0.5);
             filter: brightness(1.1);
         }
 
@@ -212,36 +235,58 @@
             text-align: center;
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .login-footer a {
-            color: var(--gob-oro, #988256);
-            font-weight: 600;
-            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 500;
+            font-size: 0.82rem;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .login-footer a:hover {
-            color: #6b5a3a;
+            color: #ffffff;
             text-decoration: underline;
         }
 
-        .login-footer .gobierno-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
+        .login-footer .gobierno-branding {
             margin-top: 15px;
-            font-size: 0.7rem;
-            color: #999;
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.4);
             font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .login-footer .gobierno-footer img {
-            height: 24px;
-            opacity: 0.6;
+        @media (max-width: 820px) {
+            .login-wrapper {
+                gap: 20px;
+            }
+
+            .login-side img {
+                height: 70px;
+            }
+
+            .login-side-left img {
+                height: 80px;
+            }
+
+            .login-side-right img {
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .login-side {
+                display: none;
+            }
+
+            .login-card {
+                max-width: 100%;
+                padding: 35px 25px 30px;
+            }
         }
     </style>
 @stop
@@ -250,18 +295,18 @@
 
 @section('body')
     <div class="login-wrapper">
+
+        {{-- Logo izquierdo: Gobierno de México --}}
+        <div class="login-side login-side-left">
+            <img src="{{ asset('img/logos/gobierno.png') }}"
+                 alt="Gobierno de México">
+        </div>
+
+        {{-- Card --}}
         <div class="login-card">
 
-            {{-- Logos gubernamentales --}}
+            {{-- Logo corporativo --}}
             <div class="login-header">
-                <div class="login-gobierno">
-                    <img src="{{ asset('img/logos/gobierno.png') }}"
-                         alt="Gobierno de México">
-                    <div class="divider"></div>
-                    <img src="{{ asset('img/logos/logoAgricultura.png') }}"
-                         alt="Secretaría de Agricultura y Desarrollo Rural">
-                </div>
-
                 <div class="login-brand">
                     <img class="login-brand-icon"
                          src="{{ asset('img/logos/logoAlimentacionBienestar1.png') }}"
@@ -274,7 +319,7 @@
 
             {{-- Título --}}
             <div class="login-title">
-                {{ __('adminlte::adminlte.login_message') }}
+                INICIAR SESIÓN
             </div>
 
             {{-- Formulario --}}
@@ -293,7 +338,7 @@
                             <input type="email" name="email"
                                    class="form-control @error('email') is-invalid @enderror"
                                    value="{{ old('email') }}"
-                                   placeholder="{{ __('adminlte::adminlte.email') }}"
+                                   placeholder="Correo electrónico"
                                    autofocus>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -313,7 +358,7 @@
                             </div>
                             <input type="password" name="password"
                                    class="form-control @error('password') is-invalid @enderror"
-                                   placeholder="{{ __('adminlte::adminlte.password') }}">
+                                   placeholder="Contraseña">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -326,18 +371,18 @@
                     <div class="row align-items-center">
                         <div class="col-7">
                             <div class="custom-checkbox"
-                                 title="{{ __('adminlte::adminlte.remember_me_hint') }}">
+                                 title="Mantenerme conectado">
                                 <input type="checkbox" name="remember" id="remember"
                                        {{ old('remember') ? 'checked' : '' }}>
                                 <label for="remember">
-                                    {{ __('adminlte::adminlte.remember_me') }}
+                                    Recordar mis datos
                                 </label>
                             </div>
                         </div>
                         <div class="col-5 text-right">
                             <button type="submit" class="btn-login">
                                 <i class="fas fa-sign-in-alt"></i>
-                                {{ __('adminlte::adminlte.sign_in') }}
+                                Ingresar
                             </button>
                         </div>
                     </div>
@@ -350,18 +395,24 @@
                     <p class="my-0">
                         <a href="{{ $passResetUrl }}">
                             <i class="fas fa-question-circle"></i>
-                            {{ __('adminlte::adminlte.i_forgot_my_password') }}
+                            ¿Olvidaste tu contraseña?
                         </a>
                     </p>
                 @endif
 
-                <div class="gobierno-footer">
-                    <img src="{{ asset('img/logos/gobierno.png') }}" alt="">
-                    <span>Gobierno de México</span>
+                <div class="gobierno-branding">
+                    Gobierno de México
                 </div>
             </div>
 
         </div>
+
+        {{-- Logo derecho: Agricultura --}}
+        <div class="login-side login-side-right">
+            <img src="{{ asset('img/logos/logoAgricultura.png') }}"
+                 alt="Secretaría de Agricultura y Desarrollo Rural">
+        </div>
+
     </div>
 @stop
 
