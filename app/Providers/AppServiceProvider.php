@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use App\Domain\Services\POADomainService;
 use App\Domain\Services\ERDomainService;
@@ -68,6 +69,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('view-dashboard', fn ($user) => $user->isAdmin() || $user->isSupervisor());
+        Gate::define('manage-users', fn ($user) => $user->isAdmin());
+        Gate::define('edit-notas', fn ($user) => $user->isAdmin() || $user->isSupervisor());
     }
 }

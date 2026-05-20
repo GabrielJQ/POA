@@ -304,6 +304,7 @@ return [
             'text' => 'Dashboard',
             'url' => '/',
             'icon' => 'fas fa-fw fa-tachometer-alt',
+            'can' => 'view-dashboard',
         ],
         [
             'text' => 'Centro de Importación',
@@ -331,6 +332,12 @@ return [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+        ],
+        [
+            'text' => 'Administrar Usuarios',
+            'url'  => 'admin/users',
+            'icon' => 'fas fa-fw fa-users-cog',
+            'can' => 'manage-users',
         ],
     ],
 
