@@ -21,8 +21,14 @@
 
 @section('adminlte_css_pre')
     <style>
+        html, body.login-page {
+            height: 100% !important;
+        }
+
         .login-page {
+            background: #13322B !important;
             background: linear-gradient(135deg, #13322B 0%, #0a1f1a 100%) !important;
+            background-color: #13322B !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
@@ -32,13 +38,14 @@
         }
 
         .login-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            min-height: 80vh;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 40px;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
             animation: loginFadeIn 0.6s ease-out;
         }
 
@@ -48,25 +55,38 @@
         }
 
         .login-side {
-            flex-shrink: 0;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 1;
         }
 
         .login-side img {
-            height: 110px;
+            height: auto;
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
         }
 
+        .login-side-left {
+            left: 0;
+        }
+
         .login-side-left img {
-            height: 120px;
+            max-height: 150px;
+            max-width: 160px;
+        }
+
+        .login-side-right {
+            right: 0;
         }
 
         .login-side-right img {
-            height: 100px;
+            max-height: 130px;
+            max-width: 200px;
         }
 
         .login-card {
@@ -261,20 +281,14 @@
         }
 
         @media (max-width: 820px) {
-            .login-wrapper {
-                gap: 20px;
-            }
-
-            .login-side img {
-                height: 70px;
-            }
-
             .login-side-left img {
-                height: 80px;
+                max-height: 100px;
+                max-width: 120px;
             }
 
             .login-side-right img {
-                height: 60px;
+                max-height: 80px;
+                max-width: 140px;
             }
         }
 
