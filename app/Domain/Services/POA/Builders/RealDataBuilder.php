@@ -32,11 +32,27 @@ class RealDataBuilder
             }
 
             $totalReal = 0;
+            $maxMes = max($meses);
             foreach ($ventas as $v) {
-                $totalReal += (float) $v->monto;
                 $mesKey = (int) $v->mes;
+                if ($mesKey === 0 || ($mesKey >= 1 && $mesKey <= $maxMes)) {
+                    $totalReal += (float) $v->monto;
+                }
                 $ventasParPeMes[$mesKey] = ($ventasParPeMes[$mesKey] ?? 0) + (float) $v->monto;
             }
+
+            $poaReales = $realesPorConcepto->get($metaConceptoId, collect());
+            if ($almacenId) {
+                $poaReales = $poaReales->where('almacen_id', $almacenId);
+            }
+            foreach ($poaReales as $pr) {
+                $mesKey = (int) $pr->mes;
+                if ($mesKey === 0 || ($mesKey >= 1 && $mesKey <= $maxMes)) {
+                    $totalReal += (float) $pr->monto;
+                }
+                $ventasParPeMes[$mesKey] = ($ventasParPeMes[$mesKey] ?? 0) + (float) $pr->monto;
+            }
+
             $obj2->meta_anual = $totalReal;
         } else {
             $reales = $realesPorConcepto->get($metaConceptoId, collect());
@@ -45,9 +61,12 @@ class RealDataBuilder
             }
 
             $totalReal = 0;
+            $maxMes = max($meses);
             foreach ($reales as $r) {
-                $totalReal += (float) $r->monto;
                 $mesKey = (int) $r->mes;
+                if ($mesKey === 0 || ($mesKey >= 1 && $mesKey <= $maxMes)) {
+                    $totalReal += (float) $r->monto;
+                }
                 $ventasParPeMes[$mesKey] = ($ventasParPeMes[$mesKey] ?? 0) + (float) $r->monto;
             }
 

@@ -25,3 +25,5 @@ Route::post('/estado-resultados/import-pdf', [EstadoResultadosController::class,
 Route::get('/poa', [PoaController::class, 'index'])->name('poa.index');
 Route::get('/poa/export', [PoaController::class, 'export'])->name('poa.export');
 Route::post('/poa/nota', [PoaController::class, 'saveNota'])->name('poa.nota.save');
+Route::get('/poa/reales', [PoaController::class, 'getReales'])->name('poa.reales');
+Route::post('/poa/reales/guardar', [PoaController::class, 'guardarReales'])->name('poa.reales.guardar');

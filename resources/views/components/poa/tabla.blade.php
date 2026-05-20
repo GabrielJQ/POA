@@ -147,6 +147,19 @@
                             @else
                                 {{ number_format($avancePeriodo2, 0, '.', ',') }}
                             @endif
+                            @if(!$mostrarConsolidado && $almacenSeleccionado)
+                                <button type="button" class="btn btn-sm btn-outline-warning ml-1 real-btn-edit"
+                                    data-concepto-id="{{ $compromiso->id }}"
+                                    data-concepto-nombre="{{ $compromiso->nombre }}"
+                                    data-almacen-id="{{ $almacenSeleccionado }}"
+                                    data-anio="{{ $anioSeleccionado }}"
+                                    data-es-ventas="{{ \App\Domain\Shared\PoaHelpers::esVentas($compromiso->nombre) ? 'true' : 'false' }}"
+                                    data-es-porcentaje="{{ \App\Domain\Shared\PoaHelpers::esPorcentaje($compromiso->unidad_medida) ? 'true' : 'false' }}"
+                                    data-meses-activos="{{ json_encode($mesesConfig) }}"
+                                    title="Editar Real">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -163,4 +176,5 @@
             <i class="fas fa-database mr-1"></i>
             Los datos de compromisos mapeados al ER se sincronizan automáticamente.
         </div>
+
 @endif

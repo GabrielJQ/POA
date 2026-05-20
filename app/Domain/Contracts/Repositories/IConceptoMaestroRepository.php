@@ -11,4 +11,5 @@ interface IConceptoMaestroRepository
     public function pluckByCategoria(string $cat, string $key, string $val): Collection;
     public function pluckIdsByCategoria(string $cat): Collection;
     public function findByName(string $name, string $cat): ?ConceptoMaestro;
+    public function findById(int $id): ?ConceptoMaestro;
 }

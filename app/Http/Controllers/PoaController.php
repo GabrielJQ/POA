@@ -4,27 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Application\UseCases\POA\ObtenerDatosPOA;
+use App\Application\UseCases\POA\GuardarRealesPOA;
 use App\Exports\POAExportService;
 use App\Domain\Contracts\ICacheStore;
+use App\Domain\Contracts\Repositories\IRegistroFinancieroRepository;
+use App\Domain\Contracts\Repositories\IConceptoMaestroRepository;
 use App\Domain\Entities\Almacen;
 use App\Domain\Entities\PoaNota;
 use App\Domain\Shared\CacheKeys;
+use App\Domain\Shared\PoaHelpers;
+use App\Domain\ValueObjects\Periodo;
 use Illuminate\Support\Facades\Cache as CacheFacade;
 
 class PoaController extends Controller
 {
     private ObtenerDatosPOA $obtenerDatosPOA;
+    private GuardarRealesPOA $guardarRealesPOA;
     private POAExportService $exportService;
     private ICacheStore $cache;
+    private IRegistroFinancieroRepository $registroRepo;
+    private IConceptoMaestroRepository $conceptoRepo;
 
     public function __construct(
         ObtenerDatosPOA $obtenerDatosPOA,
+        GuardarRealesPOA $guardarRealesPOA,
         POAExportService $exportService,
-        ICacheStore $cache
+        ICacheStore $cache,
+        IRegistroFinancieroRepository $registroRepo,
+        IConceptoMaestroRepository $conceptoRepo
     ) {
         $this->obtenerDatosPOA = $obtenerDatosPOA;
+        $this->guardarRealesPOA = $guardarRealesPOA;
         $this->exportService = $exportService;
         $this->cache = $cache;
+        $this->registroRepo = $registroRepo;
+        $this->conceptoRepo = $conceptoRepo;
     }
 
     /**
@@ -154,6 +168,123 @@ class PoaController extends Controller
         $this->cache->increment(CacheKeys::POA_VERSION);
 
         return response()->json(['success' => true]);
+    }
+
+    /**
+     * Obtener REALES por concepto, almacén y año
+     *
+     * Retorna los datos mensuales REALES para un concepto específico,
+     * indicando qué meses tienen registro (inmutables) y cuáles están vacíos.
+     *
+     * @group POA
+     *
+     * @queryParam concepto_id int required ID del concepto POA.
+     * @queryParam almacen_id int required ID del almacén.
+     * @queryParam anio int required Año.
+     */
+    public function getReales(Request $request)
+    {
+        $conceptoId = (int) $request->input('concepto_id');
+        $almacenId = (int) $request->input('almacen_id');
+        $anio = (int) $request->input('anio');
+
+        $poaConcepto = $this->conceptoRepo->findById($conceptoId);
+        if (!$poaConcepto) {
+            return response()->json(['error' => 'Concepto no encontrado'], 404);
+        }
+
+        $erConceptos = $this->conceptoRepo->pluckByCategoria('ER', 'nombre', 'id');
+        $metaConceptoId = \App\Domain\Shared\ConceptMapper::mapPoaToErConceptId($poaConcepto, $erConceptos);
+        $programa = PoaHelpers::detectarPrograma($poaConcepto->nombre);
+
+        $records = $this->registroRepo->getByAnioYTipoDato($anio, ['REAL'], $almacenId)
+            ->where('concepto_id', $metaConceptoId);
+
+        $mesesConDatos = [];
+
+        if (PoaHelpers::esVentas($poaConcepto->nombre)) {
+            $lpIds = $this->conceptoRepo->pluckIdsByCategoria('LINEA_PRODUCTO');
+            $lpRecords = $this->registroRepo->getByAnioYTipoDato($anio, ['REAL'], $almacenId)
+                ->whereIn('concepto_id', $lpIds->toArray());
+
+            foreach ($lpRecords as $r) {
+                if ($programa !== null && $r->programa !== $programa) {
+                    continue;
+                }
+                $mesKey = (int) $r->mes;
+                $mesesConDatos[$mesKey] = ($mesesConDatos[$mesKey] ?? 0) + (float) $r->monto;
+            }
+        }
+
+        foreach ($records as $r) {
+            if ($programa !== null && $r->programa !== $programa) {
+                continue;
+            }
+            $mesKey = (int) $r->mes;
+            $mesesConDatos[$mesKey] = ($mesesConDatos[$mesKey] ?? 0) + (float) $r->monto;
+        }
+
+        $meses = [];
+        foreach (Periodo::NOMBRES_MESES as $num => $nombre) {
+            $meses[] = [
+                'mes' => $num,
+                'nombre' => $nombre,
+                'monto' => $mesesConDatos[$num] ?? 0,
+                'existe' => array_key_exists($num, $mesesConDatos),
+            ];
+        }
+
+        return response()->json([
+            'concepto_id' => $conceptoId,
+            'concepto_nombre' => $poaConcepto->nombre,
+            'almacen_id' => $almacenId,
+            'anio' => $anio,
+            'es_ventas' => PoaHelpers::esVentas($poaConcepto->nombre),
+            'es_porcentaje' => PoaHelpers::esPorcentaje($poaConcepto->unidad_medida),
+            'meses' => $meses,
+        ]);
+    }
+
+    /**
+     * Guardar REALES manuales (write-once)
+     *
+     * Guarda valores REALES para meses específicos de un concepto.
+     * Solo se guardan meses que NO tengan registro existente.
+     * Una vez guardado, el registro es inmutable.
+     *
+     * @group POA
+     *
+     * @bodyParam concepto_id int required ID del concepto POA.
+     * @bodyParam almacen_id int required ID del almacén.
+     * @bodyParam anio int required Año.
+     * @bodyParam valores array required Array de {mes: int, monto: float}.
+     */
+    public function guardarReales(Request $request)
+    {
+        $validated = $request->validate([
+            'concepto_id' => 'required|integer|exists:conceptos_maestros,id',
+            'almacen_id' => 'required|integer|exists:almacenes,id',
+            'anio' => 'required|integer|min:2000|max:2100',
+            'valores' => 'required|array|min:1',
+            'valores.*.mes' => 'required|integer|min:1|max:12',
+            'valores.*.monto' => 'required|numeric',
+        ]);
+
+        try {
+            $result = $this->guardarRealesPOA->execute($validated);
+
+            if (!$result['success'] && $result['saved'] === 0) {
+                return response()->json([
+                    'success' => false,
+                    'saved' => 0,
+                    'errors' => $result['errors'],
+                ], 409);
+            }
+
+            return response()->json($result);
+        } catch (\InvalidArgumentException $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 
 }

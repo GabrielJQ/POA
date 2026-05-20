@@ -31,8 +31,12 @@ class MetaDataBuilder
                 $resultados = $resultados->where('almacen_id', $almacenId);
             }
             $metaAnual = 0;
+            $maxMes = max($meses);
             foreach ($resultados as $r) {
-                $metaAnual += (float) $r->monto;
+                $mesR = (int) $r->mes;
+                if ($mesR === 0 || ($mesR >= 1 && $mesR <= $maxMes)) {
+                    $metaAnual += (float) $r->monto;
+                }
             }
             $obj1->meta_anual = $metaAnual;
         }

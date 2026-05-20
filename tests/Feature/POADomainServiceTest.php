@@ -77,7 +77,7 @@ class POADomainServiceTest extends TestCase
         $compromisoId = $this->ventaPar->id;
         $obj1 = $result['dataPoa'][$compromisoId]['COMPROMETIDO'];
 
-        $this->assertEquals(6000, $obj1->meta_anual);
+        $this->assertEquals(3000, $obj1->meta_anual);
         $this->assertEquals(3000, $obj1->mes_01);
     }
 

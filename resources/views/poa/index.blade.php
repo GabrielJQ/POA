@@ -56,10 +56,17 @@
             </div>
         </div>
     </div>
+
+    <x-poa.real-modal />
 @stop
 
 @section('js')
-    <script>var RUTA_EXPORT_POA = '{{ route("poa.export") }}';</script>
+    <script>
+        var RUTA_EXPORT_POA = '{{ route("poa.export") }}';
+        var ALMACENES = @json($almacenes->map(function($a) {
+            return ['id' => $a->id, 'nombre' => $a->nombre];
+        })->values());
+    </script>
     @vite('resources/js/poa.js')
     @if(session('success'))
         <script>alert(@json(session('success')));</script>

@@ -50,4 +50,28 @@ class RegistroFinancieroRepository implements IRegistroFinancieroRepository
             ->distinct()
             ->get();
     }
+
+    public function findByUniqueKey(int $almacenId, int $conceptoId, int $mes, int $anio, string $tipoDato, ?string $programa): ?RegistroFinanciero
+    {
+        $query = RegistroFinanciero::where([
+            'almacen_id' => $almacenId,
+            'concepto_id' => $conceptoId,
+            'mes' => $mes,
+            'anio' => $anio,
+            'tipo_dato' => $tipoDato,
+        ]);
+
+        if ($programa !== null) {
+            $query->where('programa', $programa);
+        } else {
+            $query->whereNull('programa');
+        }
+
+        return $query->first();
+    }
+
+    public function create(array $data): RegistroFinanciero
+    {
+        return RegistroFinanciero::create($data);
+    }
 }

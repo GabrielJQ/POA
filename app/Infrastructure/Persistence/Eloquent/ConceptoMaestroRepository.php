@@ -43,4 +43,9 @@ class ConceptoMaestroRepository implements IConceptoMaestroRepository
     {
         return ConceptoMaestro::where('nombre', $name)->where('categoria', $cat)->first();
     }
+
+    public function findById(int $id): ?ConceptoMaestro
+    {
+        return ConceptoMaestro::find($id);
+    }
 }
