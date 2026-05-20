@@ -19,14 +19,13 @@
     }
 @endphp
 
-@section('adminlte_css_pre')
+@section('adminlte_css')
     <style>
-        html, body.login-page {
-            height: 100% !important;
+        html {
+            height: 100%;
         }
 
-        .login-page {
-            background: #13322B !important;
+        body.login-page {
             background: linear-gradient(135deg, #13322B 0%, #0a1f1a 100%) !important;
             background-color: #13322B !important;
             display: flex !important;
