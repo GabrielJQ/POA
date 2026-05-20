@@ -2,27 +2,54 @@
 
 namespace Database\Seeders;
 
+use App\Domain\Entities\Almacen;
 use App\Domain\Entities\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
 
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        if (!\App\Domain\Entities\User::where('email', 'test@example.com')->exists()) {
-            User::factory()->create([
-                'name' => 'Test User',
-                'email' => 'test@example.com',
+        // Admin
+        if (!User::where('email', 'admin@poa.com')->exists()) {
+            User::create([
+                'name' => 'Administrador',
+                'email' => 'admin@poa.com',
+                'password' => Hash::make('Admin123!'),
+                'role' => 'admin',
             ]);
         }
+
+        // Supervisor
+        if (!User::where('email', 'supervisor@poa.com')->exists()) {
+            User::create([
+                'name' => 'Supervisor',
+                'email' => 'supervisor@poa.com',
+                'password' => Hash::make('Super123!'),
+                'role' => 'supervisor',
+            ]);
+        }
+
+        // Capturistas (uno por almacén)
+        $almacenes = Almacen::orderBy('id')->get();
+        foreach ($almacenes as $almacen) {
+            $email = 'capturista' . $almacen->id . '@poa.com';
+            if (!User::where('email', $email)->exists()) {
+                User::create([
+                    'name' => 'Capturista ' . $almacen->nombre,
+                    'email' => $email,
+                    'password' => Hash::make('Captu' . $almacen->id . '!'),
+                    'role' => 'capturista',
+                    'almacen_id' => $almacen->id,
+                ]);
+            }
+        }
+
+        $this->command->info('Usuarios seedeados correctamente.');
 
         $this->call([
             RegionalesSeeder::class,
