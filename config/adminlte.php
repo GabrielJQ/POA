@@ -307,6 +307,12 @@ return [
             'can' => 'view-dashboard',
         ],
         [
+            'text' => 'Mi Almacén',
+            'url'  => '/',
+            'icon' => 'fas fa-fw fa-store',
+            'can' => 'view-mialmacen',
+        ],
+        [
             'text' => 'Centro de Importación',
             'url' => 'importaciones',
             'icon' => 'fas fa-fw fa-file-import',

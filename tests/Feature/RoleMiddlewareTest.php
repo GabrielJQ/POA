@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Domain\Entities\Almacen;
+use App\Domain\Entities\ConceptoMaestro;
 use App\Domain\Entities\Regional;
 use App\Domain\Entities\UnidadOperativa;
 use App\Domain\Entities\User;
@@ -16,6 +17,7 @@ class RoleMiddlewareTest extends TestCase
     private User $admin;
     private User $supervisor;
     private User $capturista;
+    private Almacen $almacen;
 
     protected function setUp(): void
     {
@@ -26,7 +28,7 @@ class RoleMiddlewareTest extends TestCase
             'nombre' => 'TEST UO',
             'regional_id' => $regional->id,
         ]);
-        $almacen = Almacen::create([
+        $this->almacen = Almacen::create([
             'nombre' => 'TEST ALMACEN',
             'numero_almacen' => '999',
             'unidad_operativa_id' => $uo->id,
@@ -34,7 +36,7 @@ class RoleMiddlewareTest extends TestCase
 
         $this->admin = User::factory()->admin()->create();
         $this->supervisor = User::factory()->supervisor()->create();
-        $this->capturista = User::factory()->capturista($almacen->id)->create();
+        $this->capturista = User::factory()->capturista($this->almacen->id)->create();
     }
 
     public function test_admin_can_access_admin_users_route(): void
@@ -98,5 +100,39 @@ class RoleMiddlewareTest extends TestCase
     public function test_edit_notas_gate_denies_capturista(): void
     {
         $this->assertFalse($this->capturista->can('edit-notas'));
+    }
+
+    public function test_view_mialmacen_gate_allows_capturista(): void
+    {
+        $this->assertTrue($this->capturista->can('view-mialmacen'));
+    }
+
+    public function test_view_mialmacen_gate_denies_admin(): void
+    {
+        $this->assertFalse($this->admin->can('view-mialmacen'));
+    }
+
+    public function test_view_mialmacen_gate_denies_supervisor(): void
+    {
+        $this->assertFalse($this->supervisor->can('view-mialmacen'));
+    }
+
+    public function test_capturista_can_access_home_and_sees_their_store(): void
+    {
+        $response = $this->actingAs($this->capturista)->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('TEST ALMACEN');
+    }
+
+    public function test_admin_can_access_home_and_sees_dashboard(): void
+    {
+        $response = $this->actingAs($this->admin)->get('/');
+        $response->assertStatus(200);
+    }
+
+    public function test_supervisor_can_access_home_and_sees_dashboard(): void
+    {
+        $response = $this->actingAs($this->supervisor)->get('/');
+        $response->assertStatus(200);
     }
 }

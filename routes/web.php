@@ -19,7 +19,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middl
 
 // Rutas protegidas
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('can:view-dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/importaciones', [ImportController::class, 'index'])->name('importaciones.index');
     Route::post('/importaciones/er', [ImportController::class, 'importER'])->name('importaciones.er');

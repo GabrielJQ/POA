@@ -4,27 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Domain\Contracts\IDashboardService;
+use App\Domain\Contracts\Repositories\IAlmacenRepository;
+use App\Domain\Contracts\IPOADomainService;
+use App\Domain\ValueObjects\FiltrosPOA;
+use App\Domain\ValueObjects\Periodo;
 
 class DashboardController extends Controller
 {
-    private IDashboardService $dashboardService;
+    public function __construct(
+        private IDashboardService $dashboardService,
+        private IAlmacenRepository $almacenRepo,
+        private IPOADomainService $poaDomainService,
+    ) {}
 
-    public function __construct(IDashboardService $dashboardService)
-    {
-        $this->dashboardService = $dashboardService;
-    }
-
-    /**
-     * Mostrar dashboard principal
-     *
-     * Renderiza el dashboard con indicadores de eficiencia por almacén:
-     * índice consolidado, top/bottom 3 almacenes, semáforo de rendimiento.
-     * Calcula el % de logro por concepto vs meta para cada almacén.
-     *
-     * @group Dashboard
-     */
     public function index()
     {
+        $user = auth()->user();
+
+        if ($user->isCapturista()) {
+            return $this->capturistaHome($user);
+        }
+
         $anioActual = (int) date('Y');
         $mesActual = (int) date('m');
 
@@ -41,5 +41,26 @@ class DashboardController extends Controller
             'mesActual' => $mesActual,
             'meses' => $meses,
         ]));
+    }
+
+    private function capturistaHome($user): \Illuminate\View\View
+    {
+        $almacen = $user->almacen;
+        $anio = (int) date('Y');
+
+        $filtros = new FiltrosPOA(
+            anio: $anio,
+            almacenId: $almacen->id,
+            consolidado: false,
+            periodo: new Periodo(Periodo::ANUAL)
+        );
+
+        $poaData = $this->poaDomainService->obtenerDatosPOA($filtros);
+
+        return view('capturista.dashboard', [
+            'almacen' => $almacen,
+            'anio' => $anio,
+            'poaData' => $poaData,
+        ]);
     }
 }

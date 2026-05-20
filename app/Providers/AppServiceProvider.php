@@ -70,6 +70,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('view-dashboard', fn ($user) => $user->isAdmin() || $user->isSupervisor());
+        Gate::define('view-mialmacen', fn ($user) => $user->isCapturista());
         Gate::define('manage-users', fn ($user) => $user->isAdmin());
         Gate::define('edit-notas', fn ($user) => $user->isAdmin() || $user->isSupervisor());
     }
