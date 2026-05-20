@@ -1,21 +1,15 @@
 @extends('adminlte::master')
 
 @php
-    $loginUrl = View::getSection('login_url') ?? config('adminlte.login_url', 'login');
-    $registerUrl = View::getSection('register_url') ?? config('adminlte.register_url', 'register');
     $passResetUrl = View::getSection('password_reset_url') ?? config('adminlte.password_reset_url', 'password/reset');
-    $dashboardUrl = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home');
+    $loginUrl = View::getSection('login_url') ?? config('adminlte.login_url', 'login');
 
     if (config('adminlte.use_route_url', false)) {
-        $loginUrl = $loginUrl ? route($loginUrl) : '';
-        $registerUrl = $registerUrl ? route($registerUrl) : '';
         $passResetUrl = $passResetUrl ? route($passResetUrl) : '';
-        $dashboardUrl = $dashboardUrl ? route($dashboardUrl) : '';
+        $loginUrl = $loginUrl ? route($loginUrl) : '';
     } else {
-        $loginUrl = $loginUrl ? url($loginUrl) : '';
-        $registerUrl = $registerUrl ? url($registerUrl) : '';
         $passResetUrl = $passResetUrl ? url($passResetUrl) : '';
-        $dashboardUrl = $dashboardUrl ? url($dashboardUrl) : '';
+        $loginUrl = $loginUrl ? url($loginUrl) : '';
     }
 @endphp
 
@@ -47,12 +41,14 @@
             </div>
 
             <div class="login-title">
-                INICIAR SESIÓN
+                NUEVA CONTRASEÑA
             </div>
 
             <div class="login-body">
-                <form action="{{ $loginUrl }}" method="post">
+                <form action="{{ $passResetUrl }}" method="post">
                     @csrf
+
+                    <input type="hidden" name="token" value="{{ $token }}">
 
                     <div class="form-group">
                         <div class="input-group mb-3">
@@ -81,11 +77,11 @@
                                     <span class="fas fa-lock"></span>
                                 </span>
                             </div>
-                            <input type="password" name="password" id="login-password"
+                            <input type="password" name="password" id="reset-password"
                                    class="form-control @error('password') is-invalid @enderror"
-                                   placeholder="Contraseña">
+                                   placeholder="Nueva contraseña">
                             <div class="input-group-append">
-                                <span class="input-group-text" id="toggle-password"
+                                <span class="input-group-text toggle-password"
                                       style="cursor:pointer; border-left:none; border-radius:0 12px 12px 0; background:rgba(255,255,255,0.95); color:#691C32; padding:0.65rem 1rem;">
                                     <span class="fas fa-eye"></span>
                                 </span>
@@ -98,36 +94,38 @@
                         </div>
                     </div>
 
-                    <div class="row align-items-center">
-                        <div class="col-7">
-                            <div class="custom-checkbox"
-                                 title="Mantenerme conectado">
-                                <input type="checkbox" name="remember" id="remember"
-                                       {{ old('remember') ? 'checked' : '' }}>
-                                <label for="remember">
-                                    Recordar mis datos
-                                </label>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </span>
                             </div>
-                        </div>
-                        <div class="col-5 text-right">
-                            <button type="submit" class="btn-login">
-                                <i class="fas fa-sign-in-alt"></i>
-                                Ingresar
-                            </button>
+                            <input type="password" name="password_confirmation"
+                                   class="form-control @error('password_confirmation') is-invalid @enderror"
+                                   placeholder="Confirmar contraseña">
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
+
+                    <button type="submit" class="btn-login" style="width:100%;">
+                        <i class="fas fa-sync-alt"></i>
+                        Restablecer
+                    </button>
                 </form>
             </div>
 
             <div class="login-footer">
-                @if($passResetUrl)
-                    <p class="my-0">
-                        <a href="{{ $passResetUrl }}">
-                            <i class="fas fa-question-circle"></i>
-                            ¿Olvidaste tu contraseña?
-                        </a>
-                    </p>
-                @endif
+                <p class="my-0">
+                    <a href="{{ $loginUrl }}">
+                        <i class="fas fa-arrow-left"></i>
+                        Volver al inicio de sesión
+                    </a>
+                </p>
 
                 <div class="gobierno-branding">
                     Gobierno de México
@@ -138,28 +136,31 @@
 
         <div class="login-side login-side-right">
             <img src="{{ asset('img/logos/logoAgricultura.png') }}"
-                 alt="Secretaría de Agricultura y Desarrollo Rural">
+                 alt="Secretaría de Agricultura y Desarrollo Social">
         </div>
 
     </div>
+
+    <script>
+        document.querySelectorAll('.toggle-password').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var input = document.getElementById('reset-password');
+                var icon = this.querySelector('.fas');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+    </script>
 @stop
 
 @section('adminlte_js')
-    <script>
-        document.getElementById('toggle-password').addEventListener('click', function () {
-            var input = document.getElementById('login-password');
-            var icon = this.querySelector('.fas');
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
-        });
-    </script>
     @stack('js')
     @yield('js')
 @stop

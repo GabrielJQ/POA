@@ -1,0 +1,278 @@
+html {
+    height: 100%;
+}
+
+body.login-page {
+    background: linear-gradient(135deg, #13322B 0%, #0a1f1a 100%) !important;
+    background-color: #13322B !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    padding: 20px !important;
+}
+
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: loginFadeIn 0.6s ease-out;
+}
+
+@keyframes loginFadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.login-side {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+}
+
+.login-side img {
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+}
+
+.login-side-left {
+    justify-content: flex-start;
+}
+
+.login-side-left img {
+    max-height: 310px;
+    max-width: 340px;
+}
+
+.login-side-right {
+    justify-content: flex-end;
+}
+
+.login-side-right img {
+    max-height: 280px;
+    max-width: 390px;
+}
+
+.login-card {
+    background: #691C32;
+    border-radius: 24px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    padding: 50px 45px 40px;
+    width: 100%;
+    max-width: 540px;
+    flex-shrink: 0;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.login-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.login-brand-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background: white;
+    padding: 4px;
+}
+
+.login-brand-text {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.login-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.login-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #988256;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.login-body .form-group {
+    margin-bottom: 1.25rem;
+}
+
+.login-body .input-group {
+    margin-bottom: 0;
+}
+
+.login-body .input-group-text {
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 12px 0 0 12px;
+    color: #691C32;
+    padding: 0.65rem 1rem;
+}
+
+.login-body .form-control {
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+    padding: 0.65rem 1rem 0.65rem 0;
+    height: auto;
+    font-size: 0.9rem;
+    color: #333;
+    transition: all 0.3s;
+}
+
+.login-body .form-control:focus {
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(152, 130, 86, 0.25);
+}
+
+.login-body .input-group:focus-within .input-group-text {
+    background: #ffffff;
+}
+
+.login-body .form-control::placeholder {
+    color: #999;
+    font-weight: 400;
+}
+
+.login-body .invalid-feedback {
+    color: #ffc107;
+    font-weight: 600;
+    font-size: 0.78rem;
+}
+
+.login-body .custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.login-body .custom-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #988256;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.login-body .custom-checkbox label {
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    cursor: pointer;
+    padding-left: 0;
+}
+
+.login-body .btn-login {
+    background: linear-gradient(135deg, #988256 0%, #7a6a44 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 2rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(152, 130, 86, 0.4);
+    transition: all 0.3s;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.login-body .btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(152, 130, 86, 0.5);
+    filter: brightness(1.1);
+}
+
+.login-body .btn-login i {
+    margin-right: 8px;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.login-footer a {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 500;
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.login-footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.login-footer .gobierno-branding {
+    margin-top: 15px;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 820px) {
+    .login-wrapper {
+        gap: 20px;
+    }
+
+    .login-side-left img {
+        max-height: 200px;
+        max-width: 220px;
+    }
+
+    .login-side-right img {
+        max-height: 180px;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 640px) {
+    .login-side {
+        display: none;
+    }
+
+    .login-card {
+        max-width: 100%;
+        padding: 40px 30px 35px;
+    }
+}
