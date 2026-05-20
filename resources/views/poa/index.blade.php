@@ -42,6 +42,7 @@
                 :mes-actual="$mesActual"
                 :trimestres="$trimestres"
                 :meses="$meses"
+                :es-capturista="$esCapturista ?? false"
             />
             <div id="contenedor-tabla-poa">
                 <x-poa.tabla

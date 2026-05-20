@@ -30,6 +30,12 @@
     </div>
 @endif
 
+@if(isset($esCapturista) && $esCapturista)
+    <div class="alert alert-info">
+        <i class="fas fa-store"></i> Estás importando datos para: <strong>{{ $almacenes->first()->nombre ?? 'tu almacén' }}</strong>
+    </div>
+@endif
+
 <!-- ==================== SECCIÓN: COMPROMETIDOS ==================== -->
 <div class="row">
     <div class="col-12 mb-3">

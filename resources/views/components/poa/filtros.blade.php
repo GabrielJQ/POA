@@ -7,11 +7,20 @@
     'trimestreSeleccionado' => 1,
     'mesActual' => null,
     'trimestres' => [],
-    'meses' => []
+    'meses' => [],
+    'esCapturista' => false
 ])
 
 <form id="filtro-poa-form" method="GET" action="{{ route('poa.index') }}" class="mb-3 px-2" onsubmit="return false;">
     <div class="row align-items-end">
+        @if($esCapturista)
+            <div class="col-md-2">
+                <label class="poa-filter-label"><i class="fas fa-warehouse mr-1"></i> Almacén</label>
+                <input type="text" class="form-control form-control-sm" value="{{ $almacenSeleccionado ? ($almacenes->firstWhere('id', $almacenSeleccionado)->nombre ?? '') : '' }}" readonly>
+                <input type="hidden" name="almacen_id" value="{{ $almacenSeleccionado }}">
+                <input type="hidden" name="consolidado" value="no">
+            </div>
+        @else
         <div class="col-md-2">
             <label class="poa-filter-label"><i class="fas fa-layer-group mr-1"></i> Consolidado</label>
             <select name="consolidado" class="form-control form-control-sm select2" id="consolidado-select">
@@ -28,6 +37,7 @@
                 @endforeach
             </select>
         </div>
+        @endif
         <div class="col-md-1">
             <label class="poa-filter-label"><i class="fas fa-calendar-alt mr-1"></i> Año</label>
             <input type="number" name="anio" class="form-control form-control-sm" value="{{ $anioSeleccionado }}">

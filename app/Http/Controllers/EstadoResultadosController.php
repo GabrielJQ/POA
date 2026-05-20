@@ -44,6 +44,12 @@ class EstadoResultadosController extends Controller
      */
     public function index(Request $request)
     {
+        $user = auth()->user();
+
+        if ($user->isCapturista()) {
+            $request->merge(['almacen_id' => $user->almacen_id]);
+        }
+
         $data = $this->obtenerDatosER->execute($request->all());
 
         if ($request->ajax() === true || $request->expectsJson()) {
@@ -53,7 +59,9 @@ class EstadoResultadosController extends Controller
             ])->render();
         }
 
-        return view('estado_resultados.index', $data);
+        return view('estado_resultados.index', array_merge($data, [
+            'esCapturista' => $user->isCapturista(),
+        ]));
     }
 
     /**
@@ -69,6 +77,12 @@ class EstadoResultadosController extends Controller
      */
     public function export(Request $request)
     {
+        $user = auth()->user();
+
+        if ($user->isCapturista()) {
+            $request->merge(['almacen_id' => $user->almacen_id]);
+        }
+
         $data = $this->obtenerDatosER->executeParaVista($request->all());
 
         $nombreArchivo = 'Estado_Resultados_' . $request->input('anio', date('Y')) 
@@ -132,6 +146,12 @@ class EstadoResultadosController extends Controller
      */
     public function store(Request $request)
     {
+        $user = auth()->user();
+
+        if ($user->isCapturista()) {
+            $request->merge(['almacen_id' => $user->almacen_id]);
+        }
+
         $request->validate([
             'almacen_id' => 'required|exists:almacenes,id',
             'concepto_id' => 'required|exists:conceptos_maestros,id',

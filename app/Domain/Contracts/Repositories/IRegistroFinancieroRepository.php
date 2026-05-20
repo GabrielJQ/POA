@@ -13,5 +13,6 @@ interface IRegistroFinancieroRepository
     public function updateOrCreate(array $attrs, array $vals): void;
     public function getDistinctAlmacenesByAnioYTipo(int $anio, string $tipo): Collection;
     public function findByUniqueKey(int $almacenId, int $conceptoId, int $mes, int $anio, string $tipoDato, ?string $programa): ?RegistroFinanciero;
+    public function update(int $id, array $data): void;
     public function create(array $data): RegistroFinanciero;
 }

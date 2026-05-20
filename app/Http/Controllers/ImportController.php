@@ -54,13 +54,23 @@ class ImportController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+
         $almacenes = Cache::remember(
             \App\Domain\Shared\CacheKeys::ALMACENES,
             86400,
             fn() =>
             Almacen::orderBy('nombre')->get()
         );
-        return view('importaciones.index', compact('almacenes'));
+
+        if ($user->isCapturista()) {
+            $almacenes = $almacenes->where('id', $user->almacen_id);
+        }
+
+        return view('importaciones.index', array_merge(
+            compact('almacenes'),
+            ['esCapturista' => $user->isCapturista()]
+        ));
     }
 
     /**
@@ -249,6 +259,12 @@ class ImportController extends Controller
      */
     public function importMermasComprometido(Request $request)
     {
+        $user = auth()->user();
+
+        if ($user->isCapturista()) {
+            $request->merge(['almacen_id' => $user->almacen_id]);
+        }
+
         $request->validate([
             'almacen_id' => 'required|integer|exists:almacenes,id',
             'anio' => 'required|integer|min:2000|max:2100',

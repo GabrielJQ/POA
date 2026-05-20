@@ -70,6 +70,11 @@ class RegistroFinancieroRepository implements IRegistroFinancieroRepository
         return $query->first();
     }
 
+    public function update(int $id, array $data): void
+    {
+        RegistroFinanciero::where('id', $id)->update($data);
+    }
+
     public function create(array $data): RegistroFinanciero
     {
         return RegistroFinanciero::create($data);

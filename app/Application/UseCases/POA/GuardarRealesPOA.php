@@ -24,6 +24,7 @@ class GuardarRealesPOA
         $almacenId = (int) $data['almacen_id'];
         $anio = (int) $data['anio'];
         $valores = $data['valores'];
+        $bypassWriteOnce = $data['bypass_write_once'] ?? false;
 
         $poaConcepto = $this->conceptoRepo->findById($conceptoId);
         if (!$poaConcepto) {
@@ -65,6 +66,11 @@ class GuardarRealesPOA
             }
 
             if ($existing) {
+                if ($bypassWriteOnce) {
+                    $this->registroRepo->update($existing->id, ['monto' => $monto]);
+                    $saved++;
+                    continue;
+                }
                 $monthName = Periodo::NOMBRES_MESES[$mes] ?? "Mes {$mes}";
                 $errors[] = "{$monthName}: ya existe un registro y no puede modificarse.";
                 continue;

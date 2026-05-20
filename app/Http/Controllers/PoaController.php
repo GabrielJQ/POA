@@ -47,6 +47,7 @@ class PoaController extends Controller
      * Renderiza la tabla del Programa Anual de Trabajo con filtros por
      * almacén, año, período (mensual/trimestral/anual). Soporta consolidado
      * (todas las tiendas) o vista individual por almacén.
+     * Si el usuario es capturista, forza la vista de su almacén sin selector.
      * Si la petición es AJAX, devuelve solo el HTML de la tabla.
      *
      * @group POA
@@ -60,6 +61,15 @@ class PoaController extends Controller
      */
     public function index(Request $request)
     {
+        $user = auth()->user();
+
+        if ($user->isCapturista()) {
+            $request->merge([
+                'almacen_id' => $user->almacen_id,
+                'consolidado' => 'no',
+            ]);
+        }
+
         $data = $this->obtenerDatosPOA->execute($request->all());
 
         if ($request->ajax() === true || $request->expectsJson()) {
@@ -73,6 +83,7 @@ class PoaController extends Controller
                 'anioSeleccionado' => $data['anioSeleccionado'],
                 'almacenSeleccionado' => $data['almacenSeleccionado'],
                 'mostrarConsolidado' => $data['mostrarConsolidado'] ?? true,
+                'esCapturista' => $user->isCapturista(),
             ])->render();
         }
 
@@ -83,6 +94,7 @@ class PoaController extends Controller
         return view('poa.index', array_merge($data, [
             'almacenes' => $almacenes,
             'trimestres' => \App\Domain\ValueObjects\Periodo::NOMBRES_TRIMESTRES,
+            'esCapturista' => $user->isCapturista(),
         ]));
     }
 
@@ -105,6 +117,15 @@ class PoaController extends Controller
      */
     public function export(Request $request)
     {
+        $user = auth()->user();
+
+        if ($user->isCapturista()) {
+            $request->merge([
+                'almacen_id' => $user->almacen_id,
+                'consolidado' => 'no',
+            ]);
+        }
+
         $tipo = $request->input('tipo', 'xlsx');
 
         if (!in_array($tipo, ['xlsx', 'pdf'])) {
@@ -145,6 +166,7 @@ class PoaController extends Controller
      */
     public function saveNota(Request $request)
     {
+        $user = auth()->user();
         $validated = $request->validate([
             'concepto_id' => 'required|integer|exists:conceptos_maestros,id',
             'label' => 'required|string|max:50',
@@ -153,6 +175,22 @@ class PoaController extends Controller
             'almacen_id' => 'nullable|integer|exists:almacenes,id',
             'mes' => 'required|integer|min:0|max:200',
         ]);
+
+        if ($user->isCapturista()) {
+            $validated['almacen_id'] = $user->almacen_id;
+
+            $existing = PoaNota::where([
+                'concepto_id' => (int) $validated['concepto_id'],
+                'label' => $validated['label'],
+                'anio' => (int) $validated['anio'],
+                'almacen_id' => $user->almacen_id,
+                'mes' => (int) $validated['mes'],
+            ])->exists();
+
+            if ($existing && ($validated['nota_aclaratoria'] ?? '') !== '') {
+                abort(403, 'No tienes permiso para editar notas existentes.');
+            }
+        }
 
         PoaNota::updateOrCreate(
             [
@@ -261,6 +299,12 @@ class PoaController extends Controller
      */
     public function guardarReales(Request $request)
     {
+        $user = auth()->user();
+
+        if ($user->isCapturista()) {
+            $request->merge(['almacen_id' => $user->almacen_id]);
+        }
+
         $validated = $request->validate([
             'concepto_id' => 'required|integer|exists:conceptos_maestros,id',
             'almacen_id' => 'required|integer|exists:almacenes,id',
@@ -269,6 +313,9 @@ class PoaController extends Controller
             'valores.*.mes' => 'required|integer|min:1|max:12',
             'valores.*.monto' => 'required|numeric',
         ]);
+
+        $bypassWriteOnce = $user->isAdmin() || $user->isSupervisor();
+        $validated['bypass_write_once'] = $bypassWriteOnce;
 
         try {
             $result = $this->guardarRealesPOA->execute($validated);
