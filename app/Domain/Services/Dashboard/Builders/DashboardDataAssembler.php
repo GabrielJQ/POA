@@ -10,27 +10,25 @@ class DashboardDataAssembler
     ): array {
         usort($indicePorAlmacen, fn($a, $b) => ($a['indice'] ?? 999) <=> ($b['indice'] ?? 999));
 
-        $enRojo = 0;
-        $enAtencion = 0;
+        $verde = [];    // >= 75%
+        $amarillo = []; // >= 50% y < 75%
+        $naranja = [];  // >= 30% y < 50%
+        $rojo = [];     // < 30%
         $totalSinDatos = 0;
 
         foreach ($indicePorAlmacen as $s) {
-            if ($s['indice'] !== null) {
-                if ($s['indice'] < 30) {
-                    $enRojo++;
-                } elseif ($s['indice'] < 50) {
-                    $enAtencion++;
-                }
-            } else {
+            if ($s['indice'] === null) {
                 $totalSinDatos++;
+            } elseif ($s['indice'] >= 75) {
+                $verde[] = $s;
+            } elseif ($s['indice'] >= 50) {
+                $amarillo[] = $s;
+            } elseif ($s['indice'] >= 30) {
+                $naranja[] = $s;
+            } else {
+                $rojo[] = $s;
             }
         }
-
-        $conDatos = array_filter($indicePorAlmacen, fn($s) => $s['indice'] !== null);
-        $conDatos = array_values($conDatos);
-
-        $top3 = array_slice(array_reverse($conDatos), 0, 3);
-        $bottom3 = array_slice($conDatos, 0, 3);
 
         $suma = 0;
         $count = 0;
@@ -45,8 +43,9 @@ class DashboardDataAssembler
 
         return compact(
             'totalAlmacenes', 'totalConDatos', 'totalSinDatos',
-            'indiceConsolidado', 'enRojo', 'enAtencion',
-            'indicePorAlmacen', 'top3', 'bottom3',
+            'indiceConsolidado',
+            'indicePorAlmacen',
+            'verde', 'amarillo', 'naranja', 'rojo',
         );
     }
 }

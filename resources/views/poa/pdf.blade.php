@@ -176,8 +176,8 @@
                         $avance1 = 100;
                     }
 
-                    $pctPeriodo = $avance1 != 0 ? ($avance2 / $avance1) * 100 : 0;
-                    $pctAnual = $metaAnual1 != 0 ? ($metaAnual2 / $metaAnual1) * 100 : 0;
+                    $pctPeriodo = $avance1 != 0 ? min(($avance2 / $avance1) * 100, 100) : 0;
+                    $pctAnual = $metaAnual1 != 0 ? min(($metaAnual2 / $metaAnual1) * 100, 100) : 0;
 
                     $pctClass = $pctPeriodo >= 90 ? 'pct-ok' : ($pctPeriodo >= 50 ? 'pct-warn' : 'pct-bad');
                     $pctAClass = $pctAnual >= 90 ? 'pct-ok' : ($pctAnual >= 50 ? 'pct-warn' : 'pct-bad');

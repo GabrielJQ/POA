@@ -33,6 +33,7 @@ class EficienciaCalculator
                         $logros[] = $pctLogro;
                         $detalles[] = [
                             'concepto' => $compromiso->nombre,
+                            'unidad_medida' => $compromiso->unidad_medida,
                             'meta' => 100,
                             'real' => $realSum,
                             'pct' => $pctLogro,
@@ -58,6 +59,7 @@ class EficienciaCalculator
                         $logros[] = $pctLogro;
                         $detalles[] = [
                             'concepto' => $compromiso->nombre,
+                            'unidad_medida' => $compromiso->unidad_medida,
                             'meta' => $metaSum,
                             'real' => $realSum,
                             'pct' => $pctLogro,

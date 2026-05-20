@@ -73,8 +73,8 @@
                             $avancePeriodo1 = 100;
                         }
 
-                        $pctPeriodo = ($avancePeriodo1 != 0) ? ($avancePeriodo2 / $avancePeriodo1) * 100 : 0;
-                        $pctAnual = ($metaAnual1 != 0) ? ($metaAnual2 / $metaAnual1) * 100 : 0;
+                        $pctPeriodo = ($avancePeriodo1 != 0) ? min(($avancePeriodo2 / $avancePeriodo1) * 100, 100) : 0;
+                        $pctAnual = ($metaAnual1 != 0) ? min(($metaAnual2 / $metaAnual1) * 100, 100) : 0;
                         $esMoneda = in_array(strtoupper($compromiso->unidad_medida), ['PESOS']);
                     @endphp
 
